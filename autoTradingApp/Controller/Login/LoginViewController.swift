@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(loginView)
         configureLayout()
+        configureTextField()
     }
 
     func configureLayout() {
@@ -36,4 +37,15 @@ class LoginViewController: UIViewController {
         ])
     }
 
+    func configureTextField() {
+        loginView.loginTextField.delegate = self
+        loginView.passwordTextField.delegate = self
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        //check validate e-mail format
+        return true
+    }
 }

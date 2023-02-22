@@ -9,25 +9,27 @@
 /* Begin PBXBuildFile section */
 		11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11080AA82982A97B00B73F5F /* AppDelegate.swift */; };
 		11080AAB2982A97B00B73F5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11080AAA2982A97B00B73F5F /* SceneDelegate.swift */; };
-		11080AAD2982A97B00B73F5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11080AAC2982A97B00B73F5F /* ViewController.swift */; };
+		11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11080AAC2982A97B00B73F5F /* InitialViewController.swift */; };
 		11080AB22982A97C00B73F5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11080AB12982A97C00B73F5F /* Assets.xcassets */; };
 		11080AB52982A97C00B73F5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11080AB32982A97C00B73F5F /* LaunchScreen.storyboard */; };
 		11080AC02982B6C200B73F5F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11080ABF2982B6C200B73F5F /* LoginView.swift */; };
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
+		11E7F95D29A5CA4C00C29B83 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11080AA52982A97B00B73F5F /* autoTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = autoTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11080AA82982A97B00B73F5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11080AAA2982A97B00B73F5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		11080AAC2982A97B00B73F5F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		11080AAC2982A97B00B73F5F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		11080AB12982A97C00B73F5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11080AB42982A97C00B73F5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11080AB62982A97C00B73F5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11080ABF2982B6C200B73F5F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		11E7F95C29A5CA4C00C29B83 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				11080ABE2982AC5300B73F5F /* Model */,
 				11080ABD2982AC5000B73F5F /* View */,
 				11080ABC2982AC3C00B73F5F /* Controller */,
+				11E7F958298E95F800C29B83 /* Utility */,
 			);
 			path = autoTradingApp;
 			sourceTree = "<group>";
@@ -75,8 +78,8 @@
 		11080ABC2982AC3C00B73F5F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				11080AAC2982A97B00B73F5F /* ViewController.swift */,
-				114DD3742982CA81001E3E24 /* LoginViewController.swift */,
+				11E7F956298E8B5D00C29B83 /* Initial */,
+				11E7F957298E8B6D00C29B83 /* Login */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -84,8 +87,8 @@
 		11080ABD2982AC5000B73F5F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				11080ABF2982B6C200B73F5F /* LoginView.swift */,
-				114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */,
+				11E7F955298E8B4900C29B83 /* Initial */,
+				11E7F953298E877300C29B83 /* Login */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -95,6 +98,46 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		11E7F953298E877300C29B83 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				11080ABF2982B6C200B73F5F /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		11E7F955298E8B4900C29B83 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */,
+			);
+			path = Initial;
+			sourceTree = "<group>";
+		};
+		11E7F956298E8B5D00C29B83 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				11080AAC2982A97B00B73F5F /* InitialViewController.swift */,
+			);
+			path = Initial;
+			sourceTree = "<group>";
+		};
+		11E7F957298E8B6D00C29B83 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				114DD3742982CA81001E3E24 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		11E7F958298E95F800C29B83 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				11E7F95C29A5CA4C00C29B83 /* Constant.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,8 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11E7F95D29A5CA4C00C29B83 /* Constant.swift in Sources */,
 				114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */,
-				11080AAD2982A97B00B73F5F /* ViewController.swift in Sources */,
+				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
 				114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */,
 				11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,

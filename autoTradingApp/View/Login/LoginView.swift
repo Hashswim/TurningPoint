@@ -17,17 +17,18 @@ class LoginView: UIView {
         return label
     }()
 
-    private let loginTextField: UITextField = {
+    let loginTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "이메일 주소 입력"
         return tf
     }()
 
-    private let passwordTextField: UITextField = {
+    let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "비밀번호 ()자리 이상 입력"
+        tf.isSecureTextEntry = true
         return tf
     }()
 
@@ -40,6 +41,7 @@ class LoginView: UIView {
     private let passwordGuideButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("비밀번호 재설정", for: .normal)
+        btn.tintColor = .black
         return btn
     }()
 
@@ -54,6 +56,7 @@ class LoginView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.alignment = .fill
         return stackView
     }()
 
@@ -80,29 +83,7 @@ class LoginView: UIView {
 
     func configureLayout() {
         NSLayoutConstraint.activate([
-            guideLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            guideLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            guideLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            guideLabel.heightAnchor.constraint(equalToConstant: 70),
 
-            loginTextField.topAnchor.constraint(equalTo: guideLabel.bottomAnchor, constant: 16),
-            loginTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
-            loginTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 8),
-            loginTextField.heightAnchor.constraint(equalToConstant: 20),
-
-            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 16),
-            passwordTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
-            passwordTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 8),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 20),
-
-            passwordGuideContainerStackView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
-            passwordGuideContainerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
-            passwordGuideContainerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 8),
-
-            containerStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            containerStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-            containerStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            containerStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
         ])
 
     }

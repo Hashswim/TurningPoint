@@ -7,18 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class InitialViewController: UIViewController {
     let loginViewController = LoginViewController()
-
-    private let guideLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 2
-        label.text = "너도 주식 할 수 있어 \r\n간단하게 터포 !"
-        label.textColor = .systemGray
-        return label
-    }()
 
     var guideCollectionView: UICollectionView!
 
@@ -83,7 +73,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController {
+extension InitialViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -96,7 +86,7 @@ extension ViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
 
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
+        section.orthogonalScrollingBehavior = .groupPagingCentered
         section.interGroupSpacing = 10
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
@@ -109,7 +99,7 @@ extension ViewController {
 
 
 
-extension ViewController {
+extension InitialViewController {
     private func configureHierarchy() {
         guideCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         guideCollectionView.register(GuideCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -120,8 +110,7 @@ extension ViewController {
 
         buttonStackView.addArrangedSubview(loginButton)
         buttonStackView.addArrangedSubview(signUpButton)
-
-        containerStackView.addArrangedSubview(guideLabel)
+        
         containerStackView.addArrangedSubview(guideCollectionView)
         containerStackView.addArrangedSubview(buttonStackView)
         containerStackView.addArrangedSubview(appleLoginButton)
@@ -131,15 +120,10 @@ extension ViewController {
 
     private func configureLayout() {
         NSLayoutConstraint.activate([
-            guideLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            guideLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            guideLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            guideLabel.heightAnchor.constraint(equalToConstant: 84),
-
             guideCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            guideCollectionView.topAnchor.constraint(equalTo: guideLabel.bottomAnchor),
+            guideCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             guideCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            guideCollectionView.heightAnchor.constraint(equalToConstant: 300),
+            guideCollectionView.heightAnchor.constraint(equalToConstant: 550),
 
             buttonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             buttonStackView.topAnchor.constraint(equalTo: guideCollectionView.bottomAnchor),
@@ -154,7 +138,7 @@ extension ViewController {
     }
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension InitialViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
@@ -163,7 +147,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? GuideCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configureCell(test: "1")
+        let constant = Constant()
+        let textArr = constant.guideText
+
+        cell.configureCell(test: textArr[indexPath.row])
         cell.backgroundColor = .systemGray
         return cell
     }
