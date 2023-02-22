@@ -69,3 +69,5 @@ class GuideCollectionViewCell: UICollectionViewCell {
         ])
     }
 }
+
+

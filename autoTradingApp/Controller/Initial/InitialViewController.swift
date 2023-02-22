@@ -12,6 +12,17 @@ class InitialViewController: UIViewController {
 
     var guideCollectionView: UICollectionView!
 
+    private let pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+
+        pageControl.numberOfPages = 5
+        pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = UIColor.white.withAlphaComponent(0.3)
+        pageControl.isEnabled = false
+
+        return pageControl
+    }()
+
     private let loginButton: UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(loginBtnAction), for: .touchUpInside)
@@ -90,14 +101,18 @@ extension InitialViewController {
         section.interGroupSpacing = 10
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
+        section.visibleItemsInvalidationHandler = {(item, offset, env) in
+            let index = Int((offset.x / env.container.contentSize.width))
+            print(">>>> \(index)")
+            self.pageControl.currentPage = index
+        }
+
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
         let layout = UICollectionViewCompositionalLayout(section: section, configuration: configuration)
 
         return layout
     }
 }
-
-
 
 extension InitialViewController {
     private func configureHierarchy() {
@@ -112,6 +127,7 @@ extension InitialViewController {
         buttonStackView.addArrangedSubview(signUpButton)
         
         containerStackView.addArrangedSubview(guideCollectionView)
+        containerStackView.addArrangedSubview(pageControl)
         containerStackView.addArrangedSubview(buttonStackView)
         containerStackView.addArrangedSubview(appleLoginButton)
 
@@ -125,8 +141,12 @@ extension InitialViewController {
             guideCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             guideCollectionView.heightAnchor.constraint(equalToConstant: 550),
 
+            pageControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            pageControl.topAnchor.constraint(equalTo: guideCollectionView.bottomAnchor),
+            pageControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+
             buttonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            buttonStackView.topAnchor.constraint(equalTo: guideCollectionView.bottomAnchor),
+            buttonStackView.topAnchor.constraint(equalTo: pageControl.bottomAnchor),
             buttonStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             buttonStackView.heightAnchor.constraint(equalToConstant: 80),
 
@@ -153,6 +173,21 @@ extension InitialViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.configureCell(test: textArr[indexPath.row])
         cell.backgroundColor = .systemGray
         return cell
+    }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let page = Int(targetContentOffset.pointee.x / scrollView.frame.width)
+        self.pageControl.currentPage = page
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let width = scrollView.bounds.size.width
+        let x = scrollView.contentOffset.x + (width/2)
+
+        let newPage = Int(x/width)
+        if pageControl.currentPage != newPage {
+            pageControl.currentPage = newPage
+        }
     }
 }
 
