@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
     }
 
     func configureTextField() {
-        loginView.loginTextField.delegate = self
+        loginView.idTextField.delegate = self
         loginView.passwordTextField.delegate = self
     }
 }

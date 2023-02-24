@@ -15,7 +15,9 @@
 		11080AC02982B6C200B73F5F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11080ABF2982B6C200B73F5F /* LoginView.swift */; };
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
-		11E7F95D29A5CA4C00C29B83 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* Constant.swift */; };
+		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
+		11E7F96029A8D23D00C29B83 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95F29A8D23D00C29B83 /* SignUpView.swift */; };
+		11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96129A8D6F700C29B83 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +31,9 @@
 		11080ABF2982B6C200B73F5F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		11E7F95C29A5CA4C00C29B83 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
+		11E7F95F29A8D23D00C29B83 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		11E7F96129A8D6F700C29B83 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 			children = (
 				11E7F955298E8B4900C29B83 /* Initial */,
 				11E7F953298E877300C29B83 /* Login */,
+				11E7F95E29A8D20A00C29B83 /* SignUp */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				11080ABF2982B6C200B73F5F /* LoginView.swift */,
+				11E7F96129A8D6F700C29B83 /* CustomTextField.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -135,9 +141,17 @@
 		11E7F958298E95F800C29B83 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				11E7F95C29A5CA4C00C29B83 /* Constant.swift */,
+				11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		11E7F95E29A8D20A00C29B83 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				11E7F95F29A8D23D00C29B83 /* SignUpView.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,13 +224,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11E7F95D29A5CA4C00C29B83 /* Constant.swift in Sources */,
+				11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */,
 				114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */,
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
 				114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */,
 				11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */,
+				11E7F96029A8D23D00C29B83 /* SignUpView.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,
 				11080AAB2982A97B00B73F5F /* SceneDelegate.swift in Sources */,
+				11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

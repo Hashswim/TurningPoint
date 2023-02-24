@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Constant {
+struct GuideConstant {
     var guideText = [NSMutableAttributedString]()
 
     let first = "너도 주식 할 수 있어 \n간단하게 터포 !"

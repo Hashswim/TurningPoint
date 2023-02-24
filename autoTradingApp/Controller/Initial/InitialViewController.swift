@@ -66,11 +66,20 @@ class InitialViewController: UIViewController {
         return stackView
     }()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
         configureLayout()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
     @objc
@@ -167,7 +176,7 @@ extension InitialViewController: UICollectionViewDelegate, UICollectionViewDataS
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? GuideCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let constant = Constant()
+        let constant = GuideConstant()
         let textArr = constant.guideText
 
         cell.configureCell(test: textArr[indexPath.row])
