@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
 
         view.backgroundColor = .white
         view.addSubview(loginView)
+        addTapGesture()
         configureLayout()
         configureTextField()
         configureLoginButton()
@@ -51,6 +52,16 @@ class LoginViewController: UIViewController {
     func loginBtnAction() {
         let mainTabBarController = MainTabBarController()
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+    }
+
+    private func addTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc
+    private func hideKeyboard(_ sender: Any) {
+        view.endEditing(true)
     }
 }
 
