@@ -42,11 +42,14 @@ class LoginView: UIView {
         return label
     }()
 
-    private let passwordGuideContainerStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .fill
-        return stackView
+    var loginButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.tintColor = .systemGray
+        btn.backgroundColor = .systemGray
+        btn.setTitle("로그인", for: .normal)
+
+        return btn
     }()
 
     private let containerStackView: UIStackView = {
@@ -73,8 +76,8 @@ class LoginView: UIView {
         containerStackView.addArrangedSubview(guideLabel)
         containerStackView.addArrangedSubview(idTextField)
         containerStackView.addArrangedSubview(passwordTextField)
-        containerStackView.addArrangedSubview(passwordGuideContainerStackView)
         containerStackView.addArrangedSubview(passwordGuideLabel)
+        containerStackView.addArrangedSubview(loginButton)
     }
 
     func configureLayout() {
@@ -82,10 +85,12 @@ class LoginView: UIView {
         containerStackView.setCustomSpacing(56, after: idTextField)
         containerStackView.setCustomSpacing(48, after: passwordTextField)
         containerStackView.setCustomSpacing(28, after: passwordGuideLabel)
+        containerStackView.setCustomSpacing(12, after: loginButton)
 
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 40),
             containerStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 18),
+            containerStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -18),
 
         ])
 

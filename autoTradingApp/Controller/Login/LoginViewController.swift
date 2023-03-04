@@ -25,6 +25,7 @@ class LoginViewController: UIViewController {
         view.addSubview(loginView)
         configureLayout()
         configureTextField()
+        configureLoginButton()
     }
 
     func configureLayout() {
@@ -40,6 +41,16 @@ class LoginViewController: UIViewController {
     func configureTextField() {
         loginView.idTextField.delegate = self
         loginView.passwordTextField.delegate = self
+    }
+
+    func configureLoginButton() {
+        loginView.loginButton.addTarget(self, action: #selector(loginBtnAction), for: .touchUpInside)
+    }
+
+    @objc
+    func loginBtnAction() {
+        let mainTabBarController = MainTabBarController()
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
     }
 }
 
