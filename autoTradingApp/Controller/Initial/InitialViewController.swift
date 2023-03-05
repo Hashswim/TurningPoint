@@ -8,7 +8,6 @@
 import UIKit
 
 class InitialViewController: UIViewController {
-    let loginViewController = LoginViewController()
 
     var guideCollectionView: UICollectionView!
 
@@ -34,7 +33,7 @@ class InitialViewController: UIViewController {
 
     private let signUpButton: UIButton = {
         let btn = UIButton()
-        btn.addTarget(self, action: #selector(loginBtnAction), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(signUpBtnAction), for: .touchUpInside)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("회원가입", for: .normal)
 
@@ -84,12 +83,14 @@ class InitialViewController: UIViewController {
 
     @objc
     func loginBtnAction() {
+        let loginViewController = LoginViewController()
         navigationController?.pushViewController(loginViewController, animated: true)
     }
 
     @objc
     func signUpBtnAction() {
-        navigationController?.pushViewController(loginViewController, animated: true)
+        let signUpViewController = SignUpGuideViewController()
+        navigationController?.pushViewController(signUpViewController, animated: true)
     }
 }
 
