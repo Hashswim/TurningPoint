@@ -21,6 +21,10 @@
 		11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96429B3547500C29B83 /* MainTabBarControllerViewController.swift */; };
 		11E7F96829B3578600C29B83 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96729B3578600C29B83 /* ChartViewController.swift */; };
 		11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96A29B4AD7C00C29B83 /* SignUpGuideViewController.swift */; };
+		11E7F96E29B4C41E00C29B83 /* SignUpIsUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96D29B4C41E00C29B83 /* SignUpIsUserViewController.swift */; };
+		11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */; };
+		11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */; };
+		11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		11E7F96429B3547500C29B83 /* MainTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		11E7F96729B3578600C29B83 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		11E7F96A29B4AD7C00C29B83 /* SignUpGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGuideViewController.swift; sourceTree = "<group>"; };
+		11E7F96D29B4C41E00C29B83 /* SignUpIsUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIsUserViewController.swift; sourceTree = "<group>"; };
+		11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIsUserView.swift; sourceTree = "<group>"; };
+		11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTOSViewController.swift; sourceTree = "<group>"; };
+		11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTOSView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */,
+				11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */,
+				11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -191,6 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				11E7F96A29B4AD7C00C29B83 /* SignUpGuideViewController.swift */,
+				11E7F96D29B4C41E00C29B83 /* SignUpIsUserViewController.swift */,
+				11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -270,11 +282,15 @@
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
 				114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */,
 				11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */,
+				11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */,
+				11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */,
+				11E7F96E29B4C41E00C29B83 /* SignUpIsUserViewController.swift in Sources */,
 				11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */,
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,
 				11080AAB2982A97B00B73F5F /* SceneDelegate.swift in Sources */,
 				11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */,
+				11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */,
 				11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */,
 				11E7F96829B3578600C29B83 /* ChartViewController.swift in Sources */,
 			);
