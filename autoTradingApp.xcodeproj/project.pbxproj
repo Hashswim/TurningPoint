@@ -13,6 +13,7 @@
 		11080AB22982A97C00B73F5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11080AB12982A97C00B73F5F /* Assets.xcassets */; };
 		11080AB52982A97C00B73F5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11080AB32982A97C00B73F5F /* LaunchScreen.storyboard */; };
 		11080AC02982B6C200B73F5F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11080ABF2982B6C200B73F5F /* LoginView.swift */; };
+		112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E4B2329B5F073009A3F8F /* ChartView.swift */; };
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
@@ -25,6 +26,7 @@
 		11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */; };
 		11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */; };
 		11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */; };
+		1D9E30886A423EBA969A5FE5 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7901112901443DCC6CC75CC /* Pods_autoTradingApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,7 @@
 		11080AB42982A97C00B73F5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11080AB62982A97C00B73F5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11080ABF2982B6C200B73F5F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		112E4B2329B5F073009A3F8F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = SOURCE_ROOT; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
@@ -48,6 +51,9 @@
 		11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIsUserView.swift; sourceTree = "<group>"; };
 		11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTOSViewController.swift; sourceTree = "<group>"; };
 		11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTOSView.swift; sourceTree = "<group>"; };
+		24BD4243A59874B9C2CFACC2 /* Pods-autoTradingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.debug.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.debug.xcconfig"; sourceTree = "<group>"; };
+		346451DBFB1F370215C74E0C /* Pods-autoTradingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.release.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.release.xcconfig"; sourceTree = "<group>"; };
+		B7901112901443DCC6CC75CC /* Pods_autoTradingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_autoTradingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D9E30886A423EBA969A5FE5 /* Pods_autoTradingApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +73,8 @@
 			children = (
 				11080AA72982A97B00B73F5F /* autoTradingApp */,
 				11080AA62982A97B00B73F5F /* Products */,
+				BC3ACC3A6B2F655290CA7349 /* Pods */,
+				FE9BE1217B0A17E89E396804 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +202,7 @@
 		11E7F96929B3590F00C29B83 /* MainTab */ = {
 			isa = PBXGroup;
 			children = (
+				112E4B2329B5F073009A3F8F /* ChartView.swift */,
 			);
 			path = MainTab;
 			sourceTree = "<group>";
@@ -207,6 +217,23 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		BC3ACC3A6B2F655290CA7349 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				24BD4243A59874B9C2CFACC2 /* Pods-autoTradingApp.debug.xcconfig */,
+				346451DBFB1F370215C74E0C /* Pods-autoTradingApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FE9BE1217B0A17E89E396804 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7901112901443DCC6CC75CC /* Pods_autoTradingApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,9 +241,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11080AB92982A97C00B73F5F /* Build configuration list for PBXNativeTarget "autoTradingApp" */;
 			buildPhases = (
+				A572599490AF8A1EC4029ED7 /* [CP] Check Pods Manifest.lock */,
 				11080AA12982A97B00B73F5F /* Sources */,
 				11080AA22982A97B00B73F5F /* Frameworks */,
 				11080AA32982A97B00B73F5F /* Resources */,
+				5C5F80D40BA1F7D35613F80B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -272,6 +301,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5C5F80D40BA1F7D35613F80B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A572599490AF8A1EC4029ED7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-autoTradingApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		11080AA12982A97B00B73F5F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -287,6 +358,7 @@
 				11E7F96E29B4C41E00C29B83 /* SignUpIsUserViewController.swift in Sources */,
 				11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */,
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,
+				112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,
 				11080AAB2982A97B00B73F5F /* SceneDelegate.swift in Sources */,
 				11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */,
@@ -428,6 +500,7 @@
 		};
 		11080ABA2982A97C00B73F5F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24BD4243A59874B9C2CFACC2 /* Pods-autoTradingApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -454,6 +527,7 @@
 		};
 		11080ABB2982A97C00B73F5F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 346451DBFB1F370215C74E0C /* Pods-autoTradingApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
