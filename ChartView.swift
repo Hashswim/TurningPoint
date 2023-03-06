@@ -20,6 +20,7 @@ class ChartView: UIView {
 
         configureLayout()
         setUpData()
+        self.addSubview(chart)
     }
 
     required init?(coder: NSCoder) {
@@ -28,7 +29,6 @@ class ChartView: UIView {
 
     func configureLayout() {
         chart = LightweightCharts()
-        self.addSubview(chart)
     }
 
     func setUpData() {
