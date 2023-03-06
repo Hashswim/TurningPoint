@@ -38,7 +38,7 @@
 		11080AB42982A97C00B73F5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11080AB62982A97C00B73F5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11080ABF2982B6C200B73F5F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		112E4B2329B5F073009A3F8F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = SOURCE_ROOT; };
+		112E4B2329B5F073009A3F8F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView.swift; path = autoTradingApp/View/MainTab/ChartView.swift; sourceTree = SOURCE_ROOT; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				11E7F955298E8B4900C29B83 /* Initial */,
 				11E7F953298E877300C29B83 /* Login */,
 				11E7F95E29A8D20A00C29B83 /* SignUp */,
-				11E7F96929B3590F00C29B83 /* MainTab */,
+				112E4B2529B5F365009A3F8F /* MainTab */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -129,6 +129,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		112E4B2529B5F365009A3F8F /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				112E4B2329B5F073009A3F8F /* ChartView.swift */,
+			);
+			path = MainTab;
 			sourceTree = "<group>";
 		};
 		11E7F953298E877300C29B83 /* Login */ = {
@@ -197,14 +205,6 @@
 				11E7F96729B3578600C29B83 /* ChartViewController.swift */,
 			);
 			path = TabBarItem;
-			sourceTree = "<group>";
-		};
-		11E7F96929B3590F00C29B83 /* MainTab */ = {
-			isa = PBXGroup;
-			children = (
-				112E4B2329B5F073009A3F8F /* ChartView.swift */,
-			);
-			path = MainTab;
 			sourceTree = "<group>";
 		};
 		11E7F96C29B4B75400C29B83 /* SignUp */ = {
