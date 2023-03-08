@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Stock {
+struct Stock: Hashable {
     let name: String
     var price: Double
 
@@ -16,5 +16,12 @@ class Stock {
         self.price = price
     }
 
+    private let identifier = UUID()
+
+    static let all = [
+        Stock(name: "AAPL", price: 111.00),
+        Stock(name: "삼성전자", price: 100000.00),
+        Stock(name: "alphabet", price: 123.12)
+    ]
 
 }

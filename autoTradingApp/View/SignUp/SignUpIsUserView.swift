@@ -18,10 +18,6 @@ class SignUpIsUserView: UIView {
         return label
     }()
 
-    private let
-
-
-
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

@@ -17,6 +17,7 @@
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
 		1161804029B8667400EA1E0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161803F29B8667400EA1E0D /* Stock.swift */; };
+		1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
 		11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */; };
 		11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96129A8D6F700C29B83 /* CustomTextField.swift */; };
@@ -39,10 +40,11 @@
 		11080AB42982A97C00B73F5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11080AB62982A97C00B73F5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11080ABF2982B6C200B73F5F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		112E4B2329B5F073009A3F8F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView.swift; path = autoTradingApp/View/MainTab/ChartView.swift; sourceTree = SOURCE_ROOT; };
+		112E4B2329B5F073009A3F8F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView.swift; path = autoTradingApp/View/MenuTab/ChartView.swift; sourceTree = SOURCE_ROOT; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		1161803F29B8667400EA1E0D /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = SOURCE_ROOT; };
+		1161803F29B8667400EA1E0D /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = autoTradingApp/Model/Stock.swift; sourceTree = SOURCE_ROOT; };
+		1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StcokListCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
 		11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		11E7F96129A8D6F700C29B83 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -96,7 +98,7 @@
 				11080AB12982A97C00B73F5F /* Assets.xcassets */,
 				11080AA82982A97B00B73F5F /* AppDelegate.swift */,
 				11080AAA2982A97B00B73F5F /* SceneDelegate.swift */,
-				11080ABE2982AC5300B73F5F /* Model */,
+				1161804429B86E6B00EA1E0D /* Model */,
 				11080ABD2982AC5000B73F5F /* View */,
 				11080ABC2982AC3C00B73F5F /* Controller */,
 				11E7F958298E95F800C29B83 /* Utility */,
@@ -121,25 +123,34 @@
 				11E7F955298E8B4900C29B83 /* Initial */,
 				11E7F953298E877300C29B83 /* Login */,
 				11E7F95E29A8D20A00C29B83 /* SignUp */,
-				112E4B2529B5F365009A3F8F /* MainTab */,
+				112E4B2529B5F365009A3F8F /* MenuTab */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		11080ABE2982AC5300B73F5F /* Model */ = {
+		112E4B2529B5F365009A3F8F /* MenuTab */ = {
+			isa = PBXGroup;
+			children = (
+				1161804129B8680000EA1E0D /* MainTabView */,
+				112E4B2329B5F073009A3F8F /* ChartView.swift */,
+			);
+			path = MenuTab;
+			sourceTree = "<group>";
+		};
+		1161804129B8680000EA1E0D /* MainTabView */ = {
+			isa = PBXGroup;
+			children = (
+				1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */,
+			);
+			path = MainTabView;
+			sourceTree = "<group>";
+		};
+		1161804429B86E6B00EA1E0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				1161803F29B8667400EA1E0D /* Stock.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		112E4B2529B5F365009A3F8F /* MainTab */ = {
-			isa = PBXGroup;
-			children = (
-				112E4B2329B5F073009A3F8F /* ChartView.swift */,
-			);
-			path = MainTab;
 			sourceTree = "<group>";
 		};
 		11E7F953298E877300C29B83 /* Login */ = {
@@ -353,6 +364,7 @@
 			files = (
 				11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */,
 				114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */,
+				1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */,
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
 				114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */,
 				11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */,
