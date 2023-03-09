@@ -34,7 +34,7 @@ class StcokListCellCollectionViewCell: UICollectionViewListCell {
     }
 }
 
-private class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
+class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
     private func defaultListContentConfiguration() -> UIListContentConfiguration { return .subtitleCell() }
     private lazy var listContentView = UIListContentView(configuration: defaultListContentConfiguration())
 

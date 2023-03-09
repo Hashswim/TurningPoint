@@ -16,6 +16,7 @@
 		112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E4B2329B5F073009A3F8F /* ChartView.swift */; };
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
+		115D1E1A29B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */; };
 		1161804029B8667400EA1E0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161803F29B8667400EA1E0D /* Stock.swift */; };
 		1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
@@ -43,6 +44,7 @@
 		112E4B2329B5F073009A3F8F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView.swift; path = autoTradingApp/View/MenuTab/ChartView.swift; sourceTree = SOURCE_ROOT; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeTabControllerCollectionViewController.swift; sourceTree = "<group>"; };
 		1161803F29B8667400EA1E0D /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = autoTradingApp/Model/Stock.swift; sourceTree = SOURCE_ROOT; };
 		1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StcokListCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				11E7F96729B3578600C29B83 /* ChartViewController.swift */,
+				115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */,
 			);
 			path = TabBarItem;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
 				114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */,
 				11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */,
+				115D1E1A29B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift in Sources */,
 				11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */,
 				11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */,
 				11E7F96E29B4C41E00C29B83 /* SignUpIsUserViewController.swift in Sources */,
