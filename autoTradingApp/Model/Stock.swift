@@ -6,22 +6,28 @@
 //
 
 import Foundation
+import UIKit
 
 struct Stock: Hashable {
+    let image: UIImage
     let name: String
     var price: Double
+    var priceDifference: Double
 
-    init(name: String, price: Double) {
+    init(image: UIImage, name: String, price: Double, priceDifference: Double) {
+        self.image = image
         self.name = name
         self.price = price
+        self.priceDifference = priceDifference
     }
 
     private let identifier = UUID()
 
     static let all = [
-        Stock(name: "AAPL", price: 111.00),
-        Stock(name: "삼성전자", price: 100000.00),
-        Stock(name: "alphabet", price: 123.12)
+        Stock(image: UIImage(systemName: "08.circle")!, name: "AAPL", price: 111.00, priceDifference: 13),
+        Stock(image: UIImage(systemName: "08.circle")!, name: "삼성전자", price: 123.00, priceDifference: 12),
+        Stock(image: UIImage(systemName: "08.circle")!, name: "Alphabet", price: 333.33, priceDifference: 11),
+        Stock(image: UIImage(systemName: "08.circle")!, name: "lotte", price: 320000.11, priceDifference: 10),
     ]
 
 }
