@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LightweightCharts
 
 fileprivate extension UIConfigurationStateCustomKey {
     static let stock = UIConfigurationStateCustomKey("StockListCell.stock")
@@ -38,40 +39,65 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
     private func defaultListContentConfiguration() -> UIListContentConfiguration { return .subtitleCell() }
     private lazy var listContentView = UIListContentView(configuration: defaultListContentConfiguration())
 
-    private let priceLabel = UILabel()
-    private let scaledChartView = UIImageView()
+    private let priceLabel: UILabel = {
+        let label = UILabel()
+
+        return label
+    }()
+
+    private let priceDifferenceLabel: UILabel = {
+        let label = UILabel()
+
+        return label
+    }()
+
+    lazy var priceStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [priceLabel, priceDifferenceLabel])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+
+        return stackView
+    }()
+
+    private let scaledChartView = OverViewChartView()
     private var customViewConstraints: (scaledChartViewLeading: NSLayoutConstraint,
                                         scaledChartViewTrailing: NSLayoutConstraint,
                                         priceLabelTrailing: NSLayoutConstraint)?
 
+
+    // view 구성
     private func setupViewsIfNeeded() {
         // We only need to do anything if we haven't already setup the views and created constraints.
         guard customViewConstraints == nil else { return }
 
         contentView.addSubview(listContentView)
-        contentView.addSubview(priceLabel)
         contentView.addSubview(scaledChartView)
+        contentView.addSubview(priceStackView)
+
+        scaledChartView.translatesAutoresizingMaskIntoConstraints = false
         listContentView.translatesAutoresizingMaskIntoConstraints = false
         let defaultHorizontalCompressionResistance = listContentView.contentCompressionResistancePriority(for: .horizontal)
         listContentView.setContentCompressionResistancePriority(defaultHorizontalCompressionResistance - 1, for: .horizontal)
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        scaledChartView.translatesAutoresizingMaskIntoConstraints = false
-        let constraints = (
-            scaledChartViewLeading: priceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: listContentView.trailingAnchor),
-            scaledChartViewTrailing: scaledChartView.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor),
-            priceLabelTrailing: contentView.trailingAnchor.constraint(equalTo: scaledChartView.trailingAnchor)
-        )
+
         NSLayoutConstraint.activate([
             listContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
             listContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             listContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            priceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            scaledChartView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            constraints.scaledChartViewLeading,
-            constraints.scaledChartViewTrailing,
-            constraints.priceLabelTrailing
+
+            scaledChartView.leadingAnchor.constraint(equalTo: listContentView.trailingAnchor),
+            scaledChartView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+            scaledChartView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
+            scaledChartView.widthAnchor.constraint(equalToConstant: 40),
+
+            priceStackView.leadingAnchor.constraint(equalTo: scaledChartView.trailingAnchor),
+//            priceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+//            priceStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            priceStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+
+//            priceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//            scaledChartView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+
         ])
-        customViewConstraints = constraints
     }
 
     private var separatorConstraint: NSLayoutConstraint?
@@ -92,9 +118,9 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         // Configure the list content configuration and apply that to the list content view.
         var content = defaultListContentConfiguration().updated(for: state)
         content.imageProperties.preferredSymbolConfiguration = .init(font: content.textProperties.font, scale: .large)
-//        content.image = state.stock?.image
+        content.image = state.stock?.image
         content.text = state.stock?.name
-//        content.secondaryText = state.stock?.description
+        content.secondaryText = state.stock?.code
         content.axesPreservingSuperviewLayoutMargins = []
         listContentView.configuration = content
 
@@ -103,15 +129,18 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         let valueConfiguration = UIListContentConfiguration.valueCell().updated(for: state)
 
         // Configure custom image view for the category icon, copying some of the styling from the value cell configuration.
-//        categoryIconView.image = state.stock?.category.icon
         scaledChartView.tintColor = valueConfiguration.imageProperties.resolvedTintColor(for: tintColor)
-        scaledChartView.preferredSymbolConfiguration = .init(font: valueConfiguration.secondaryTextProperties.font, scale: .small)
+//        scaledChartView.preferredSymbolConfiguration = .init(font: valueConfiguration.secondaryTextProperties.font, scale: .small)
 
         // Configure custom label for the category name, copying some of the styling from the value cell configuration.
         priceLabel.text = String(describing: state.stock?.price)
         priceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
         priceLabel.font = valueConfiguration.secondaryTextProperties.font
-        priceLabel.adjustsFontForContentSizeCategory = valueConfiguration.secondaryTextProperties.adjustsFontForContentSizeCategory
+//        priceLabel.adjustsFontForContentSizeCategory = valueConfiguration.secondaryTextProperties.adjustsFontForContentSizeCategory
+
+        priceDifferenceLabel.text = String(describing: state.stock?.price)
+        priceDifferenceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
+        priceDifferenceLabel.font = valueConfiguration.secondaryTextProperties.font
 
         // Update some of the constraints for our custom views using the system default metrics from the configurations.
         customViewConstraints?.scaledChartViewLeading.constant = content.directionalLayoutMargins.trailing

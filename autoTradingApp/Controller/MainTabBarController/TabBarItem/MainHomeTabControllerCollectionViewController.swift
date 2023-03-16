@@ -161,3 +161,133 @@ extension MainHomeTabControllerCollectionViewController: UICollectionViewDelegat
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
+    // MARK: - chart
+import UIKit
+import LightweightCharts
+
+class NoTimeScaleViewController: UIViewController {
+
+    private var chart: LightweightCharts!
+    private var areaSeries: AreaSeries!
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        return dateFormatter
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
+
+        setupUI()
+        setupData()
+    }
+
+    private func setupUI() {
+        let options = ChartOptions(
+            layout: LayoutOptions(backgroundColor: "#fafafa"),
+            leftPriceScale: VisiblePriceScaleOptions(visible: false),
+            rightPriceScale: VisiblePriceScaleOptions(visible: false),
+            timeScale: TimeScaleOptions(visible: false),
+            crosshair: CrosshairOptions(
+                vertLine: CrosshairLineOptions(visible: false),
+                horzLine: CrosshairLineOptions(visible: false)
+            ),
+            grid: GridOptions(
+                verticalLines: GridLineOptions(color: "#fff"),
+                horizontalLines: GridLineOptions(color: "#fff")
+            )
+        )
+        let chart = LightweightCharts(options: options)
+        view.addSubview(chart)
+        chart.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                chart.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                chart.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                chart.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                chart.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                chart.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                chart.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                chart.topAnchor.constraint(equalTo: view.topAnchor),
+                chart.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
+        self.chart = chart
+    }
+
+    private func setupData() {
+        let areaSeriesOptions = AreaSeriesOptions(
+            topColor: "rgba(76, 175, 80, 0.5)",
+            bottomColor: "rgba(76, 175, 80, 0)",
+            lineColor: "rgba(76, 175, 80, 1)",
+            lineWidth: .two
+        )
+        let areaSeries = chart.addAreaSeries(options: areaSeriesOptions)
+        let areaData = [
+            SingleValueData(time: .string("2018-10-19"), value: 219.31),
+            SingleValueData(time: .string("2018-10-22"), value: 220.65),
+            SingleValueData(time: .string("2018-10-23"), value: 222.73),
+            SingleValueData(time: .string("2018-10-24"), value: 215.09),
+            SingleValueData(time: .string("2018-10-25"), value: 219.80),
+            SingleValueData(time: .string("2018-10-26"), value: 216.30),
+            SingleValueData(time: .string("2018-10-29"), value: 212.24),
+            SingleValueData(time: .string("2018-10-30"), value: 213.30),
+            SingleValueData(time: .string("2018-10-31"), value: 218.86),
+            SingleValueData(time: .string("2018-11-01"), value: 222.22),
+            SingleValueData(time: .string("2018-11-02"), value: 207.48),
+            SingleValueData(time: .string("2018-11-05"), value: 201.59),
+            SingleValueData(time: .string("2018-11-06"), value: 203.77),
+            SingleValueData(time: .string("2018-11-07"), value: 209.95),
+            SingleValueData(time: .string("2018-11-08"), value: 208.49),
+            SingleValueData(time: .string("2018-11-09"), value: 204.47),
+            SingleValueData(time: .string("2018-11-12"), value: 194.17),
+            SingleValueData(time: .string("2018-11-13"), value: 192.23),
+            SingleValueData(time: .string("2018-11-14"), value: 186.80),
+            SingleValueData(time: .string("2018-11-15"), value: 191.41),
+            SingleValueData(time: .string("2018-11-16"), value: 193.53),
+            SingleValueData(time: .string("2018-11-19"), value: 185.86),
+
+        ]
+        areaSeries.setData(data: areaData)
+        self.areaSeries = areaSeries
+    }
+}
+
+//// MARK: - ChartDelegate
+//extension NoTimeScaleViewController: ChartDelegate {
+//
+//    func didClick(onChart chart: ChartApi, parameters: MouseEventParams) {
+//
+//    }
+//
+//    func didCrosshairMove(onChart chart: ChartApi, parameters: MouseEventParams) {
+//        guard case let .barPrice(price) = parameters.price(forSeries: areaSeries),
+//            let time = parameters.time,
+//            let point = parameters.point
+//            else {
+//                return
+//        }
+//
+//        let dateString: String
+//        switch time {
+//        case let .businessDay(time):
+//            dateString = "\(time.year)-\(time.month)-\(time.day)"
+//        case let .utc(timestamp: time):
+//            let date = Date(timeIntervalSince1970: TimeInterval(time))
+//            dateString = dateFormatter.string(from: date)
+//        }
+//    }
+//
+//    func didVisibleTimeRangeChange(onChart chart: ChartApi, parameters: TimeRange?) {
+//
+//    }
+//
+//}
