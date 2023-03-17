@@ -59,7 +59,12 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         return stackView
     }()
 
-    private let scaledChartView = OverViewChartView()
+    private let scaledChartView: OverViewChartView = {
+        let chart = OverViewChartView()
+        chart.backgroundColor = .clear
+
+        return chart
+    }()
     private var customViewConstraints: (scaledChartViewLeading: NSLayoutConstraint,
                                         scaledChartViewTrailing: NSLayoutConstraint,
                                         priceLabelTrailing: NSLayoutConstraint)?
@@ -70,6 +75,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         // We only need to do anything if we haven't already setup the views and created constraints.
         guard customViewConstraints == nil else { return }
 
+        contentView.backgroundColor = .clear
         contentView.addSubview(listContentView)
         contentView.addSubview(scaledChartView)
         contentView.addSubview(priceStackView)

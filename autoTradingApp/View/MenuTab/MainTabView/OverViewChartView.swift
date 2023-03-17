@@ -43,6 +43,9 @@ class OverViewChartView: UIView {
 
 
     private func setupUI() {
+        self.isUserInteractionEnabled = false
+        self.backgroundColor = .clear
+
         let options = ChartOptions(
             layout: LayoutOptions(backgroundColor: "#fafafa"),
             leftPriceScale: VisiblePriceScaleOptions(visible: false),
@@ -58,6 +61,7 @@ class OverViewChartView: UIView {
             )
         )
         let chart = LightweightCharts(options: options)
+
         self.addSubview(chart)
         chart.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {
