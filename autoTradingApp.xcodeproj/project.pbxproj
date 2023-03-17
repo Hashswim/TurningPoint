@@ -19,6 +19,10 @@
 		115D1E1A29B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */; };
 		115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */; };
 		115D1E1E29BDEDA200E98541 /* mainTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1D29BDEDA200E98541 /* mainTabSegmentedControl.swift */; };
+		115D1E2229C461C400E98541 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */; };
+		115D1E2329C461C400E98541 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */; };
+		115D1E2529C462D700E98541 /* NotoSansFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2429C462D700E98541 /* NotoSansFont.swift */; };
+		115D1E2729C46A0D00E98541 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2629C46A0D00E98541 /* UIColor+.swift */; };
 		1161804029B8667400EA1E0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161803F29B8667400EA1E0D /* Stock.swift */; };
 		1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
@@ -49,6 +53,10 @@
 		115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeTabControllerCollectionViewController.swift; sourceTree = "<group>"; };
 		115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewChartView.swift; sourceTree = "<group>"; };
 		115D1E1D29BDEDA200E98541 /* mainTabSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTabSegmentedControl.swift; sourceTree = "<group>"; };
+		115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		115D1E2429C462D700E98541 /* NotoSansFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotoSansFont.swift; sourceTree = "<group>"; };
+		115D1E2629C46A0D00E98541 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		1161803F29B8667400EA1E0D /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = autoTradingApp/Model/Stock.swift; sourceTree = SOURCE_ROOT; };
 		1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StcokListCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
@@ -143,6 +151,15 @@
 			path = MenuTab;
 			sourceTree = "<group>";
 		};
+		115D1E1F29C4616A00E98541 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */,
+				115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		1161804129B8680000EA1E0D /* MainTabView */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,7 +214,10 @@
 		11E7F958298E95F800C29B83 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				115D1E1F29C4616A00E98541 /* Font */,
 				11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */,
+				115D1E2429C462D700E98541 /* NotoSansFont.swift */,
+				115D1E2629C46A0D00E98541 /* UIColor+.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -318,6 +338,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				11080AB52982A97C00B73F5F /* LaunchScreen.storyboard in Resources */,
+				115D1E2229C461C400E98541 /* NotoSansKR-Bold.otf in Resources */,
+				115D1E2329C461C400E98541 /* NotoSansKR-Regular.otf in Resources */,
 				11080AB22982A97C00B73F5F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +397,7 @@
 				114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */,
 				1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */,
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
+				115D1E2529C462D700E98541 /* NotoSansFont.swift in Sources */,
 				114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */,
 				11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */,
 				115D1E1A29B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift in Sources */,
@@ -387,6 +410,7 @@
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,
 				112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,
+				115D1E2729C46A0D00E98541 /* UIColor+.swift in Sources */,
 				11080AAB2982A97B00B73F5F /* SceneDelegate.swift in Sources */,
 				115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */,
 				11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */,

@@ -19,9 +19,8 @@ class GuideCollectionViewCell: UICollectionViewCell {
     private let guideTextView: UITextView = {
         let textView = UITextView()
 
-//        textView.text = "너도 주식 할 수 있어 \r\n간단하게 터포 !"
-        textView.textColor = .white
-        textView.backgroundColor = .systemGray
+//        textView.textColor = .white
+        textView.backgroundColor = UIColor(named: "#333743")
 
         return textView
     }()
@@ -29,7 +28,7 @@ class GuideCollectionViewCell: UICollectionViewCell {
     let guideIMGView: UIImageView = {
         var imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
-        imgView.image = UIImage(named: "daishin_test_img")
+        imgView.image = UIImage(named: "Dashin_test_img")
         return imgView
     }()
 
@@ -45,7 +44,7 @@ class GuideCollectionViewCell: UICollectionViewCell {
     }
 
     func configureHierarchy() {
-//        self.contentView.backgroundColor = .systemGray
+        self.contentView.backgroundColor = MySpecialColors.bgColor
         self.addSubview(containerStackView)
         containerStackView.addArrangedSubview(guideTextView)
         containerStackView.addArrangedSubview(guideIMGView)
@@ -58,9 +57,9 @@ class GuideCollectionViewCell: UICollectionViewCell {
     func configureLayout() {
         NSLayoutConstraint.activate([
             guideTextView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            guideTextView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            guideTextView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             guideTextView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            guideTextView.heightAnchor.constraint(equalToConstant: 84),
+//            guideTextView.heightAnchor.constraint(equalToConstant: 84),
 
             guideIMGView.topAnchor.constraint(equalTo: guideTextView.bottomAnchor),
             guideIMGView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),

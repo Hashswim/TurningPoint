@@ -145,6 +145,9 @@ extension InitialViewController {
     }
 
     private func configureLayout() {
+        view.backgroundColor = MySpecialColors.bgColor
+        guideCollectionView.backgroundColor = MySpecialColors.bgColor
+
         NSLayoutConstraint.activate([
             guideCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             guideCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
