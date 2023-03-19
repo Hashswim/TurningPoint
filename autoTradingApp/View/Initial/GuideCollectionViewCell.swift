@@ -59,7 +59,7 @@ class GuideCollectionViewCell: UICollectionViewCell {
             guideTextView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             guideTextView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             guideTextView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-//            guideTextView.heightAnchor.constraint(equalToConstant: 84),
+            guideTextView.heightAnchor.constraint(equalToConstant: 160),
 
             guideIMGView.topAnchor.constraint(equalTo: guideTextView.bottomAnchor),
             guideIMGView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),

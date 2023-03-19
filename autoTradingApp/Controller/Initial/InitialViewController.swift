@@ -49,14 +49,6 @@ class InitialViewController: UIViewController {
         return stackView
     }()
 
-    private let appleLoginButton: UIButton = {
-        let btn = UIButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("이미 계정이 있으신가요? Apple 계정 연동하기", for: .normal)
-
-        return btn
-    }()
-
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +105,7 @@ extension InitialViewController {
 
         section.visibleItemsInvalidationHandler = {(item, offset, env) in
             let index = Int((offset.x / env.container.contentSize.width))
-            print(">>>> \(index)")
+//            print(">>>> \(index)")
             self.pageControl.currentPage = index
         }
 
@@ -139,7 +131,6 @@ extension InitialViewController {
         containerStackView.addArrangedSubview(guideCollectionView)
         containerStackView.addArrangedSubview(pageControl)
         containerStackView.addArrangedSubview(buttonStackView)
-        containerStackView.addArrangedSubview(appleLoginButton)
 
         view.addSubview(containerStackView)
     }
@@ -161,12 +152,8 @@ extension InitialViewController {
             buttonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             buttonStackView.topAnchor.constraint(equalTo: pageControl.bottomAnchor),
             buttonStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            buttonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             buttonStackView.heightAnchor.constraint(equalToConstant: 80),
-
-            appleLoginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            appleLoginButton.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor),
-            appleLoginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            appleLoginButton.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
 }

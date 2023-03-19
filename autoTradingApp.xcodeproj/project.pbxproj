@@ -23,6 +23,7 @@
 		115D1E2329C461C400E98541 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */; };
 		115D1E2529C462D700E98541 /* NotoSansFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2429C462D700E98541 /* NotoSansFont.swift */; };
 		115D1E2729C46A0D00E98541 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2629C46A0D00E98541 /* UIColor+.swift */; };
+		115D1E2A29C6FC6300E98541 /* StockTradingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2929C6FC6300E98541 /* StockTradingViewController.swift */; };
 		1161804029B8667400EA1E0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161803F29B8667400EA1E0D /* Stock.swift */; };
 		1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
@@ -57,6 +58,7 @@
 		115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		115D1E2429C462D700E98541 /* NotoSansFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotoSansFont.swift; sourceTree = "<group>"; };
 		115D1E2629C46A0D00E98541 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		115D1E2929C6FC6300E98541 /* StockTradingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewController.swift; sourceTree = "<group>"; };
 		1161803F29B8667400EA1E0D /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = autoTradingApp/Model/Stock.swift; sourceTree = SOURCE_ROOT; };
 		1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StcokListCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
@@ -154,10 +156,20 @@
 		115D1E1F29C4616A00E98541 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				115D1E2429C462D700E98541 /* NotoSansFont.swift */,
 				115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */,
 				115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		115D1E2829C6FC2B00E98541 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */,
+				115D1E2929C6FC6300E98541 /* StockTradingViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		1161804129B8680000EA1E0D /* MainTabView */ = {
@@ -216,7 +228,6 @@
 			children = (
 				115D1E1F29C4616A00E98541 /* Font */,
 				11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */,
-				115D1E2429C462D700E98541 /* NotoSansFont.swift */,
 				115D1E2629C46A0D00E98541 /* UIColor+.swift */,
 			);
 			path = Utility;
@@ -245,7 +256,7 @@
 		11E7F96629B3576A00C29B83 /* TabBarItem */ = {
 			isa = PBXGroup;
 			children = (
-				115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */,
+				115D1E2829C6FC2B00E98541 /* Home */,
 			);
 			path = TabBarItem;
 			sourceTree = "<group>";
@@ -410,6 +421,7 @@
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,
 				112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,
+				115D1E2A29C6FC6300E98541 /* StockTradingViewController.swift in Sources */,
 				115D1E2729C46A0D00E98541 /* UIColor+.swift in Sources */,
 				11080AAB2982A97B00B73F5F /* SceneDelegate.swift in Sources */,
 				115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */,
