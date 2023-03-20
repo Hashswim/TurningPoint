@@ -170,22 +170,14 @@ extension MainHomeTabControllerCollectionViewController {
 }
 
 extension MainHomeTabControllerCollectionViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print(indexPath.item)
-//        
-//        self.pushView()
-//        collectionView.deselectItem(at: indexPath, animated: true)
-//    }
-//
-//    func pushView() {
-//        let vc = UINavigationController(rootViewController: StockTradingViewController())
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.item)
+
+        let vc = StockTradingViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+
 }
-
-
-

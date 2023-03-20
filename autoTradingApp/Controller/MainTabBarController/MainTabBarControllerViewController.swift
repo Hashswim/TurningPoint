@@ -11,11 +11,12 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let homeTab = MainHomeTabControllerCollectionViewController()
-        homeTab.tabBarItem = UITabBarItem(title: "First", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        let homeNavigationController = UINavigationController(rootViewController: MainHomeTabControllerCollectionViewController())
+
+        homeNavigationController.tabBarItem = UITabBarItem(title: "First", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
 
 
-        self.viewControllers = [homeTab]
+        self.viewControllers = [homeNavigationController]
     }
     
 
