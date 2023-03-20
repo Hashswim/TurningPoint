@@ -12,22 +12,24 @@ class mainTabSegmentedControl: UISegmentedControl {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.removeBackgroundAndDivider()
-      }
-      override init(items: [Any]?) {
+    }
+    override init(items: [Any]?) {
         super.init(items: items)
         self.removeBackgroundAndDivider()
-      }
-      required init?(coder: NSCoder) {
+    }
+    required init?(coder: NSCoder) {
         fatalError()
-      }
+    }
 
-      private func removeBackgroundAndDivider() {
+    private func removeBackgroundAndDivider() {
         let image = UIImage()
         self.setBackgroundImage(image, for: .normal, barMetrics: .default)
         self.setBackgroundImage(image, for: .selected, barMetrics: .default)
         self.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
 
-        self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
-      }
+//        self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+        self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray], for: .normal)
+        self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.brown, .font: UIFont.systemFont(ofSize: 13, weight: .semibold)], for: .selected)
+    }
 
 }

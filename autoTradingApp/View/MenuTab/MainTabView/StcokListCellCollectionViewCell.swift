@@ -96,12 +96,12 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
             scaledChartView.widthAnchor.constraint(equalToConstant: 40),
 
             priceStackView.leadingAnchor.constraint(equalTo: scaledChartView.trailingAnchor),
-//            priceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//            priceStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            priceStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            //            priceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            //            priceStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            //            priceStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 
-//            priceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//            scaledChartView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            //            priceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            //            scaledChartView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
         ])
     }
@@ -136,13 +136,13 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
 
         // Configure custom image view for the category icon, copying some of the styling from the value cell configuration.
         scaledChartView.tintColor = valueConfiguration.imageProperties.resolvedTintColor(for: tintColor)
-//        scaledChartView.preferredSymbolConfiguration = .init(font: valueConfiguration.secondaryTextProperties.font, scale: .small)
+        //        scaledChartView.preferredSymbolConfiguration = .init(font: valueConfiguration.secondaryTextProperties.font, scale: .small)
 
         // Configure custom label for the category name, copying some of the styling from the value cell configuration.
         priceLabel.text = String(describing: state.stock?.price)
         priceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
         priceLabel.font = valueConfiguration.secondaryTextProperties.font
-//        priceLabel.adjustsFontForContentSizeCategory = valueConfiguration.secondaryTextProperties.adjustsFontForContentSizeCategory
+        //        priceLabel.adjustsFontForContentSizeCategory = valueConfiguration.secondaryTextProperties.adjustsFontForContentSizeCategory
 
         priceDifferenceLabel.text = String(describing: state.stock?.price)
         priceDifferenceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
