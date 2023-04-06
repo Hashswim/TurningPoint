@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import LightweightCharts
+import Charts
 
 fileprivate extension UIConfigurationStateCustomKey {
     static let stock = UIConfigurationStateCustomKey("StockListCell.stock")
@@ -59,12 +59,19 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         return stackView
     }()
 
-    private let scaledChartView: OverViewChartView = {
-        let chart = OverViewChartView()
-        chart.backgroundColor = .clear
+    var scaledChartView: LineChartView = {
+        let chartView = LineChartView()
+        chartView.backgroundColor = .clear
 
-        return chart
+        chartView.rightAxis.enabled = false
+        chartView.leftAxis.enabled = false
+        chartView.xAxis.enabled = false
+
+        chartView.animate(xAxisDuration: 2.5)
+
+        return chartView
     }()
+
     private var customViewConstraints: (scaledChartViewLeading: NSLayoutConstraint,
                                         scaledChartViewTrailing: NSLayoutConstraint,
                                         priceLabelTrailing: NSLayoutConstraint)?
@@ -136,7 +143,20 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
 
         // Configure custom image view for the category icon, copying some of the styling from the value cell configuration.
         scaledChartView.tintColor = valueConfiguration.imageProperties.resolvedTintColor(for: tintColor)
-        //        scaledChartView.preferredSymbolConfiguration = .init(font: valueConfiguration.secondaryTextProperties.font, scale: .small)
+
+            // MARK: -  시리얼 데이터 처리 어떻게 할지 정리 필요!!⭐️⭐️⭐️(DataEntry타입과 API로 인코딩되어 전달 받는 타입간 캐스팅 필요)
+        let dataEntry1 = [
+            ChartDataEntry(x: state.stock!.dataList[0], y: state.stock!.dataList[0]),
+            ChartDataEntry(x: state.stock!.dataList[1], y: state.stock!.dataList[1]),
+            ChartDataEntry(x: state.stock!.dataList[2], y: state.stock!.dataList[2]),
+        ]
+
+        let dataEntry2 = [
+            ChartDataEntry(x: state.stock!.dataList[0], y: state.stock!.dataList[0]),
+            ChartDataEntry(x: state.stock!.dataList[1], y: state.stock!.dataList[1]),
+            ChartDataEntry(x: state.stock!.dataList[2], y: state.stock!.dataList[2]),
+        ]
+        setData(dataEntry: dataEntry1, avgDataEntry: dataEntry2)
 
         // Configure custom label for the category name, copying some of the styling from the value cell configuration.
         priceLabel.text = String(describing: state.stock?.price)
@@ -154,4 +174,26 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         customViewConstraints?.priceLabelTrailing.constant = content.directionalLayoutMargins.trailing
         updateSeparatorConstraint()
     }
+
+    func setData(dataEntry chartData1: [ChartDataEntry], avgDataEntry chartData2: [ChartDataEntry]) {
+        let set1 = LineChartDataSet(entries: chartData1, label: "")
+        set1.mode = .cubicBezier
+        set1.drawCirclesEnabled = false
+        set1.lineWidth = 1
+
+        set1.setColor(.white)
+
+        let set2 = LineChartDataSet(entries: chartData2, label: "")
+        set2.mode = .cubicBezier
+        set2.drawCirclesEnabled = false
+        set2.lineWidth = 1
+
+        set2.setColor(.red)
+
+        let data = LineChartData(dataSets: [set1, set2])
+        data.setDrawValues(false)
+        scaledChartView.data = data
+    }
 }
+
+
