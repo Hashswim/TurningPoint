@@ -15,14 +15,16 @@ struct Stock: Hashable {
     let dataList: [Double]
     var price: Double
     var priceDifference: Double
+    var isFavorite: Bool
 
-    init(image: UIImage, code: String, name: String, dataList: [Double], price: Double, priceDifference: Double) {
+    init(image: UIImage, code: String, name: String, dataList: [Double], price: Double, priceDifference: Double, isFavorite: Bool = false) {
         self.image = image
         self.code = code
         self.name = name
         self.dataList = dataList
         self.price = price
         self.priceDifference = priceDifference
+        self.isFavorite = isFavorite
     }
 
     private let identifier = UUID()

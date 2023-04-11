@@ -86,16 +86,67 @@ class MainHomeTabControllerCollectionViewController: UIViewController {
         configureLayout()
         registerTimer()
     }
+
+    //DataStore 생성하면서 변경
+    private func toggleIsFavorite(_ stock: Stock) -> Bool {
+        var stockToUpdate = stock
+        stockToUpdate.isFavorite.toggle()
+//        return dataStore.update(recipeToUpdate) != nil
+        return true
+    }
 }
 
 
 extension MainHomeTabControllerCollectionViewController {
     private func createLayout() -> UICollectionViewLayout {
-        let config = UICollectionLayoutListConfiguration(appearance: .plain)
-        //        config.headerMode = .supplementary
+        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        
+        config.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
+            return self?.trailingSwipeActionsConfiguration(for: indexPath)
+        }
+        
         return UICollectionViewCompositionalLayout.list(using: config)
     }
 
+    //Stock 대신 DataStore를 통해 저장해놓을 class 필요
+    private func trailingSwipeActionsConfiguration(for indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let stock = dataSource.itemIdentifier(for: indexPath)
+        else { return nil }
+
+        let configuration = UISwipeActionsConfiguration(actions: [
+            detailContextualAction(stock: stock),
+            favoriteContextualAction(stock: stock)
+        ])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
+    }
+
+    private func detailContextualAction(stock: Stock) -> UIContextualAction {
+        let detailAction = UIContextualAction(style: .normal, title: "Detail") { [weak self] _, _, completionHandler in
+            guard let self = self else { return }
+
+            let vc = DetailViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+
+            completionHandler(true)
+        }
+        detailAction.image = UIImage(systemName: "info.circle.fill")
+        return detailAction
+    }
+
+    private func favoriteContextualAction(stock: Stock) -> UIContextualAction {
+        let title = stock.isFavorite ? "Remove from Favorites" : "Add to Favorites"
+        let action = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
+            guard let self = self else { return }
+            completionHandler(self.toggleIsFavorite(stock))
+        }
+        let name = stock.isFavorite ? "heart" : "heart.fill"
+        action.image = UIImage(systemName: name)
+        return action
+    }
+}
+
+extension MainHomeTabControllerCollectionViewController {
     private func configureHierarchy() {
         view.backgroundColor = .white
         view.addSubview(containerStackView)
