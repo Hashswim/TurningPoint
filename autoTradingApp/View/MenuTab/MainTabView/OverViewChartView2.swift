@@ -18,6 +18,9 @@ class OverViewChartView2: UIViewController, ChartViewDelegate {
         chartView.rightAxis.enabled = false
         chartView.leftAxis.enabled = false
         chartView.xAxis.enabled = false
+        chartView.legend.drawInside = false
+        chartView.chartDescription.enabled = false
+        chartView.legend.enabled = false
 
         chartView.animate(xAxisDuration: 2.5)
 
@@ -40,14 +43,14 @@ class OverViewChartView2: UIViewController, ChartViewDelegate {
     }
 
     func setData() {
-        let set1 = LineChartDataSet(entries: yValues1, label: "")
+        let set1 = LineChartDataSet(entries: yValues1)
         set1.mode = .cubicBezier
         set1.drawCirclesEnabled = false
         set1.lineWidth = 3
 
         set1.setColor(.white)
 
-        let set2 = LineChartDataSet(entries: yValues2, label: "")
+        let set2 = LineChartDataSet(entries: yValues2)
         set2.mode = .cubicBezier
         set2.drawCirclesEnabled = false
         set2.lineWidth = 3

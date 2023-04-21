@@ -66,6 +66,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         chartView.rightAxis.enabled = false
         chartView.leftAxis.enabled = false
         chartView.xAxis.enabled = false
+        chartView.legend.enabled = false
 
         chartView.animate(xAxisDuration: 2.5)
 
