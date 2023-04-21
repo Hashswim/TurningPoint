@@ -27,6 +27,9 @@
 		115D1E2C29CC523C00E98541 /* OverViewChartView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2B29CC523C00E98541 /* OverViewChartView2.swift */; };
 		115D1E2F29CD860300E98541 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2E29CD860300E98541 /* NetworkManager.swift */; };
 		115DF50D29E56A1B00E9DFE9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115DF50C29E56A1B00E9DFE9 /* DetailViewController.swift */; };
+		115DF50F29EE801F00E9DFE9 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115DF50E29EE801F00E9DFE9 /* JSONParser.swift */; };
+		115DF51129EE805B00E9DFE9 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115DF51029EE805B00E9DFE9 /* RequestType.swift */; };
+		115DF51329F2A03C00E9DFE9 /* PredictedRawServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */; };
 		1161804029B8667400EA1E0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161803F29B8667400EA1E0D /* Stock.swift */; };
 		1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
@@ -65,6 +68,9 @@
 		115D1E2B29CC523C00E98541 /* OverViewChartView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewChartView2.swift; sourceTree = "<group>"; };
 		115D1E2E29CD860300E98541 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		115DF50C29E56A1B00E9DFE9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		115DF50E29EE801F00E9DFE9 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		115DF51029EE805B00E9DFE9 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictedRawServerResponse.swift; sourceTree = "<group>"; };
 		1161803F29B8667400EA1E0D /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = autoTradingApp/Model/Stock.swift; sourceTree = SOURCE_ROOT; };
 		1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StcokListCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
@@ -183,6 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				115D1E2E29CD860300E98541 /* NetworkManager.swift */,
+				115DF50E29EE801F00E9DFE9 /* JSONParser.swift */,
+				115DF51029EE805B00E9DFE9 /* RequestType.swift */,
+				115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -426,10 +435,12 @@
 				114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */,
 				1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */,
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
+				115DF51329F2A03C00E9DFE9 /* PredictedRawServerResponse.swift in Sources */,
 				115D1E2529C462D700E98541 /* NotoSansFont.swift in Sources */,
 				114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */,
 				11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */,
 				115D1E1A29B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift in Sources */,
+				115DF50F29EE801F00E9DFE9 /* JSONParser.swift in Sources */,
 				11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */,
 				11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */,
 				115D1E1E29BDEDA200E98541 /* mainTabSegmentedControl.swift in Sources */,
@@ -449,6 +460,7 @@
 				11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */,
 				11E7F96829B3578600C29B83 /* ChartViewController.swift in Sources */,
 				115DF50D29E56A1B00E9DFE9 /* DetailViewController.swift in Sources */,
+				115DF51129EE805B00E9DFE9 /* RequestType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

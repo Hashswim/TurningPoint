@@ -131,7 +131,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         // Configure the list content configuration and apply that to the list content view.
         var content = defaultListContentConfiguration().updated(for: state)
         content.imageProperties.preferredSymbolConfiguration = .init(font: content.textProperties.font, scale: .large)
-        content.image = state.stock?.image
+        content.image = UIImage(named: state.stock!.imageURL!)
         content.text = state.stock?.name
         content.secondaryText = state.stock?.code
         content.axesPreservingSuperviewLayoutMargins = []
@@ -146,15 +146,15 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
 
             // MARK: -  시리얼 데이터 처리 어떻게 할지 정리 필요!!⭐️⭐️⭐️(DataEntry타입과 API로 인코딩되어 전달 받는 타입간 캐스팅 필요)
         let dataEntry1 = [
-            ChartDataEntry(x: state.stock!.dataList[0], y: state.stock!.dataList[0]),
-            ChartDataEntry(x: state.stock!.dataList[1], y: state.stock!.dataList[1]),
-            ChartDataEntry(x: state.stock!.dataList[2], y: state.stock!.dataList[2]),
+            ChartDataEntry(x: state.stock!.dataList![0], y: state.stock!.dataList![0]),
+            ChartDataEntry(x: state.stock!.dataList![1], y: state.stock!.dataList![1]),
+            ChartDataEntry(x: state.stock!.dataList![2], y: state.stock!.dataList![2]),
         ]
 
         let dataEntry2 = [
-            ChartDataEntry(x: state.stock!.dataList[0], y: state.stock!.dataList[0]),
-            ChartDataEntry(x: state.stock!.dataList[1], y: state.stock!.dataList[1]),
-            ChartDataEntry(x: state.stock!.dataList[2], y: state.stock!.dataList[2]),
+            ChartDataEntry(x: state.stock!.dataList![0], y: state.stock!.dataList![0]),
+            ChartDataEntry(x: state.stock!.dataList![1], y: state.stock!.dataList![1]),
+            ChartDataEntry(x: state.stock!.dataList![2], y: state.stock!.dataList![2]),
         ]
         setData(dataEntry: dataEntry1, avgDataEntry: dataEntry2)
 

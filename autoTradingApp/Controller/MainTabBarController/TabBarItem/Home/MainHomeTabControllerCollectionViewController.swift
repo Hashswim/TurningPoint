@@ -85,14 +85,25 @@ class MainHomeTabControllerCollectionViewController: UIViewController {
         configureDataSource()
         configureLayout()
         registerTimer()
+        testAPI()
     }
 
     //DataStore 생성하면서 변경
     private func toggleIsFavorite(_ stock: Stock) -> Bool {
         var stockToUpdate = stock
-        stockToUpdate.isFavorite.toggle()
+        stockToUpdate.isFavorite?.toggle()
 //        return dataStore.update(recipeToUpdate) != nil
         return true
+    }
+
+    private func testAPI() {
+        let manager = NetworkManager()
+
+        manager.getStockAPITest { stock in
+            DispatchQueue.main.sync {
+                dump(stock)
+            }
+        }
     }
 }
 
@@ -135,12 +146,12 @@ extension MainHomeTabControllerCollectionViewController {
     }
 
     private func favoriteContextualAction(stock: Stock) -> UIContextualAction {
-        let title = stock.isFavorite ? "Remove from Favorites" : "Add to Favorites"
+        let title = stock.isFavorite! ? "Remove from Favorites" : "Add to Favorites"
         let action = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
             guard let self = self else { return }
             completionHandler(self.toggleIsFavorite(stock))
         }
-        let name = stock.isFavorite ? "heart" : "heart.fill"
+        let name = stock.isFavorite! ? "heart" : "heart.fill"
         action.image = UIImage(systemName: name)
         return action
     }
