@@ -8,7 +8,6 @@ target 'autoTradingApp' do
   pod 'LightweightCharts', '~> 3.8.0'
   pod 'Charts'
   pod 'TinyConstraints'
-  pod 'XingAPIMobile', :path => '/Users/sy/Documents/XingAPIMobile.framework/XingAPIMobile.podspec'
 
   # Pods for autoTradingApp
 

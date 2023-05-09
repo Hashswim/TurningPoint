@@ -42,10 +42,13 @@
 		11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */; };
 		11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */; };
 		11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */; };
-		1D9E30886A423EBA969A5FE5 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7901112901443DCC6CC75CC /* Pods_autoTradingApp.framework */; };
+		16E03EEC26BE46C942A9FB0D /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F771B7E35F7944762A647EC2 /* Pods_autoTradingApp.framework */; };
+		99086D522A0A329200FAA427 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99086D512A0A329200FAA427 /* temp.swift */; };
+		993A82E62A0A31D100C3C4FA /* XingAPIMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 993A82E52A0A31D100C3C4FA /* XingAPIMobile.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10557058690A0C02D3FD4FC7 /* Pods-autoTradingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.debug.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		11080AA52982A97B00B73F5F /* autoTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = autoTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11080AA82982A97B00B73F5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11080AAA2982A97B00B73F5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,9 +86,10 @@
 		11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIsUserView.swift; sourceTree = "<group>"; };
 		11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTOSViewController.swift; sourceTree = "<group>"; };
 		11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTOSView.swift; sourceTree = "<group>"; };
-		24BD4243A59874B9C2CFACC2 /* Pods-autoTradingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.debug.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.debug.xcconfig"; sourceTree = "<group>"; };
-		346451DBFB1F370215C74E0C /* Pods-autoTradingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.release.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.release.xcconfig"; sourceTree = "<group>"; };
-		B7901112901443DCC6CC75CC /* Pods_autoTradingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_autoTradingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99086D512A0A329200FAA427 /* temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temp.swift; sourceTree = "<group>"; };
+		993A82E52A0A31D100C3C4FA /* XingAPIMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XingAPIMobile.framework; sourceTree = "<group>"; };
+		C809B85D6E6FE70BB3C5DEC4 /* Pods-autoTradingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.release.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.release.xcconfig"; sourceTree = "<group>"; };
+		F771B7E35F7944762A647EC2 /* Pods_autoTradingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_autoTradingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D9E30886A423EBA969A5FE5 /* Pods_autoTradingApp.framework in Frameworks */,
+				16E03EEC26BE46C942A9FB0D /* Pods_autoTradingApp.framework in Frameworks */,
+				993A82E62A0A31D100C3C4FA /* XingAPIMobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +111,7 @@
 				11080AA72982A97B00B73F5F /* autoTradingApp */,
 				11080AA62982A97B00B73F5F /* Products */,
 				BC3ACC3A6B2F655290CA7349 /* Pods */,
-				FE9BE1217B0A17E89E396804 /* Frameworks */,
+				9031988C34B0E63E9A8D5AA4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -221,6 +226,7 @@
 			children = (
 				11080ABF2982B6C200B73F5F /* LoginView.swift */,
 				11E7F96129A8D6F700C29B83 /* CustomTextField.swift */,
+				99086D512A0A329200FAA427 /* temp.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -297,21 +303,22 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		9031988C34B0E63E9A8D5AA4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				993A82E52A0A31D100C3C4FA /* XingAPIMobile.framework */,
+				F771B7E35F7944762A647EC2 /* Pods_autoTradingApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BC3ACC3A6B2F655290CA7349 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				24BD4243A59874B9C2CFACC2 /* Pods-autoTradingApp.debug.xcconfig */,
-				346451DBFB1F370215C74E0C /* Pods-autoTradingApp.release.xcconfig */,
+				10557058690A0C02D3FD4FC7 /* Pods-autoTradingApp.debug.xcconfig */,
+				C809B85D6E6FE70BB3C5DEC4 /* Pods-autoTradingApp.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		FE9BE1217B0A17E89E396804 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B7901112901443DCC6CC75CC /* Pods_autoTradingApp.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,11 +328,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11080AB92982A97C00B73F5F /* Build configuration list for PBXNativeTarget "autoTradingApp" */;
 			buildPhases = (
-				A572599490AF8A1EC4029ED7 /* [CP] Check Pods Manifest.lock */,
+				A7104C2D92D84FF8C4704D90 /* [CP] Check Pods Manifest.lock */,
 				11080AA12982A97B00B73F5F /* Sources */,
 				11080AA22982A97B00B73F5F /* Frameworks */,
 				11080AA32982A97B00B73F5F /* Resources */,
-				5C5F80D40BA1F7D35613F80B /* [CP] Embed Pods Frameworks */,
+				898BFC04510B102934518ACD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -384,7 +391,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5C5F80D40BA1F7D35613F80B /* [CP] Embed Pods Frameworks */ = {
+		898BFC04510B102934518ACD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -401,7 +408,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A572599490AF8A1EC4029ED7 /* [CP] Check Pods Manifest.lock */ = {
+		A7104C2D92D84FF8C4704D90 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -457,6 +464,7 @@
 				115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */,
 				11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */,
 				11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */,
+				99086D522A0A329200FAA427 /* temp.swift in Sources */,
 				11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */,
 				11E7F96829B3578600C29B83 /* ChartViewController.swift in Sources */,
 				115DF50D29E56A1B00E9DFE9 /* DetailViewController.swift in Sources */,
@@ -596,12 +604,16 @@
 		};
 		11080ABA2982A97C00B73F5F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24BD4243A59874B9C2CFACC2 /* Pods-autoTradingApp.debug.xcconfig */;
+			baseConfigurationReference = 10557058690A0C02D3FD4FC7 /* Pods-autoTradingApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = autoTradingApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -624,12 +636,16 @@
 		};
 		11080ABB2982A97C00B73F5F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 346451DBFB1F370215C74E0C /* Pods-autoTradingApp.release.xcconfig */;
+			baseConfigurationReference = C809B85D6E6FE70BB3C5DEC4 /* Pods-autoTradingApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = autoTradingApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
