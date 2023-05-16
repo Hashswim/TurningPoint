@@ -33,6 +33,8 @@
 		1161804029B8667400EA1E0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161803F29B8667400EA1E0D /* Stock.swift */; };
 		1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */; };
 		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
+		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
+		11E10E762A13B23C007F3E10 /* predictedAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
 		11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */; };
 		11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96129A8D6F700C29B83 /* CustomTextField.swift */; };
@@ -75,6 +77,8 @@
 		115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictedRawServerResponse.swift; sourceTree = "<group>"; };
 		1161803F29B8667400EA1E0D /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = autoTradingApp/Model/Stock.swift; sourceTree = SOURCE_ROOT; };
 		1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StcokListCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewTableCell.swift; sourceTree = "<group>"; };
+		11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = predictedAlgorithm.swift; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
 		11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		11E7F96129A8D6F700C29B83 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */,
 				115D1E1D29BDEDA200E98541 /* mainTabSegmentedControl.swift */,
 				115D1E2B29CC523C00E98541 /* OverViewChartView2.swift */,
+				11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */,
 			);
 			path = MainTabView;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 			children = (
 				115D1E2D29CD85A100E98541 /* Network */,
 				1161803F29B8667400EA1E0D /* Stock.swift */,
+				11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -437,6 +443,7 @@
 				11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */,
 				114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */,
 				1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */,
+				11E10E762A13B23C007F3E10 /* predictedAlgorithm.swift in Sources */,
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
 				115DF51329F2A03C00E9DFE9 /* PredictedRawServerResponse.swift in Sources */,
 				115D1E2529C462D700E98541 /* NotoSansFont.swift in Sources */,
@@ -453,6 +460,7 @@
 				11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */,
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,
 				112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */,
+				11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,
 				115D1E2A29C6FC6300E98541 /* StockTradingViewController.swift in Sources */,
 				115D1E2729C46A0D00E98541 /* UIColor+.swift in Sources */,

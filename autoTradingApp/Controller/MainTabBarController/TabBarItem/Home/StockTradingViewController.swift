@@ -85,7 +85,7 @@ class StockTradingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = MySpecialColors.bgColor
-        tradingStrategyTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tradingStrategyTableView.register(StockTradingViewTableCell.self, forCellReuseIdentifier: StockTradingViewTableCell.cellID)
         tradingStrategyTableView.delegate = self
         tradingStrategyTableView.dataSource = self
 
@@ -104,6 +104,8 @@ class StockTradingViewController: UIViewController {
     }
 
     func configureLayout() {
+        tradingStrategyTableView.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
 
             stockNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 72),
@@ -151,9 +153,9 @@ extension StockTradingViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tradingStrategyTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
+        let cell = tradingStrategyTableView.dequeueReusableCell(withIdentifier: StockTradingViewTableCell.cellID, for: indexPath) as! StockTradingViewTableCell
 
-        cell.textLabel?.text = "test"
+        cell.predictedTextLabel.text = PredictedAlgorithm.attack.rawValue
         return cell
     }
 
