@@ -32,8 +32,6 @@
 		115DF51329F2A03C00E9DFE9 /* PredictedRawServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */; };
 		1161804029B8667400EA1E0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161803F29B8667400EA1E0D /* Stock.swift */; };
 		1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */; };
-		11BD4DE02A0A86CF00ADE7C6 /* XingAPIMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 993A82E52A0A31D100C3C4FA /* XingAPIMobile.framework */; };
-		11BD4DE12A0A86CF00ADE7C6 /* XingAPIMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 993A82E52A0A31D100C3C4FA /* XingAPIMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
 		11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */; };
@@ -47,20 +45,6 @@
 		11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */; };
 		99086D522A0A329200FAA427 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99086D512A0A329200FAA427 /* temp.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		11BD4DE22A0A86CF00ADE7C6 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				11BD4DE12A0A86CF00ADE7C6 /* XingAPIMobile.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0620A098C3A1A54533A5F886 /* Pods-autoTradingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.debug.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -104,7 +88,6 @@
 		252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_autoTradingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86105BF2B75E204C034E6600 /* Pods-autoTradingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.release.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.release.xcconfig"; sourceTree = "<group>"; };
 		99086D512A0A329200FAA427 /* temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temp.swift; sourceTree = "<group>"; };
-		993A82E52A0A31D100C3C4FA /* XingAPIMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XingAPIMobile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +95,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11BD4DE02A0A86CF00ADE7C6 /* XingAPIMobile.framework in Frameworks */,
 				11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,7 +303,6 @@
 		9031988C34B0E63E9A8D5AA4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				993A82E52A0A31D100C3C4FA /* XingAPIMobile.framework */,
 				252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */,
 			);
 			name = Frameworks;
@@ -348,7 +329,6 @@
 				11080AA22982A97B00B73F5F /* Frameworks */,
 				11080AA32982A97B00B73F5F /* Resources */,
 				3E512587D17D9A491E4D78C3 /* [CP] Embed Pods Frameworks */,
-				11BD4DE22A0A86CF00ADE7C6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -10,12 +10,16 @@ import UIKit
 
 struct GuideConstant {
     var guideText = [NSMutableAttributedString]()
+    var tradingButtonText = [NSMutableAttributedString]()
 
     let first = "너도 주식 할 수 있어 \n간단하게 터포 !"
     let second = "주식 !\n쉽고 빠른길로\n터포와 함께 지름길로"
     let third = "내 주식의 터닝포인트\n내 인생의 터닝포인트!"
     let fourth = "터포와 함께라면\n주식, 일상 동시에\n챙길 수 있어"
     let fifth = "주식 더 이상 어렵지 않아요\n자동이니까"
+
+    let sixth = "Trading\nOff"
+    let seventh = "Trading\nOn"
 
     let LargeFont = NotoSansFont.bold(size: 35)
     let RegularFont = NotoSansFont.regular(size: 20)
@@ -27,6 +31,9 @@ struct GuideConstant {
     lazy var attributedStr3 = NSMutableAttributedString(string: third )
     lazy var attributedStr4 = NSMutableAttributedString(string: fourth)
     lazy var attributedStr5 = NSMutableAttributedString(string: fifth )
+
+    lazy var attributedStr6 = NSMutableAttributedString(string: sixth )
+    lazy var attributedStr7 = NSMutableAttributedString(string: seventh )
 
     init() {
         setAttrivutedStr()
@@ -82,6 +89,21 @@ struct GuideConstant {
                      attributedStr4,
                      attributedStr5
         ]
+
+        attributedStr6.addAttribute(.font, value: RegularFont, range: (sixth  as NSString).range(of: "Trading"))
+        attributedStr6.addAttribute(.foregroundColor, value: UIColor.white, range: (sixth  as NSString).range(of: "Trading"))
+
+        attributedStr6.addAttribute(.font, value: LargeFont, range: (sixth  as NSString).range(of: "Off"))
+        attributedStr6.addAttribute(.foregroundColor, value: UIColor.white, range: (sixth  as NSString).range(of: "Off"))
+
+        attributedStr7.addAttribute(.font, value: RegularFont, range: (seventh  as NSString).range(of: "Trading"))
+        attributedStr7.addAttribute(.foregroundColor, value: UIColor.white, range: (seventh  as NSString).range(of: "Trading"))
+
+        attributedStr7.addAttribute(.font, value: LargeFont, range: (seventh  as NSString).range(of: "On"))
+        attributedStr7.addAttribute(.foregroundColor, value: UIColor.white, range: (seventh  as NSString).range(of: "On"))
+
+        tradingButtonText = [attributedStr6,
+                             attributedStr7]
     }
 
 
