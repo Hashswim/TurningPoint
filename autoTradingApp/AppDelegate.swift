@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  autoTradingApp
-//
-//  Created by 서수영 on 2023/01/26.
-//
-
 import UIKit
 
 @main
@@ -33,4 +26,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

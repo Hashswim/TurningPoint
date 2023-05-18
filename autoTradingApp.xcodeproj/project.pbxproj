@@ -32,7 +32,6 @@
 		115DF51329F2A03C00E9DFE9 /* PredictedRawServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */; };
 		1161804029B8667400EA1E0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161803F29B8667400EA1E0D /* Stock.swift */; };
 		1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */; };
-		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
 		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
 		11E10E762A13B23C007F3E10 /* predictedAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
@@ -45,8 +44,26 @@
 		11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */; };
 		11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */; };
 		11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */; };
+		9906D3082A15385600EA212E /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
+		9906D30B2A15385900EA212E /* XingAPIMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9906D3062A15385200EA212E /* XingAPIMobile.framework */; };
+		9906D30C2A15385900EA212E /* XingAPIMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9906D3062A15385200EA212E /* XingAPIMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9906D3102A1538FC00EA212E /* XingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906D30F2A1538FC00EA212E /* XingLoginViewController.swift */; };
 		99086D522A0A329200FAA427 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99086D512A0A329200FAA427 /* temp.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9906D30A2A15385600EA212E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9906D30C2A15385900EA212E /* XingAPIMobile.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0620A098C3A1A54533A5F886 /* Pods-autoTradingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.debug.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +108,8 @@
 		11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTOSView.swift; sourceTree = "<group>"; };
 		252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_autoTradingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86105BF2B75E204C034E6600 /* Pods-autoTradingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.release.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.release.xcconfig"; sourceTree = "<group>"; };
+		9906D3062A15385200EA212E /* XingAPIMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XingAPIMobile.framework; sourceTree = "<group>"; };
+		9906D30F2A1538FC00EA212E /* XingLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XingLoginViewController.swift; sourceTree = "<group>"; };
 		99086D512A0A329200FAA427 /* temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,7 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */,
+				9906D3082A15385600EA212E /* Pods_autoTradingApp.framework in Frameworks */,
+				9906D30B2A15385900EA212E /* XingAPIMobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +273,7 @@
 		11E7F957298E8B6D00C29B83 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				9906D30F2A1538FC00EA212E /* XingLoginViewController.swift */,
 				114DD3742982CA81001E3E24 /* LoginViewController.swift */,
 			);
 			path = Login;
@@ -309,6 +330,7 @@
 		9031988C34B0E63E9A8D5AA4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9906D3062A15385200EA212E /* XingAPIMobile.framework */,
 				252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */,
 			);
 			name = Frameworks;
@@ -335,6 +357,7 @@
 				11080AA22982A97B00B73F5F /* Frameworks */,
 				11080AA32982A97B00B73F5F /* Resources */,
 				3E512587D17D9A491E4D78C3 /* [CP] Embed Pods Frameworks */,
+				9906D30A2A15385600EA212E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -439,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9906D3102A1538FC00EA212E /* XingLoginViewController.swift in Sources */,
 				115D1E2F29CD860300E98541 /* NetworkManager.swift in Sources */,
 				11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */,
 				114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */,
@@ -614,7 +638,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P7MU3HV48P;
+				DEVELOPMENT_TEAM = SF6UW2599Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -647,7 +671,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P7MU3HV48P;
+				DEVELOPMENT_TEAM = SF6UW2599Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

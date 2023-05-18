@@ -6,22 +6,29 @@
 //
 
 import UIKit
+import XingAPIMobile
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, XingAPIDelegate{
 
     var window: UIWindow?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
+            guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let mainViewController = InitialViewController()
-        let navigationController = UINavigationController(rootViewController: mainViewController)
+            let viewController = XingLoginViewController() // XingLoginViewController의 인스턴스 생성
+            let navigationController = UINavigationController(rootViewController: viewController) // UINavigationController로 감싸기
 
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-    }
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = navigationController // UINavigationController를 초기 뷰 컨트롤러로 설정
+            self.window = window
+            window.makeKeyAndVisible()
+
+            // API 시작
+            let eBESTAPI: XingAPI = XingAPI.getInstance()
+            eBESTAPI.initAPI()
+            eBESTAPI.setNetworkDelegate(viewController)
+        }
 
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard let window = self.window else {
@@ -60,6 +67,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        //API 종료
+        let eBESTAPI: XingAPI = XingAPI.getInstance()
+        eBESTAPI.close()
+    }
+    
+    
+    //연결종료
+    func onDisconnect() {
+        print("onDisconnect");
+    }
+    
+    //연결시도
+    func onRetryConnnect(_ count: Int) {
+        print("onRetryConnnect : \(count)");
+    }
+    
+    func onReceiveData(_ data: ReceiveData!) {
+    }
+    
+    func onReceiveMessage(_ msg: ReceiveMessage!) {
+    }
+    
+    func onReceiveError(_ msg: ReceiveMessage!) {
+    }
+    
+    func onReleaseData(_ rqID: Int, code: String!) {
+    }
+    
+    func onTimeOut(_ rqID: Int, code: String!) {
+    }
+    
+    func onReceiveRealData(_ bcCode: String!, key: String!, data: Data!) {
+    }
 
 }
 
