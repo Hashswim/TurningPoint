@@ -9,6 +9,9 @@ import UIKit
 
 class StockTradingViewController: UIViewController {
 
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+
     private let stockNameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
@@ -73,7 +76,7 @@ class StockTradingViewController: UIViewController {
         return label
     }()
 
-    private let tradingStrategyTableView = UITableView()
+    let tradingStrategyTableView = UITableView()
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -94,52 +97,68 @@ class StockTradingViewController: UIViewController {
     }
 
     func configureHierarchy() {
-        view.addSubview(stockNameLabel)
-        view.addSubview(algorithmTypeLabel)
-        view.addSubview(tradingButton)
-        view.addSubview(returnRateLabel)
-        view.addSubview(percentageLabel)
-        view.addSubview(algorithmTitleLabel)
-        view.addSubview(tradingStrategyTableView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(stockNameLabel)
+        contentView.addSubview(algorithmTypeLabel)
+        contentView.addSubview(tradingButton)
+        contentView.addSubview(returnRateLabel)
+        contentView.addSubview(percentageLabel)
+        contentView.addSubview(algorithmTitleLabel)
+        contentView.addSubview(tradingStrategyTableView)
     }
 
     func configureLayout() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         tradingStrategyTableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
-            stockNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 72),
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor),
+
+            stockNameLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 72),
             stockNameLabel.widthAnchor.constraint(equalToConstant: 196),
             stockNameLabel.heightAnchor.constraint(equalToConstant: 16),
-            stockNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stockNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
             algorithmTypeLabel.topAnchor.constraint(equalTo: stockNameLabel.bottomAnchor, constant: 20),
             algorithmTypeLabel.widthAnchor.constraint(equalToConstant: 120),
             algorithmTypeLabel.heightAnchor.constraint(equalToConstant: 20),
-            algorithmTypeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            algorithmTypeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
-            tradingButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 192),
-            tradingButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 108),
-            tradingButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -108),
+            tradingButton.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 192),
+            tradingButton.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 108),
+            tradingButton.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -108),
             tradingButton.heightAnchor.constraint(equalTo: tradingButton.widthAnchor),
 
-            returnRateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 422),
+            returnRateLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 422),
             returnRateLabel.widthAnchor.constraint(equalToConstant: 100),
             returnRateLabel.heightAnchor.constraint(equalToConstant: 52),
-            returnRateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            returnRateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
-            percentageLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 444),
+            percentageLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 444),
             percentageLabel.widthAnchor.constraint(equalToConstant: 100),
             percentageLabel.heightAnchor.constraint(equalToConstant: 52),
-            percentageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            percentageLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
-            algorithmTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 500),
-            algorithmTitleLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
-            algorithmTitleLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -16),
+            algorithmTitleLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 500),
+            algorithmTitleLabel.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            algorithmTitleLabel.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor, constant: -16),
 
-            tradingStrategyTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 540),
-            tradingStrategyTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
-            tradingStrategyTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -16),
+            tradingStrategyTableView.topAnchor.constraint(equalTo: algorithmTitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: 80),
+            tradingStrategyTableView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            tradingStrategyTableView.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor, constant: -16),
+            tradingStrategyTableView.heightAnchor.constraint(equalToConstant: 280)
 
         ])
     }

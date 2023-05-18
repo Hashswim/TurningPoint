@@ -27,7 +27,7 @@ class StockTradingViewTableCell: UITableViewCell {
         return label
     }()
 
-    var predictedTextLabel: UILabel = {
+    let predictedTextLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "예상 수익률"
