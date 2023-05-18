@@ -32,7 +32,7 @@ class StockTradingViewController: UIViewController {
         return label
     }()
 
-    private let tradingButton: UIButton = {
+    lazy var tradingButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.translatesAutoresizingMaskIntoConstraints = false
 
@@ -44,6 +44,7 @@ class StockTradingViewController: UIViewController {
         btn.configuration = config
 
         btn.backgroundColor = .systemCyan
+        btn.addTarget(self, action: #selector(toggleButton), for: .touchUpInside)
 
         return btn
     }()
@@ -94,6 +95,11 @@ class StockTradingViewController: UIViewController {
 
         configureHierarchy()
         configureLayout()
+    }
+
+    @objc
+    func toggleButton() {
+
     }
 
     func configureHierarchy() {
@@ -177,6 +183,4 @@ extension StockTradingViewController: UITableViewDelegate, UITableViewDataSource
         cell.predictedTextLabel.text = PredictedAlgorithm.attack.rawValue
         return cell
     }
-
-
 }
