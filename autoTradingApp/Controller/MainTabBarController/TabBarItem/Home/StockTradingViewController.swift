@@ -44,7 +44,7 @@ class StockTradingViewController: UIViewController {
         btn.configuration = config
 
         btn.backgroundColor = .systemCyan
-        btn.addTarget(self, action: #selector(toggleButton), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(changeTradingStatusAction), for: .touchUpInside)
 
         return btn
     }()
@@ -84,7 +84,39 @@ class StockTradingViewController: UIViewController {
 
         tradingButton.layer.cornerRadius = tradingButton.frame.size.width/2
         tradingButton.clipsToBounds = true
+
+        pulseAnimationView1.layer.cornerRadius = pulseAnimationView1.layer.bounds.size.width / 2
+        pulseAnimationView1.clipsToBounds = true
+        pulseAnimationView2.layer.cornerRadius = pulseAnimationView2.layer.bounds.size.width / 2
+        pulseAnimationView2.clipsToBounds = true
+        pulseAnimationView3.layer.cornerRadius = pulseAnimationView3.layer.bounds.size.width / 2
+        pulseAnimationView3.clipsToBounds = true
     }
+
+    //Animation circular view
+    private let pulseAnimationView1: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+      }()
+
+    private let pulseAnimationView2: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+      }()
+
+    private let pulseAnimationView3: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+      }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,16 +127,54 @@ class StockTradingViewController: UIViewController {
 
         configureHierarchy()
         configureLayout()
+        configureAnimation()
     }
 
+    //⭐️Stock object VC가 소유, 버튼 터치시 stock의 isOnTrading.toggle()
     @objc
-    func toggleButton() {
+    func changeTradingStatusAction() {
+        tradingButton.configuration?.subtitle = "On"
+        tradingButton.backgroundColor = UIColor(hex: "F65036")
+
+        configureAnimation()
+    }
+
+    func configureAnimation() {
+        let scaleAnimaton = CABasicAnimation(keyPath: "transform.scale.xy")
+        scaleAnimaton.fromValue = 1
+        scaleAnimaton.toValue = 1.5
+
+        let opacityAnimiation = CAKeyframeAnimation(keyPath: "opacity")
+        opacityAnimiation.values = [0.3, 0.7, 0]
+        opacityAnimiation.keyTimes = [0, 0.3, 1]
+
+        let animationGroup = CAAnimationGroup()
+        animationGroup.duration = 9.0
+        animationGroup.repeatCount = .infinity
+        animationGroup.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
+        animationGroup.animations = [scaleAnimaton, opacityAnimiation]
+
+        DispatchQueue.main.async {
+          self.pulseAnimationView1.layer.add(animationGroup, forKey: "pulse")
+
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.pulseAnimationView2.layer.add(animationGroup, forKey: "pulse")
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+            self.pulseAnimationView3.layer.add(animationGroup, forKey: "pulse")
+        }
 
     }
 
     func configureHierarchy() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(pulseAnimationView1)
+        contentView.addSubview(pulseAnimationView2)
+        contentView.addSubview(pulseAnimationView3)
         contentView.addSubview(stockNameLabel)
         contentView.addSubview(algorithmTypeLabel)
         contentView.addSubview(tradingButton)
@@ -112,6 +182,7 @@ class StockTradingViewController: UIViewController {
         contentView.addSubview(percentageLabel)
         contentView.addSubview(algorithmTitleLabel)
         contentView.addSubview(tradingStrategyTableView)
+
     }
 
     func configureLayout() {
@@ -164,8 +235,22 @@ class StockTradingViewController: UIViewController {
             tradingStrategyTableView.topAnchor.constraint(equalTo: algorithmTitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: 80),
             tradingStrategyTableView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
             tradingStrategyTableView.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor, constant: -16),
-            tradingStrategyTableView.heightAnchor.constraint(equalToConstant: 280)
+            tradingStrategyTableView.heightAnchor.constraint(equalToConstant: 280),
 
+            pulseAnimationView1.heightAnchor.constraint(equalTo: tradingButton.heightAnchor),
+            pulseAnimationView1.widthAnchor.constraint(equalTo: tradingButton.widthAnchor),
+            pulseAnimationView1.centerYAnchor.constraint(equalTo: tradingButton.centerYAnchor),
+            pulseAnimationView1.centerXAnchor.constraint(equalTo: tradingButton.centerXAnchor),
+
+            pulseAnimationView2.heightAnchor.constraint(equalTo: tradingButton.heightAnchor),
+            pulseAnimationView2.widthAnchor.constraint(equalTo: tradingButton.widthAnchor),
+            pulseAnimationView2.centerYAnchor.constraint(equalTo: tradingButton.centerYAnchor),
+            pulseAnimationView2.centerXAnchor.constraint(equalTo: tradingButton.centerXAnchor),
+
+            pulseAnimationView3.heightAnchor.constraint(equalTo: tradingButton.heightAnchor),
+            pulseAnimationView3.widthAnchor.constraint(equalTo: tradingButton.widthAnchor),
+            pulseAnimationView3.centerYAnchor.constraint(equalTo: tradingButton.centerYAnchor),
+            pulseAnimationView3.centerXAnchor.constraint(equalTo: tradingButton.centerXAnchor),
         ])
     }
 

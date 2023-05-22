@@ -1,73 +1,71 @@
+////
+////  PulseAnimation.swift
+////  SearchSpeechToText
+////
+////  Created by Ranosys_ShubhamAgarwal on 23/01/19.
+////  Copyright © 2019 Ranosys_ShubhamAgarwal. All rights reserved.
+////
 //
-//  PulseAnimation.swift
-//  autoTradingApp
+//import UIKit
 //
-//  Created by 서수영 on 2023/05/18.
+//class PulseAnimation: CALayer {
 //
-
-import UIKit
-
-class PulseAnimation: CALayer {
-
-    var animationGroup = CAAnimationGroup()
-    var animationDuration: TimeInterval = 0.9
-    var radius: CGFloat = 200
-    var numberOfPulses: Float = 10
-
-    override init(layer: Any) {
-        super.init(layer: layer)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    init(numberOfPulses: Float = 10, radius: CGFloat, position: CGPoint) {
-        super.init()
-        self.backgroundColor = UIColor.black.cgColor
-        self.contentsScale = UIScreen.main.scale
-        self.opacity = 0
-        self.radius = radius
-        self.numberOfPulses = numberOfPulses
-        self.position = position
-
-        self.bounds = CGRect(x: 0, y: 0, width: radius*2, height: radius*2)
-        self.cornerRadius = radius
-
-        DispatchQueue.global(qos: .default).async {
-            self.setUpAnimationGroup()
-            DispatchQueue.main.async {
-                self.add(self.animationGroup, forKey: "pulse")
-            }
-        }
-    }
-
-    func scaleAnimation() -> CABasicAnimation {
-        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
-        scaleAnimation.fromValue = NSNumber(value: 0)
-        scaleAnimation.toValue = NSNumber(value: 1)
-        scaleAnimation.duration = animationDuration
-
-        return scaleAnimation
-    }
-
-    func createOpacityAnimation() -> CAKeyframeAnimation {
-        let opacityAnimation = CAKeyframeAnimation(keyPath: "opacity")
-        opacityAnimation.duration = 10
-        opacityAnimation.keyTimes = [0, 0, 0]
-        opacityAnimation.values = [0, 0, 0]
-        return opacityAnimation
-    }
-
-    func setUpAnimationGroup() {
-        self.animationGroup.duration = animationDuration
-        self.animationGroup.repeatCount = numberOfPulses
-
-        let defaultCurve = CAMediaTimingFunction(name: .default)
-        self.animationGroup.timingFunction = defaultCurve
-        self.animationGroup.animations = [scaleAnimation(), createOpacityAnimation()]
-
-
-
-    }
-}
+//    var animationGroup = CAAnimationGroup()
+//    var animationDuration: TimeInterval = 1.5
+//    var radius: CGFloat = 200
+//    var numebrOfPulse: Float = Float.infinity
+//
+//    override init(layer: Any) {
+//        super.init(layer: layer)
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    init(numberOfPulse: Float = Float.infinity, radius: CGFloat, postion: CGPoint){
+//        super.init()
+//        self.backgroundColor = UIColor.black.cgColor
+//        self.contentsScale = UIScreen.main.scale
+//        self.opacity = 0
+//        self.radius = radius
+//        self.numebrOfPulse = numberOfPulse
+//        self.position = postion
+//
+//        self.bounds = CGRect(x: 0, y: 0, width: radius*2, height: radius*2)
+//        self.cornerRadius = radius
+//
+//        DispatchQueue.global(qos: .default).async {
+//            self.setupAnimationGroup()
+//            DispatchQueue.main.async {
+//                self.add(self.animationGroup, forKey: "pulse")
+//           }
+//        }
+//    }
+//
+//    func scaleAnimation() -> CABasicAnimation {
+//        let scaleAnimaton = CABasicAnimation(keyPath: "transform.scale.xy")
+//        scaleAnimaton.fromValue = NSNumber(value: 0)
+//        scaleAnimaton.toValue = NSNumber(value: 1)
+//        scaleAnimaton.duration = animationDuration
+//        return scaleAnimaton
+//    }
+//
+//    func createOpacityAnimation() -> CAKeyframeAnimation {
+//        let opacityAnimiation = CAKeyframeAnimation(keyPath: "opacity")
+//        opacityAnimiation.duration = animationDuration
+//        opacityAnimiation.values = [0.4,0.8,0]
+//        opacityAnimiation.keyTimes = [0,0.3,1]
+//        return opacityAnimiation
+//    }
+//
+//    func setupAnimationGroup() {
+//        self.animationGroup.duration = animationDuration
+//        self.animationGroup.repeatCount = numebrOfPulse
+//        let defaultCurve = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
+//        self.animationGroup.timingFunction = defaultCurve
+//        self.animationGroup.animations = [scaleAnimation(),createOpacityAnimation()]
+//    }
+//
+//
+//}
