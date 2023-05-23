@@ -35,10 +35,12 @@ extension UIColor {
 }
 
 enum MySpecialColors {
-    static let red     = UIColor(hex: "#DA4167")
-    static let green   = UIColor(hex: "#81E979")
-    static let blue    = UIColor(hex: "#2B3A67")
-    static let yellow  = UIColor(hex: "#FFFD82")
-    static let purple  = UIColor(hex: "#3D315B")
-    static let bgColor = UIColor(hex: "#333743")
+    static let red        = UIColor(hex: "#DA4167")
+    static let green      = UIColor(hex: "#81E979")
+    static let blue       = UIColor(hex: "#2B3A67")
+    static let yellow     = UIColor(hex: "#FFFD82")
+    static let purple     = UIColor(hex: "#3D315B")
+    static let bgColor    = UIColor(hex: "#333743")
+    static let tabBarTint = UIColor(hex: "#F65036")
+    static let gray       = UIColor(hex: "#BFBFBF")
 }

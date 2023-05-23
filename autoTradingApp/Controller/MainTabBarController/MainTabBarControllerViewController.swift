@@ -11,23 +11,33 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let homeNavigationController = UINavigationController(rootViewController: MainHomeTabControllerCollectionViewController())
+        view.backgroundColor = .systemBackground
+//        UITabBar.appearance().barTintColor = .systemBackground
+//        UITabBar.appearance().tintColor = UIColor.orange
+//        UITabBar.appearance().unselectedItemTintColor = UIColor.label
 
-        homeNavigationController.tabBarItem = UITabBarItem(title: "First", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
-
-
-        self.viewControllers = [homeNavigationController]
+        tabBar.unselectedItemTintColor = MySpecialColors.gray
+        tabBar.tintColor = MySpecialColors.tabBarTint
+        setUpVCs()
     }
     
+    func setUpVCs() {
+        viewControllers = [
+            createNavController(for: MainHomeTabController(), title: NSLocalizedString("메인홈", comment: ""), image: UIImage(named: "1메인")!),
+            createNavController(for: SearchViewController(), title: NSLocalizedString("검색", comment: ""), image: UIImage(named: "2검색")!),
+            createNavController(for: TradingViewController(), title: NSLocalizedString("트레이딩", comment: ""), image: UIImage(named: "3트레이딩")!),
+            createNavController(for: MyPageViewController(), title: NSLocalizedString("마이페이지", comment: ""), image: UIImage(named: "4마이페이지")!)
+        ]
+    }
 
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-
+    private func createNavController(for rootViewController: UIViewController,
+                                     title: String,
+                                     image: UIImage) -> UIViewController {
+        let navController = UINavigationController(rootViewController: rootViewController)
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = image
+//        navController.navigationBar.prefersLargeTitles = true
+//        rootViewController.navigationItem.title = title
+        return navController
+    }
 }

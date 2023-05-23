@@ -16,7 +16,7 @@
 		112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E4B2329B5F073009A3F8F /* ChartView.swift */; };
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
-		115D1E1A29B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */; };
+		115D1E1A29B9A89100E98541 /* MainHomeTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1929B9A89100E98541 /* MainHomeTabController.swift */; };
 		115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */; };
 		115D1E1E29BDEDA200E98541 /* mainTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1D29BDEDA200E98541 /* mainTabSegmentedControl.swift */; };
 		115D1E2229C461C400E98541 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */; };
@@ -36,6 +36,9 @@
 		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
 		11E10E762A13B23C007F3E10 /* predictedAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */; };
 		11E10E782A163D22007F3E10 /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E772A163D22007F3E10 /* PulseAnimation.swift */; };
+		11E10E7D2A1BA4E6007F3E10 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E7C2A1BA4E6007F3E10 /* SearchViewController.swift */; };
+		11E10E7F2A1BA4F8007F3E10 /* TradingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E7E2A1BA4F8007F3E10 /* TradingViewController.swift */; };
+		11E10E812A1BA50D007F3E10 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E802A1BA50D007F3E10 /* MyPageViewController.swift */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
 		11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */; };
 		11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96129A8D6F700C29B83 /* CustomTextField.swift */; };
@@ -62,7 +65,7 @@
 		112E4B2329B5F073009A3F8F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView.swift; path = autoTradingApp/View/MenuTab/ChartView.swift; sourceTree = SOURCE_ROOT; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeTabControllerCollectionViewController.swift; sourceTree = "<group>"; };
+		115D1E1929B9A89100E98541 /* MainHomeTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeTabController.swift; sourceTree = "<group>"; };
 		115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewChartView.swift; sourceTree = "<group>"; };
 		115D1E1D29BDEDA200E98541 /* mainTabSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTabSegmentedControl.swift; sourceTree = "<group>"; };
 		115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
@@ -81,6 +84,9 @@
 		11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewTableCell.swift; sourceTree = "<group>"; };
 		11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = predictedAlgorithm.swift; sourceTree = "<group>"; };
 		11E10E772A163D22007F3E10 /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
+		11E10E7C2A1BA4E6007F3E10 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		11E10E7E2A1BA4F8007F3E10 /* TradingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingViewController.swift; sourceTree = "<group>"; };
+		11E10E802A1BA50D007F3E10 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
 		11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		11E7F96129A8D6F700C29B83 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -186,7 +192,7 @@
 		115D1E2829C6FC2B00E98541 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				115D1E1929B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift */,
+				115D1E1929B9A89100E98541 /* MainHomeTabController.swift */,
 				115D1E2929C6FC6300E98541 /* StockTradingViewController.swift */,
 				115DF50C29E56A1B00E9DFE9 /* DetailViewController.swift */,
 			);
@@ -225,6 +231,30 @@
 				11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		11E10E792A1BA135007F3E10 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				11E10E7C2A1BA4E6007F3E10 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		11E10E7A2A1BA13C007F3E10 /* Trading */ = {
+			isa = PBXGroup;
+			children = (
+				11E10E7E2A1BA4F8007F3E10 /* TradingViewController.swift */,
+			);
+			path = Trading;
+			sourceTree = "<group>";
+		};
+		11E10E7B2A1BA145007F3E10 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				11E10E802A1BA50D007F3E10 /* MyPageViewController.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		11E7F953298E877300C29B83 /* Login */ = {
@@ -295,6 +325,9 @@
 			isa = PBXGroup;
 			children = (
 				115D1E2829C6FC2B00E98541 /* Home */,
+				11E10E792A1BA135007F3E10 /* Search */,
+				11E10E7A2A1BA13C007F3E10 /* Trading */,
+				11E10E7B2A1BA145007F3E10 /* MyPage */,
 			);
 			path = TabBarItem;
 			sourceTree = "<group>";
@@ -448,17 +481,20 @@
 				1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */,
 				11E10E762A13B23C007F3E10 /* predictedAlgorithm.swift in Sources */,
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
+				11E10E7F2A1BA4F8007F3E10 /* TradingViewController.swift in Sources */,
 				115DF51329F2A03C00E9DFE9 /* PredictedRawServerResponse.swift in Sources */,
 				115D1E2529C462D700E98541 /* NotoSansFont.swift in Sources */,
 				114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */,
 				11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */,
-				115D1E1A29B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift in Sources */,
+				115D1E1A29B9A89100E98541 /* MainHomeTabController.swift in Sources */,
 				115DF50F29EE801F00E9DFE9 /* JSONParser.swift in Sources */,
 				11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */,
 				11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */,
+				11E10E7D2A1BA4E6007F3E10 /* SearchViewController.swift in Sources */,
 				115D1E1E29BDEDA200E98541 /* mainTabSegmentedControl.swift in Sources */,
 				115D1E2C29CC523C00E98541 /* OverViewChartView2.swift in Sources */,
 				11E7F96E29B4C41E00C29B83 /* SignUpIsUserViewController.swift in Sources */,
+				11E10E812A1BA50D007F3E10 /* MyPageViewController.swift in Sources */,
 				1161804029B8667400EA1E0D /* Stock.swift in Sources */,
 				11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */,
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,

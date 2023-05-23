@@ -13,7 +13,7 @@ private enum Section: Hashable {
     case main
 }
 
-class MainHomeTabControllerCollectionViewController: UIViewController {
+class MainHomeTabController: UIViewController {
 
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -108,7 +108,7 @@ class MainHomeTabControllerCollectionViewController: UIViewController {
 }
 
 
-extension MainHomeTabControllerCollectionViewController {
+extension MainHomeTabController {
     private func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .plain)
         
@@ -157,7 +157,7 @@ extension MainHomeTabControllerCollectionViewController {
     }
 }
 
-extension MainHomeTabControllerCollectionViewController {
+extension MainHomeTabController {
     private func configureHierarchy() {
         view.backgroundColor = .white
         view.addSubview(containerStackView)
@@ -182,7 +182,7 @@ extension MainHomeTabControllerCollectionViewController {
     }
 }
 
-extension MainHomeTabControllerCollectionViewController {
+extension MainHomeTabController {
     /// - Tag: CellRegistration
     private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<CustomStcokListCellCollectionViewCell, Stock> { (cell, indexPath, item) in
@@ -231,7 +231,7 @@ extension MainHomeTabControllerCollectionViewController {
     }
 }
 
-extension MainHomeTabControllerCollectionViewController: UICollectionViewDelegate {
+extension MainHomeTabController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.item)
