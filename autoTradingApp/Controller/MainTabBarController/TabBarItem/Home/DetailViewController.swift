@@ -9,6 +9,18 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    private let stockNameLabel: UILabel = {
+        let label = UILabel()
+
+        return label
+    }()
+
+    private let stockPriceLabel: UILabel = {
+        let label = UILabel()
+
+        return label
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemCyan

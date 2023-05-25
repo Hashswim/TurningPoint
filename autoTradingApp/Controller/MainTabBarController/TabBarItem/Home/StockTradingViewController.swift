@@ -127,7 +127,6 @@ class StockTradingViewController: UIViewController {
 
         configureHierarchy()
         configureLayout()
-        configureAnimation()
     }
 
     //⭐️Stock object VC가 소유, 버튼 터치시 stock의 isOnTrading.toggle()

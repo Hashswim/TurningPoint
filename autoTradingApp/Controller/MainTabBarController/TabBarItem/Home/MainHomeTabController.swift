@@ -145,6 +145,7 @@ extension MainHomeTabController {
         return detailAction
     }
 
+    // inout keyword 제거 후 stocks 저장하는 객체에 접근 필요
     private func favoriteContextualAction(stock: Stock) -> UIContextualAction {
         let title = stock.isFavorite! ? "Remove from Favorites" : "Add to Favorites"
         let action = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
@@ -152,6 +153,7 @@ extension MainHomeTabController {
             completionHandler(self.toggleIsFavorite(stock))
         }
         let name = stock.isFavorite! ? "heart" : "heart.fill"
+        print(name)
         action.image = UIImage(systemName: name)
         return action
     }
