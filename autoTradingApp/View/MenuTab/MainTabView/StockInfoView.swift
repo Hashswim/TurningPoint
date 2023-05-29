@@ -21,6 +21,7 @@ class StockInfoView: UIView {
     private let countLabel: UILabel = {
         let label = UILabel()
         label.text = "2 주"
+
         return label
     }()
 
@@ -35,7 +36,8 @@ class StockInfoView: UIView {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.text = "100,580 원"
-        return
+
+        return label
     }()
 
     private let largeContainerStackView2 = UIStackView()
@@ -49,6 +51,7 @@ class StockInfoView: UIView {
     private let earningPriceLabel: UILabel = {
         let label = UILabel()
         label.text = "37,684 원"
+
         return label
     }()
 
@@ -80,6 +83,11 @@ class StockInfoView: UIView {
         largeContainerStackView1.translatesAutoresizingMaskIntoConstraints = false
         largeContainerStackView2.translatesAutoresizingMaskIntoConstraints = false
 
+        containerStackView1.translatesAutoresizingMaskIntoConstraints = false
+        containerStackView2.translatesAutoresizingMaskIntoConstraints = false
+        containerStackView3.translatesAutoresizingMaskIntoConstraints = false
+        containerStackView4.translatesAutoresizingMaskIntoConstraints = false
+
         largeContainerStackView1.axis = .horizontal
         largeContainerStackView2.axis = .horizontal
 
@@ -92,17 +100,17 @@ class StockInfoView: UIView {
         containerStackView1.addArrangedSubview(countLabelTitle)
         containerStackView1.addArrangedSubview(countLabel)
 
-        containerStackView2.addArrangedSubview(countLabelTitle)
-        containerStackView2.addArrangedSubview(countLabel)
+        containerStackView2.addArrangedSubview(priceLabelTitle)
+        containerStackView2.addArrangedSubview(priceLabel)
 
         largeContainerStackView2.addArrangedSubview(containerStackView3)
         largeContainerStackView2.addArrangedSubview(containerStackView4)
 
-        containerStackView3.addArrangedSubview(countLabelTitle)
-        containerStackView4.addArrangedSubview(countLabel)
+        containerStackView3.addArrangedSubview(earningPriceLabelTitle)
+        containerStackView3.addArrangedSubview(earningPriceLabel)
 
-        containerStackView4.addArrangedSubview(countLabelTitle)
-        containerStackView4.addArrangedSubview(countLabel)
+        containerStackView4.addArrangedSubview(earningRateLabelTitle)
+        containerStackView4.addArrangedSubview(earningRateLabel)
 
     }
 
@@ -113,11 +121,11 @@ class StockInfoView: UIView {
             largeContainerStackView1.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
             largeContainerStackView1.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
 
-            largeContainerStackView1.topAnchor.constraint(equalTo: largeContainerStackView1.bottomAnchor),
-            largeContainerStackView1.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            largeContainerStackView1.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            largeContainerStackView1.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-            largeContainerStackView1.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
+            largeContainerStackView2.topAnchor.constraint(equalTo: largeContainerStackView1.bottomAnchor),
+            largeContainerStackView2.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            largeContainerStackView2.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            largeContainerStackView2.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+            largeContainerStackView2.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
         ])
     }
 
