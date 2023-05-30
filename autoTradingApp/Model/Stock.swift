@@ -46,4 +46,9 @@ struct Stock: Codable, Hashable {
         Stock(imageURL: "08.circle", code: "A0320042", name: "Alphabet", dataList: [1,2,3], price: 333.33, priceDifference: 11),
         Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000.11, priceDifference: 10),
     ]
+
+    static let favorite = [
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111.00, priceDifference: 13),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123.00, priceDifference: 12),
+    ]
 }

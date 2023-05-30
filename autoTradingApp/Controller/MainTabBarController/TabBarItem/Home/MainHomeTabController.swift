@@ -83,7 +83,7 @@ class MainHomeTabController: UIViewController {
 //        navigationItem.title = "main tab"
         configureHierarchy()
         configureDataSource()
-        configureLayout()
+        setUpUI()
         registerTimer()
         testAPI()
     }
@@ -172,6 +172,37 @@ extension MainHomeTabController {
         collectionView.delegate = self
     }
 
+    private func setUpUI() {
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
+
+        NSLayoutConstraint.activate([
+            containerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            containerStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+
+            refreshButton.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
+
+            segmentedControl.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: 32),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            segmentedControl.heightAnchor.constraint(equalToConstant: 20),
+
+            headerLabelStackView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
+            headerLabelStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            headerLabelStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            headerLabelStackView.heightAnchor.constraint(equalToConstant: 20),
+
+            collectionView.topAnchor.constraint(equalTo: headerLabelStackView.bottomAnchor, constant: 20),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+
     private func registerTimer() {
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updatetime), userInfo: nil, repeats: true)
     }
@@ -204,32 +235,25 @@ extension MainHomeTabController {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
-    private func configureLayout() {
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+    @objc
+    func segmentChanged(_ sender: UISegmentedControl) {
+        switch self.segmentedControl.selectedSegmentIndex {
+            //기존 snapshot에서 빼는 방식으로 변경?
+        case 0:
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(Stock.all)
 
-        NSLayoutConstraint.activate([
-            containerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            containerStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            containerStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            self.dataSource?.apply(snapshot)
+        case 1:
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(Stock.favorite)
 
-            refreshButton.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
-
-            segmentedControl.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: 32),
-            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            segmentedControl.heightAnchor.constraint(equalToConstant: 20),
-
-            headerLabelStackView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
-            headerLabelStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            headerLabelStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            headerLabelStackView.heightAnchor.constraint(equalToConstant: 20),
-
-            collectionView.topAnchor.constraint(equalTo: headerLabelStackView.bottomAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+            self.dataSource?.apply(snapshot)
+        default:
+            return
+        }
     }
 }
 
