@@ -14,8 +14,8 @@ fileprivate extension UIConfigurationStateCustomKey {
 
 private extension UICellConfigurationState {
     var stock: Stock? {
-        set { self[.stock] = newValue }
         get { return self[.stock] as? Stock }
+        set { self[.stock] = newValue }
     }
 }
 
@@ -77,6 +77,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
                                         scaledChartViewTrailing: NSLayoutConstraint,
                                         priceLabelTrailing: NSLayoutConstraint)?
 
+    private lazy var traidingViewConstraints: NSLayoutConstraint = listContentView.heightAnchor.constraint(equalToConstant: 200)
 
     // view 구성
     private func setupViewsIfNeeded() {
@@ -97,6 +98,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
             listContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
             listContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             listContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            listContentView.heightAnchor.constraint(equalToConstant: 200),
 
             scaledChartView.leadingAnchor.constraint(equalTo: listContentView.trailingAnchor),
             scaledChartView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
@@ -174,6 +176,18 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         customViewConstraints?.scaledChartViewTrailing.constant = valueConfiguration.textToSecondaryTextHorizontalPadding
         customViewConstraints?.priceLabelTrailing.constant = content.directionalLayoutMargins.trailing
         updateSeparatorConstraint()
+    }
+
+    func updateAppearance() {
+        traidingViewConstraints.isActive = isSelected
+
+//        openConstraint?.isActive = isSelected
+
+//            UIView.animate(withDuration: 0.3) { // 0.3 seconds matches collection view animation
+//                // Set the rotation just under 180º so that it rotates back the same way
+//                let upsideDown = CGAffineTransform(rotationAngle: .pi * 0.999 )
+//                self.disclosureIndicator.transform = self.isSelected ? upsideDown :.identity
+//            }
     }
 
     func setData(dataEntry chartData1: [ChartDataEntry], avgDataEntry chartData2: [ChartDataEntry]) {

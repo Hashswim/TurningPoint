@@ -251,6 +251,12 @@ extension MainHomeTabController {
             snapshot.appendItems(Stock.favorite)
 
             self.dataSource?.apply(snapshot)
+        case 1:
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(Stock.favorite)
+
+            self.dataSource?.apply(snapshot)
         default:
             return
         }
@@ -269,3 +275,4 @@ extension MainHomeTabController: UICollectionViewDelegate {
     }
 
 }
+

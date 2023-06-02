@@ -264,7 +264,9 @@ extension StockTradingViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tradingStrategyTableView.dequeueReusableCell(withIdentifier: StockTradingViewTableCell.cellID, for: indexPath) as! StockTradingViewTableCell
 
-        cell.predictedTextLabel.text = PredictedAlgorithm.attack.rawValue
+        cell.typeLabel.text = PredictedAlgorithm.attack.rawValue
+        cell.percentageLabel.text = "+5.1%"
+
         return cell
     }
 }

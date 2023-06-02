@@ -11,7 +11,7 @@ class StockTradingViewTableCell: UITableViewCell {
 
     static let cellID = "predictedCellID"
 
-    private let typeLabel: UILabel = {
+    let typeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .largeTitle)
@@ -27,7 +27,7 @@ class StockTradingViewTableCell: UITableViewCell {
         return label
     }()
 
-    let predictedTextLabel: UILabel = {
+    private let predictedTextLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "예상 수익률"
@@ -35,7 +35,7 @@ class StockTradingViewTableCell: UITableViewCell {
         return label
     }()
 
-    private let percentageLabel: UILabel = {
+    let percentageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -69,12 +69,12 @@ class StockTradingViewTableCell: UITableViewCell {
             algorithmTextLabel.heightAnchor.constraint(equalToConstant: 40),
 
             predictedTextLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            predictedTextLabel.leadingAnchor.constraint(equalTo: percentageLabel.leadingAnchor, constant: -10),
+            predictedTextLabel.trailingAnchor.constraint(equalTo: percentageLabel.leadingAnchor, constant: -10),
             predictedTextLabel.widthAnchor.constraint(equalToConstant: 80),
             predictedTextLabel.heightAnchor.constraint(equalToConstant: 40),
 
             percentageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            percentageLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            percentageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             percentageLabel.widthAnchor.constraint(equalToConstant: 80),
             percentageLabel.heightAnchor.constraint(equalToConstant: 40),
         ])
