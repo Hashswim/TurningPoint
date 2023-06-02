@@ -251,10 +251,10 @@ extension MainHomeTabController {
             snapshot.appendItems(Stock.favorite)
 
             self.dataSource?.apply(snapshot)
-        case 1:
+        case 2:
             var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()
             snapshot.appendSections([.main])
-            snapshot.appendItems(Stock.favorite)
+            snapshot.appendItems(Stock.traiding)
 
             self.dataSource?.apply(snapshot)
         default:

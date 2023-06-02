@@ -176,6 +176,10 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         customViewConstraints?.scaledChartViewTrailing.constant = valueConfiguration.textToSecondaryTextHorizontalPadding
         customViewConstraints?.priceLabelTrailing.constant = content.directionalLayoutMargins.trailing
         updateSeparatorConstraint()
+
+        if let istraiding = state.stock?.isTraiding {
+            traidingViewConstraints.isActive = istraiding
+        }
     }
 
     func updateAppearance() {

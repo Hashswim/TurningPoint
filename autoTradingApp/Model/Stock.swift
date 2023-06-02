@@ -16,11 +16,12 @@ struct Stock: Codable, Hashable {
     var price: Double?
     var priceDifference: Double?
     var isFavorite: Bool?
+    var isTraiding: Bool?
 
     private let identifier = UUID()
 
     init(imageURL: String? = nil, code: String? = nil, name: String? = nil, dataList: [Double]? = nil,
-         price: Double? = nil, priceDifference: Double? = nil, isFavorite: Bool? = false) {
+         price: Double? = nil, priceDifference: Double? = nil, isFavorite: Bool? = false, isTraiding: Bool? = false) {
         self.imageURL = imageURL
         self.code = code
         self.name = name
@@ -28,6 +29,7 @@ struct Stock: Codable, Hashable {
         self.price = price
         self.priceDifference = priceDifference
         self.isFavorite = isFavorite
+        self.isTraiding = isTraiding
     }
 
     enum CodingKeys: String, CodingKey {
@@ -50,5 +52,10 @@ struct Stock: Codable, Hashable {
     static let favorite = [
         Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111.00, priceDifference: 13),
         Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123.00, priceDifference: 12),
+    ]
+
+    static let traiding = [
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111.00, priceDifference: 13, isTraiding: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123.00, priceDifference: 12, isTraiding: true),
     ]
 }
