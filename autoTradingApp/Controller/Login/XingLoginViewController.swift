@@ -17,7 +17,7 @@ class XingLoginViewController: UIViewController, XingAPIDelegate{
     let LoginBtn = UIButton()
     let resultLabel = UILabel()
     var m_apihandle : Int = -1
-    let eBESTAPI: XingAPI = XingAPI.getInstance()
+    let eBESTAPI: XingAPI = XingAPIManager.shared.xingAPI;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,15 @@ class XingLoginViewController: UIViewController, XingAPIDelegate{
         var loginBtnText = "API 로그인"
         if  eBESTAPI.isLogin() == true
         {
+            
+            /*
+            let nextView = MainHomeTabControllerCollectionViewController();
+            
+            addChild(nextView);
+            view.addSubview(nextView.view);
+            nextView.didMove(toParent: self);
+            */
+            
             loginBtnText = "API 로그아웃"
         }
         LoginBtn.setTitle(loginBtnText, for: UIControl.State.normal)
@@ -46,6 +55,15 @@ class XingLoginViewController: UIViewController, XingAPIDelegate{
         LoginBtn.setTitleColor(UIColor.gray, for: UIControl.State.disabled)
         LoginBtn.addTarget(self, action: #selector(OnLoginBtnClicked), for: .touchUpInside)
         self.view.addSubview(LoginBtn)
+        
+        let adminBtn = UIButton()
+        adminBtn.translatesAutoresizingMaskIntoConstraints = false
+        adminBtn.backgroundColor = .blue
+        adminBtn.layer.cornerRadius = 5
+        adminBtn.setTitle("Admin 페이지로 이동", for: .normal)
+        adminBtn.setTitleColor(UIColor.white, for: .normal)
+        adminBtn.addTarget(self, action: #selector(OnAdminBtnClicked), for: .touchUpInside)
+        self.view.addSubview(adminBtn)
         
         //결과출력
         resultLabel.numberOfLines = 0
@@ -63,11 +81,31 @@ class XingLoginViewController: UIViewController, XingAPIDelegate{
         LoginBtn.topAnchor.constraint(equalTo: margins.centerYAnchor, constant: -40.0).isActive = true
         LoginBtn.bottomAnchor.constraint(equalTo: LoginBtn.topAnchor, constant: 50.0).isActive = true
         
+        adminBtn.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 10.0).isActive = true
+        adminBtn.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -10.0).isActive = true
+        adminBtn.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 20.0).isActive = true
+        adminBtn.bottomAnchor.constraint(equalTo: adminBtn.topAnchor, constant: 50.0).isActive = true
+
+        
         resultLabel.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 10.0).isActive = true
         resultLabel.topAnchor.constraint(equalTo: LoginBtn.bottomAnchor, constant: 20.0).isActive = true
         
         SetLoginStateText()
         
+    }
+    
+    @IBAction func OnAdminBtnClicked(_ sender: Any) {
+        if eBESTAPI.isLogin() {
+            // 로그인 상태일 때 admin 페이지로 이동하는 로직을 추가합니다.
+            // 예시로 다음과 같이 페이지 이동을 수행할 수 있습니다:
+            let adminViewController = StockPriceView() // 적절한 AdminViewController 클래스를 생성해야 합니다.
+            self.navigationController?.pushViewController(adminViewController, animated: true)
+        } else {
+            // 로그인 상태가 아닐 때에는 로그인을 유도할 수 있는 알림을 표시합니다.
+            let alertController = UIAlertController(title: "로그인 필요", message: "로그인 후 admin 페이지로 이동할 수 있습니다.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
     }
     
     //로그인 클릭 이벤트
@@ -94,8 +132,8 @@ class XingLoginViewController: UIViewController, XingAPIDelegate{
             //위에서 언급한 아주 특별한 경우가 아닌 이상 일반적으로 -1 값이 나오는 경우는 없다.
             if m_apihandle > 0
             {
-                //var loginData = LOGIN_DATA(m_apihandle, connect_server: SERVER_TYPE.MOTU_SERVER)
-                let loginData = LOGIN_DATA(m_apihandle, connect_server: SERVER_TYPE.API_SERVER);
+                var loginData = LOGIN_DATA(m_apihandle, connect_server: SERVER_TYPE.MOTU_SERVER)
+                //let loginData = LOGIN_DATA(m_apihandle, connect_server: SERVER_TYPE.API_SERVER);
                 
                 //API의 내장된 로그인 뷰(인증서로그인)를 보고싶을 때
                 //loginData.showLoginView = true 로 설정한다
@@ -105,10 +143,10 @@ class XingLoginViewController: UIViewController, XingAPIDelegate{
                 if loginData.connect_server == SERVER_TYPE.API_SERVER
                 {
                     let pubCertList = eBESTAPI.getSignList();
-                    if pubCertList.count > 0
+                    if pubCertList.count > 0 && false
                     {
                         loginData.pubCertIdx = 0
-                        loginData.pubCertPwd = "coqjqtls!2"
+                        loginData.pubCertPwd = ""
                         loginData.showLoginView = false
                         eBESTAPI.login(self, loginData: loginData)
                         
@@ -131,8 +169,8 @@ class XingLoginViewController: UIViewController, XingAPIDelegate{
                 //모의투자서버 로그인
                 else
                 {
-                    loginData.motuUserId = "ghjeong"
-                    loginData.motuUserPwd = "ahdml12"
+                    loginData.motuUserId = "h10430"
+                    loginData.motuUserPwd = "Lmh10430"
                     loginData.showLoginView = false
                     eBESTAPI.login(self, loginData: loginData)
                 }

@@ -49,6 +49,15 @@
 		9906D30C2A15385900EA212E /* XingAPIMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9906D3062A15385200EA212E /* XingAPIMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9906D3102A1538FC00EA212E /* XingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906D30F2A1538FC00EA212E /* XingLoginViewController.swift */; };
 		99086D522A0A329200FAA427 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99086D512A0A329200FAA427 /* temp.swift */; };
+		99336CAD2A24699900AC311F /* XingAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99336CAC2A24699900AC311F /* XingAPIManager.swift */; };
+		99F865622A32E2FA002A25A1 /* StockPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F865612A32E2FA002A25A1 /* StockPriceView.swift */; };
+		99F8656B2A32E378002A25A1 /* t1301.res in Resources */ = {isa = PBXBuildFile; fileRef = 99F865642A32E378002A25A1 /* t1301.res */; };
+		99F8656C2A32E378002A25A1 /* S3_.res in Resources */ = {isa = PBXBuildFile; fileRef = 99F865652A32E378002A25A1 /* S3_.res */; };
+		99F8656D2A32E378002A25A1 /* t1101.res in Resources */ = {isa = PBXBuildFile; fileRef = 99F865662A32E378002A25A1 /* t1101.res */; };
+		99F8656E2A32E378002A25A1 /* H1_.res in Resources */ = {isa = PBXBuildFile; fileRef = 99F865672A32E378002A25A1 /* H1_.res */; };
+		99F8656F2A32E378002A25A1 /* t1102.res in Resources */ = {isa = PBXBuildFile; fileRef = 99F865682A32E378002A25A1 /* t1102.res */; };
+		99F865702A32E378002A25A1 /* K3_.res in Resources */ = {isa = PBXBuildFile; fileRef = 99F865692A32E378002A25A1 /* K3_.res */; };
+		99F865712A32E378002A25A1 /* HA_.res in Resources */ = {isa = PBXBuildFile; fileRef = 99F8656A2A32E378002A25A1 /* HA_.res */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -111,6 +120,15 @@
 		9906D3062A15385200EA212E /* XingAPIMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XingAPIMobile.framework; sourceTree = "<group>"; };
 		9906D30F2A1538FC00EA212E /* XingLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XingLoginViewController.swift; sourceTree = "<group>"; };
 		99086D512A0A329200FAA427 /* temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temp.swift; sourceTree = "<group>"; };
+		99336CAC2A24699900AC311F /* XingAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XingAPIManager.swift; sourceTree = "<group>"; };
+		99F865612A32E2FA002A25A1 /* StockPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockPriceView.swift; sourceTree = "<group>"; };
+		99F865642A32E378002A25A1 /* t1301.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1301.res; sourceTree = "<group>"; };
+		99F865652A32E378002A25A1 /* S3_.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = S3_.res; sourceTree = "<group>"; };
+		99F865662A32E378002A25A1 /* t1101.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1101.res; sourceTree = "<group>"; };
+		99F865672A32E378002A25A1 /* H1_.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = H1_.res; sourceTree = "<group>"; };
+		99F865682A32E378002A25A1 /* t1102.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1102.res; sourceTree = "<group>"; };
+		99F865692A32E378002A25A1 /* K3_.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = K3_.res; sourceTree = "<group>"; };
+		99F8656A2A32E378002A25A1 /* HA_.res */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HA_.res; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +147,7 @@
 		11080A9C2982A97B00B73F5F = {
 			isa = PBXGroup;
 			children = (
+				99F865632A32E363002A25A1 /* RES_Files */,
 				11080AA72982A97B00B73F5F /* autoTradingApp */,
 				11080AA62982A97B00B73F5F /* Products */,
 				BC3ACC3A6B2F655290CA7349 /* Pods */,
@@ -163,6 +182,7 @@
 		11080ABC2982AC3C00B73F5F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				99F865602A32E24C002A25A1 /* AdminPage */,
 				11E7F956298E8B5D00C29B83 /* Initial */,
 				11E7F957298E8B6D00C29B83 /* Login */,
 				11E7F96C29B4B75400C29B83 /* SignUp */,
@@ -240,6 +260,7 @@
 				115D1E2D29CD85A100E98541 /* Network */,
 				1161803F29B8667400EA1E0D /* Stock.swift */,
 				11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */,
+				99336CAC2A24699900AC311F /* XingAPIManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -336,6 +357,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		99F865602A32E24C002A25A1 /* AdminPage */ = {
+			isa = PBXGroup;
+			children = (
+				99F865612A32E2FA002A25A1 /* StockPriceView.swift */,
+			);
+			path = AdminPage;
+			sourceTree = "<group>";
+		};
+		99F865632A32E363002A25A1 /* RES_Files */ = {
+			isa = PBXGroup;
+			children = (
+				99F865672A32E378002A25A1 /* H1_.res */,
+				99F8656A2A32E378002A25A1 /* HA_.res */,
+				99F865692A32E378002A25A1 /* K3_.res */,
+				99F865652A32E378002A25A1 /* S3_.res */,
+				99F865662A32E378002A25A1 /* t1101.res */,
+				99F865682A32E378002A25A1 /* t1102.res */,
+				99F865642A32E378002A25A1 /* t1301.res */,
+			);
+			path = RES_Files;
+			sourceTree = "<group>";
+		};
 		BC3ACC3A6B2F655290CA7349 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,10 +449,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99F8656C2A32E378002A25A1 /* S3_.res in Resources */,
 				11080AB52982A97C00B73F5F /* LaunchScreen.storyboard in Resources */,
+				99F865702A32E378002A25A1 /* K3_.res in Resources */,
+				99F865712A32E378002A25A1 /* HA_.res in Resources */,
+				99F8656B2A32E378002A25A1 /* t1301.res in Resources */,
 				115D1E2229C461C400E98541 /* NotoSansKR-Bold.otf in Resources */,
+				99F8656F2A32E378002A25A1 /* t1102.res in Resources */,
+				99F8656D2A32E378002A25A1 /* t1101.res in Resources */,
 				115D1E2329C461C400E98541 /* NotoSansKR-Regular.otf in Resources */,
 				11080AB22982A97C00B73F5F /* Assets.xcassets in Resources */,
+				99F8656E2A32E378002A25A1 /* H1_.res in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +526,7 @@
 				115D1E1A29B9A89100E98541 /* MainHomeTabControllerCollectionViewController.swift in Sources */,
 				115DF50F29EE801F00E9DFE9 /* JSONParser.swift in Sources */,
 				11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */,
+				99336CAD2A24699900AC311F /* XingAPIManager.swift in Sources */,
 				11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */,
 				115D1E1E29BDEDA200E98541 /* mainTabSegmentedControl.swift in Sources */,
 				115D1E2C29CC523C00E98541 /* OverViewChartView2.swift in Sources */,
@@ -484,6 +535,7 @@
 				11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */,
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,
 				112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */,
+				99F865622A32E2FA002A25A1 /* StockPriceView.swift in Sources */,
 				11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,
 				115D1E2A29C6FC6300E98541 /* StockTradingViewController.swift in Sources */,
