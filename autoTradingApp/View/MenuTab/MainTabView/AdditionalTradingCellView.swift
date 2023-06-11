@@ -79,6 +79,10 @@ class AdditionalTradingCellView: UIView {
         self.addSubview(algorithmTypeLabel)
         self.addSubview(containerStackView)
 
+        earningPirceStackView.axis = .vertical
+        earningRateStackView.axis = .vertical
+        ownedCountStackView.axis = .vertical
+
         containerStackView.axis = .horizontal
 
         earningPirceStackView.addArrangedSubview(earningPirceTitleLabel)

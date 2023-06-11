@@ -77,6 +77,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ChartViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension SearchViewController: UISearchResultsUpdating {

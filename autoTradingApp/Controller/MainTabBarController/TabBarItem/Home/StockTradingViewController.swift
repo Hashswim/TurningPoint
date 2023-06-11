@@ -227,14 +227,14 @@ class StockTradingViewController: UIViewController {
             percentageLabel.heightAnchor.constraint(equalToConstant: 52),
             percentageLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
-            algorithmTitleLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 500),
+            algorithmTitleLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 580),
             algorithmTitleLabel.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
             algorithmTitleLabel.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor, constant: -16),
 
-            tradingStrategyTableView.topAnchor.constraint(equalTo: algorithmTitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: 80),
+            tradingStrategyTableView.topAnchor.constraint(equalTo: algorithmTitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: 20),
             tradingStrategyTableView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
             tradingStrategyTableView.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor, constant: -16),
-            tradingStrategyTableView.heightAnchor.constraint(equalToConstant: 280),
+            tradingStrategyTableView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
 
             pulseAnimationView1.heightAnchor.constraint(equalTo: tradingButton.heightAnchor),
             pulseAnimationView1.widthAnchor.constraint(equalTo: tradingButton.widthAnchor),

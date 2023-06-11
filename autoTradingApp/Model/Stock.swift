@@ -56,6 +56,6 @@ struct Stock: Codable, Hashable {
 
     static let traiding = [
         Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111.00, priceDifference: 13, isTraiding: true),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123.00, priceDifference: 12, isTraiding: true),
+//        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123.00, priceDifference: 12, isTraiding: true),
     ]
 }

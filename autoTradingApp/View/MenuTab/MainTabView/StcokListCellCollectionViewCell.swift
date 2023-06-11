@@ -73,11 +73,13 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         return chartView
     }()
 
+    private let additionalTradingCellView = AdditionalTradingCellView()
+
     private var customViewConstraints: (scaledChartViewLeading: NSLayoutConstraint,
                                         scaledChartViewTrailing: NSLayoutConstraint,
                                         priceLabelTrailing: NSLayoutConstraint)?
 
-    private lazy var traidingViewConstraints: NSLayoutConstraint = listContentView.heightAnchor.constraint(equalToConstant: 200)
+    private lazy var traidingViewConstraints: NSLayoutConstraint = contentView.heightAnchor.constraint(equalToConstant: 160)
 
     // view 구성
     private func setupViewsIfNeeded() {
@@ -96,18 +98,18 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
 
         NSLayoutConstraint.activate([
             listContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            listContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            listContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             listContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            listContentView.heightAnchor.constraint(equalToConstant: 200),
+            listContentView.heightAnchor.constraint(equalToConstant: 40),
 
             scaledChartView.leadingAnchor.constraint(equalTo: listContentView.trailingAnchor),
             scaledChartView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            scaledChartView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
+            scaledChartView.bottomAnchor.constraint(equalTo: listContentView.bottomAnchor),
             scaledChartView.widthAnchor.constraint(equalToConstant: 40),
 
             priceStackView.leadingAnchor.constraint(equalTo: scaledChartView.trailingAnchor),
             //            priceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            //            priceStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            priceStackView.bottomAnchor.constraint(equalTo: listContentView.bottomAnchor),
             //            priceStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 
             //            priceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -178,7 +180,18 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         updateSeparatorConstraint()
 
         if let istraiding = state.stock?.isTraiding {
-            traidingViewConstraints.isActive = istraiding
+            if istraiding {
+                traidingViewConstraints.isActive = istraiding
+                additionalTradingCellView.translatesAutoresizingMaskIntoConstraints = false
+
+                contentView.addSubview(additionalTradingCellView)
+                additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor).isActive = istraiding
+            } else {
+                additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor).isActive = istraiding
+                traidingViewConstraints.isActive = istraiding
+
+                additionalTradingCellView.removeFromSuperview()
+            }
         }
     }
 
