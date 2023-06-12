@@ -13,7 +13,7 @@
 		11080AB22982A97C00B73F5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11080AB12982A97C00B73F5F /* Assets.xcassets */; };
 		11080AB52982A97C00B73F5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11080AB32982A97C00B73F5F /* LaunchScreen.storyboard */; };
 		11080AC02982B6C200B73F5F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11080ABF2982B6C200B73F5F /* LoginView.swift */; };
-		112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E4B2329B5F073009A3F8F /* ChartView.swift */; };
+		112E4B2429B5F073009A3F8F /* ChartView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E4B2329B5F073009A3F8F /* ChartView2.swift */; };
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
 		115D1E1A29B9A89100E98541 /* MainHomeTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1929B9A89100E98541 /* MainHomeTabController.swift */; };
@@ -24,7 +24,6 @@
 		115D1E2529C462D700E98541 /* NotoSansFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2429C462D700E98541 /* NotoSansFont.swift */; };
 		115D1E2729C46A0D00E98541 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2629C46A0D00E98541 /* UIColor+.swift */; };
 		115D1E2A29C6FC6300E98541 /* StockTradingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2929C6FC6300E98541 /* StockTradingViewController.swift */; };
-		115D1E2C29CC523C00E98541 /* OverViewChartView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2B29CC523C00E98541 /* OverViewChartView2.swift */; };
 		115D1E2F29CD860300E98541 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2E29CD860300E98541 /* NetworkManager.swift */; };
 		115DF50D29E56A1B00E9DFE9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115DF50C29E56A1B00E9DFE9 /* DetailViewController.swift */; };
 		115DF50F29EE801F00E9DFE9 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115DF50E29EE801F00E9DFE9 /* JSONParser.swift */; };
@@ -63,7 +62,7 @@
 		11080AB42982A97C00B73F5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11080AB62982A97C00B73F5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11080ABF2982B6C200B73F5F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		112E4B2329B5F073009A3F8F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView.swift; path = autoTradingApp/View/MenuTab/ChartView.swift; sourceTree = SOURCE_ROOT; };
+		112E4B2329B5F073009A3F8F /* ChartView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView2.swift; path = autoTradingApp/View/MenuTab/ChartView2.swift; sourceTree = SOURCE_ROOT; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		115D1E1929B9A89100E98541 /* MainHomeTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeTabController.swift; sourceTree = "<group>"; };
@@ -74,7 +73,6 @@
 		115D1E2429C462D700E98541 /* NotoSansFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotoSansFont.swift; sourceTree = "<group>"; };
 		115D1E2629C46A0D00E98541 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		115D1E2929C6FC6300E98541 /* StockTradingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewController.swift; sourceTree = "<group>"; };
-		115D1E2B29CC523C00E98541 /* OverViewChartView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewChartView2.swift; sourceTree = "<group>"; };
 		115D1E2E29CD860300E98541 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		115DF50C29E56A1B00E9DFE9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		115DF50E29EE801F00E9DFE9 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
@@ -176,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				1161804129B8680000EA1E0D /* MainTabView */,
-				112E4B2329B5F073009A3F8F /* ChartView.swift */,
+				112E4B2329B5F073009A3F8F /* ChartView2.swift */,
 			);
 			path = MenuTab;
 			sourceTree = "<group>";
@@ -218,7 +216,6 @@
 				1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */,
 				115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */,
 				115D1E1D29BDEDA200E98541 /* mainTabSegmentedControl.swift */,
-				115D1E2B29CC523C00E98541 /* OverViewChartView2.swift */,
 				11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */,
 				11E10E822A1F407B007F3E10 /* StockInfoView.swift */,
 				11E10E842A27739A007F3E10 /* AdditionalTradingCellView.swift */,
@@ -496,13 +493,12 @@
 				11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */,
 				11E10E7D2A1BA4E6007F3E10 /* SearchViewController.swift in Sources */,
 				115D1E1E29BDEDA200E98541 /* mainTabSegmentedControl.swift in Sources */,
-				115D1E2C29CC523C00E98541 /* OverViewChartView2.swift in Sources */,
 				11E7F96E29B4C41E00C29B83 /* SignUpIsUserViewController.swift in Sources */,
 				11E10E812A1BA50D007F3E10 /* MyPageViewController.swift in Sources */,
 				1161804029B8667400EA1E0D /* Stock.swift in Sources */,
 				11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */,
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,
-				112E4B2429B5F073009A3F8F /* ChartView.swift in Sources */,
+				112E4B2429B5F073009A3F8F /* ChartView2.swift in Sources */,
 				11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,
 				115D1E2A29C6FC6300E98541 /* StockTradingViewController.swift in Sources */,

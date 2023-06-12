@@ -88,6 +88,16 @@ class StockInfoView: UIView {
         containerStackView3.translatesAutoresizingMaskIntoConstraints = false
         containerStackView4.translatesAutoresizingMaskIntoConstraints = false
 
+        containerStackView1.axis = .vertical
+        containerStackView2.axis = .vertical
+        containerStackView3.axis = .vertical
+        containerStackView4.axis = .vertical
+
+        containerStackView1.spacing = 4
+        containerStackView2.spacing = 4
+        containerStackView3.spacing = 4
+        containerStackView4.spacing = 4
+
         largeContainerStackView1.axis = .horizontal
         largeContainerStackView2.axis = .horizontal
 

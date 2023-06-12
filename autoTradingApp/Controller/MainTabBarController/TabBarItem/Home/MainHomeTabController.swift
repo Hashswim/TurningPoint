@@ -268,7 +268,7 @@ extension MainHomeTabController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.item)
 
-        let vc = StockTradingViewController()
+        let vc = DetailViewController()
         self.navigationController?.pushViewController(vc, animated: true)
         
         collectionView.deselectItem(at: indexPath, animated: true)

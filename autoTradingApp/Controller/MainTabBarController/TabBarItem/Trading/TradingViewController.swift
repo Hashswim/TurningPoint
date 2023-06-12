@@ -9,10 +9,22 @@ import UIKit
 
 class TradingViewController: UIViewController {
 
+    let chart = ChartView2()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        chart.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(chart)
+
+        NSLayoutConstraint.activate([
+            chart.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            chart.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            chart.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            chart.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+
+    
     }
     
 
