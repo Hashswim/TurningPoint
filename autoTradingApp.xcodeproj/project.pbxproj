@@ -39,6 +39,8 @@
 		11E10E812A1BA50D007F3E10 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E802A1BA50D007F3E10 /* MyPageViewController.swift */; };
 		11E10E832A1F407B007F3E10 /* StockInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E822A1F407B007F3E10 /* StockInfoView.swift */; };
 		11E10E852A27739A007F3E10 /* AdditionalTradingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E842A27739A007F3E10 /* AdditionalTradingCellView.swift */; };
+		11E10E892A3747E7007F3E10 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E882A3747E7007F3E10 /* NSMutableAttributedString.swift */; };
+		11E10E8B2A407C12007F3E10 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 11E10E8A2A407C12007F3E10 /* NotoSansKR-Medium.otf */; };
 		11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */; };
 		11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */; };
 		11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96129A8D6F700C29B83 /* CustomTextField.swift */; };
@@ -87,6 +89,8 @@
 		11E10E802A1BA50D007F3E10 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		11E10E822A1F407B007F3E10 /* StockInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoView.swift; sourceTree = "<group>"; };
 		11E10E842A27739A007F3E10 /* AdditionalTradingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalTradingCellView.swift; sourceTree = "<group>"; };
+		11E10E882A3747E7007F3E10 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
+		11E10E8A2A407C12007F3E10 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "../../../../../Downloads/Noto_Sans_KR/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConstant.swift; sourceTree = "<group>"; };
 		11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		11E7F96129A8D6F700C29B83 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				115D1E2429C462D700E98541 /* NotoSansFont.swift */,
+				11E10E8A2A407C12007F3E10 /* NotoSansKR-Medium.otf */,
 				115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */,
 				115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */,
 			);
@@ -297,6 +302,7 @@
 				115D1E1F29C4616A00E98541 /* Font */,
 				11E7F95C29A5CA4C00C29B83 /* GuideConstant.swift */,
 				115D1E2629C46A0D00E98541 /* UIColor+.swift */,
+				11E10E882A3747E7007F3E10 /* NSMutableAttributedString.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -314,7 +320,6 @@
 		11E7F96329B3544E00C29B83 /* MainTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				11E7F96729B3578600C29B83 /* ChartViewController.swift */,
 				11E7F96629B3576A00C29B83 /* TabBarItem */,
 				11E7F96429B3547500C29B83 /* MainTabBarControllerViewController.swift */,
 			);
@@ -335,6 +340,7 @@
 		11E7F96C29B4B75400C29B83 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				11E7F96729B3578600C29B83 /* ChartViewController.swift */,
 				11E7F96A29B4AD7C00C29B83 /* SignUpGuideViewController.swift */,
 				11E7F96D29B4C41E00C29B83 /* SignUpIsUserViewController.swift */,
 				11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */,
@@ -421,6 +427,7 @@
 			files = (
 				11080AB52982A97C00B73F5F /* LaunchScreen.storyboard in Resources */,
 				115D1E2229C461C400E98541 /* NotoSansKR-Bold.otf in Resources */,
+				11E10E8B2A407C12007F3E10 /* NotoSansKR-Medium.otf in Resources */,
 				115D1E2329C461C400E98541 /* NotoSansKR-Regular.otf in Resources */,
 				11080AB22982A97C00B73F5F /* Assets.xcassets in Resources */,
 			);
@@ -489,6 +496,7 @@
 				115D1E1A29B9A89100E98541 /* MainHomeTabController.swift in Sources */,
 				11E10E852A27739A007F3E10 /* AdditionalTradingCellView.swift in Sources */,
 				115DF50F29EE801F00E9DFE9 /* JSONParser.swift in Sources */,
+				11E10E892A3747E7007F3E10 /* NSMutableAttributedString.swift in Sources */,
 				11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */,
 				11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */,
 				11E10E7D2A1BA4E6007F3E10 /* SearchViewController.swift in Sources */,

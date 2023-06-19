@@ -10,6 +10,7 @@ import UIKit
 enum NotoSansFont: String {
     case Bold = "NotoSansKR-Bold"
     case Regular = "NotoSansKR-Regular"
+    case Medium = "NotoSansKR-Medium"
 
     func of(size: CGFloat) -> UIFont {
         return UIFont(name: self.rawValue, size: size)!
@@ -21,5 +22,9 @@ enum NotoSansFont: String {
 
     static func regular(size: CGFloat) -> UIFont {
         return NotoSansFont.Regular.of(size: size)
+    }
+
+    static func medium(size: CGFloat) -> UIFont {
+        return NotoSansFont.Medium.of(size: size)
     }
 }

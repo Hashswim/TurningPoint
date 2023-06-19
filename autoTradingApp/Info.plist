@@ -6,6 +6,7 @@
 	<array>
 		<string>NotoSansKR-Bold.otf</string>
 		<string>NotoSansKR-Regular.otf</string>
+		<string>NotoSansKR-Medium.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

@@ -43,4 +43,8 @@ enum MySpecialColors {
     static let bgColor    = UIColor(hex: "#333743")
     static let tabBarTint = UIColor(hex: "#F65036")
     static let gray       = UIColor(hex: "#BFBFBF")
+    static let darkGray   = UIColor(hex: "#272A35")
+    static let textGray   = UIColor(hex: "#C4C4C4")
+    static let cellGray   = UIColor(hex: "#2B2F3B")
+
 }

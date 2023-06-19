@@ -37,17 +37,23 @@ class StcokListCellCollectionViewCell: UICollectionViewListCell {
 
 class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
     private func defaultListContentConfiguration() -> UIListContentConfiguration { return .subtitleCell() }
+
+    private let iconView: UIImageView = {
+        var imgView = UIImageView()
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        imgView.image = UIImage(named: "Dashin_test_img")
+        return imgView
+    }()
+
     private lazy var listContentView = UIListContentView(configuration: defaultListContentConfiguration())
 
     private let priceLabel: UILabel = {
         let label = UILabel()
-
         return label
     }()
 
     private let priceDifferenceLabel: UILabel = {
         let label = UILabel()
-
         return label
     }()
 
@@ -79,35 +85,51 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
                                         scaledChartViewTrailing: NSLayoutConstraint,
                                         priceLabelTrailing: NSLayoutConstraint)?
 
-    private lazy var traidingViewConstraints: NSLayoutConstraint = contentView.heightAnchor.constraint(equalToConstant: 160)
+    private lazy var traidingViewConstraints1: NSLayoutConstraint = contentView.heightAnchor.constraint(equalToConstant: 84)
+    private lazy var traidingViewConstraints2: NSLayoutConstraint = contentView.heightAnchor.constraint(equalToConstant: 160)
 
     // view 구성
     private func setupViewsIfNeeded() {
         // We only need to do anything if we haven't already setup the views and created constraints.
         guard customViewConstraints == nil else { return }
 
-        contentView.backgroundColor = .clear
+        self.backgroundColor = MySpecialColors.bgColor
+        contentView.backgroundColor = MySpecialColors.darkGray
+        contentView.addSubview(iconView)
         contentView.addSubview(listContentView)
         contentView.addSubview(scaledChartView)
         contentView.addSubview(priceStackView)
 
+        contentView.layoutMargins = .zero
+        contentView.preservesSuperviewLayoutMargins = true
+
         scaledChartView.translatesAutoresizingMaskIntoConstraints = false
         listContentView.translatesAutoresizingMaskIntoConstraints = false
-        let defaultHorizontalCompressionResistance = listContentView.contentCompressionResistancePriority(for: .horizontal)
-        listContentView.setContentCompressionResistancePriority(defaultHorizontalCompressionResistance - 1, for: .horizontal)
+//        let defaultHorizontalCompressionResistance = listContentView.contentCompressionResistancePriority(for: .horizontal)
+//        listContentView.setContentCompressionResistancePriority(defaultHorizontalCompressionResistance - 1, for: .horizontal)
 
         NSLayoutConstraint.activate([
-            listContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            iconView.widthAnchor.constraint(equalToConstant: 40),
+            iconView.heightAnchor.constraint(equalToConstant: 40),
+            iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+
+//            listContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
 //            listContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            listContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            listContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            listContentView.leadingAnchor.constraint(equalTo: iconView.trailingAnchor),
             listContentView.heightAnchor.constraint(equalToConstant: 40),
 
             scaledChartView.leadingAnchor.constraint(equalTo: listContentView.trailingAnchor),
-            scaledChartView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            scaledChartView.bottomAnchor.constraint(equalTo: listContentView.bottomAnchor),
+            scaledChartView.centerYAnchor.constraint(equalTo: listContentView.centerYAnchor),
+//            scaledChartView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+//            scaledChartView.bottomAnchor.constraint(equalTo: listContentView.bottomAnchor),
             scaledChartView.widthAnchor.constraint(equalToConstant: 40),
+            scaledChartView.heightAnchor.constraint(equalToConstant: 48),
 
             priceStackView.leadingAnchor.constraint(equalTo: scaledChartView.trailingAnchor),
+            priceStackView.centerYAnchor.constraint(equalTo: listContentView.centerYAnchor),
+
             //            priceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             priceStackView.bottomAnchor.constraint(equalTo: listContentView.bottomAnchor),
             //            priceStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -164,13 +186,15 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         setData(dataEntry: dataEntry1, avgDataEntry: dataEntry2)
 
         // Configure custom label for the category name, copying some of the styling from the value cell configuration.
-        priceLabel.text = String(describing: state.stock?.price)
-        priceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
+        priceLabel.text = String(describing: state.stock!.price)
+//        priceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
+        priceLabel.textColor = .white
         priceLabel.font = valueConfiguration.secondaryTextProperties.font
         //        priceLabel.adjustsFontForContentSizeCategory = valueConfiguration.secondaryTextProperties.adjustsFontForContentSizeCategory
 
-        priceDifferenceLabel.text = String(describing: state.stock?.price)
-        priceDifferenceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
+        priceDifferenceLabel.text = String(describing: state.stock!.price)
+//        priceDifferenceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
+        priceDifferenceLabel.textColor = .white
         priceDifferenceLabel.font = valueConfiguration.secondaryTextProperties.font
 
         // Update some of the constraints for our custom views using the system default metrics from the configurations.
@@ -181,22 +205,23 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
 
         if let istraiding = state.stock?.isTraiding {
             if istraiding {
-                traidingViewConstraints.isActive = istraiding
+                traidingViewConstraints1.isActive = false
+                traidingViewConstraints2.isActive = true
                 additionalTradingCellView.translatesAutoresizingMaskIntoConstraints = false
 
                 contentView.addSubview(additionalTradingCellView)
                 additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor).isActive = istraiding
+                additionalTradingCellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = istraiding
             } else {
-                additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor).isActive = istraiding
-                traidingViewConstraints.isActive = istraiding
-
+                traidingViewConstraints1.isActive = true
+                traidingViewConstraints2.isActive = false
                 additionalTradingCellView.removeFromSuperview()
             }
         }
     }
 
     func updateAppearance() {
-        traidingViewConstraints.isActive = isSelected
+//        traidingViewConstraints.isActive = isSelected
 
 //        openConstraint?.isActive = isSelected
 

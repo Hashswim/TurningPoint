@@ -17,8 +17,10 @@ class MainHomeTabController: UIViewController {
 
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "이수림님"
-        label.font = .systemFont(ofSize: 20)
+        label.attributedText = NSMutableAttributedString()
+            .bold(string: "이수림", fontSize: 28)
+            .regular(string: "님", fontSize: 28)
+        label.textColor = .white
         return label
     }()
 
@@ -26,6 +28,7 @@ class MainHomeTabController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 10)
+        label.textColor = .white
 
         return label
     }()
@@ -44,25 +47,30 @@ class MainHomeTabController: UIViewController {
         return stackView
     }()
 
-    private let segmentedControl = mainTabSegmentedControl(items: ["내주식", "즐겨찾기", "트레이딩 주식"])
+    private let segmentedControl = mainTabSegmentedControl(items: ["내 주식", "관심주식", "트레이딩 주식"])
 
     private let headerStcokLabel: UILabel = {
         let label = UILabel()
-        label.text = "주식명"
-
+        label.attributedText = NSMutableAttributedString()
+            .regular(string: "종목명", fontSize: 12)
+        label.textColor = .gray
         return label
     }()
 
     private let headerChartLabel: UILabel = {
         let label = UILabel()
-        label.text = "차트"
+        label.attributedText = NSMutableAttributedString()
+            .regular(string: "차트", fontSize: 12)
+        label.textColor = .gray
 
         return label
     }()
 
     private let headerPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "현재가"
+        label.attributedText = NSMutableAttributedString()
+            .regular(string: "현재가", fontSize: 12)
+        label.textColor = .gray
 
         return label
     }()
@@ -70,6 +78,12 @@ class MainHomeTabController: UIViewController {
     lazy var headerLabelStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [headerStcokLabel, headerChartLabel, headerPriceLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.backgroundColor = MySpecialColors.darkGray
+
+//        stackView.layoutMargins = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+        stackView.setCustomSpacing(0, after: headerStcokLabel)
+        stackView.setCustomSpacing(40, after: headerChartLabel)
+
         stackView.axis = .horizontal
 
         return stackView
@@ -80,6 +94,7 @@ class MainHomeTabController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
 //        navigationItem.title = "main tab"
         configureHierarchy()
         configureDataSource()
@@ -111,11 +126,21 @@ class MainHomeTabController: UIViewController {
 extension MainHomeTabController {
     private func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .plain)
-        
+        config.backgroundColor = MySpecialColors.bgColor
+
         config.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
             return self?.trailingSwipeActionsConfiguration(for: indexPath)
         }
-        
+
+        config.itemSeparatorHandler = { (indexPath, sectionSeparatorConfiguration) in
+            var configuration = sectionSeparatorConfiguration
+
+            configuration.bottomSeparatorInsets = .init(top: 4, leading: 0, bottom: 0, trailing: 0)
+            configuration.color = MySpecialColors.bgColor
+
+            return configuration
+        }
+
         return UICollectionViewCompositionalLayout.list(using: config)
     }
 
@@ -129,11 +154,12 @@ extension MainHomeTabController {
             favoriteContextualAction(stock: stock)
         ])
         configuration.performsFirstActionWithFullSwipe = false
+        
         return configuration
     }
 
     private func detailContextualAction(stock: Stock) -> UIContextualAction {
-        let detailAction = UIContextualAction(style: .normal, title: "Detail") { [weak self] _, _, completionHandler in
+        let detailAction = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
             guard let self = self else { return }
 
             let vc = DetailViewController()
@@ -142,12 +168,13 @@ extension MainHomeTabController {
             completionHandler(true)
         }
         detailAction.image = UIImage(systemName: "info.circle.fill")
+        detailAction.backgroundColor = MySpecialColors.darkGray
         return detailAction
     }
 
     // inout keyword 제거 후 stocks 저장하는 객체에 접근 필요
     private func favoriteContextualAction(stock: Stock) -> UIContextualAction {
-        let title = stock.isFavorite! ? "Remove from Favorites" : "Add to Favorites"
+//        let title = stock.isFavorite! ? "Remove from Favorites" : "Add to Favorites"
         let action = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
             guard let self = self else { return }
             completionHandler(self.toggleIsFavorite(stock))
@@ -155,6 +182,7 @@ extension MainHomeTabController {
         let name = stock.isFavorite! ? "heart" : "heart.fill"
         print(name)
         action.image = UIImage(systemName: name)
+        action.backgroundColor = MySpecialColors.darkGray
         return action
     }
 }
@@ -173,6 +201,18 @@ extension MainHomeTabController {
     }
 
     private func setUpUI() {
+        view.backgroundColor = MySpecialColors.bgColor
+
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: NotoSansFont.bold(size: 17), NSAttributedString.Key.foregroundColor: UIColor.gray], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: NotoSansFont.bold(size: 17),NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+
+        segmentedControl.setWidth(72, forSegmentAt: 0)
+        segmentedControl.setWidth(72, forSegmentAt: 1)
+        segmentedControl.setWidth(120, forSegmentAt: 2)
+
+
+        collectionView.backgroundColor = MySpecialColors.bgColor
+
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -187,18 +227,18 @@ extension MainHomeTabController {
             refreshButton.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
 
             segmentedControl.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: 32),
-            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            segmentedControl.heightAnchor.constraint(equalToConstant: 20),
+            segmentedControl.heightAnchor.constraint(equalToConstant: 17),
 
             headerLabelStackView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
-            headerLabelStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            headerLabelStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            headerLabelStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            headerLabelStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             headerLabelStackView.heightAnchor.constraint(equalToConstant: 20),
 
-            collectionView.topAnchor.constraint(equalTo: headerLabelStackView.bottomAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            collectionView.topAnchor.constraint(equalTo: headerLabelStackView.bottomAnchor, constant: 4),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -220,7 +260,7 @@ extension MainHomeTabController {
     private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<CustomStcokListCellCollectionViewCell, Stock> { (cell, indexPath, item) in
             cell.updateWithItem(item)
-            cell.accessories = [.disclosureIndicator()]
+            cell.accessories = []
         }
 
         dataSource = UICollectionViewDiffableDataSource<Section, Stock>(collectionView: collectionView) {
@@ -273,6 +313,5 @@ extension MainHomeTabController: UICollectionViewDelegate {
         
         collectionView.deselectItem(at: indexPath, animated: true)
     }
-
 }
 
