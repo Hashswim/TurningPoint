@@ -86,7 +86,6 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
                                         priceLabelTrailing: NSLayoutConstraint)?
 
     private lazy var traidingViewConstraints1: NSLayoutConstraint = contentView.heightAnchor.constraint(equalToConstant: 84)
-    private lazy var traidingViewConstraints2: NSLayoutConstraint = contentView.heightAnchor.constraint(equalToConstant: 160)
 
     // view 구성
     private func setupViewsIfNeeded() {
@@ -206,7 +205,6 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         if let istraiding = state.stock?.isTraiding {
             if istraiding {
                 traidingViewConstraints1.isActive = false
-                traidingViewConstraints2.isActive = true
                 additionalTradingCellView.translatesAutoresizingMaskIntoConstraints = false
 
                 contentView.addSubview(additionalTradingCellView)
@@ -214,7 +212,6 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
                 additionalTradingCellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = istraiding
             } else {
                 traidingViewConstraints1.isActive = true
-                traidingViewConstraints2.isActive = false
                 additionalTradingCellView.removeFromSuperview()
             }
         }
