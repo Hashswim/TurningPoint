@@ -43,19 +43,36 @@ struct Stock: Codable, Hashable {
     }
 
     static let all = [
-        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111.00, priceDifference: 13),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123.00, priceDifference: 12),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "Alphabet", dataList: [1,2,3], price: 333.33, priceDifference: 11),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000.11, priceDifference: 10),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: 0.13),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123, priceDifference: 0.12),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "Alphabet", dataList: [1,2,3], price: 333, priceDifference: -0.11),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 3200, priceDifference: 0.10),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: -0.13),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123, priceDifference: 0.12),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: -0.13),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123, priceDifference: -0.12),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: 0.13),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123, priceDifference: 0.12),
     ]
 
     static let favorite = [
-        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111.00, priceDifference: 13),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123.00, priceDifference: 12),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: -0.13),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123, priceDifference: -0.12),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: 0.13),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123, priceDifference: 0.12),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: 0.13),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123, priceDifference: 0.12),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: 0.13),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123, priceDifference: 0.12),
     ]
 
     static let traiding = [
-        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111.00, priceDifference: 13, isTraiding: true),
-//        Stock(imageURL: "08.circle", code: "A0320042", name: "삼성전자", dataList: [1,2,3], price: 123.00, priceDifference: 12, isTraiding: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: 0.13, isTraiding: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "Alphabet", dataList: [1,2,3], price: 333, priceDifference: 0.11, isTraiding: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: -0.10, isTraiding: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: 0.10, isTraiding: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: 0.10, isTraiding: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: 0.10, isTraiding: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: -0.10, isTraiding: true),
     ]
 }

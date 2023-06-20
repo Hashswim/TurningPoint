@@ -24,23 +24,10 @@ class MainHomeTabController: UIViewController {
         return label
     }()
 
-    private let timeLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 2
-        label.font = .systemFont(ofSize: 10)
-        label.textColor = .white
-
-        return label
-    }()
-
-    private let refreshButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "arrow.2.circlepath"), for: .normal)
-        return btn
-    }()
+//    private let selectAccountDropdownField: UIDrop
 
     lazy var containerStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, timeLabel, refreshButton])
+        let stackView = UIStackView(arrangedSubviews: [nameLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
 
@@ -80,9 +67,9 @@ class MainHomeTabController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.backgroundColor = MySpecialColors.darkGray
 
-//        stackView.layoutMargins = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
-        stackView.setCustomSpacing(0, after: headerStcokLabel)
-        stackView.setCustomSpacing(40, after: headerChartLabel)
+//        stackView.layoutMargins = UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
+//        stackView.setCustomSpacing(145, after: headerStcokLabel)
+//        stackView.setCustomSpacing(88, after: headerChartLabel)
 
         stackView.axis = .horizontal
 
@@ -99,7 +86,6 @@ class MainHomeTabController: UIViewController {
         configureHierarchy()
         configureDataSource()
         setUpUI()
-        registerTimer()
         testAPI()
     }
 
@@ -168,7 +154,8 @@ extension MainHomeTabController {
             completionHandler(true)
         }
         detailAction.image = UIImage(systemName: "info.circle.fill")
-        detailAction.backgroundColor = MySpecialColors.darkGray
+        detailAction.backgroundColor = MySpecialColors.bgColor
+
         return detailAction
     }
 
@@ -182,7 +169,7 @@ extension MainHomeTabController {
         let name = stock.isFavorite! ? "heart" : "heart.fill"
         print(name)
         action.image = UIImage(systemName: name)
-        action.backgroundColor = MySpecialColors.darkGray
+        action.backgroundColor = MySpecialColors.bgColor
         return action
     }
 }
@@ -224,8 +211,6 @@ extension MainHomeTabController {
             containerStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             containerStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
 
-            refreshButton.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
-
             segmentedControl.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: 32),
             segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
@@ -236,6 +221,15 @@ extension MainHomeTabController {
             headerLabelStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             headerLabelStackView.heightAnchor.constraint(equalToConstant: 20),
 
+            headerStcokLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 18),
+            headerStcokLabel.widthAnchor.constraint(equalToConstant: 33),
+
+            headerChartLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 196),
+            headerChartLabel.widthAnchor.constraint(equalToConstant: 22),
+
+            headerPriceLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 304),
+            headerPriceLabel.widthAnchor.constraint(equalToConstant: 33),
+
             collectionView.topAnchor.constraint(equalTo: headerLabelStackView.bottomAnchor, constant: 4),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -243,16 +237,16 @@ extension MainHomeTabController {
         ])
     }
 
-    private func registerTimer() {
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updatetime), userInfo: nil, repeats: true)
-    }
+//    private func registerTimer() {
+//        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updatetime), userInfo: nil, repeats: true)
+//    }
 
-    @objc
-    func updatetime() {
-        let formatter = DateFormatter() // 특정 포맷으로 날짜를 보여주기 위한 변수 선언
-        formatter.dateFormat = "yyyy-MM-dd \nHH:mm:ss" // 날짜 포맷 지정
-        timeLabel.text = formatter.string(from: Date()) // 현재 시간 라벨에 지정한 날짜 포맷으로 입력
-    }
+//    @objc
+//    func updatetime() {
+//        let formatter = DateFormatter() // 특정 포맷으로 날짜를 보여주기 위한 변수 선언
+//        formatter.dateFormat = "yyyy-MM-dd \nHH:mm:ss" // 날짜 포맷 지정
+//        timeLabel.text = formatter.string(from: Date()) // 현재 시간 라벨에 지정한 날짜 포맷으로 입력
+//    }
 }
 
 extension MainHomeTabController {
