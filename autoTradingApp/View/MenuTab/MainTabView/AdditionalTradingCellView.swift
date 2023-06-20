@@ -11,13 +11,14 @@ class AdditionalTradingCellView: UIView {
 
     private let algorithmTypeLabel: UILabel = {
         let label = UILabel()
-        label.text = "기본형 알고리즘"
-        label.textColor = .white
+        label.attributedText = NSMutableAttributedString().regular(string: "기본형 알고리즘", fontSize: 12)
+        label.textColor = MySpecialColors.textGray2
         label.textAlignment = .center
-        label.backgroundColor = MySpecialColors.textGray
-        label.font = .systemFont(ofSize: 12)
+        label.backgroundColor = MySpecialColors.bgGray
+        label.layer.borderColor = MySpecialColors.borderGray.cgColor
+        label.layer.borderWidth = 1.0
         label.layer.masksToBounds = true
-        label.layer.cornerRadius = 5
+        label.layer.cornerRadius = 8
 
         return label
     }()
@@ -104,9 +105,9 @@ class AdditionalTradingCellView: UIView {
         containerStackView.layer.masksToBounds = true
         containerStackView.layer.cornerRadius = 8
 
-        earningPirceStackView.spacing = 4
-        earningRateStackView.spacing = 4
-        ownedCountStackView.spacing = 4
+        earningPirceStackView.spacing = 8
+        earningRateStackView.spacing = 8
+        ownedCountStackView.spacing = 8
 
         earningPirceStackView.alignment = .leading
         earningRateStackView.alignment = .leading
@@ -139,31 +140,39 @@ class AdditionalTradingCellView: UIView {
             algorithmTypeLabel.heightAnchor.constraint(equalToConstant: 20),
 
             containerStackView.topAnchor.constraint(equalTo: algorithmTypeLabel.bottomAnchor, constant: 8),
-            containerStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            containerStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            containerStackView.widthAnchor.constraint(equalToConstant: 344),
-            containerStackView.heightAnchor.constraint(equalToConstant: 48),
-            containerStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            containerStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            containerStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -21),
+            containerStackView.heightAnchor.constraint(equalToConstant: 64),
+            containerStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -18),
 
-            earningPirceStackView.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 4),
-            earningPirceStackView.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -8),
+            earningPirceStackView.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 16),
+            earningPirceStackView.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -16),
+            earningPirceStackView.leadingAnchor.constraint(equalTo: containerStackView.leadingAnchor, constant: 28),
             earningPirceStackView.widthAnchor.constraint(equalToConstant: 96),
-            earningPirceStackView.leadingAnchor.constraint(equalTo: containerStackView.leadingAnchor, constant: 16),
-            earningPirceTitleLabel.heightAnchor.constraint(equalToConstant: 13),
-            earningPirceLabel.heightAnchor.constraint(equalToConstant: 16),
 
-            earningRateStackView.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 4),
-            earningRateStackView.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -8),
+            earningPirceTitleLabel.heightAnchor.constraint(equalToConstant: 15),
+            earningPirceTitleLabel.topAnchor.constraint(equalTo: earningPirceStackView.topAnchor),
+            earningPirceLabel.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -24),
+
+            earningRateStackView.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 16),
+            earningRateStackView.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -16),
+            earningRateStackView.leadingAnchor.constraint(equalTo: containerStackView.leadingAnchor, constant: 171),
             earningRateStackView.widthAnchor.constraint(equalToConstant: 60),
-            earningRateTitleLabel.heightAnchor.constraint(equalToConstant: 13),
-            earningRateLabel.heightAnchor.constraint(equalToConstant: 16),
 
-            ownedCountStackView.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 4),
-            ownedCountStackView.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: -16),
-            ownedCountStackView.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -8),
-            ownedCountStackView.widthAnchor.constraint(equalToConstant: 44),
-            ownedCountTitleLabel.heightAnchor.constraint(equalToConstant: 13),
-            ownedCountLabel.heightAnchor.constraint(equalToConstant: 16),
+            earningRateTitleLabel.heightAnchor.constraint(equalToConstant: 15),
+            earningRateTitleLabel.topAnchor.constraint(equalTo: earningRateStackView.topAnchor),
+            earningRateLabel.topAnchor.constraint(equalTo: earningRateTitleLabel.bottomAnchor, constant: 7),
+            earningRateLabel.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -24),
+
+            ownedCountStackView.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 16),
+            ownedCountStackView.leadingAnchor.constraint(equalTo: containerStackView.leadingAnchor, constant: 275),
+            ownedCountStackView.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -16),
+            ownedCountStackView.widthAnchor.constraint(equalToConstant: 46),
+
+            ownedCountTitleLabel.heightAnchor.constraint(equalToConstant: 15),
+            ownedCountTitleLabel.topAnchor.constraint(equalTo: ownedCountStackView.topAnchor),
+            ownedCountLabel.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -24),
+
         ])
     }
 

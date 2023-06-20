@@ -62,7 +62,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.spacing = 8
+        stackView.spacing = 4
 
         return stackView
     }()
@@ -231,11 +231,18 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
                 additionalTradingCellView.translatesAutoresizingMaskIntoConstraints = false
 
                 contentView.addSubview(additionalTradingCellView)
-                additionalTradingCellView.heightAnchor.constraint(equalToConstant: 90).isActive = true
-                additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor).isActive = istraiding
+                iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24).isActive = true
+                additionalTradingCellView.heightAnchor.constraint(equalToConstant: 128).isActive = true
+                listContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+                additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor, constant: 16).isActive = istraiding
                 additionalTradingCellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = istraiding
+                additionalTradingCellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = istraiding
+                additionalTradingCellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = istraiding
             } else {
                 traidingViewConstraints1.isActive = true
+                iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 33).isActive = true
+                listContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24).isActive = true
+
                 additionalTradingCellView.removeFromSuperview()
             }
         }
