@@ -88,6 +88,8 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
                                         priceLabelTrailing: NSLayoutConstraint)?
 
     private lazy var traidingViewConstraints1: NSLayoutConstraint = contentView.heightAnchor.constraint(equalToConstant: 94)
+    private lazy var traidingViewConstraints2: NSLayoutConstraint = iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24)
+    private lazy var traidingViewConstraints3: NSLayoutConstraint = listContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16)
 
     // view 구성
     private func setupViewsIfNeeded() {
@@ -106,6 +108,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
 
         scaledChartView.translatesAutoresizingMaskIntoConstraints = false
         listContentView.translatesAutoresizingMaskIntoConstraints = false
+
 //        let defaultHorizontalCompressionResistance = listContentView.contentCompressionResistancePriority(for: .horizontal)
 //        listContentView.setContentCompressionResistancePriority(defaultHorizontalCompressionResistance - 1, for: .horizontal)
 
@@ -228,21 +231,21 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         if let istraiding = state.stock?.isTraiding {
             if istraiding {
                 traidingViewConstraints1.isActive = false
+                traidingViewConstraints2.isActive = true
+                traidingViewConstraints3.isActive = true
                 additionalTradingCellView.translatesAutoresizingMaskIntoConstraints = false
 
                 contentView.addSubview(additionalTradingCellView)
-                iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24).isActive = true
+
                 additionalTradingCellView.heightAnchor.constraint(equalToConstant: 128).isActive = true
-                listContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
                 additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor, constant: 16).isActive = istraiding
                 additionalTradingCellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = istraiding
                 additionalTradingCellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = istraiding
                 additionalTradingCellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = istraiding
             } else {
                 traidingViewConstraints1.isActive = true
-                iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 33).isActive = true
-                listContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24).isActive = true
-
+                traidingViewConstraints2.isActive = false
+                traidingViewConstraints3.isActive = false
                 additionalTradingCellView.removeFromSuperview()
             }
         }
