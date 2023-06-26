@@ -48,6 +48,7 @@ enum MySpecialColors {
     static let cellGray   = UIColor(hex: "#2B2F3B")
     static let lightRed   = UIColor(hex: "#FF6A53")
     static let lightBlue  = UIColor(hex: "#7896FF")
+    static let dropGray   = UIColor(hex: "#D9D9D9")
 
     static let lightRed2   = UIColor(red: 255/255, green: 106/255, blue: 83/255, alpha: 0.6)
     static let lightBlue2  = UIColor(red: 117/255, green: 144/255, blue: 238/255, alpha: 0.6)

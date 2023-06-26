@@ -3,28 +3,32 @@ PODS:
     - Charts/Core (= 4.1.0)
   - Charts/Core (4.1.0):
     - SwiftAlgorithms (~> 1.0)
+  - DropDown (2.3.13)
   - LightweightCharts (3.8.0)
   - SwiftAlgorithms (1.0.0)
   - TinyConstraints (4.0.2)
 
 DEPENDENCIES:
   - Charts
+  - DropDown
   - LightweightCharts (~> 3.8.0)
   - TinyConstraints
 
 SPEC REPOS:
   trunk:
     - Charts
+    - DropDown
     - LightweightCharts
     - SwiftAlgorithms
     - TinyConstraints
 
 SPEC CHECKSUMS:
   Charts: 354f86803d11d9c35de280587fef50d1af063978
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   LightweightCharts: bf203521ec7fce9fab873ff4cefb4d80950d7641
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
 
-PODFILE CHECKSUM: 9459271612961f9b5196dec54a300bf9ed3dbba7
+PODFILE CHECKSUM: e2c11c95c6d451814de8b64a1cb4f2350f10a44d
 
 COCOAPODS: 1.11.3

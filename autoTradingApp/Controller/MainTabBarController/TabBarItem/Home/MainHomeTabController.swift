@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 private let reuseIdentifier = "Cell"
 
@@ -24,10 +25,11 @@ class MainHomeTabController: UIViewController {
         return label
     }()
 
-//    private let selectAccountDropdownField: UIDrop
+    private let dropDownView = DropDownView()
+    private let dropDown = DropDown()
 
     lazy var containerStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel])
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, dropDownView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
 
@@ -190,6 +192,8 @@ extension MainHomeTabController {
     private func setUpUI() {
         view.backgroundColor = MySpecialColors.bgColor
 
+        setUpDropDown()
+
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: NotoSansFont.bold(size: 17), NSAttributedString.Key.foregroundColor: UIColor.gray], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: NotoSansFont.bold(size: 17),NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
 
@@ -197,9 +201,9 @@ extension MainHomeTabController {
         segmentedControl.setWidth(72, forSegmentAt: 1)
         segmentedControl.setWidth(120, forSegmentAt: 2)
 
-
         collectionView.backgroundColor = MySpecialColors.bgColor
 
+        dropDownView.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -210,6 +214,12 @@ extension MainHomeTabController {
             containerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             containerStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             containerStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+
+            dropDownView.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 8),
+            dropDownView.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -8),
+            dropDownView.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
+            dropDownView.widthAnchor.constraint(equalToConstant: 220),
+
 
             segmentedControl.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: 32),
             segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -237,16 +247,44 @@ extension MainHomeTabController {
         ])
     }
 
-//    private func registerTimer() {
-//        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updatetime), userInfo: nil, repeats: true)
-//    }
+    private func setUpDropDown() {
+        dropDownView.dropDownBtn.addTarget(self, action: #selector(dropdownClicked), for: .touchUpInside)
+        dropDownView.translatesAutoresizingMaskIntoConstraints = false
 
-//    @objc
-//    func updatetime() {
-//        let formatter = DateFormatter() // 특정 포맷으로 날짜를 보여주기 위한 변수 선언
-//        formatter.dateFormat = "yyyy-MM-dd \nHH:mm:ss" // 날짜 포맷 지정
-//        timeLabel.text = formatter.string(from: Date()) // 현재 시간 라벨에 지정한 날짜 포맷으로 입력
-//    }
+        let itemList = ["item1", "item2", "item3", "item4", "item5", "item6"]
+
+        dropDown.dataSource = itemList
+        dropDownView.backgroundColor = MySpecialColors.borderGray
+
+        DropDown.appearance().textColor = UIColor.black // 아이템 텍스트 색상
+        DropDown.appearance().selectedTextColor = UIColor.red // 선택된 아이템 텍스트 색상
+        DropDown.appearance().backgroundColor = UIColor.white // 아이템 팝업 배경 색상
+        DropDown.appearance().selectionBackgroundColor = UIColor.lightGray // 선택한 아이템 배경 색상
+        DropDown.appearance().setupCornerRadius(8)
+        dropDown.dismissMode = .automatic // 팝업을 닫을 모드 설정
+
+        dropDown.anchorView = self.dropDownView
+
+        // View를 갖리지 않고 View아래에 Item 팝업이 붙도록 설정
+        dropDown.bottomOffset = CGPoint(x: 0, y: 36)
+
+        // Item 선택 시 처리
+        dropDown.selectionAction = { [weak self] (index, item) in
+            self!.dropDownView.textField.attributedText = NSMutableAttributedString().regular(string: item, fontSize: 12)
+            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+        }
+        // 취소 시 처리
+        dropDown.cancelAction = { [weak self] in
+            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+        }
+    }
+
+    @objc
+    func dropdownClicked(_ sender: Any) {
+        dropDown.show()
+        self.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+
+    }
 }
 
 extension MainHomeTabController {
