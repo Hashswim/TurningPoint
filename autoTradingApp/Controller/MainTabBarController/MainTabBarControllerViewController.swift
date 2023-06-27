@@ -13,9 +13,17 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
 
+        setUpTabBar()
+        setUpVCs()
+    }
+
+    func setUpTabBar() {
         tabBar.unselectedItemTintColor = MySpecialColors.gray
         tabBar.tintColor = MySpecialColors.tabBarTint
-        setUpVCs()
+        tabBar.backgroundColor = .white
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+        tabBar.clipsToBounds = true
     }
     
     func setUpVCs() {
