@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 struct GuideConstant {
-    var guideText = [NSMutableAttributedString]()
-    var tradingButtonText = [NSMutableAttributedString]()
+    static var guideText = [NSMutableAttributedString]()
+    static var tradingButtonText = [NSMutableAttributedString]()
 
     let first = "너도 주식 할 수 있어 \n간단하게 터포 !"
     let second = "주식 !\n쉽고 빠른길로\n터포와 함께 지름길로"
@@ -18,8 +18,10 @@ struct GuideConstant {
     let fourth = "터포와 함께라면\n주식, 일상 동시에\n챙길 수 있어"
     let fifth = "주식 더 이상 어렵지 않아요\n자동이니까"
 
-    let sixth = "Trading\nOff"
-    let seventh = "Trading\nOn"
+    let sixth = "Trading"
+    let seventh = "Off"
+    let eighth = "On"
+
 
     let LargeFont = NotoSansFont.bold(size: 35)
     let RegularFont = NotoSansFont.regular(size: 20)
@@ -34,6 +36,8 @@ struct GuideConstant {
 
     lazy var attributedStr6 = NSMutableAttributedString(string: sixth )
     lazy var attributedStr7 = NSMutableAttributedString(string: seventh )
+    lazy var attributedStr8 = NSMutableAttributedString(string: eighth )
+
 
     init() {
         setAttrivutedStr()
@@ -83,7 +87,7 @@ struct GuideConstant {
         attributedStr5.addAttribute(.foregroundColor, value: UIColor.white, range: (fifth  as NSString).range(of: "자동이니까"))
 
 
-        guideText = [attributedStr1,
+        GuideConstant.guideText = [attributedStr1,
                      attributedStr2,
                      attributedStr3,
                      attributedStr4,
@@ -91,19 +95,17 @@ struct GuideConstant {
         ]
 
         attributedStr6.addAttribute(.font, value: RegularFont, range: (sixth  as NSString).range(of: "Trading"))
-        attributedStr6.addAttribute(.foregroundColor, value: UIColor.white, range: (sixth  as NSString).range(of: "Trading"))
+        attributedStr6.addAttribute(.foregroundColor, value: MySpecialColors.borderGray2, range: (sixth  as NSString).range(of: "Trading"))
 
-        attributedStr6.addAttribute(.font, value: LargeFont, range: (sixth  as NSString).range(of: "Off"))
-        attributedStr6.addAttribute(.foregroundColor, value: UIColor.white, range: (sixth  as NSString).range(of: "Off"))
+        attributedStr7.addAttribute(.font, value: LargeFont, range: (sixth  as NSString).range(of: "Off"))
+        attributedStr7.addAttribute(.foregroundColor, value: UIColor.white, range: (sixth  as NSString).range(of: "Off"))
 
-        attributedStr7.addAttribute(.font, value: RegularFont, range: (seventh  as NSString).range(of: "Trading"))
-        attributedStr7.addAttribute(.foregroundColor, value: UIColor.white, range: (seventh  as NSString).range(of: "Trading"))
+        attributedStr8.addAttribute(.font, value: LargeFont, range: (seventh  as NSString).range(of: "On"))
+        attributedStr8.addAttribute(.foregroundColor, value: UIColor.white, range: (seventh  as NSString).range(of: "On"))
 
-        attributedStr7.addAttribute(.font, value: LargeFont, range: (seventh  as NSString).range(of: "On"))
-        attributedStr7.addAttribute(.foregroundColor, value: UIColor.white, range: (seventh  as NSString).range(of: "On"))
-
-        tradingButtonText = [attributedStr6,
-                             attributedStr7]
+        GuideConstant.tradingButtonText = [attributedStr6,
+                             attributedStr7,
+                             attributedStr8]
     }
 
 

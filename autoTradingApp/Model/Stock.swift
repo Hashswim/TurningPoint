@@ -16,12 +16,12 @@ struct Stock: Codable, Hashable {
     var price: Double?
     var priceDifference: Double?
     var isFavorite: Bool?
-    var isTraiding: Bool?
+    var isTrading: Bool?
 
     private let identifier = UUID()
 
     init(imageURL: String? = nil, code: String? = nil, name: String? = nil, dataList: [Double]? = nil,
-         price: Double? = nil, priceDifference: Double? = nil, isFavorite: Bool? = false, isTraiding: Bool? = false) {
+         price: Double? = nil, priceDifference: Double? = nil, isFavorite: Bool? = false, isTrading: Bool? = false) {
         self.imageURL = imageURL
         self.code = code
         self.name = name
@@ -29,7 +29,7 @@ struct Stock: Codable, Hashable {
         self.price = price
         self.priceDifference = priceDifference
         self.isFavorite = isFavorite
-        self.isTraiding = isTraiding
+        self.isTrading = isTrading
     }
 
     enum CodingKeys: String, CodingKey {
@@ -67,12 +67,12 @@ struct Stock: Codable, Hashable {
     ]
 
     static let traiding = [
-        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: 0.13, isTraiding: true),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "Alphabet", dataList: [1,2,3], price: 333, priceDifference: 0.11, isTraiding: true),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: -0.10, isTraiding: true),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: 0.10, isTraiding: true),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: 0.10, isTraiding: true),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: 0.10, isTraiding: true),
-        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: -0.10, isTraiding: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "AAPL", dataList: [1,2,3], price: 111, priceDifference: 0.13, isTrading: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "Alphabet", dataList: [1,2,3], price: 333, priceDifference: 0.11, isTrading: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: -0.10, isTrading: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: 0.10, isTrading: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: 0.10, isTrading: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: 0.10, isTrading: true),
+        Stock(imageURL: "08.circle", code: "A0320042", name: "lotte", dataList: [1,2,3], price: 320000, priceDifference: -0.10, isTrading: true),
     ]
 }

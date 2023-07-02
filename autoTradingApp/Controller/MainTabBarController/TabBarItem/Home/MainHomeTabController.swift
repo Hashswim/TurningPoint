@@ -220,7 +220,6 @@ extension MainHomeTabController {
             dropDownView.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
             dropDownView.widthAnchor.constraint(equalToConstant: 220),
 
-
             segmentedControl.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: 32),
             segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
@@ -338,9 +337,11 @@ extension MainHomeTabController {
 extension MainHomeTabController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        guard let stock = dataSource.itemIdentifier(for: indexPath)
+        else { return }
 
-        let vc = DetailViewController()
+        let vc = StockTradingViewController()
+        vc.stock = stock
         self.navigationController?.pushViewController(vc, animated: true)
         
         collectionView.deselectItem(at: indexPath, animated: true)

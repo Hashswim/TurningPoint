@@ -168,7 +168,7 @@ extension InitialViewController: UICollectionViewDelegate, UICollectionViewDataS
             return UICollectionViewCell()
         }
         let constant = GuideConstant()
-        let textArr = constant.guideText
+        let textArr = GuideConstant.guideText
 
         cell.configureCell(test: textArr[indexPath.row])
         cell.backgroundColor = .systemGray

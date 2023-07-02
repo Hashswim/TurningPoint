@@ -12,10 +12,11 @@ class StockTradingViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
 
+    var stock: Stock? = nil
+
     private let stockNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
-        label.text = "LG에너지솔루션"
+        label.text = "VC Data sender Error"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -26,7 +27,7 @@ class StockTradingViewController: UIViewController {
         let label = UILabel()
         label.layer.cornerRadius = 3
         label.textAlignment = .center
-        label.text = "공격형 알고리즘"
+        label.text = "VC Data sender Error"
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -35,15 +36,25 @@ class StockTradingViewController: UIViewController {
     lazy var tradingButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.tintColor = .white
 
         var config = UIButton.Configuration.plain()
-        config.title = "Trading"
-        config.subtitle = "Off"
+        var titleAttr = AttributedString.init("Trading")
+        titleAttr.font = NotoSansFont.medium(size: 11)
+        config.attributedTitle = titleAttr
+
+        //toggle
+        var subIitleAttr = AttributedString.init("OFF")
+        subIitleAttr.font = NotoSansFont.bold(size: 22)
+        config.attributedSubtitle = subIitleAttr
+
         config.titleAlignment = .center
 
         btn.configuration = config
 
-        btn.backgroundColor = .systemCyan
+        btn.backgroundColor = MySpecialColors.traidingCircle
+        btn.layer.borderWidth = 3.0
+        btn.layer.borderColor = MySpecialColors.borderGray2.cgColor
         btn.addTarget(self, action: #selector(changeTradingStatusAction), for: .touchUpInside)
 
         return btn
@@ -62,7 +73,7 @@ class StockTradingViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.text = "0.0%"
+        label.text = "VC Data sender Error"
 
         return label
     }()
@@ -71,7 +82,7 @@ class StockTradingViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
 
-        label.text = "트레이딩 알고리즘"
+        label.text = "VC Data sender Error"
         label.textColor = .white
 
         return label
@@ -100,7 +111,7 @@ class StockTradingViewController: UIViewController {
 
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-      }()
+    }()
 
     private let pulseAnimationView2: UIView = {
         let view = UIView()
@@ -108,7 +119,7 @@ class StockTradingViewController: UIViewController {
 
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-      }()
+    }()
 
     private let pulseAnimationView3: UIView = {
         let view = UIView()
@@ -116,7 +127,7 @@ class StockTradingViewController: UIViewController {
 
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-      }()
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,6 +136,8 @@ class StockTradingViewController: UIViewController {
         tradingStrategyTableView.delegate = self
         tradingStrategyTableView.dataSource = self
 
+        setUpUI()
+        setUpNaviBar()
         configureHierarchy()
         configureLayout()
     }
@@ -132,8 +145,13 @@ class StockTradingViewController: UIViewController {
     //⭐️Stock object VC가 소유, 버튼 터치시 stock의 isOnTrading.toggle()
     @objc
     func changeTradingStatusAction() {
-        tradingButton.configuration?.subtitle = "On"
-        tradingButton.backgroundColor = UIColor(hex: "F65036")
+        //toggle
+        var subIitleAttr = AttributedString.init("ON")
+        subIitleAttr.font = NotoSansFont.bold(size: 22)
+        tradingButton.configuration?.attributedSubtitle = subIitleAttr
+
+        tradingButton.backgroundColor = MySpecialColors.traidingCircle2
+        tradingButton.layer.borderColor = MySpecialColors.borderGray3.cgColor
 
         configureAnimation()
     }
@@ -154,8 +172,7 @@ class StockTradingViewController: UIViewController {
         animationGroup.animations = [scaleAnimaton, opacityAnimiation]
 
         DispatchQueue.main.async {
-          self.pulseAnimationView1.layer.add(animationGroup, forKey: "pulse")
-
+            self.pulseAnimationView1.layer.add(animationGroup, forKey: "pulse")
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -165,7 +182,24 @@ class StockTradingViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
             self.pulseAnimationView3.layer.add(animationGroup, forKey: "pulse")
         }
+    }
 
+    func setUpUI() {
+        stockNameLabel.attributedText = NSMutableAttributedString().bold(string: (stock?.name)!, fontSize: 25)
+        tradingStrategyTableView.backgroundColor = MySpecialColors.bgColor
+        tradingStrategyTableView.isScrollEnabled = false
+    }
+
+    func setUpNaviBar() {
+        self.title = "내 주식"
+        self.navigationItem.rightBarButtonItem =
+        UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
+        self.navigationItem.rightBarButtonItem?.tintColor = .white
+    }
+
+    @objc
+    func favoriteButtonPressed() {
+        //toggle isFavorite property and change UIBarButtonItem Image
     }
 
     func configureHierarchy() {
@@ -202,39 +236,40 @@ class StockTradingViewController: UIViewController {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor),
 
-            stockNameLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 72),
+            stockNameLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 64),
             stockNameLabel.widthAnchor.constraint(equalToConstant: 196),
-            stockNameLabel.heightAnchor.constraint(equalToConstant: 16),
+            stockNameLabel.heightAnchor.constraint(equalToConstant: 33),
             stockNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
-            algorithmTypeLabel.topAnchor.constraint(equalTo: stockNameLabel.bottomAnchor, constant: 20),
+            algorithmTypeLabel.topAnchor.constraint(equalTo: stockNameLabel.bottomAnchor, constant: 32),
             algorithmTypeLabel.widthAnchor.constraint(equalToConstant: 120),
             algorithmTypeLabel.heightAnchor.constraint(equalToConstant: 20),
             algorithmTypeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
-            tradingButton.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 192),
+            tradingButton.topAnchor.constraint(equalTo: algorithmTypeLabel.bottomAnchor, constant: 69),
             tradingButton.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 108),
             tradingButton.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -108),
             tradingButton.heightAnchor.constraint(equalTo: tradingButton.widthAnchor),
 
-            returnRateLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 422),
-            returnRateLabel.widthAnchor.constraint(equalToConstant: 100),
-            returnRateLabel.heightAnchor.constraint(equalToConstant: 52),
+            returnRateLabel.topAnchor.constraint(equalTo: tradingButton.bottomAnchor, constant: 34),
+            returnRateLabel.widthAnchor.constraint(equalToConstant: 72),
+            returnRateLabel.heightAnchor.constraint(equalToConstant: 16),
             returnRateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
-            percentageLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 444),
+            percentageLabel.topAnchor.constraint(equalTo: returnRateLabel.bottomAnchor, constant: 8),
             percentageLabel.widthAnchor.constraint(equalToConstant: 100),
-            percentageLabel.heightAnchor.constraint(equalToConstant: 52),
+            percentageLabel.heightAnchor.constraint(equalToConstant: 40),
             percentageLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
-            algorithmTitleLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 580),
+            algorithmTitleLabel.topAnchor.constraint(equalTo: percentageLabel.bottomAnchor, constant: 72),
             algorithmTitleLabel.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
-            algorithmTitleLabel.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor, constant: -16),
+            algorithmTitleLabel.widthAnchor.constraint(equalToConstant: 126),
+            algorithmTitleLabel.heightAnchor.constraint(equalToConstant: 25),
 
             tradingStrategyTableView.topAnchor.constraint(equalTo: algorithmTitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: 20),
             tradingStrategyTableView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
             tradingStrategyTableView.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor, constant: -16),
-            tradingStrategyTableView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
+            tradingStrategyTableView.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor, constant: 40),
 
             pulseAnimationView1.heightAnchor.constraint(equalTo: tradingButton.heightAnchor),
             pulseAnimationView1.widthAnchor.constraint(equalTo: tradingButton.widthAnchor),
@@ -266,6 +301,9 @@ extension StockTradingViewController: UITableViewDelegate, UITableViewDataSource
 
         cell.typeLabel.text = PredictedAlgorithm.attack.rawValue
         cell.percentageLabel.text = "+5.1%"
+
+        cell.layer.cornerRadius = 10
+        cell.clipsToBounds = true
 
         return cell
     }

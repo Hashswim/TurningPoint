@@ -11,18 +11,18 @@ class StockTradingViewTableCell: UITableViewCell {
 
     static let cellID = "predictedCellID"
 
+    let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = MySpecialColors.darkGray
+
+        return view
+    }()
+
     let typeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .preferredFont(forTextStyle: .largeTitle)
-
-        return label
-    }()
-
-    private let algorithmTextLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "알고리즘"
+//        label.font = .preferredFont(forTextStyle: .largeTitle)
 
         return label
     }()
@@ -52,31 +52,35 @@ class StockTradingViewTableCell: UITableViewCell {
 
 
     func layout() {
-        self.addSubview(typeLabel)
-        self.addSubview(algorithmTextLabel)
-        self.addSubview(predictedTextLabel)
-        self.addSubview(percentageLabel)
+        self.backgroundColor = MySpecialColors.bgColor
+
+        self.addSubview(containerView)
+        containerView.addSubview(typeLabel)
+        containerView.addSubview(predictedTextLabel)
+        containerView.addSubview(percentageLabel)
 
         NSLayoutConstraint.activate([
-            typeLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            typeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            typeLabel.widthAnchor.constraint(equalToConstant: 80),
-            typeLabel.heightAnchor.constraint(equalToConstant: 40),
+            self.heightAnchor.constraint(equalToConstant: 52),
 
-            algorithmTextLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            algorithmTextLabel.leadingAnchor.constraint(equalTo: typeLabel.trailingAnchor, constant: 10),
-            algorithmTextLabel.widthAnchor.constraint(equalToConstant: 80),
-            algorithmTextLabel.heightAnchor.constraint(equalToConstant: 40),
+            containerView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            containerView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 2),
+            containerView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -2),
+            containerView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
 
-            predictedTextLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            predictedTextLabel.trailingAnchor.constraint(equalTo: percentageLabel.leadingAnchor, constant: -10),
-            predictedTextLabel.widthAnchor.constraint(equalToConstant: 80),
-            predictedTextLabel.heightAnchor.constraint(equalToConstant: 40),
+            typeLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            typeLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            typeLabel.widthAnchor.constraint(equalToConstant: 98),
+            typeLabel.heightAnchor.constraint(equalToConstant: 18),
 
-            percentageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            percentageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            percentageLabel.widthAnchor.constraint(equalToConstant: 80),
-            percentageLabel.heightAnchor.constraint(equalToConstant: 40),
+            predictedTextLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            predictedTextLabel.leadingAnchor.constraint(equalTo: typeLabel.trailingAnchor, constant: 110),
+            predictedTextLabel.widthAnchor.constraint(equalToConstant: 52),
+            predictedTextLabel.heightAnchor.constraint(equalToConstant: 11),
+
+            percentageLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            percentageLabel.leadingAnchor.constraint(equalTo: predictedTextLabel.trailingAnchor, constant: 4),
+            percentageLabel.widthAnchor.constraint(equalToConstant: 60),
+            percentageLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
 }

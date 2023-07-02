@@ -228,7 +228,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         customViewConstraints?.priceLabelTrailing.constant = content.directionalLayoutMargins.trailing
         updateSeparatorConstraint()
 
-        if let istraiding = state.stock?.isTraiding {
+        if let istraiding = state.stock?.isTrading {
             if istraiding {
                 traidingViewConstraints1.isActive = false
                 traidingViewConstraints2.isActive = true
