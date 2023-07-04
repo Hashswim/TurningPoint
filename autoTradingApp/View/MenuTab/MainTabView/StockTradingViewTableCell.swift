@@ -11,10 +11,16 @@ class StockTradingViewTableCell: UITableViewCell {
 
     static let cellID = "predictedCellID"
 
+    var isTouched: Bool = false
+
     let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = MySpecialColors.darkGray
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        view.layer.borderWidth = 0
+        view.layer.borderColor = UIColor.white.cgColor
 
         return view
     }()
@@ -82,5 +88,16 @@ class StockTradingViewTableCell: UITableViewCell {
             percentageLabel.widthAnchor.constraint(equalToConstant: 60),
             percentageLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
+    }
+
+    func touched() {
+        if isTouched {
+            containerView.backgroundColor = .gray
+            containerView.layer.borderWidth = 1
+
+        } else {
+            containerView.backgroundColor = MySpecialColors.darkGray
+            containerView.layer.borderWidth = 0
+        }
     }
 }
