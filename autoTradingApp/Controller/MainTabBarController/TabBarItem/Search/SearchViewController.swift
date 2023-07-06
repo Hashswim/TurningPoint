@@ -93,6 +93,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.stockLabel.attributedText = NSMutableAttributedString().medium(string: self.arr[indexPath.row], fontSize: 15)
         }
+
+        cell.selectionStyle = .none
         return cell
     }
 

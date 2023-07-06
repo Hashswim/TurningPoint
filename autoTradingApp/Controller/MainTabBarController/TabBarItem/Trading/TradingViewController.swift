@@ -19,9 +19,20 @@ class TradingViewController: UIViewController {
         label.textColor = .white
         return label
     }()
+    private let nameLabel2: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.attributedText = NSMutableAttributedString()
+            .regular(string: "트레이딩 상세정보", fontSize: 28)
+        label.textColor = .white
+        return label
+    }()
 
     private let dropDownView = DropDownView()
     private let dropDown = DropDown()
+
+    private var collectionView: UICollectionView!
+//    private var dataSource: UICollectionViewDiffableDataSource<SectionData, CellData>! = nil
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,11 +54,40 @@ class TradingViewController: UIViewController {
     private func setUpUI() {
         view.backgroundColor = MySpecialColors.bgColor
         view.addSubview(nameLabel)
+        view.addSubview(nameLabel2)
         view.addSubview(dropDownView)
+
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(collectionView)
 
         setUpDropDown()
     }
 
+    private func configrueLayout() {
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 28.5),
+            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            nameLabel.heightAnchor.constraint(equalToConstant: 28),
+
+            nameLabel2.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+            nameLabel2.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            nameLabel2.heightAnchor.constraint(equalToConstant: 28),
+
+            dropDownView.topAnchor.constraint(equalTo: nameLabel2.bottomAnchor, constant: 26.5),
+            dropDownView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -18),
+            dropDownView.heightAnchor.constraint(equalToConstant: 32),
+            dropDownView.widthAnchor.constraint(equalToConstant: 220),
+
+            collectionView.topAnchor.constraint(equalTo: dropDownView.bottomAnchor, constant: 16.9),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+    }
+}
+extension TradingViewController {
     private func setUpDropDown() {
         dropDownView.dropDownBtn.addTarget(self, action: #selector(dropdownClicked), for: .touchUpInside)
         dropDownView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,20 +124,60 @@ class TradingViewController: UIViewController {
     func dropdownClicked(_ sender: Any) {
         dropDown.show()
         self.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.up.fill")
-
     }
-
-    private func configrueLayout() {
-        NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 56),
-            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            nameLabel.heightAnchor.constraint(equalToConstant: 28),
-
-            dropDownView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
-            dropDownView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            dropDownView.heightAnchor.constraint(equalToConstant: 32),
-            dropDownView.widthAnchor.constraint(equalToConstant: 220),
-        ])
-    }
-
 }
+
+extension TradingViewController {
+    private func createLayout() -> UICollectionViewLayout  {
+        // Sticky column
+//        let stickyColumnCellSize = NSCollectionLayoutSize(
+//            widthDimension: .absolute(cellWidth),
+//            heightDimension: .absolute(columnHeight)
+//        )
+//        let stickyColumn = NSCollectionLayoutBoundarySupplementaryItem(
+//            layoutSize: stickyColumnCellSize,
+//            elementKind: stickyColumnElementKind,
+//            alignment: .leading,
+//            absoluteOffset: CGPoint(x: -cellWidth, y: 0)
+//        )
+//        stickyColumn.pinToVisibleBounds = true
+//        stickyColumn.zIndex = 2
+
+        // Item cell
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(88),
+            heightDimension: .absolute(32)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        var groups: [NSCollectionLayoutGroup] = []
+        for _ in 0..<5 {
+            let group = NSCollectionLayoutGroup.horizontal(
+                layoutSize: itemSize,
+                subitems: [item]
+            )
+            groups.append(group)
+        }
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(88*5),
+            heightDimension: .absolute(32)
+        )
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitems: groups
+        )
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+//        section.boundarySupplementaryItems = [stickyColumn]
+//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: cellWidth, bottom: 0, trailing: 0)
+
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+
+    
+}
+
+
+
+
