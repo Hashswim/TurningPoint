@@ -32,7 +32,8 @@ class TradingViewController: UIViewController {
     private let dropDown = DropDown()
 
     private var collectionView: UICollectionView!
-//    private var dataSource: UICollectionViewDiffableDataSource<SectionData, CellData>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<TradingData, TradingTransaction>! = nil
+    private var tradingData: TradingData?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -47,8 +48,11 @@ class TradingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         setUpUI()
         configrueLayout()
+        configureDataSource()
+        updateDataSource()
     }
 
     private func setUpUI() {
@@ -61,6 +65,12 @@ class TradingViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(collectionView)
+        collectionView.backgroundColor = .gray
+        collectionView.register(
+            TradingCell.self,
+            forCellWithReuseIdentifier: TradingCell.reuseIdentifier
+        )
+        tradingData = TradingData(cells: [])
 
         setUpDropDown()
     }
@@ -151,23 +161,28 @@ extension TradingViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
         var groups: [NSCollectionLayoutGroup] = []
-        for _ in 0..<5 {
+        for _ in 0..<10 {
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .absolute(88 * 5),
+                heightDimension: .absolute(31)
+            )
             let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: itemSize,
-                subitems: [item]
+                layoutSize: groupSize,
+                repeatingSubitem: item,
+                count: 5
             )
             groups.append(group)
         }
 
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(88*5),
-            heightDimension: .absolute(32)
+            widthDimension: .absolute(88 * 5),
+            heightDimension: .absolute(31 * 10)
         )
-        let group = NSCollectionLayoutGroup.vertical(
+        let containerGroup = NSCollectionLayoutGroup.vertical(
             layoutSize: groupSize,
             subitems: groups
         )
-        let section = NSCollectionLayoutSection(group: group)
+        let section = NSCollectionLayoutSection(group: containerGroup)
         section.orthogonalScrollingBehavior = .continuous
 //        section.boundarySupplementaryItems = [stickyColumn]
 //        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: cellWidth, bottom: 0, trailing: 0)
@@ -175,7 +190,49 @@ extension TradingViewController {
         return UICollectionViewCompositionalLayout(section: section)
     }
 
-    
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<TradingData, TradingTransaction>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, data: TradingTransaction) -> UICollectionViewCell? in
+            // Return the cell.
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TradingCell.reuseIdentifier, for: indexPath) as? TradingCell else {
+                return nil
+            }
+            cell.label.text = "\(indexPath[1])"
+
+            return cell
+        }
+
+//        dataSource.supplementaryViewProvider = {(
+//            collectionView: UICollectionView,
+//            kind: String,
+//            indexPath: IndexPath
+//        ) -> UICollectionReusableView? in
+//            guard let stickColumnView = collectionView.dequeueReusableSupplementaryView(
+//                ofKind: StickColumnView.reuseElementKind,
+//                withReuseIdentifier: StickColumnView.reuseIdentifier,
+//                for: indexPath
+//            ) as? StickColumnView else {
+//                fatalError("Cannot create new supplementary")
+//            }
+//            stickColumnView.configure(
+//                stickyColumnDatas: self.stickyColumnCellDatas,
+//                stickyColumnWidth: self.cellWidth,
+//                stickyCellHeight: self.cellHeight,
+//                stickyCellBackgroundColor: self.stickyCellBackgroundColor,
+//                stickyCellBorderWidth: self.cellBorderWidth,
+//                stickyCellBorderColor: self.cellBorderColor
+//            )
+//            return stickColumnView
+//        }
+    }
+
+    func updateDataSource() {
+        guard let tradingData = tradingData else { return }
+        var snapshot = NSDiffableDataSourceSnapshot<TradingData, TradingTransaction>()
+        snapshot.appendSections([tradingData])
+        snapshot.appendItems(tradingData.transactions)
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
 }
 
 

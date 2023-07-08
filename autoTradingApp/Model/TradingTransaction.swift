@@ -29,24 +29,42 @@ extension TradingTransaction {
     static func == (lhs: TradingTransaction, rhs: TradingTransaction) -> Bool {
         return lhs.identifier == rhs.identifier
     }
-
-    static let all = [
-        TradingTransaction(cells: ["1", "2", "3", "4", "5"]),
-        TradingTransaction(cells: ["1-1", "2-1", "3-1", "4-1", "5-1"]),
-        TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
-        TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
-        TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
-        TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
-        TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
-        TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
-        TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
-        TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
-    ]
 }
 
 //by Rows
-//struct TradingData {
+class TradingData: Hashable {
 //    let count: Int
-//    let transactions: [TradingTransaction]
-//
-//}
+    let identifier: String
+    let transactions: [TradingTransaction]
+
+    init(
+        cells: [TradingTransaction],
+        identifier: String = UUID().uuidString
+    ) {
+        self.transactions = [
+            TradingTransaction(cells: ["1", "2", "3", "4", "5"]),
+            TradingTransaction(cells: ["1-1", "2-1", "3-1", "4-1", "5-1"]),
+            TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
+            TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
+            TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
+
+            TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
+            TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
+            TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
+            TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
+            TradingTransaction(cells: ["1-2", "2-2", "3-2", "4-2", "5-2"]),
+        ].compactMap({$0})
+
+        self.identifier = identifier
+    }
+}
+
+extension TradingData {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+
+    static func == (lhs: TradingData, rhs: TradingData) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+}
