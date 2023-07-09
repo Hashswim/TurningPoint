@@ -155,34 +155,19 @@ extension TradingViewController {
 
         // Item cell
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(88),
+            widthDimension: .absolute(89 * 5),
             heightDimension: .absolute(32)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        var groups: [NSCollectionLayoutGroup] = []
-        for _ in 0..<10 {
-            let groupSize = NSCollectionLayoutSize(
-                widthDimension: .absolute(88 * 5),
-                heightDimension: .absolute(31)
-            )
-            let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: groupSize,
-                repeatingSubitem: item,
-                count: 5
-            )
-            groups.append(group)
-        }
-
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(88 * 5),
-            heightDimension: .absolute(31 * 10)
-        )
-        let containerGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: groupSize,
-            subitems: groups
-        )
-        let section = NSCollectionLayoutSection(group: containerGroup)
+                widthDimension: .absolute(89 * 5),
+                heightDimension: .absolute(32 * 10)
+            )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
 //        section.boundarySupplementaryItems = [stickyColumn]
 //        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: cellWidth, bottom: 0, trailing: 0)
@@ -197,7 +182,12 @@ extension TradingViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TradingCell.reuseIdentifier, for: indexPath) as? TradingCell else {
                 return nil
             }
-            cell.label.text = "\(indexPath[1])"
+            cell.dateLabel.text = "\(data.cells[0])"
+            cell.actionLabel.text = "\(data.cells[1])"
+            cell.priceLabel.text = "\(data.cells[2])"
+            cell.investmentLabel.text = "\(data.cells[3])"
+            cell.balanceLabel.text = "\(data.cells[4])"
+
 
             return cell
         }
