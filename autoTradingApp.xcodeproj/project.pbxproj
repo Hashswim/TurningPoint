@@ -37,6 +37,7 @@
 		116416192A555B3C008FA981 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116416182A555B3C008FA981 /* HeaderView.swift */; };
 		1164161B2A555BDD008FA981 /* TradingTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164161A2A555BDD008FA981 /* TradingTransaction.swift */; };
 		1164161F2A597C3F008FA981 /* TradingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164161E2A597C3F008FA981 /* TradingCell.swift */; };
+		116416212A5D3002008FA981 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116416202A5D3002008FA981 /* HeaderCell.swift */; };
 		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
 		11CCC42C2A442AA300D67B47 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CCC42B2A442AA300D67B47 /* DropDownView.swift */; };
 		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
@@ -95,6 +96,7 @@
 		116416182A555B3C008FA981 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1164161A2A555BDD008FA981 /* TradingTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingTransaction.swift; sourceTree = "<group>"; };
 		1164161E2A597C3F008FA981 /* TradingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingCell.swift; sourceTree = "<group>"; };
+		116416202A5D3002008FA981 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		11CCC42B2A442AA300D67B47 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewTableCell.swift; sourceTree = "<group>"; };
 		11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = predictedAlgorithm.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			children = (
 				116416182A555B3C008FA981 /* HeaderView.swift */,
 				1164161E2A597C3F008FA981 /* TradingCell.swift */,
+				116416202A5D3002008FA981 /* HeaderCell.swift */,
 			);
 			path = TradingView;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				115D1E2F29CD860300E98541 /* NetworkManager.swift in Sources */,
 				11E7F95D29A5CA4C00C29B83 /* GuideConstant.swift in Sources */,
 				114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */,
+				116416212A5D3002008FA981 /* HeaderCell.swift in Sources */,
 				1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */,
 				11E10E762A13B23C007F3E10 /* predictedAlgorithm.swift in Sources */,
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,

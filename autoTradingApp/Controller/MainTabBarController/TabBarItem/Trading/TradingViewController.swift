@@ -66,10 +66,19 @@ class TradingViewController: UIViewController {
 
         view.addSubview(collectionView)
         collectionView.backgroundColor = .gray
+        collectionView.isDirectionalLockEnabled = false
         collectionView.register(
             TradingCell.self,
             forCellWithReuseIdentifier: TradingCell.reuseIdentifier
         )
+        collectionView.register(
+            HeaderView.self,
+            forSupplementaryViewOfKind: HeaderView.reuseElementKind,
+            withReuseIdentifier: HeaderView.reuseIdentifier
+        )
+        collectionView.isDirectionalLockEnabled = true
+//        collectionView.isPagingEnabled = true
+        //Trading Data 등록
         tradingData = TradingData(cells: [])
 
         setUpDropDown()
@@ -140,18 +149,18 @@ extension TradingViewController {
 extension TradingViewController {
     private func createLayout() -> UICollectionViewLayout  {
         // Sticky column
-//        let stickyColumnCellSize = NSCollectionLayoutSize(
-//            widthDimension: .absolute(cellWidth),
-//            heightDimension: .absolute(columnHeight)
-//        )
-//        let stickyColumn = NSCollectionLayoutBoundarySupplementaryItem(
-//            layoutSize: stickyColumnCellSize,
-//            elementKind: stickyColumnElementKind,
-//            alignment: .leading,
-//            absoluteOffset: CGPoint(x: -cellWidth, y: 0)
-//        )
-//        stickyColumn.pinToVisibleBounds = true
-//        stickyColumn.zIndex = 2
+        let stickyHeaderSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(89 * 50),
+            heightDimension: .absolute(30)
+        )
+        
+        let stickyHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: stickyHeaderSize,
+            elementKind: HeaderView.reuseElementKind,
+            alignment: .top,
+            absoluteOffset: CGPoint(x: 0, y: 0)
+        )
+        stickyHeader.pinToVisibleBounds = true
 
         // Item cell
         let itemSize = NSCollectionLayoutSize(
@@ -168,9 +177,9 @@ extension TradingViewController {
                                                      subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-//        section.boundarySupplementaryItems = [stickyColumn]
-//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: cellWidth, bottom: 0, trailing: 0)
+//        section.orthogonalScrollingBehavior = .continuous
+        section.boundarySupplementaryItems = [stickyHeader]
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
         return UICollectionViewCompositionalLayout(section: section)
     }
@@ -188,32 +197,24 @@ extension TradingViewController {
             cell.investmentLabel.text = "\(data.cells[3])"
             cell.balanceLabel.text = "\(data.cells[4])"
 
-
             return cell
         }
 
-//        dataSource.supplementaryViewProvider = {(
-//            collectionView: UICollectionView,
-//            kind: String,
-//            indexPath: IndexPath
-//        ) -> UICollectionReusableView? in
-//            guard let stickColumnView = collectionView.dequeueReusableSupplementaryView(
-//                ofKind: StickColumnView.reuseElementKind,
-//                withReuseIdentifier: StickColumnView.reuseIdentifier,
-//                for: indexPath
-//            ) as? StickColumnView else {
-//                fatalError("Cannot create new supplementary")
-//            }
-//            stickColumnView.configure(
-//                stickyColumnDatas: self.stickyColumnCellDatas,
-//                stickyColumnWidth: self.cellWidth,
-//                stickyCellHeight: self.cellHeight,
-//                stickyCellBackgroundColor: self.stickyCellBackgroundColor,
-//                stickyCellBorderWidth: self.cellBorderWidth,
-//                stickyCellBorderColor: self.cellBorderColor
-//            )
-//            return stickColumnView
-//        }
+        dataSource.supplementaryViewProvider = {(
+            collectionView: UICollectionView,
+            kind: String,
+            indexPath: IndexPath
+        ) -> UICollectionReusableView? in
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: HeaderView.reuseElementKind,
+                withReuseIdentifier: HeaderView.reuseIdentifier,
+                for: indexPath
+            ) as? HeaderView else {
+                fatalError("Cannot create new supplementary")
+            }
+//            headerView.label.text = "99999"
+            return headerView
+        }
     }
 
     func updateDataSource() {
@@ -224,7 +225,4 @@ extension TradingViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
-
-
-
 
