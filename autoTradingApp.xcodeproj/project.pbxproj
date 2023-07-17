@@ -38,6 +38,8 @@
 		1164161B2A555BDD008FA981 /* TradingTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164161A2A555BDD008FA981 /* TradingTransaction.swift */; };
 		1164161F2A597C3F008FA981 /* TradingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164161E2A597C3F008FA981 /* TradingCell.swift */; };
 		116416212A5D3002008FA981 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116416202A5D3002008FA981 /* HeaderCell.swift */; };
+		11B064DC2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064DB2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift */; };
+		11B064DE2A6563120016AB68 /* CellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064DD2A6563120016AB68 /* CellDataModel.swift */; };
 		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
 		11CCC42C2A442AA300D67B47 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CCC42B2A442AA300D67B47 /* DropDownView.swift */; };
 		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
@@ -97,6 +99,8 @@
 		1164161A2A555BDD008FA981 /* TradingTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingTransaction.swift; sourceTree = "<group>"; };
 		1164161E2A597C3F008FA981 /* TradingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingCell.swift; sourceTree = "<group>"; };
 		116416202A5D3002008FA981 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		11B064DB2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
+		11B064DD2A6563120016AB68 /* CellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDataModel.swift; sourceTree = "<group>"; };
 		11CCC42B2A442AA300D67B47 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewTableCell.swift; sourceTree = "<group>"; };
 		11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = predictedAlgorithm.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				1161804129B8680000EA1E0D /* MainTabView */,
 				116416122A519DC1008FA981 /* SearchView */,
 				116416172A555B0E008FA981 /* TradingView */,
+				11B064DA2A5FBD670016AB68 /* MyPage */,
 				112E4B2329B5F073009A3F8F /* ChartView2.swift */,
 			);
 			path = MenuTab;
@@ -230,6 +235,7 @@
 				115DF50E29EE801F00E9DFE9 /* JSONParser.swift */,
 				115DF51029EE805B00E9DFE9 /* RequestType.swift */,
 				115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */,
+				11B064DD2A6563120016AB68 /* CellDataModel.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -275,6 +281,14 @@
 				116416202A5D3002008FA981 /* HeaderCell.swift */,
 			);
 			path = TradingView;
+			sourceTree = "<group>";
+		};
+		11B064DA2A5FBD670016AB68 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				11B064DB2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		11E10E792A1BA135007F3E10 /* Search */ = {
@@ -548,6 +562,7 @@
 				11CCC42C2A442AA300D67B47 /* DropDownView.swift in Sources */,
 				1161804029B8667400EA1E0D /* Stock.swift in Sources */,
 				11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */,
+				11B064DE2A6563120016AB68 /* CellDataModel.swift in Sources */,
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,
 				1164161B2A555BDD008FA981 /* TradingTransaction.swift in Sources */,
 				112E4B2429B5F073009A3F8F /* ChartView2.swift in Sources */,
@@ -569,6 +584,7 @@
 				11E7F96829B3578600C29B83 /* ChartViewController.swift in Sources */,
 				115DF50D29E56A1B00E9DFE9 /* DetailViewController.swift in Sources */,
 				115DF51129EE805B00E9DFE9 /* RequestType.swift in Sources */,
+				11B064DC2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
