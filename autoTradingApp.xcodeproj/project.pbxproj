@@ -40,6 +40,9 @@
 		116416212A5D3002008FA981 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116416202A5D3002008FA981 /* HeaderCell.swift */; };
 		11B064DC2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064DB2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift */; };
 		11B064DE2A6563120016AB68 /* CellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064DD2A6563120016AB68 /* CellDataModel.swift */; };
+		11B064E02A67B9B70016AB68 /* TradableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064DF2A67B9B70016AB68 /* TradableViewController.swift */; };
+		11B064E42A67D3320016AB68 /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064E32A67D3320016AB68 /* CustomStepper.swift */; };
+		11B064E62A67D4370016AB68 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064E52A67D4370016AB68 /* TransactionView.swift */; };
 		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
 		11CCC42C2A442AA300D67B47 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CCC42B2A442AA300D67B47 /* DropDownView.swift */; };
 		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
@@ -101,6 +104,9 @@
 		116416202A5D3002008FA981 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		11B064DB2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		11B064DD2A6563120016AB68 /* CellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDataModel.swift; sourceTree = "<group>"; };
+		11B064DF2A67B9B70016AB68 /* TradableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradableViewController.swift; sourceTree = "<group>"; };
+		11B064E32A67D3320016AB68 /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
+		11B064E52A67D4370016AB68 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		11CCC42B2A442AA300D67B47 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewTableCell.swift; sourceTree = "<group>"; };
 		11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = predictedAlgorithm.swift; sourceTree = "<group>"; };
@@ -269,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				116416132A519DD4008FA981 /* SearchViewCustomCell.swift */,
+				11B064E32A67D3320016AB68 /* CustomStepper.swift */,
+				11B064E52A67D4370016AB68 /* TransactionView.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -295,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				11E10E7C2A1BA4E6007F3E10 /* SearchViewController.swift */,
+				11B064DF2A67B9B70016AB68 /* TradableViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -568,6 +577,8 @@
 				112E4B2429B5F073009A3F8F /* ChartView2.swift in Sources */,
 				11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */,
 				11080AC02982B6C200B73F5F /* LoginView.swift in Sources */,
+				11B064E42A67D3320016AB68 /* CustomStepper.swift in Sources */,
+				11B064E62A67D4370016AB68 /* TransactionView.swift in Sources */,
 				116416162A52ECF7008FA981 /* StrategyTableView.swift in Sources */,
 				115D1E2A29C6FC6300E98541 /* StockTradingViewController.swift in Sources */,
 				115802F72A45C0AA00BA3591 /* UIImage+.swift in Sources */,
@@ -575,6 +586,7 @@
 				11080AAB2982A97B00B73F5F /* SceneDelegate.swift in Sources */,
 				115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */,
 				11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */,
+				11B064E02A67B9B70016AB68 /* TradableViewController.swift in Sources */,
 				1164161F2A597C3F008FA981 /* TradingCell.swift in Sources */,
 				11E10E832A1F407B007F3E10 /* StockInfoView.swift in Sources */,
 				11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */,

@@ -6,20 +6,18 @@
 //
 
 import UIKit
-import DropDown
 
 class DetailViewController: UIViewController {
 
     let stock: Stock? = nil
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    private let dropDownView = DropDownView()
-    private let dropDown = DropDown()
 
     private let stockNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "SK"
+        label.attributedText = NSMutableAttributedString().regular(string: "삼성전자", fontSize: 17)
+        label.textColor = .white
 
         return label
     }()
@@ -27,26 +25,48 @@ class DetailViewController: UIViewController {
     private let stockPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "100,300 원"
+        label.attributedText = NSMutableAttributedString().bold(string: "72,000", fontSize: 37)
+        label.textColor = .white
+
+        return label
+    }()
+
+    private let indexImageView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        var image = UIImage(systemName: "arrowtriangle.down.fill")
+        image!.withTintColor(.blue)
+        imgView.image = image
+
+        return imgView
+    }()
+
+    private let stockPriceDifferenceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.attributedText = NSMutableAttributedString().regular(string: "1,100 ( 1.55% )", fontSize: 15)
+        label.textColor = .blue
 
         return label
     }()
 
     private let stockInfoView = StockInfoView()
 
-    private let segmentedControl = mainTabSegmentedControl(items: ["차트", "호가"])
-
+    private let segmentedControl = mainTabSegmentedControl(items: ["차트", "매수", "매도"])
     private let chartView = ChartView2()
-    private let transactionView = UIView()
+    private let transactionBuyView = TransactionView()
+    private let transactionSellView = TransactionView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = MySpecialColors.bgColor
 
         setUpNaviBar()
-        setUpDropDown()
         setUpUI()
         configureLayout()
+
+        transactionBuyView.isHidden = true
+        transactionSellView.isHidden = true
     }
 
     func setUpNaviBar() {
@@ -57,45 +77,6 @@ class DetailViewController: UIViewController {
         UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
     }
 
-    private func setUpDropDown() {
-        dropDownView.dropDownBtn.addTarget(self, action: #selector(dropdownClicked), for: .touchUpInside)
-        dropDownView.translatesAutoresizingMaskIntoConstraints = false
-
-        let itemList = ["item1", "item2", "item3", "item4", "item5", "item6"]
-
-        dropDown.dataSource = itemList
-        dropDownView.backgroundColor = MySpecialColors.borderGray
-
-        DropDown.appearance().textColor = UIColor.black // 아이템 텍스트 색상
-        DropDown.appearance().selectedTextColor = UIColor.red // 선택된 아이템 텍스트 색상
-        DropDown.appearance().backgroundColor = UIColor.white // 아이템 팝업 배경 색상
-        DropDown.appearance().selectionBackgroundColor = UIColor.lightGray // 선택한 아이템 배경 색상
-        DropDown.appearance().setupCornerRadius(8)
-        dropDown.dismissMode = .automatic // 팝업을 닫을 모드 설정
-
-        dropDown.anchorView = self.dropDownView
-
-        // View를 갖리지 않고 View아래에 Item 팝업이 붙도록 설정
-        dropDown.bottomOffset = CGPoint(x: 0, y: 36)
-
-        // Item 선택 시 처리
-        dropDown.selectionAction = { [weak self] (index, item) in
-            self!.dropDownView.textField.attributedText = NSMutableAttributedString().regular(string: item, fontSize: 12)
-            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
-        }
-        // 취소 시 처리
-        dropDown.cancelAction = { [weak self] in
-            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
-        }
-    }
-
-    @objc
-    func dropdownClicked(_ sender: Any) {
-        dropDown.show()
-        self.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.up.fill")
-
-    }
-
     @objc
     func favoriteButtonPressed() {
         //toggle isFavorite property and change UIBarButtonItem Image
@@ -104,26 +85,29 @@ class DetailViewController: UIViewController {
     func setUpUI() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(dropDownView)
         contentView.addSubview(stockNameLabel)
         contentView.addSubview(stockPriceLabel)
+        contentView.addSubview(indexImageView)
+        contentView.addSubview(stockPriceDifferenceLabel)
+
         contentView.addSubview(stockInfoView)
         contentView.addSubview(segmentedControl)
         contentView.addSubview(chartView)
-        contentView.addSubview(transactionView)
+        contentView.addSubview(transactionBuyView)
+        contentView.addSubview(transactionSellView)
 
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
     }
 
     func configureLayout() {
-        dropDownView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
         stockInfoView.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         chartView.translatesAutoresizingMaskIntoConstraints = false
-        transactionView.translatesAutoresizingMaskIntoConstraints = false
+        transactionBuyView.translatesAutoresizingMaskIntoConstraints = false
+        transactionSellView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -138,40 +122,49 @@ class DetailViewController: UIViewController {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor),
 
-            dropDownView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            dropDownView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 4),
-            dropDownView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -4),
-            dropDownView.heightAnchor.constraint(equalToConstant: 36),
-
-            stockNameLabel.topAnchor.constraint(equalTo: dropDownView.bottomAnchor, constant: 4),
+            stockNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
             stockNameLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stockNameLabel.widthAnchor.constraint(equalToConstant: 200),
-            stockNameLabel.heightAnchor.constraint(equalToConstant: 20),
+            stockNameLabel.heightAnchor.constraint(equalToConstant: 17),
 
-            stockPriceLabel.topAnchor.constraint(equalTo: stockNameLabel.bottomAnchor),
+            stockPriceLabel.topAnchor.constraint(equalTo: stockNameLabel.bottomAnchor, constant: 10),
             stockPriceLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stockPriceLabel.widthAnchor.constraint(equalToConstant: 200),
-            stockPriceLabel.heightAnchor.constraint(equalToConstant: 20),
+            stockPriceLabel.heightAnchor.constraint(equalToConstant: 40),
 
-            stockInfoView.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor),
+            stockPriceDifferenceLabel.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
+            stockPriceDifferenceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            stockPriceDifferenceLabel.heightAnchor.constraint(equalToConstant: 24),
+
+            indexImageView.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
+            indexImageView.trailingAnchor.constraint(equalTo: stockPriceDifferenceLabel.leadingAnchor, constant: -4),
+            indexImageView.widthAnchor.constraint(equalToConstant: 24),
+            indexImageView.heightAnchor.constraint(equalToConstant: 24),
+
+            stockInfoView.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor, constant: 60),
             stockInfoView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stockInfoView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            stockInfoView.heightAnchor.constraint(equalToConstant: 280),
+            stockInfoView.heightAnchor.constraint(equalToConstant: 100),
 
-            segmentedControl.topAnchor.constraint(equalTo: stockInfoView.bottomAnchor),
+            segmentedControl.topAnchor.constraint(equalTo: stockInfoView.bottomAnchor, constant: 40),
             segmentedControl.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             segmentedControl.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             segmentedControl.heightAnchor.constraint(equalToConstant: 20),
 
-            chartView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor),
+            chartView.topAnchor.constraint(equalTo: stockInfoView.bottomAnchor, constant: 60),
             chartView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             chartView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             chartView.heightAnchor.constraint(equalToConstant: 400),
 
-            transactionView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor),
-            transactionView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            transactionView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            transactionView.heightAnchor.constraint(equalToConstant: 400),
+            transactionBuyView.topAnchor.constraint(equalTo: stockInfoView.bottomAnchor, constant: 60),
+            transactionBuyView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            transactionBuyView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            transactionBuyView.heightAnchor.constraint(equalToConstant: 400),
+
+            transactionSellView.topAnchor.constraint(equalTo: stockInfoView.bottomAnchor, constant: 60),
+            transactionSellView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            transactionSellView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            transactionSellView.heightAnchor.constraint(equalToConstant: 400),
         ])
     }
 
@@ -180,10 +173,16 @@ class DetailViewController: UIViewController {
         switch self.segmentedControl.selectedSegmentIndex {
         case 0:
             chartView.isHidden = false
-            transactionView.isHidden = true
+            transactionBuyView.isHidden = true
+            transactionSellView.isHidden = true
         case 1:
             chartView.isHidden = true
-            transactionView.isHidden = false
+            transactionBuyView.isHidden = false
+            transactionSellView.isHidden = true
+        case 2:
+            chartView.isHidden = true
+            transactionBuyView.isHidden = true
+            transactionSellView.isHidden = false
         default:
             return
         }

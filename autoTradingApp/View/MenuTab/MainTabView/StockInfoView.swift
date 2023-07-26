@@ -13,14 +13,18 @@ class StockInfoView: UIView {
     private let containerStackView1 = UIStackView()
     private let countLabelTitle: UILabel = {
         let label = UILabel()
-        label.text = "보유수량"
+        label.attributedText = NSMutableAttributedString().regular(string: "보유수량", fontSize: 13)
+        label.textColor = .gray
+        label.textAlignment = .left
 
         return label
     }()
 
     private let countLabel: UILabel = {
         let label = UILabel()
-        label.text = "2 주"
+        label.attributedText = NSMutableAttributedString().regular(string: "2 주", fontSize: 20)
+        label.textColor = .lightGray
+        label.textAlignment = .left
 
         return label
     }()
@@ -28,14 +32,18 @@ class StockInfoView: UIView {
     private let containerStackView2 = UIStackView()
     private let priceLabelTitle: UILabel = {
         let label = UILabel()
-        label.text = "보유금액"
+        label.attributedText = NSMutableAttributedString().regular(string: "보유금액", fontSize: 13)
+        label.textColor = .gray
+        label.textAlignment = .left
 
         return label
     }()
 
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "100,580 원"
+        label.attributedText = NSMutableAttributedString().regular(string: "100,580 원", fontSize: 20)
+        label.textColor = .lightGray
+        label.textAlignment = .left
 
         return label
     }()
@@ -44,13 +52,18 @@ class StockInfoView: UIView {
     private let containerStackView3 = UIStackView()
     private let earningPriceLabelTitle: UILabel = {
         let label = UILabel()
-        label.text = "수익"
+        label.attributedText = NSMutableAttributedString().regular(string: "수익", fontSize: 13)
+        label.textColor = .gray
+        label.textAlignment = .left
+
         return label
     }()
 
     private let earningPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "37,684 원"
+        label.attributedText = NSMutableAttributedString().regular(string: "-37,684 원", fontSize: 20)
+        label.textColor = .lightGray
+        label.textAlignment = .left
 
         return label
     }()
@@ -58,13 +71,19 @@ class StockInfoView: UIView {
     private let containerStackView4 = UIStackView()
     private let earningRateLabelTitle: UILabel = {
         let label = UILabel()
-        label.text = "수익률"
+        label.attributedText = NSMutableAttributedString().regular(string: "수익률", fontSize: 13)
+        label.textColor = .gray
+        label.textAlignment = .left
+
         return label
     }()
 
     private let earningRateLabel: UILabel = {
         let label = UILabel()
-        label.text = "+ 1.45%"
+        label.attributedText = NSMutableAttributedString().regular(string: "-1.45 %", fontSize: 20)
+        label.textColor = .lightGray
+        label.textAlignment = .left
+
         return label
     }()
 
@@ -93,10 +112,10 @@ class StockInfoView: UIView {
         containerStackView3.axis = .vertical
         containerStackView4.axis = .vertical
 
-        containerStackView1.spacing = 4
-        containerStackView2.spacing = 4
-        containerStackView3.spacing = 4
-        containerStackView4.spacing = 4
+//        containerStackView1.spacing = 4
+//        containerStackView2.spacing = 4
+//        containerStackView3.spacing = 4
+//        containerStackView4.spacing = 4
 
         largeContainerStackView1.axis = .horizontal
         largeContainerStackView2.axis = .horizontal
@@ -127,15 +146,23 @@ class StockInfoView: UIView {
     func configureLayout() {
         NSLayoutConstraint.activate([
             largeContainerStackView1.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            largeContainerStackView1.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            largeContainerStackView1.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            largeContainerStackView1.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
+            largeContainerStackView1.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            largeContainerStackView1.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            largeContainerStackView1.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.44),
 
-            largeContainerStackView2.topAnchor.constraint(equalTo: largeContainerStackView1.bottomAnchor),
-            largeContainerStackView2.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            largeContainerStackView2.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            containerStackView1.widthAnchor.constraint(equalToConstant: 160),
+            containerStackView3.widthAnchor.constraint(equalToConstant: 160),
+
+            containerStackView1.heightAnchor.constraint(equalToConstant: 40),
+            containerStackView2.heightAnchor.constraint(equalToConstant: 40),
+            containerStackView3.heightAnchor.constraint(equalToConstant: 40),
+            containerStackView4.heightAnchor.constraint(equalToConstant: 40),
+
+            largeContainerStackView2.topAnchor.constraint(equalTo: largeContainerStackView1.bottomAnchor, constant: 32),
+            largeContainerStackView2.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            largeContainerStackView2.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             largeContainerStackView2.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-            largeContainerStackView2.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
+            largeContainerStackView2.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.44),
         ])
     }
 

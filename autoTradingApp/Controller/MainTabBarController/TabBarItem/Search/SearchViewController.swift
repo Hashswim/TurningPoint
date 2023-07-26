@@ -99,7 +99,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DetailViewController()
+        let vc = TradableViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
