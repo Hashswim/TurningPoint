@@ -84,6 +84,17 @@ class TransactionView: UIView {
         return imgView
     }()
 
+    private let transactionButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = .blue
+        btn.setTitle("매도", for: .normal)
+        btn.layer.cornerRadius = 10
+        btn.layer.masksToBounds = true
+
+        return btn
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -102,6 +113,7 @@ class TransactionView: UIView {
         self.addSubview(lineView)
         self.addSubview(totalPriceStackView)
         self.addSubview(totalPriceImageView)
+        self.addSubview(transactionButton)
 
         [totalLabel1, totalPriceLabel, totalLabel2].forEach(totalPriceStackView.addArrangedSubview)
 //        self.addSubview(totalPriceImageVIew)
@@ -140,6 +152,11 @@ class TransactionView: UIView {
             totalPriceImageView.widthAnchor.constraint(equalToConstant: 40),
             totalPriceImageView.heightAnchor.constraint(equalToConstant: 40),
             totalPriceImageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+
+            transactionButton.topAnchor.constraint(equalTo: totalPriceStackView.bottomAnchor, constant: 40),
+            transactionButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            transactionButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            transactionButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
 
