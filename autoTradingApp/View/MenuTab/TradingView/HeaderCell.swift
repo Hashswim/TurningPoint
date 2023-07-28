@@ -39,6 +39,7 @@ class HeaderCell: UIView {
             label.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         label.attributedText = attributedText
+        label.textColor = .white
         label.textAlignment = .center
     }
 }

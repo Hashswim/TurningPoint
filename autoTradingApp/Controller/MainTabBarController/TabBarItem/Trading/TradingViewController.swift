@@ -65,7 +65,7 @@ class TradingViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(collectionView)
-        collectionView.backgroundColor = .gray
+        collectionView.backgroundColor = MySpecialColors.bgColor
         collectionView.isDirectionalLockEnabled = false
         collectionView.register(
             TradingCell.self,
@@ -191,11 +191,11 @@ extension TradingViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TradingCell.reuseIdentifier, for: indexPath) as? TradingCell else {
                 return nil
             }
-            cell.dateLabel.text = "\(data.cells[0])"
-            cell.actionLabel.text = "\(data.cells[1])"
-            cell.priceLabel.text = "\(data.cells[2])"
-            cell.investmentLabel.text = "\(data.cells[3])"
-            cell.balanceLabel.text = "\(data.cells[4])"
+            cell.dateLabel.attributedText =  NSMutableAttributedString().regular(string: "\(data.cells[0])", fontSize: 12)
+            cell.actionLabel.attributedText = NSMutableAttributedString().regular(string: "\(data.cells[1])", fontSize: 12)
+            cell.priceLabel.attributedText = NSMutableAttributedString().regular(string: "\(data.cells[2])", fontSize: 12)
+            cell.investmentLabel.attributedText = NSMutableAttributedString().regular(string: "\(data.cells[3])", fontSize: 12)
+            cell.balanceLabel.attributedText = NSMutableAttributedString().regular(string: "\(data.cells[4])", fontSize: 12)
 
             return cell
         }

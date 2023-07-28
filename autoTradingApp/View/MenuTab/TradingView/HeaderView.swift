@@ -11,13 +11,14 @@ class HeaderView: UICollectionReusableView {
 
     static let reuseIdentifier = "sticky-header-reuse-identifier"
     static let reuseElementKind = "sticky-header-element-kind"
+    private let indexList = ["Date", "Action", "Price", "Investment", "Balance"]
 
     lazy var label = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.backgroundColor = .blue
+        self.backgroundColor = MySpecialColors.cellGray
         
         addSubview(label)
 
@@ -49,10 +50,10 @@ class HeaderView: UICollectionReusableView {
             )
             let headerCell = HeaderCell(frame: frame)
             headerCell.configure(
-                attributedText: NSMutableAttributedString().regular(string: "dd", fontSize: 11),
-                backgroundColor: .brown,
-                borderWith: 1,
-                borderColor: .blue
+                attributedText: NSMutableAttributedString().bold(string: indexList[index], fontSize: 13),
+                backgroundColor: MySpecialColors.cellGray,
+                borderWith: 0,
+                borderColor: .black
             )
             addSubview(headerCell)
         }
