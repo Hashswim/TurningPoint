@@ -22,14 +22,15 @@ class mainTabSegmentedControl: UISegmentedControl {
     }
 
     private func removeBackgroundAndDivider() {
-        let image = UIImage()
-        self.setBackgroundImage(image, for: .normal, barMetrics: .default)
-        self.setBackgroundImage(image, for: .selected, barMetrics: .default)
-        self.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
+//        let image = UIImage()
+//        self.setBackgroundImage(image, for: .normal, barMetrics: .default)
+//        self.setBackgroundImage(image, for: .selected, barMetrics: .default)
+//        self.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
 
 //        self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
-        self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray], for: .normal)
-        self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.brown, .font: UIFont.systemFont(ofSize: 13, weight: .semibold)], for: .selected)
+        self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.darkGray, .font: NotoSansFont.bold(size: 17)], for: .normal)
+
+        
     }
 
 }

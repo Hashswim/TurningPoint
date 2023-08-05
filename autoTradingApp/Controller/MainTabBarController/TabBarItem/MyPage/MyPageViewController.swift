@@ -39,12 +39,14 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
 
         configureUI()
         configureHierarchy()
+        configureNavigation()
     }
     
     func configureUI() {
         self.title = "마이페이지"
 
-        nameLabel.text = "이수림"
+        nameLabel.attributedText = NSMutableAttributedString().bold(string: "이수림", fontSize: 25)
+        nameLabel.textColor = .white
         nameLabel.textAlignment = .center
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,13 +58,27 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
         profileButton.addTarget(self, action: #selector(imagePickerPressed), for: .touchUpInside)
         btnTableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: ExpandableTableViewCell.reuseIdentifier)
 
+        scrollView.backgroundColor = MySpecialColors.bgColor
+        contentView.backgroundColor = MySpecialColors.bgColor
+
         btnTableView.dataSource = self
         btnTableView.delegate = self
+        btnTableView.backgroundColor = .white
         btnTableView.tableFooterView = UIView() // Removes empty cell separators
         btnTableView.estimatedRowHeight = 80
+        
         btnTableView.rowHeight = UITableView.automaticDimension
+    }
 
+    func configureNavigation() {
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .gray
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = MySpecialColors.bgColor
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: NotoSansFont.medium(size: 17)]
 
+        self.navigationItem.standardAppearance = appearance
+        self.navigationItem.scrollEdgeAppearance = appearance
     }
 
     func configureHierarchy() {
@@ -94,12 +110,12 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
             nameLabel.topAnchor.constraint(equalTo: profileButton.bottomAnchor, constant: 30),
             nameLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             nameLabel.widthAnchor.constraint(equalToConstant: 73),
-            nameLabel.heightAnchor.constraint(equalToConstant: 17),
+            nameLabel.heightAnchor.constraint(equalToConstant: 25),
 
             btnTableView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 80),
             btnTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             btnTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            btnTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            btnTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 

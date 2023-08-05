@@ -35,7 +35,6 @@ class ExpandableTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .semibold)
-        label.textColor = #colorLiteral(red: 0.1404079861, green: 0.1404079861, blue: 0.1404079861, alpha: 1)
         label.setContentHuggingPriority(.init(rawValue: 200), for: .horizontal)
         return label
     }()
@@ -84,23 +83,27 @@ class ExpandableTableViewCell: UITableViewCell {
 
     func setConstraints() {
         NSLayoutConstraint.activate([
+            titleLabel.heightAnchor.constraint(equalToConstant: 80),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 34),
+
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
 
             chevronImageView.widthAnchor.constraint(equalToConstant: 18),
             chevronImageView.heightAnchor.constraint(equalToConstant: 18),
-            descriptionLabel.topAnchor.constraint(equalTo: expandableView.topAnchor, constant: 8),
-            descriptionLabel.leadingAnchor.constraint(equalTo: expandableView.leadingAnchor, constant: 0),
+
+            descriptionLabel.topAnchor.constraint(equalTo: expandableView.topAnchor, constant: -16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: expandableView.leadingAnchor, constant: 30),
             descriptionLabel.bottomAnchor.constraint(equalTo: expandableView.bottomAnchor, constant: -8),
             descriptionLabel.trailingAnchor.constraint(equalTo: expandableView.trailingAnchor, constant: -16)
         ])
     }
 
     func set(_ model: CellDataModel) {
-        titleLabel.text = model.title
-        descriptionLabel.text = model.description
+        titleLabel.attributedText = NSMutableAttributedString().medium(string: model.title, fontSize: 17)
+        descriptionLabel.attributedText = NSMutableAttributedString().medium(string: model.description, fontSize: 17)
         expandableView.isHidden = !model.isExpanded
         chevronImageView.image = (model.isExpanded ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down"))
 

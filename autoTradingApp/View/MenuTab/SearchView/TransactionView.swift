@@ -11,7 +11,7 @@ class TransactionView: UIView {
 
     private let typeLabel: UILabel = {
         let label = UILabel()
-        label.text = "주문 수량"
+        label.attributedText = NSMutableAttributedString().medium(string: "주문 수량", fontSize: 20)
         label.textColor = .black
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -20,14 +20,14 @@ class TransactionView: UIView {
     }()
 
     let countStepper: CustomStepper = {
-        let stepper = CustomStepper(viewData: .init(color: .gray, minimum: 0, maximum: 100, stepValue: 0))
+        let stepper = CustomStepper(viewData: .init(color: .gray, minimum: 0, maximum: 100, stepValue: 1))
         stepper.unitLabel.text = "주"
         stepper.translatesAutoresizingMaskIntoConstraints = false
         return stepper
     }()
 
     let priceStepper: CustomStepper = {
-        let stepper = CustomStepper(viewData: .init(color: .gray, minimum: 0, maximum: 100, stepValue: 0))
+        let stepper = CustomStepper(viewData: .init(color: .gray, minimum: 0, maximum: 1000000, stepValue: 1000))
         stepper.unitLabel.text = "원"
         stepper.translatesAutoresizingMaskIntoConstraints = false
         return stepper
@@ -52,6 +52,7 @@ class TransactionView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "총"
+        label.textAlignment = .right
         label.textColor = .gray
 
         return label
@@ -60,9 +61,8 @@ class TransactionView: UIView {
     private let totalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "300,400"
-        label.textColor = .gray
+        label.attributedText = NSMutableAttributedString().bold(string: "300,400", fontSize: 28)
+        label.textColor = .black
 
         return label
     }()
@@ -116,16 +116,18 @@ class TransactionView: UIView {
         self.addSubview(transactionButton)
 
         [totalLabel1, totalPriceLabel, totalLabel2].forEach(totalPriceStackView.addArrangedSubview)
-//        self.addSubview(totalPriceImageVIew)
 
-//        totalPriceImageVIew.image =
+        totalPriceStackView.setCustomSpacing(12, after: totalLabel1)
+        totalPriceStackView.setCustomSpacing(3, after: totalPriceLabel)
+
+        self.backgroundColor = .white
     }
 
     func configureLayout() {
         NSLayoutConstraint.activate([
             typeLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 46),
             typeLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            typeLabel.widthAnchor.constraint(equalToConstant: 73),
+            typeLabel.widthAnchor.constraint(equalToConstant: 80),
             typeLabel.heightAnchor.constraint(equalToConstant: 29),
 
             countStepper.leadingAnchor.constraint(equalTo: typeLabel.trailingAnchor, constant: 88),
@@ -148,10 +150,14 @@ class TransactionView: UIView {
             totalPriceStackView.heightAnchor.constraint(equalToConstant: 42),
             totalPriceStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -70),
 
-            totalPriceImageView.topAnchor.constraint(equalTo: totalPriceStackView.topAnchor),
+            totalLabel1.topAnchor.constraint(equalTo: totalPriceStackView.topAnchor),
+            totalPriceLabel.topAnchor.constraint(equalTo: totalPriceStackView.topAnchor, constant: -8),
+            totalLabel2.topAnchor.constraint(equalTo: totalPriceStackView.topAnchor),
+
             totalPriceImageView.widthAnchor.constraint(equalToConstant: 40),
             totalPriceImageView.heightAnchor.constraint(equalToConstant: 40),
             totalPriceImageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            totalPriceImageView.centerYAnchor.constraint(equalTo: totalPriceStackView.centerYAnchor),
 
             transactionButton.topAnchor.constraint(equalTo: totalPriceStackView.bottomAnchor, constant: 40),
             transactionButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),

@@ -62,6 +62,7 @@ class DetailViewController: UIViewController {
         view.backgroundColor = MySpecialColors.bgColor
 
         setUpNaviBar()
+        setSegmentedControl()
         setUpUI()
         configureLayout()
 
@@ -80,6 +81,16 @@ class DetailViewController: UIViewController {
     @objc
     func favoriteButtonPressed() {
         //toggle isFavorite property and change UIBarButtonItem Image
+    }
+
+    func setSegmentedControl() {
+        segmentedControl.backgroundColor = .lightGray
+        segmentedControl.selectedSegmentTintColor = .white
+
+        segmentedControl.layer.cornerRadius = 10
+        segmentedControl.layer.masksToBounds = true
+
+        segmentedControl.setContentPositionAdjustment(UIOffset(horizontal: 0, vertical: -10), forSegmentType: .any, barMetrics: .default)
     }
 
     func setUpUI() {
@@ -138,8 +149,8 @@ class DetailViewController: UIViewController {
 
             indexImageView.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
             indexImageView.trailingAnchor.constraint(equalTo: stockPriceDifferenceLabel.leadingAnchor, constant: -4),
-            indexImageView.widthAnchor.constraint(equalToConstant: 24),
-            indexImageView.heightAnchor.constraint(equalToConstant: 24),
+            indexImageView.widthAnchor.constraint(equalToConstant: 20),
+            indexImageView.heightAnchor.constraint(equalToConstant: 20),
 
             stockInfoView.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor, constant: 60),
             stockInfoView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -147,23 +158,23 @@ class DetailViewController: UIViewController {
             stockInfoView.heightAnchor.constraint(equalToConstant: 100),
 
             segmentedControl.topAnchor.constraint(equalTo: stockInfoView.bottomAnchor, constant: 40),
-            segmentedControl.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            segmentedControl.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            segmentedControl.heightAnchor.constraint(equalToConstant: 20),
+            segmentedControl.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            segmentedControl.widthAnchor.constraint(equalToConstant: 256),
+            segmentedControl.heightAnchor.constraint(equalToConstant: 60),
 
-            chartView.topAnchor.constraint(equalTo: stockInfoView.bottomAnchor, constant: 60),
+            chartView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
             chartView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             chartView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             chartView.heightAnchor.constraint(equalToConstant: 400),
 
-            transactionBuyView.topAnchor.constraint(equalTo: stockInfoView.bottomAnchor, constant: 60),
-            transactionBuyView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            transactionBuyView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            transactionBuyView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
+            transactionBuyView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
+            transactionBuyView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
             transactionBuyView.heightAnchor.constraint(equalToConstant: 400),
 
-            transactionSellView.topAnchor.constraint(equalTo: stockInfoView.bottomAnchor, constant: 60),
-            transactionSellView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            transactionSellView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            transactionSellView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
+            transactionSellView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
+            transactionSellView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
             transactionSellView.heightAnchor.constraint(equalToConstant: 400),
         ])
     }
@@ -175,14 +186,20 @@ class DetailViewController: UIViewController {
             chartView.isHidden = false
             transactionBuyView.isHidden = true
             transactionSellView.isHidden = true
+
+            segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, .font: NotoSansFont.bold(size: 17)], for: .selected)
         case 1:
             chartView.isHidden = true
             transactionBuyView.isHidden = false
             transactionSellView.isHidden = true
+
+            segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red, .font: NotoSansFont.bold(size: 17)], for: .selected)
         case 2:
             chartView.isHidden = true
             transactionBuyView.isHidden = true
             transactionSellView.isHidden = false
+
+            segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue, .font: NotoSansFont.bold(size: 17)], for: .selected)
         default:
             return
         }

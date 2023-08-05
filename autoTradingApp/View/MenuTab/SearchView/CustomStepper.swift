@@ -15,7 +15,7 @@ class CustomStepper: UIControl {
     private lazy var counterLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
+        label.textAlignment = .right
         label.text = "0"
         return label
     }()
@@ -30,7 +30,7 @@ class CustomStepper: UIControl {
 
     lazy var container: UIStackView = {
         let stack = UIStackView()
-        stack.distribution = .fillEqually
+        stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -64,14 +64,24 @@ class CustomStepper: UIControl {
         backgroundColor = .white
         addSubview(container)
 
+        [minusButton, counterLabel, unitLabel, plusButton].forEach(container.addArrangedSubview)
+
+        container.setCustomSpacing(4, after: counterLabel)
+
         NSLayoutConstraint.activate([
             container.topAnchor.constraint(equalTo: topAnchor),
             container.leadingAnchor.constraint(equalTo: leadingAnchor),
             container.trailingAnchor.constraint(equalTo: trailingAnchor),
-            container.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+            container.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-        [minusButton, counterLabel, unitLabel, plusButton].forEach(container.addArrangedSubview)
+            minusButton.widthAnchor.constraint(equalToConstant: 36),
+
+            counterLabel.widthAnchor.constraint(equalToConstant: 48),
+
+            unitLabel.widthAnchor.constraint(equalToConstant: 16),
+
+            plusButton.widthAnchor.constraint(equalToConstant: 36),
+        ])
     }
 
     override func layoutSubviews() {
