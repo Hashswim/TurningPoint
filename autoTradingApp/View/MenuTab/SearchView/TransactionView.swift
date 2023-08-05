@@ -58,10 +58,11 @@ class TransactionView: UIView {
         return label
     }()
 
-    private let totalPriceLabel: UILabel = {
+    let totalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.attributedText = NSMutableAttributedString().bold(string: "300,400", fontSize: 28)
+
+        label.attributedText = NSMutableAttributedString().bold(string: "0", fontSize: 28)
         label.textColor = .black
 
         return label

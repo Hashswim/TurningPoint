@@ -53,7 +53,7 @@ class TradableViewController: UIViewController {
         return label
     }()
 
-    private let segmentedControl = mainTabSegmentedControl(items: ["차트", "매수", "매도"])
+    private let segmentedControl = TradingSegmentedControl(items: ["차트", "매수", "매도"])
 
     private let chartView = ChartView2()
     private let transactionBuyView = TransactionView()

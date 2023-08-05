@@ -48,7 +48,6 @@ class TradingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         setUpUI()
         configrueLayout()
         configureDataSource()

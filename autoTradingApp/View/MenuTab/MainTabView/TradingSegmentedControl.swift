@@ -2,12 +2,12 @@
 //  mainTabSegmentedControl.swift
 //  autoTradingApp
 //
-//  Created by 서수영 on 2023/08/05.
+//  Created by 서수영 on 2023/03/12.
 //
 
 import UIKit
 
-class mainTabSegmentedControl: UISegmentedControl {
+class TradingSegmentedControl: UISegmentedControl {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,15 +22,15 @@ class mainTabSegmentedControl: UISegmentedControl {
     }
 
     private func removeBackgroundAndDivider() {
-        let image = UIImage()
-        self.setBackgroundImage(image, for: .normal, barMetrics: .default)
-        self.setBackgroundImage(image, for: .selected, barMetrics: .default)
-        self.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
+//        let image = UIImage()
+//        self.setBackgroundImage(image, for: .normal, barMetrics: .default)
+//        self.setBackgroundImage(image, for: .selected, barMetrics: .default)
+//        self.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
 
-        self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+//        self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
         self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.darkGray, .font: NotoSansFont.bold(size: 17)], for: .normal)
 
-
+        
     }
 
 }

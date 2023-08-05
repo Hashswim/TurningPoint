@@ -52,7 +52,7 @@ class DetailViewController: UIViewController {
 
     private let stockInfoView = StockInfoView()
 
-    private let segmentedControl = mainTabSegmentedControl(items: ["차트", "매수", "매도"])
+    private let segmentedControl = TradingSegmentedControl(items: ["차트", "매수", "매도"])
     private let chartView = ChartView2()
     private let transactionBuyView = TransactionView()
     private let transactionSellView = TransactionView()
@@ -63,6 +63,7 @@ class DetailViewController: UIViewController {
 
         setUpNaviBar()
         setSegmentedControl()
+        setUpTransactionView()
         setUpUI()
         configureLayout()
 
@@ -91,6 +92,32 @@ class DetailViewController: UIViewController {
         segmentedControl.layer.masksToBounds = true
 
         segmentedControl.setContentPositionAdjustment(UIOffset(horizontal: 0, vertical: -10), forSegmentType: .any, barMetrics: .default)
+    }
+
+    func setUpTransactionView() {
+        transactionBuyView.countStepper.addTarget(self, action: #selector(buyTotalPriceCounting), for: .valueChanged)
+        transactionBuyView.priceStepper.addTarget(self, action: #selector(buyTotalPriceCounting), for: .valueChanged)
+
+        transactionSellView.countStepper.addTarget(self, action: #selector(sellTotalPriceCounting), for: .valueChanged)
+        transactionSellView.priceStepper.addTarget(self, action: #selector(sellTotalPriceCounting), for: .valueChanged)
+    }
+
+    @objc
+    func buyTotalPriceCounting() {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        transactionBuyView.totalPriceLabel.attributedText =
+        NSMutableAttributedString().bold(string: numberFormatter.string(from: transactionBuyView.countStepper.value * transactionBuyView.priceStepper.value as NSNumber)!, fontSize: 28)
+    }
+
+    @objc
+    func sellTotalPriceCounting() {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        transactionSellView.totalPriceLabel.attributedText =
+        NSMutableAttributedString().bold(string: numberFormatter.string(from: transactionSellView.countStepper.value * transactionSellView.priceStepper.value as NSNumber)!, fontSize: 28)
     }
 
     func setUpUI() {

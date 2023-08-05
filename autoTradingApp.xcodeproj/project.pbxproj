@@ -19,7 +19,7 @@
 		115802F72A45C0AA00BA3591 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115802F62A45C0AA00BA3591 /* UIImage+.swift */; };
 		115D1E1A29B9A89100E98541 /* MainHomeTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1929B9A89100E98541 /* MainHomeTabController.swift */; };
 		115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */; };
-		115D1E1E29BDEDA200E98541 /* mainTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1D29BDEDA200E98541 /* mainTabSegmentedControl.swift */; };
+		115D1E1E29BDEDA200E98541 /* TradingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1D29BDEDA200E98541 /* TradingSegmentedControl.swift */; };
 		115D1E2229C461C400E98541 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */; };
 		115D1E2329C461C400E98541 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */; };
 		115D1E2529C462D700E98541 /* NotoSansFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E2429C462D700E98541 /* NotoSansFont.swift */; };
@@ -43,6 +43,7 @@
 		11B064E02A67B9B70016AB68 /* TradableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064DF2A67B9B70016AB68 /* TradableViewController.swift */; };
 		11B064E42A67D3320016AB68 /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064E32A67D3320016AB68 /* CustomStepper.swift */; };
 		11B064E62A67D4370016AB68 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064E52A67D4370016AB68 /* TransactionView.swift */; };
+		11B1ECF62A7E7CD2000E7D2B /* mainTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1ECF52A7E7CD2000E7D2B /* mainTabSegmentedControl.swift */; };
 		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
 		11CCC42C2A442AA300D67B47 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CCC42B2A442AA300D67B47 /* DropDownView.swift */; };
 		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
@@ -83,7 +84,7 @@
 		115802F62A45C0AA00BA3591 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		115D1E1929B9A89100E98541 /* MainHomeTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeTabController.swift; sourceTree = "<group>"; };
 		115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewChartView.swift; sourceTree = "<group>"; };
-		115D1E1D29BDEDA200E98541 /* mainTabSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTabSegmentedControl.swift; sourceTree = "<group>"; };
+		115D1E1D29BDEDA200E98541 /* TradingSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingSegmentedControl.swift; sourceTree = "<group>"; };
 		115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		115D1E2429C462D700E98541 /* NotoSansFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotoSansFont.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 		11B064DF2A67B9B70016AB68 /* TradableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradableViewController.swift; sourceTree = "<group>"; };
 		11B064E32A67D3320016AB68 /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
 		11B064E52A67D4370016AB68 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		11B1ECF52A7E7CD2000E7D2B /* mainTabSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTabSegmentedControl.swift; sourceTree = "<group>"; };
 		11CCC42B2A442AA300D67B47 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewTableCell.swift; sourceTree = "<group>"; };
 		11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = predictedAlgorithm.swift; sourceTree = "<group>"; };
@@ -251,11 +253,12 @@
 			children = (
 				1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */,
 				115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */,
-				115D1E1D29BDEDA200E98541 /* mainTabSegmentedControl.swift */,
+				115D1E1D29BDEDA200E98541 /* TradingSegmentedControl.swift */,
 				11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */,
 				11E10E822A1F407B007F3E10 /* StockInfoView.swift */,
 				11E10E842A27739A007F3E10 /* AdditionalTradingCellView.swift */,
 				11CCC42B2A442AA300D67B47 /* DropDownView.swift */,
+				11B1ECF52A7E7CD2000E7D2B /* mainTabSegmentedControl.swift */,
 			);
 			path = MainTabView;
 			sourceTree = "<group>";
@@ -565,7 +568,7 @@
 				11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */,
 				11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */,
 				11E10E7D2A1BA4E6007F3E10 /* SearchViewController.swift in Sources */,
-				115D1E1E29BDEDA200E98541 /* mainTabSegmentedControl.swift in Sources */,
+				115D1E1E29BDEDA200E98541 /* TradingSegmentedControl.swift in Sources */,
 				11E7F96E29B4C41E00C29B83 /* SignUpIsUserViewController.swift in Sources */,
 				11E10E812A1BA50D007F3E10 /* MyPageViewController.swift in Sources */,
 				11CCC42C2A442AA300D67B47 /* DropDownView.swift in Sources */,
@@ -584,6 +587,7 @@
 				115802F72A45C0AA00BA3591 /* UIImage+.swift in Sources */,
 				115D1E2729C46A0D00E98541 /* UIColor+.swift in Sources */,
 				11080AAB2982A97B00B73F5F /* SceneDelegate.swift in Sources */,
+				11B1ECF62A7E7CD2000E7D2B /* mainTabSegmentedControl.swift in Sources */,
 				115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */,
 				11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */,
 				11B064E02A67B9B70016AB68 /* TradableViewController.swift in Sources */,

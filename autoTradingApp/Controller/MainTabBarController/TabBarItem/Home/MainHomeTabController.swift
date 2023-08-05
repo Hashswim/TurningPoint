@@ -95,6 +95,10 @@ class MainHomeTabController: UIViewController {
         super.viewDidLoad()
 
 //        navigationItem.title = "main tab"
+
+        segmentedControl
+
+
         configureHierarchy()
         configureDataSource()
         setUpUI()
