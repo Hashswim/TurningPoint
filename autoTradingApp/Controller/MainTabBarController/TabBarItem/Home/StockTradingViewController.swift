@@ -216,7 +216,7 @@ class StockTradingViewController: UIViewController {
 
     func setUpNaviBar() {
         self.title = "내 주식"
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.red]
+
         self.navigationItem.rightBarButtonItem =
         UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
         self.navigationController?.navigationBar.tintColor = .white

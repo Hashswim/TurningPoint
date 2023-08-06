@@ -11,8 +11,7 @@ import DropDown
 class TradableViewController: UIViewController {
 
     let stock: Stock? = nil
-    private let scrollView = UIScrollView()
-    private let contentView = UIView()
+
     private let dropDownView = DropDownView()
     private let dropDown = DropDown()
 
@@ -66,6 +65,7 @@ class TradableViewController: UIViewController {
         setUpNaviBar()
         setUpDropDown()
         setSegmentedControl()
+        setUpTransactionView()
         setUpUI()
         configureLayout()
 
@@ -75,11 +75,15 @@ class TradableViewController: UIViewController {
     }
 
     func setUpNaviBar() {
-        self.title = "주식 상세정보"
-
 //        let name = (self.stock?.isFavorite!)! ? "heart" : "heart.fill"
         self.navigationItem.rightBarButtonItem =
         UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = .white
+
+        self.title = "주식 상세정보"
+        self.navigationController!.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+
     }
 
     private func setUpDropDown() {
@@ -136,19 +140,62 @@ class TradableViewController: UIViewController {
         segmentedControl.setContentPositionAdjustment(UIOffset(horizontal: 0, vertical: -10), forSegmentType: .any, barMetrics: .default)
     }
 
+    func setUpTransactionView() {
+        transactionBuyView.countStepper.addTarget(self, action: #selector(buyTotalPriceCounting), for: .valueChanged)
+        transactionBuyView.priceStepper.addTarget(self, action: #selector(buyTotalPriceCounting), for: .valueChanged)
+
+        transactionSellView.countStepper.addTarget(self, action: #selector(sellTotalPriceCounting), for: .valueChanged)
+        transactionSellView.priceStepper.addTarget(self, action: #selector(sellTotalPriceCounting), for: .valueChanged)
+
+        transactionBuyView.transactionButton.backgroundColor = .red
+        transactionBuyView.transactionButton.setAttributedTitle(NSMutableAttributedString().medium(string: "매수", fontSize: 17), for: .normal)
+        transactionBuyView.transactionButton.addTarget(self, action: #selector(buyTradeTapped), for: .touchUpInside)
+
+        transactionSellView.transactionButton.backgroundColor = .blue
+        transactionSellView.transactionButton.setAttributedTitle(NSMutableAttributedString().medium(string: "매도", fontSize: 17), for: .normal)
+        transactionSellView.transactionButton.addTarget(self, action: #selector(sellTradeTapped), for: .touchUpInside)
+    }
+
+    @objc
+    func buyTotalPriceCounting() {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        transactionBuyView.totalPriceLabel.attributedText =
+        NSMutableAttributedString().bold(string: numberFormatter.string(from: transactionBuyView.countStepper.value * transactionBuyView.priceStepper.value as NSNumber)!, fontSize: 28)
+    }
+
+    @objc
+    func sellTotalPriceCounting() {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        transactionSellView.totalPriceLabel.attributedText =
+        NSMutableAttributedString().bold(string: numberFormatter.string(from: transactionSellView.countStepper.value * transactionSellView.priceStepper.value as NSNumber)!, fontSize: 28)
+    }
+
+    @objc
+    func buyTradeTapped() {
+
+    }
+
+    @objc
+    func sellTradeTapped() {
+
+    }
+    
+
     func setUpUI() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(dropDownView)
-        contentView.addSubview(stockNameLabel)
-        contentView.addSubview(stockPriceLabel)
-        contentView.addSubview(indexImageView)
-        contentView.addSubview(stockPriceDifferenceLabel)
+        view.addSubview(dropDownView)
+        view.addSubview(stockNameLabel)
+        view.addSubview(stockPriceLabel)
+        view.addSubview(indexImageView)
+        view.addSubview(stockPriceDifferenceLabel)
         
-        contentView.addSubview(segmentedControl)
-        contentView.addSubview(chartView)
-        contentView.addSubview(transactionBuyView)
-        contentView.addSubview(transactionSellView)
+        view.addSubview(segmentedControl)
+        view.addSubview(chartView)
+        view.addSubview(transactionBuyView)
+        view.addSubview(transactionSellView)
 
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
@@ -156,43 +203,29 @@ class TradableViewController: UIViewController {
 
     func configureLayout() {
         dropDownView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         chartView.translatesAutoresizingMaskIntoConstraints = false
         transactionBuyView.translatesAutoresizingMaskIntoConstraints = false
         transactionSellView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
-            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor),
-
-            dropDownView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            dropDownView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 18),
-            dropDownView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -18),
+            dropDownView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            dropDownView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 18),
+            dropDownView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -18),
             dropDownView.heightAnchor.constraint(equalToConstant: 36),
 
             stockNameLabel.topAnchor.constraint(equalTo: dropDownView.bottomAnchor, constant: 52),
-            stockNameLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            stockNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stockNameLabel.widthAnchor.constraint(equalToConstant: 200),
             stockNameLabel.heightAnchor.constraint(equalToConstant: 17),
 
             stockPriceLabel.topAnchor.constraint(equalTo: stockNameLabel.bottomAnchor, constant: 10),
-            stockPriceLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            stockPriceLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stockPriceLabel.widthAnchor.constraint(equalToConstant: 200),
             stockPriceLabel.heightAnchor.constraint(equalToConstant: 40),
 
             stockPriceDifferenceLabel.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
-            stockPriceDifferenceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            stockPriceDifferenceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             stockPriceDifferenceLabel.heightAnchor.constraint(equalToConstant: 24),
 
             indexImageView.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
@@ -201,23 +234,23 @@ class TradableViewController: UIViewController {
             indexImageView.heightAnchor.constraint(equalToConstant: 20),
 
             segmentedControl.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor, constant: 84),
-            segmentedControl.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             segmentedControl.widthAnchor.constraint(equalToConstant: 256),
             segmentedControl.heightAnchor.constraint(equalToConstant: 60),
 
             chartView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
-            chartView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            chartView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            chartView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            chartView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             chartView.heightAnchor.constraint(equalToConstant: 400),
 
             transactionBuyView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
-            transactionBuyView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
-            transactionBuyView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
+            transactionBuyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            transactionBuyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             transactionBuyView.heightAnchor.constraint(equalToConstant: 400),
 
             transactionSellView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
-            transactionSellView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
-            transactionSellView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
+            transactionSellView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            transactionSellView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             transactionSellView.heightAnchor.constraint(equalToConstant: 400),
         ])
     }

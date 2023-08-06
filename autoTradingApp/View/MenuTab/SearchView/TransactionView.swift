@@ -85,11 +85,11 @@ class TransactionView: UIView {
         return imgView
     }()
 
-    private let transactionButton: UIButton = {
+    let transactionButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.backgroundColor = .blue
-        btn.setTitle("매도", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 10
         btn.layer.masksToBounds = true
 

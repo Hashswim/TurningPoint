@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MyPageViewController: UIViewController {
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -153,5 +153,19 @@ extension MyPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataSource[indexPath.row].isExpanded.toggle()
         tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+}
+
+extension MyPageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        picker.dismiss(animated: true) {
+            if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                self.profileButton.setBackgroundImage(img, for: .normal)
+
+            } else {
+                print("image nil")
+            }
+        }
     }
 }
