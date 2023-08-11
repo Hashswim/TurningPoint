@@ -44,6 +44,8 @@
 		11B064E42A67D3320016AB68 /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064E32A67D3320016AB68 /* CustomStepper.swift */; };
 		11B064E62A67D4370016AB68 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064E52A67D4370016AB68 /* TransactionView.swift */; };
 		11B1ECF62A7E7CD2000E7D2B /* mainTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1ECF52A7E7CD2000E7D2B /* mainTabSegmentedControl.swift */; };
+		11B1ED002A8487AF000E7D2B /* autoTradingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1ECFF2A8487AF000E7D2B /* autoTradingAppTests.swift */; };
+		11B1ED072A8489D7000E7D2B /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1ED062A8489D7000E7D2B /* AccessToken.swift */; };
 		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
 		11CCC42C2A442AA300D67B47 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CCC42B2A442AA300D67B47 /* DropDownView.swift */; };
 		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
@@ -67,6 +69,16 @@
 		11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */; };
 		99086D522A0A329200FAA427 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99086D512A0A329200FAA427 /* temp.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		11B1ED012A8487AF000E7D2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11080A9D2982A97B00B73F5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11080AA42982A97B00B73F5F;
+			remoteInfo = autoTradingApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0620A098C3A1A54533A5F886 /* Pods-autoTradingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.debug.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +121,9 @@
 		11B064E32A67D3320016AB68 /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
 		11B064E52A67D4370016AB68 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		11B1ECF52A7E7CD2000E7D2B /* mainTabSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTabSegmentedControl.swift; sourceTree = "<group>"; };
+		11B1ECFD2A8487AF000E7D2B /* autoTradingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = autoTradingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		11B1ECFF2A8487AF000E7D2B /* autoTradingAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = autoTradingAppTests.swift; sourceTree = "<group>"; };
+		11B1ED062A8489D7000E7D2B /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		11CCC42B2A442AA300D67B47 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewTableCell.swift; sourceTree = "<group>"; };
 		11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = predictedAlgorithm.swift; sourceTree = "<group>"; };
@@ -143,6 +158,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		11B1ECFA2A8487AF000E7D2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -150,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				11080AA72982A97B00B73F5F /* autoTradingApp */,
+				11B1ECFE2A8487AF000E7D2B /* autoTradingAppTests */,
 				11080AA62982A97B00B73F5F /* Products */,
 				BC3ACC3A6B2F655290CA7349 /* Pods */,
 				9031988C34B0E63E9A8D5AA4 /* Frameworks */,
@@ -160,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				11080AA52982A97B00B73F5F /* autoTradingApp.app */,
+				11B1ECFD2A8487AF000E7D2B /* autoTradingAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -244,6 +268,7 @@
 				115DF51029EE805B00E9DFE9 /* RequestType.swift */,
 				115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */,
 				11B064DD2A6563120016AB68 /* CellDataModel.swift */,
+				11B1ED062A8489D7000E7D2B /* AccessToken.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -300,6 +325,14 @@
 				11B064DB2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		11B1ECFE2A8487AF000E7D2B /* autoTradingAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				11B1ECFF2A8487AF000E7D2B /* autoTradingAppTests.swift */,
+			);
+			path = autoTradingAppTests;
 			sourceTree = "<group>";
 		};
 		11E10E792A1BA135007F3E10 /* Search */ = {
@@ -453,6 +486,24 @@
 			productReference = 11080AA52982A97B00B73F5F /* autoTradingApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		11B1ECFC2A8487AF000E7D2B /* autoTradingAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11B1ED032A8487AF000E7D2B /* Build configuration list for PBXNativeTarget "autoTradingAppTests" */;
+			buildPhases = (
+				11B1ECF92A8487AF000E7D2B /* Sources */,
+				11B1ECFA2A8487AF000E7D2B /* Frameworks */,
+				11B1ECFB2A8487AF000E7D2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11B1ED022A8487AF000E7D2B /* PBXTargetDependency */,
+			);
+			name = autoTradingAppTests;
+			productName = autoTradingAppTests;
+			productReference = 11B1ECFD2A8487AF000E7D2B /* autoTradingAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -460,11 +511,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					11080AA42982A97B00B73F5F = {
 						CreatedOnToolsVersion = 13.2;
+					};
+					11B1ECFC2A8487AF000E7D2B = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 11080AA42982A97B00B73F5F;
 					};
 				};
 			};
@@ -482,6 +537,7 @@
 			projectRoot = "";
 			targets = (
 				11080AA42982A97B00B73F5F /* autoTradingApp */,
+				11B1ECFC2A8487AF000E7D2B /* autoTradingAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -496,6 +552,13 @@
 				11E10E8B2A407C12007F3E10 /* NotoSansKR-Medium.otf in Resources */,
 				115D1E2329C461C400E98541 /* NotoSansKR-Regular.otf in Resources */,
 				11080AB22982A97C00B73F5F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11B1ECFB2A8487AF000E7D2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +658,7 @@
 				11E10E832A1F407B007F3E10 /* StockInfoView.swift in Sources */,
 				11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */,
 				116416142A519DD4008FA981 /* SearchViewCustomCell.swift in Sources */,
+				11B1ED072A8489D7000E7D2B /* AccessToken.swift in Sources */,
 				99086D522A0A329200FAA427 /* temp.swift in Sources */,
 				11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */,
 				11E7F96829B3578600C29B83 /* ChartViewController.swift in Sources */,
@@ -604,7 +668,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		11B1ECF92A8487AF000E7D2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11B1ED002A8487AF000E7D2B /* autoTradingAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11B1ED022A8487AF000E7D2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11080AA42982A97B00B73F5F /* autoTradingApp */;
+			targetProxy = 11B1ED012A8487AF000E7D2B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		11080AB32982A97C00B73F5F /* LaunchScreen.storyboard */ = {
@@ -800,6 +880,50 @@
 			};
 			name = Release;
 		};
+		11B1ED042A8487AF000E7D2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hashswim.autoTradingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/autoTradingApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/autoTradingApp";
+			};
+			name = Debug;
+		};
+		11B1ED052A8487AF000E7D2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hashswim.autoTradingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/autoTradingApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/autoTradingApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -817,6 +941,15 @@
 			buildConfigurations = (
 				11080ABA2982A97C00B73F5F /* Debug */,
 				11080ABB2982A97C00B73F5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11B1ED032A8487AF000E7D2B /* Build configuration list for PBXNativeTarget "autoTradingAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11B1ED042A8487AF000E7D2B /* Debug */,
+				11B1ED052A8487AF000E7D2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -9,6 +9,8 @@ target 'autoTradingApp' do
   pod 'Charts'
   pod 'TinyConstraints'
   pod 'DropDown'
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
 
   # Pods for autoTradingApp
 

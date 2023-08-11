@@ -5,21 +5,20 @@
 //  Created by 서수영 on 2023/04/14.
 
 import UIKit
-
+import Alamofire
+import SwiftyJSON
+/**
+ appkey : PSJ0KpfWqiqTpH2Cfl55P3WUi2XebQHaTgNk
+ secretkey : 3AUJmhIQSviVPmBU0qKvTbNSKCbYKX4L
+ **/
 struct NetworkManager {
     typealias StatusCode = Int
     let jsonParser = JSONParser()
-    let cache: URLCache = {
-        let cache = URLCache.shared
-        cache.memoryCapacity = 0
-        cache.diskCapacity = 0
-        return cache
-    }()
 
     private func generateURL(type: RequestType) -> URL? {
         var components = URLComponents()
         components.scheme = "https"
-        //        components.host = "openmarket.yagom-academy.kr"
+        components.host = "openapi.ebestsec.co.kr:8080"
 
         switch type {
 
@@ -28,8 +27,20 @@ struct NetworkManager {
             components.path = "/test-stage/at-api-test"
 
             return components.url?.absoluteURL
+
+        case .getAccessToken(let appkey, let secretKey):
+            components.path = "/oauth2/token"
+            components.queryItems = [
+                URLQueryItem(name: "grant_type", value: "client_credentials"),
+                URLQueryItem(name:  "appkey", value: "\(appkey)"),
+                URLQueryItem(name: "appsecretkey", value: "\(secretKey)"),
+                URLQueryItem(name:  "scope", value: "oob"),
+            ]
+
+            return components.url?.absoluteURL
         }
     }
+
 
     private func isSuccessResponse(response: URLResponse?, error: Error?) -> Bool {
         let successRange = 200..<300
@@ -68,5 +79,47 @@ extension NetworkManager {
         }
 
         dataTask.resume()
+    }
+}
+
+
+    // MARK: - POST Method
+extension NetworkManager {
+    func getAccessToken() {
+
+        let url = "https://openapi.ebestsec.co.kr:8080/oauth2/token"
+
+        // Header : 메타정보
+        // Body : 실질적인 데이터
+        let parameter: Parameters = ["appkey":"PSJ0KpfWqiqTpH2Cfl55P3WUi2XebQHaTgNk",                       "secretkey":"3AUJmhIQSviVPmBU0qKvTbNSKCbYKX4L",
+             "grant_type": "client_credentials",
+             "scope": "oob"]
+
+        let header: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+
+        AF.request(url,
+                    method: .post,
+                    parameters: parameter,
+                    headers: header).validate(statusCode: 200..<600).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                // 상태코드 - 값이 없으면 500
+                let statusCode = response.response?.statusCode ?? 500
+
+                if statusCode == 200 {
+//                    self.userInputTextView.text = json["message"]["result"]["translatedText"].stringValue
+                    print("----------------------------")
+
+                    print(json)
+                } else {
+//                    self.userInputTextView.text = json["errorMessage"].stringValue
+                    print("error")
+                }
+
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

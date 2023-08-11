@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.7.1)
   - Charts (4.1.0):
     - Charts/Core (= 4.1.0)
   - Charts/Core (4.1.0):
@@ -6,29 +7,36 @@ PODS:
   - DropDown (2.3.13)
   - LightweightCharts (3.8.0)
   - SwiftAlgorithms (1.0.0)
+  - SwiftyJSON (5.0.1)
   - TinyConstraints (4.0.2)
 
 DEPENDENCIES:
+  - Alamofire
   - Charts
   - DropDown
   - LightweightCharts (~> 3.8.0)
+  - SwiftyJSON
   - TinyConstraints
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Charts
     - DropDown
     - LightweightCharts
     - SwiftAlgorithms
+    - SwiftyJSON
     - TinyConstraints
 
 SPEC CHECKSUMS:
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   Charts: 354f86803d11d9c35de280587fef50d1af063978
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   LightweightCharts: bf203521ec7fce9fab873ff4cefb4d80950d7641
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
 
-PODFILE CHECKSUM: e2c11c95c6d451814de8b64a1cb4f2350f10a44d
+PODFILE CHECKSUM: e3287dd349a991400f84f549d0273dda83673425
 
 COCOAPODS: 1.11.3

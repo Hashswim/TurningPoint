@@ -28,6 +28,10 @@ class LoginViewController: UIViewController {
         configureLayout()
         configureTextField()
         configureLoginButton()
+
+        let network = NetworkManager()
+        network.getAccessToken()
+        
     }
 
     func configureLayout() {
