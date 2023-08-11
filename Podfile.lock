@@ -11,7 +11,7 @@ PODS:
   - TinyConstraints (4.0.2)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 5.0)
   - Charts
   - DropDown
   - LightweightCharts (~> 3.8.0)
@@ -37,6 +37,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
 
-PODFILE CHECKSUM: e3287dd349a991400f84f549d0273dda83673425
+PODFILE CHECKSUM: d4e59aece6da41b044962bb2b66be865ec2d88aa
 
 COCOAPODS: 1.11.3

@@ -9,7 +9,7 @@ target 'autoTradingApp' do
   pod 'Charts'
   pod 'TinyConstraints'
   pod 'DropDown'
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 5.0'
   pod 'SwiftyJSON'
 
   # Pods for autoTradingApp

@@ -8,8 +8,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 /**
- appkey : PSJ0KpfWqiqTpH2Cfl55P3WUi2XebQHaTgNk
- secretkey : 3AUJmhIQSviVPmBU0qKvTbNSKCbYKX4L
+ appkey : PSDOHWlJurdHdb9xfIq8K8WyJwpW735MGnLb
+ secretkey : 9x8MoEJlkpbG6RunMhXU1RTeCQgV9ra2
  **/
 struct NetworkManager {
     typealias StatusCode = Int
@@ -86,12 +86,11 @@ extension NetworkManager {
     // MARK: - POST Method
 extension NetworkManager {
     func getAccessToken() {
-
         let url = "https://openapi.ebestsec.co.kr:8080/oauth2/token"
 
         // Header : 메타정보
         // Body : 실질적인 데이터
-        let parameter: Parameters = ["appkey":"PSJ0KpfWqiqTpH2Cfl55P3WUi2XebQHaTgNk",                       "secretkey":"3AUJmhIQSviVPmBU0qKvTbNSKCbYKX4L",
+        let parameter: Parameters = ["appkey":"PSDOHWlJurdHdb9xfIq8K8WyJwpW735MGnLb",                               "appsecretkey":"9x8MoEJlkpbG6RunMhXU1RTeCQgV9ra2",
              "grant_type": "client_credentials",
              "scope": "oob"]
 
@@ -108,15 +107,10 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
-//                    self.userInputTextView.text = json["message"]["result"]["translatedText"].stringValue
-                    print("----------------------------")
-
-                    print(json)
+                    print(json["access_token"])
                 } else {
-//                    self.userInputTextView.text = json["errorMessage"].stringValue
                     print("error")
                 }
-
             case .failure(let error):
                 print(error)
             }
