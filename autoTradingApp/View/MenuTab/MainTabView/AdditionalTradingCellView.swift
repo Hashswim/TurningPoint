@@ -105,9 +105,9 @@ class AdditionalTradingCellView: UIView {
         containerStackView.layer.masksToBounds = true
         containerStackView.layer.cornerRadius = 8
 
-        earningPirceStackView.spacing = 8
-        earningRateStackView.spacing = 8
-        ownedCountStackView.spacing = 8
+        earningPirceStackView.spacing = 6
+        earningRateStackView.spacing = 6
+        ownedCountStackView.spacing = 6
 
         earningPirceStackView.alignment = .leading
         earningRateStackView.alignment = .leading
@@ -153,6 +153,7 @@ class AdditionalTradingCellView: UIView {
             earningPirceTitleLabel.heightAnchor.constraint(equalToConstant: 15),
             earningPirceTitleLabel.topAnchor.constraint(equalTo: earningPirceStackView.topAnchor),
             earningPirceLabel.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -24),
+            earningPirceLabel.heightAnchor.constraint(equalToConstant: 18),
 
             earningRateStackView.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 16),
             earningRateStackView.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -16),

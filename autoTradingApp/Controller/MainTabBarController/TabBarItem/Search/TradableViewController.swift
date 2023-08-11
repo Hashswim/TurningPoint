@@ -239,8 +239,8 @@ class TradableViewController: UIViewController {
             segmentedControl.heightAnchor.constraint(equalToConstant: 60),
 
             chartView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
-            chartView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            chartView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            chartView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            chartView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             chartView.heightAnchor.constraint(equalToConstant: 400),
 
             transactionBuyView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),

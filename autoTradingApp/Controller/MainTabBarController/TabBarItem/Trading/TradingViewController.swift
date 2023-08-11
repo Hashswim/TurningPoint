@@ -146,7 +146,7 @@ extension TradingViewController {
 }
 
 extension TradingViewController {
-    private func createLayout() -> UICollectionViewLayout  {
+    private func createLayout() -> UICollectionViewLayout {
         // Sticky column
         let stickyHeaderSize = NSCollectionLayoutSize(
             widthDimension: .absolute(89 * 50),

@@ -34,7 +34,7 @@ class ChartView2: UIView {
 
     private func setupChart() {
         let options = ChartOptions(
-            layout: LayoutOptions(backgroundColor: "#000000", textColor: "rgba(255, 255, 255, 0.9)"),
+            layout: LayoutOptions(backgroundColor: "#FFFFFF", textColor: "rgba(0, 0, 0, 0.9)"),
             rightPriceScale: VisiblePriceScaleOptions(borderColor: "rgba(197, 203, 206, 0.8)"),
             timeScale: TimeScaleOptions(borderColor: "rgba(197, 203, 206, 0.8)"),
             crosshair: CrosshairOptions(mode: .normal),
