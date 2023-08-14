@@ -11,8 +11,8 @@ class SearchViewController: UIViewController {
 
     private let tableView = UITableView()
 
-    var arr = ["Zedd", "Alan Walker", "David Guetta", "Avicii", "Marshmello", "Steve Aoki", "R3HAB", "Armin van Buuren", "Skrillex", "Illenium", "The Chainsmokers", "Don Diablo", "Afrojack", "Tiesto", "KSHMR", "DJ Snake", "Kygo", "Galantis", "Major Lazer", "Vicetone"
-    ]
+    var nameArr = [""]
+    var codeArr = [""]
 
     var filteredArr: [String] = []
 
@@ -27,8 +27,11 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         setUpSearchBar()
-        setUpTableView()
         configureUI()
+        setUpTableView()
+
+        let networkManager = NetworkManager()
+        networkManager.getTopTradingVolume(completion: configureStockList)
         configureLayout()
     }
 
@@ -78,11 +81,18 @@ class SearchViewController: UIViewController {
         ])
     }
 
+    func configureStockList(nameList: [String], codeList: [String]) -> () {
+        nameArr = nameList
+        codeArr = codeList
+
+        self.tableView.reloadData()
+    }
+
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.isFiltering ? self.filteredArr.count : self.arr.count
+        return self.isFiltering ? self.filteredArr.count : self.nameArr.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,7 +101,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         if self.isFiltering {
             cell.stockLabel.attributedText = NSMutableAttributedString().medium(string: self.filteredArr[indexPath.row], fontSize: 15)
         } else {
-            cell.stockLabel.attributedText = NSMutableAttributedString().medium(string: self.arr[indexPath.row], fontSize: 15)
+            cell.stockLabel.attributedText = NSMutableAttributedString().medium(string: self.nameArr[indexPath.row], fontSize: 15)
         }
 
         cell.selectionStyle = .none
@@ -107,10 +117,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        self.filteredArr = self.arr.filter { $0.localizedCaseInsensitiveContains(text) }
+        self.filteredArr = self.nameArr.filter { $0.localizedCaseInsensitiveContains(text) }
 
         self.tableView.reloadData()
     }
-
 }
 

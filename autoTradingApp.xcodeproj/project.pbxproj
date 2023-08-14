@@ -45,7 +45,7 @@
 		11B064E62A67D4370016AB68 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064E52A67D4370016AB68 /* TransactionView.swift */; };
 		11B1ECF62A7E7CD2000E7D2B /* mainTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1ECF52A7E7CD2000E7D2B /* mainTabSegmentedControl.swift */; };
 		11B1ED002A8487AF000E7D2B /* autoTradingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1ECFF2A8487AF000E7D2B /* autoTradingAppTests.swift */; };
-		11B1ED072A8489D7000E7D2B /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1ED062A8489D7000E7D2B /* AccessToken.swift */; };
+		11B1ED072A8489D7000E7D2B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1ED062A8489D7000E7D2B /* UserInfo.swift */; };
 		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
 		11CCC42C2A442AA300D67B47 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CCC42B2A442AA300D67B47 /* DropDownView.swift */; };
 		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
@@ -124,7 +124,7 @@
 		11B1ECF52A7E7CD2000E7D2B /* mainTabSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTabSegmentedControl.swift; sourceTree = "<group>"; };
 		11B1ECFD2A8487AF000E7D2B /* autoTradingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = autoTradingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11B1ECFF2A8487AF000E7D2B /* autoTradingAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = autoTradingAppTests.swift; sourceTree = "<group>"; };
-		11B1ED062A8489D7000E7D2B /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		11B1ED062A8489D7000E7D2B /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		11CCC42B2A442AA300D67B47 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewTableCell.swift; sourceTree = "<group>"; };
 		11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = predictedAlgorithm.swift; sourceTree = "<group>"; };
@@ -270,7 +270,7 @@
 				115DF51029EE805B00E9DFE9 /* RequestType.swift */,
 				115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */,
 				11B064DD2A6563120016AB68 /* CellDataModel.swift */,
-				11B1ED062A8489D7000E7D2B /* AccessToken.swift */,
+				11B1ED062A8489D7000E7D2B /* UserInfo.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -660,7 +660,7 @@
 				11E10E832A1F407B007F3E10 /* StockInfoView.swift in Sources */,
 				11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */,
 				116416142A519DD4008FA981 /* SearchViewCustomCell.swift in Sources */,
-				11B1ED072A8489D7000E7D2B /* AccessToken.swift in Sources */,
+				11B1ED072A8489D7000E7D2B /* UserInfo.swift in Sources */,
 				99086D522A0A329200FAA427 /* temp.swift in Sources */,
 				11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */,
 				11E7F96829B3578600C29B83 /* ChartViewController.swift in Sources */,

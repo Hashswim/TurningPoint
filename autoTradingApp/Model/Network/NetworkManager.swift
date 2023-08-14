@@ -13,6 +13,7 @@ import SwiftyJSON
  **/
 struct NetworkManager {
     typealias StatusCode = Int
+    //    lazy var accessToken = String()
     let jsonParser = JSONParser()
 
     private func generateURL(type: RequestType) -> URL? {
@@ -83,7 +84,7 @@ extension NetworkManager {
 }
 
 
-    // MARK: - POST Method
+// MARK: - POST Method
 extension NetworkManager {
     func getAccessToken() {
         let url = "https://openapi.ebestsec.co.kr:8080/oauth2/token"
@@ -91,15 +92,15 @@ extension NetworkManager {
         // Header : 메타정보
         // Body : 실질적인 데이터
         let parameter: Parameters = ["appkey":"PSDOHWlJurdHdb9xfIq8K8WyJwpW735MGnLb",                               "appsecretkey":"9x8MoEJlkpbG6RunMhXU1RTeCQgV9ra2",
-             "grant_type": "client_credentials",
-             "scope": "oob"]
+                                     "grant_type": "client_credentials",
+                                     "scope": "oob"]
 
         let header: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
 
         AF.request(url,
-                    method: .post,
-                    parameters: parameter,
-                    headers: header).validate(statusCode: 200..<600).responseJSON { response in
+                   method: .post,
+                   parameters: parameter,
+                   headers: header).validate(statusCode: 200..<600).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -107,6 +108,7 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
+                    UserInfo.shared.accessToken = json["access_token"].string
                     print(json["access_token"])
                 } else {
                     print("error")
@@ -116,4 +118,94 @@ extension NetworkManager {
             }
         }
     }
+
+    func getTopTradingVolume(completion: @escaping ([String], [String]) -> () ){
+        let url = "https://openapi.ebestsec.co.kr:8080/stock/high-item"
+
+        var TopTradingVolumeStockList = [(String, Double)]()
+
+        // Header : 메타정보
+        let header: HTTPHeaders = [
+            "Content-Type":"application/json;charset=utf-8",
+            "authorization": "Bearer \(UserInfo.shared.accessToken!)",
+            "tr_cd": "t1452",
+            "tr_cont":"N",
+            "tr_cont_key":""
+        ]
+
+
+        // Body : 실질적인 데이터
+        let parameter: Parameters = [
+            "t1452InBlock":
+                [ "gubun" : "1",
+                  "jnilgubun" : "1",
+                  "sdiff" : 0,
+                  "ediff" : 0,
+                  "jc_num" : 0,
+                  "sprice" : 0,
+                  "eprice" : 0,
+                  "volume" : 0,
+                  "idx" : 0
+                ]
+        ]
+
+        AF.request(url,
+                   method: .post,
+                   parameters: parameter,
+                   encoding: JSONEncoding.default,
+                   headers: header).validate(statusCode: 200..<600).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                // 상태코드 - 값이 없으면 500
+                let statusCode = response.response?.statusCode ?? 500
+
+                if statusCode == 200 {
+                    let nameArr: [String] = (json["t1452OutBlock1"].array?.compactMap { $0["hname"].string })!
+                    let codeArr: [String] = (json["t1452OutBlock1"].array?.compactMap { $0["shcode"].string })!
+
+                    completion(nameArr, codeArr)
+                    print(nameArr, codeArr)
+                } else {
+                    print("error")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    //    func getNowPrice() {
+    //        let url = "https://openapi.ebestsec.co.kr:8080/stock/market-data"
+    //
+    //        // Header : 메타정보
+    //        // Body : 실질적인 데이터
+    //        let parameter: Parameters = ["appkey":"PSDOHWlJurdHdb9xfIq8K8WyJwpW735MGnLb",
+    //                                     "appsecretkey":"9x8MoEJlkpbG6RunMhXU1RTeCQgV9ra2",
+    //                                     "grant_type": "client_credentials",
+    //                                     "scope": "oob"]
+    //
+    //        let header: HTTPHeaders = ["Content-Type":"application/json;charset=utf-8"]
+    //
+    //        AF.request(url,
+    //                    method: .post,
+    //                    parameters: parameter,
+    //                    headers: header).validate(statusCode: 200..<600).responseJSON { response in
+    //            switch response.result {
+    //            case .success(let value):
+    //                let json = JSON(value)
+    //                // 상태코드 - 값이 없으면 500
+    //                let statusCode = response.response?.statusCode ?? 500
+    //
+    //                if statusCode == 200 {
+    ////                    accessToken = json["access_token"]
+    //                    print(json["access_token"])
+    //                } else {
+    //                    print("error")
+    //                }
+    //            case .failure(let error):
+    //                print(error)
+    //            }
+    //        }
+    //    }
 }
