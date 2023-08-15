@@ -15,6 +15,7 @@ private enum Section: Hashable {
 }
 
 class MainHomeTabController: UIViewController {
+    let networkManager = NetworkManager()
 
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -96,13 +97,33 @@ class MainHomeTabController: UIViewController {
 
 //        navigationItem.title = "main tab"
 
-        segmentedControl
-
-
+//        segmentedControl
         configureHierarchy()
         configureDataSource()
         setUpUI()
+
+        var idx = 0
+
+        Timer.scheduledTimer(withTimeInterval: 0.33, repeats: true) { [unowned self] timer in
+            self.networkManager.getNowPrice(code: Stock.shcodeList[idx], completion: getNowPrice)
+
+            if idx+1 == Stock.shcodeList.count {
+                timer.invalidate()
+            }
+            idx += 1
+        }
+
+
         testAPI()
+    }
+
+    func getNowPrice(name: String, code: String, price: Double, difference: Double) -> () {
+        print(name, price, difference)
+        Stock.all.append(Stock(imageURL: "08.circle", code: code, name: name, dataList: [1,2,3], price: price, priceDifference: difference))
+
+        var snapshot = dataSource.snapshot()
+        snapshot.appendItems(Stock.all)
+        self.dataSource?.apply(snapshot)
     }
 
     //DataStore 생성하면서 변경

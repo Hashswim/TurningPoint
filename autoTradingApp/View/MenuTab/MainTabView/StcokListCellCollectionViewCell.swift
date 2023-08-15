@@ -204,14 +204,21 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
 //        priceLabel.font = valueConfiguration.secondaryTextProperties.font
         //        priceLabel.adjustsFontForContentSizeCategory = valueConfiguration.secondaryTextProperties.adjustsFontForContentSizeCategory
 
-        numberFormatter.numberStyle = .percent
+//        numberFormatter.numberStyle = .percent
         if state.stock!.priceDifference! > 0 {
             priceDifferenceLabel.attributedText = NSMutableAttributedString()
                 .medium(string: "+", fontSize: 12)
-                .medium(string: numberFormatter.string(from: state.stock!.priceDifference! as NSNumber)!, fontSize: 12)
-        } else {
+                .medium(string: String(format: "%.2f", state.stock!.priceDifference!), fontSize: 12)
+                .medium(string: "%", fontSize: 12)
+        } else if state.stock!.priceDifference! == 0 {
             priceDifferenceLabel.attributedText = NSMutableAttributedString()
-                .medium(string: numberFormatter.string(from: state.stock!.priceDifference! as NSNumber)!, fontSize: 12)
+            .medium(string: "0", fontSize: 12)
+            .medium(string: "%", fontSize: 12)
+        }
+        else {
+            priceDifferenceLabel.attributedText = NSMutableAttributedString()
+                .medium(string: String(format: "%.2f", state.stock!.priceDifference!), fontSize: 12)
+                .medium(string: "%", fontSize: 12)
         }
 
 //        priceDifferenceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
@@ -220,7 +227,12 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         priceDifferenceLabel.layer.masksToBounds = true
         priceDifferenceLabel.textAlignment = .center
         priceDifferenceLabel.backgroundColor = state.stock!.priceDifference! > 0 ? MySpecialColors.lightRed2 : MySpecialColors.lightBlue2
-//        priceDifferenceLabel.font = valueConfiguration.secondaryTextProperties.font
+
+        if state.stock!.priceDifference! == 0 {
+            priceDifferenceLabel.backgroundColor = .darkGray
+            priceLabel.textColor = .white
+        }
+        //        priceDifferenceLabel.font = valueConfiguration.secondaryTextProperties.font
 
         // Update some of the constraints for our custom views using the system default metrics from the configurations.
         customViewConstraints?.scaledChartViewLeading.constant = content.directionalLayoutMargins.trailing

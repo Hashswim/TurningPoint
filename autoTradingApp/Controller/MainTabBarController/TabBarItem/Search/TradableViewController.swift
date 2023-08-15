@@ -10,6 +10,7 @@ import DropDown
 
 class TradableViewController: UIViewController {
 
+    var shcode: String? = nil
     let stock: Stock? = nil
 
     private let dropDownView = DropDownView()
@@ -183,7 +184,6 @@ class TradableViewController: UIViewController {
     func sellTradeTapped() {
 
     }
-    
 
     func setUpUI() {
         view.addSubview(dropDownView)

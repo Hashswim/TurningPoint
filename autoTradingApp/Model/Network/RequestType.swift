@@ -13,6 +13,4 @@ enum RequestType {
 //    case searchForDeleteURI(productNumber: Int)
 //    case deleteProduct(path: String)
     case stockAPITest
-    case getAccessToken(appkey: String, appsecretkey: String)
-
 }

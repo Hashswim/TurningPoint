@@ -29,16 +29,16 @@ struct NetworkManager {
 
             return components.url?.absoluteURL
 
-        case .getAccessToken(let appkey, let secretKey):
-            components.path = "/oauth2/token"
-            components.queryItems = [
-                URLQueryItem(name: "grant_type", value: "client_credentials"),
-                URLQueryItem(name:  "appkey", value: "\(appkey)"),
-                URLQueryItem(name: "appsecretkey", value: "\(secretKey)"),
-                URLQueryItem(name:  "scope", value: "oob"),
-            ]
-
-            return components.url?.absoluteURL
+            //        case .getAccessToken(let appkey, let secretKey):
+            //            components.path = "/oauth2/token"
+            //            components.queryItems = [
+            //                URLQueryItem(name: "grant_type", value: "client_credentials"),
+            //                URLQueryItem(name:  "appkey", value: "\(appkey)"),
+            //                URLQueryItem(name: "appsecretkey", value: "\(secretKey)"),
+            //                URLQueryItem(name:  "scope", value: "oob"),
+            //            ]
+            //
+            //            return components.url?.absoluteURL
         }
     }
 
@@ -122,8 +122,6 @@ extension NetworkManager {
     func getTopTradingVolume(completion: @escaping ([String], [String]) -> () ){
         let url = "https://openapi.ebestsec.co.kr:8080/stock/high-item"
 
-        var TopTradingVolumeStockList = [(String, Double)]()
-
         // Header : 메타정보
         let header: HTTPHeaders = [
             "Content-Type":"application/json;charset=utf-8",
@@ -165,7 +163,6 @@ extension NetworkManager {
                     let codeArr: [String] = (json["t1452OutBlock1"].array?.compactMap { $0["shcode"].string })!
 
                     completion(nameArr, codeArr)
-                    print(nameArr, codeArr)
                 } else {
                     print("error")
                 }
@@ -175,37 +172,47 @@ extension NetworkManager {
         }
     }
 
-    //    func getNowPrice() {
-    //        let url = "https://openapi.ebestsec.co.kr:8080/stock/market-data"
-    //
-    //        // Header : 메타정보
-    //        // Body : 실질적인 데이터
-    //        let parameter: Parameters = ["appkey":"PSDOHWlJurdHdb9xfIq8K8WyJwpW735MGnLb",
-    //                                     "appsecretkey":"9x8MoEJlkpbG6RunMhXU1RTeCQgV9ra2",
-    //                                     "grant_type": "client_credentials",
-    //                                     "scope": "oob"]
-    //
-    //        let header: HTTPHeaders = ["Content-Type":"application/json;charset=utf-8"]
-    //
-    //        AF.request(url,
-    //                    method: .post,
-    //                    parameters: parameter,
-    //                    headers: header).validate(statusCode: 200..<600).responseJSON { response in
-    //            switch response.result {
-    //            case .success(let value):
-    //                let json = JSON(value)
-    //                // 상태코드 - 값이 없으면 500
-    //                let statusCode = response.response?.statusCode ?? 500
-    //
-    //                if statusCode == 200 {
-    ////                    accessToken = json["access_token"]
-    //                    print(json["access_token"])
-    //                } else {
-    //                    print("error")
-    //                }
-    //            case .failure(let error):
-    //                print(error)
-    //            }
-    //        }
-    //    }
+    func getNowPrice(code: String, completion: @escaping (String, String, Double, Double) -> ()) {
+        let url = "https://openapi.ebestsec.co.kr:8080/stock/market-data"
+
+        // Header : 메타정보
+        // Body : 실질적인 데이터
+        let parameter: Parameters = [
+            "t1101InBlock": ["shcode": "\(code)"]
+        ]
+
+
+        let header: HTTPHeaders = [
+            "content-type":"application/json; charset=utf-8",
+            "authorization": "Bearer \(UserInfo.shared.accessToken!)",
+            "tr_cd":"t1101",
+            "tr_cont":"N",
+            "tr_cont_key":"",
+        ]
+
+        AF.request(url,
+                   method: .post,
+                   parameters: parameter,
+                   encoding: JSONEncoding.default,
+                   headers: header).validate(statusCode: 200..<500).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                // 상태코드 - 값이 없으면 500
+                let statusCode = response.response?.statusCode ?? 500
+
+                if statusCode == 200 {
+//                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
+                    completion("\(json["t1101OutBlock"]["hname"])",
+                               code,
+                               json["t1101OutBlock"]["price"].doubleValue,
+                               json["t1101OutBlock"]["diff"].doubleValue)
+                } else {
+                    print("error", "\(code)")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
