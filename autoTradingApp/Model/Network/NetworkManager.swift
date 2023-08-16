@@ -215,4 +215,59 @@ extension NetworkManager {
             }
         }
     }
+
+    func getScaledChart(code: String, completion: @escaping () -> ()) {
+        let url = "https://openapi.ebestsec.co.kr:8080/stock/chart"
+
+        // Header : 메타정보
+        // Body : 실질적인 데이터
+        let parameter: Parameters = [
+            "t8411InBlock": ["shcode": "\(code)",
+                             "ncnt" : 1,
+                             "qrycnt" : 200,
+                             "nday" : "0",
+                             "sdate" : "",
+                             "stime" : "",
+                             "edate" : "",
+                             "etime" : "",
+                             "cts_date" : "",
+                             "cts_time" : "",
+                             "comp_yn" : "N"
+                            ]
+        ]
+
+
+        let header: HTTPHeaders = [
+            "content-type":"application/json; charset=utf-8",
+            "authorization": "Bearer \(UserInfo.shared.accessToken!)",
+            "tr_cd":"t8411",
+            "tr_cont":"N",
+            "tr_cont_key":"",
+        ]
+
+        
+
+        AF.request(url,
+                   method: .post,
+                   parameters: parameter,
+                   encoding: JSONEncoding.default,
+                   headers: header).validate(statusCode: 200..<500).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                // 상태코드 - 값이 없으면 500
+                let statusCode = response.response?.statusCode ?? 500
+
+                if statusCode == 200 {
+//                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
+                    print(json)
+                    completion()
+                } else {
+                    print("error", "\(code)")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

@@ -112,6 +112,7 @@ class MainHomeTabController: UIViewController {
             }
             idx += 1
         }
+        self.networkManager.getScaledChart(code: "005930", completion: {})
 
 
         testAPI()
