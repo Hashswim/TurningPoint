@@ -270,4 +270,74 @@ extension NetworkManager {
             }
         }
     }
+
+    func postOrder(code: String, count: Int, price: Double, trType: Int,  completion: @escaping () -> ()) {
+        let url = "https://openapi.ebestsec.co.kr:8080/stock/chart"
+
+        // Header : 메타정보
+        // Body : 실질적인 데이터
+
+        //trType - 1:매도, 2: 매수
+        let parameter: Parameters = [
+            "CSPAT00601InBlock1": ["RecCnt": 1,
+                                   "IsuNo": "\(code)",
+                                   "OrdQty": count,
+                                   "OrdPrc": price,
+                                   "BnsTpCode": "\(trType)",
+                                   "OrdprcPtnCode": "00",
+                                   "PrgmOrdprcPtnCode": "00",
+                                   "StslAbleYn": "0",
+                                   "StslOrdprcTpCode": "0",
+                                   "CommdaCode": "41",
+                                   "MgntrnCode": "000",
+                                   "LoanDt": "",
+                                   "MbrNo": "000",
+                                   "OrdCndiTpCode": "0",
+                                   "StrtgCode": " ",
+                                   "GrpId": " ",
+                                   "OrdSeqNo": 0,
+                                   "PtflNo": 0,
+                                   "BskNo": 0,
+                                   "TrchNo": 0,
+                                   "ItemNo": 0,
+                                   "OpDrtnNo": "0",
+                                   "LpYn": "0",
+                                   "CvrgTpCode": "0"
+                            ]
+        ]
+
+
+        let header: HTTPHeaders = [
+            "content-type":"application/json; charset=utf-8",
+            "authorization": "Bearer \(UserInfo.shared.accessToken!)",
+            "tr_cd":"CSPAT00601",
+            "tr_cont":"N",
+            "tr_cont_key":"",
+        ]
+
+
+
+        AF.request(url,
+                   method: .post,
+                   parameters: parameter,
+                   encoding: JSONEncoding.default,
+                   headers: header).validate(statusCode: 200..<500).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                // 상태코드 - 값이 없으면 500
+                let statusCode = response.response?.statusCode ?? 500
+
+                if statusCode == 200 {
+//                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
+                    print(json)
+                    completion()
+                } else {
+                    print("error", "\(code)")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
