@@ -127,11 +127,27 @@ class MainHomeTabController: UIViewController {
     }
 
     //DataStore 생성하면서 변경
-    private func toggleIsFavorite(_ stock: Stock) -> Bool {
-        var stockToUpdate = stock
-        stockToUpdate.isFavorite?.toggle()
-//        return dataStore.update(recipeToUpdate) != nil
-        return true
+    private func toggleIsFavorite(_ stock: Stock, _ indexPath: IndexPath) -> Bool {
+        stock.isFavorite?.toggle()
+
+        if stock.isFavorite == true {
+            Stock.favorite.append(stock)
+        } else {
+            Stock.favorite.remove(at: indexPath.row)
+        }
+
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()
+        snapshot.appendSections([.main])
+
+        if self.segmentedControl.selectedSegmentIndex == 0 {
+            snapshot.appendItems(Stock.all)
+        } else {
+            snapshot.appendItems(Stock.favorite)
+        }
+
+        self.dataSource?.apply(snapshot)
+
+        return stock.isFavorite!
     }
 
     private func testAPI() {
@@ -173,15 +189,15 @@ extension MainHomeTabController {
         else { return nil }
 
         let configuration = UISwipeActionsConfiguration(actions: [
-            detailContextualAction(stock: stock),
-            favoriteContextualAction(stock: stock)
+            detailContextualAction(stock: stock, indexPath: indexPath),
+            favoriteContextualAction(stock: stock, indexPath: indexPath)
         ])
         configuration.performsFirstActionWithFullSwipe = false
         
         return configuration
     }
 
-    private func detailContextualAction(stock: Stock) -> UIContextualAction {
+    private func detailContextualAction(stock: Stock, indexPath: IndexPath) -> UIContextualAction {
         let detailAction = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
             guard let self = self else { return }
 
@@ -197,14 +213,13 @@ extension MainHomeTabController {
     }
 
     // inout keyword 제거 후 stocks 저장하는 객체에 접근 필요
-    private func favoriteContextualAction(stock: Stock) -> UIContextualAction {
+    private func favoriteContextualAction(stock: Stock, indexPath: IndexPath) -> UIContextualAction {
 //        let title = stock.isFavorite! ? "Remove from Favorites" : "Add to Favorites"
         let action = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
             guard let self = self else { return }
-            completionHandler(self.toggleIsFavorite(stock))
+            completionHandler(self.toggleIsFavorite(stock, indexPath))
         }
-        let name = stock.isFavorite! ? "heart" : "heart.fill"
-        print(name)
+        let name = stock.isFavorite! ?  "heart.fill" : "heart"
         action.image = UIImage(systemName: name)
         action.backgroundColor = MySpecialColors.bgColor
         return action
