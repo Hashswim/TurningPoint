@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Stock: Codable, Hashable {
+class Stock: Hashable {
     static func == (lhs: Stock, rhs: Stock) -> Bool {
         lhs === rhs
     }
@@ -17,7 +17,7 @@ class Stock: Codable, Hashable {
         hasher.combine(code)
     }
 
-    var imageURL: String?
+    var logo: UIImage?
     var code: String?
     var name: String?
     var dataList: [Double]?
@@ -28,9 +28,9 @@ class Stock: Codable, Hashable {
 
 //    private let identifier = UUID()
 
-    init(imageURL: String? = nil, code: String? = nil, name: String? = nil, dataList: [Double]? = nil,
+    init(logo: UIImage? = nil, code: String? = nil, name: String? = nil, dataList: [Double]? = nil,
          price: Double? = nil, priceDifference: Double? = nil, isFavorite: Bool? = false, isTrading: Bool? = false) {
-        self.imageURL = imageURL
+        self.logo = logo
         self.code = code
         self.name = name
         self.dataList = dataList
@@ -41,7 +41,7 @@ class Stock: Codable, Hashable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case imageURL
+        case logo
         case code
         case name
         case dataList
@@ -81,9 +81,5 @@ class Stock: Codable, Hashable {
 
     static var favorite: [Stock] = []
 
-    static let traiding = [
-        Stock(imageURL: "08.circle", code: "005930", name: "삼성전자", dataList: [1,2,3], price: 111, priceDifference: 0.13),
-        Stock(imageURL: "08.circle", code: "035420", name: "NAVER", dataList: [1,2,3], price: 123, priceDifference: 0.12),
-        Stock(imageURL: "08.circle", code: "000270", name: "기아", dataList: [1,2,3], price: 123, priceDifference: 0.12),
-    ]
+    static let traiding: [Stock] = []
 }

@@ -202,7 +202,7 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
-//                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
+                    //                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
                     completion("\(json["t1101OutBlock"]["hname"])",
                                code,
                                json["t1101OutBlock"]["price"].doubleValue,
@@ -216,7 +216,7 @@ extension NetworkManager {
         }
     }
 
-    func getDateChart(code: String, completion: @escaping ([Double]) -> ()) {
+    func getDateChart(code: String, completion: @escaping (String, [Double]) -> ()) {
         let url = "https://openapi.ebestsec.co.kr:8080/stock/chart"
 
         // Header : 메타정보
@@ -259,7 +259,7 @@ extension NetworkManager {
                     print(json)
                     let chartData: [Double] = (json["t8410OutBlock1"].array?.compactMap { $0["close"].doubleValue })!
                     print(chartData)
-                    completion(chartData)
+                    completion(code, chartData)
                 } else {
                     print("error", "\(code)")
                 }
@@ -269,60 +269,60 @@ extension NetworkManager {
         }
     }
 
-//    func getScaledChart(code: String, completion: @escaping () -> ()) {
-//        let url = "https://openapi.ebestsec.co.kr:8080/stock/chart"
-//
-//        // Header : 메타정보
-//        // Body : 실질적인 데이터
-//        let parameter: Parameters = [
-//            "t8412InBlock": ["shcode": "\(code)",
-//                             "ncnt" : 10,
-//                             "qrycnt" : 100,
-//                             "nday" : "1",
-//                             "sdate" : "20230817",
-//                             "stime" : "0",
-//                             "edate" : "20230818",
-//                             "etime" : "10",
-//                             "cts_date" : " ",
-//                             "cts_time" : " ",
-//                             "comp_yn" : "1"
-//                            ]
-//        ]
-//
-//
-//        let header: HTTPHeaders = [
-//            "content-type":"application/json; charset=utf-8",
-//            "authorization": "Bearer \(UserInfo.shared.accessToken!)",
-//            "tr_cd":"t8412",
-//            "tr_cont":"N",
-//            "tr_cont_key":"",
-//        ]
-//
-//
-//
-//        AF.request(url,
-//                   method: .post,
-//                   parameters: parameter,
-//                   encoding: JSONEncoding.default,
-//                   headers: header).validate(statusCode: 200..<500).responseJSON { response in
-//            switch response.result {
-//            case .success(let value):
-//                let json = JSON(value)
-//                // 상태코드 - 값이 없으면 500
-//                let statusCode = response.response?.statusCode ?? 500
-//
-//                if statusCode == 200 {
-////                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
-//                    print(json)
-//                    completion()
-//                } else {
-//                    print("error", "\(code)")
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
+    //    func getScaledChart(code: String, completion: @escaping () -> ()) {
+    //        let url = "https://openapi.ebestsec.co.kr:8080/stock/chart"
+    //
+    //        // Header : 메타정보
+    //        // Body : 실질적인 데이터
+    //        let parameter: Parameters = [
+    //            "t8412InBlock": ["shcode": "\(code)",
+    //                             "ncnt" : 10,
+    //                             "qrycnt" : 100,
+    //                             "nday" : "1",
+    //                             "sdate" : "20230817",
+    //                             "stime" : "0",
+    //                             "edate" : "20230818",
+    //                             "etime" : "10",
+    //                             "cts_date" : " ",
+    //                             "cts_time" : " ",
+    //                             "comp_yn" : "1"
+    //                            ]
+    //        ]
+    //
+    //
+    //        let header: HTTPHeaders = [
+    //            "content-type":"application/json; charset=utf-8",
+    //            "authorization": "Bearer \(UserInfo.shared.accessToken!)",
+    //            "tr_cd":"t8412",
+    //            "tr_cont":"N",
+    //            "tr_cont_key":"",
+    //        ]
+    //
+    //
+    //
+    //        AF.request(url,
+    //                   method: .post,
+    //                   parameters: parameter,
+    //                   encoding: JSONEncoding.default,
+    //                   headers: header).validate(statusCode: 200..<500).responseJSON { response in
+    //            switch response.result {
+    //            case .success(let value):
+    //                let json = JSON(value)
+    //                // 상태코드 - 값이 없으면 500
+    //                let statusCode = response.response?.statusCode ?? 500
+    //
+    //                if statusCode == 200 {
+    ////                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
+    //                    print(json)
+    //                    completion()
+    //                } else {
+    //                    print("error", "\(code)")
+    //                }
+    //            case .failure(let error):
+    //                print(error)
+    //            }
+    //        }
+    //    }
 
     func postOrder(code: String, count: Int, price: Double, trType: Int,  completion: @escaping () -> ()) {
         let url = "https://openapi.ebestsec.co.kr:8080/stock/chart"
@@ -356,7 +356,7 @@ extension NetworkManager {
                                    "OpDrtnNo": "0",
                                    "LpYn": "0",
                                    "CvrgTpCode": "0"
-                            ]
+                                  ]
         ]
 
 
@@ -382,7 +382,7 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
-//                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
+                    //                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
                     print(json)
                     completion()
                 } else {
@@ -390,6 +390,20 @@ extension NetworkManager {
                 }
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+
+    func getLogo(code: String, completion: @escaping (UIImage) -> ()) {
+        let url = URL(string: Stock.homePageDict[code]!)!
+
+        AF.request(url,
+                   method: .get).response{ response in
+            switch response.result {
+            case .success(let responseData):
+                completion(UIImage(data: responseData!, scale:1) ?? UIImage())
+            case .failure(let error):
+                print("error--->",error)
             }
         }
     }

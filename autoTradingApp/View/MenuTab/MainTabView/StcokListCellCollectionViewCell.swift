@@ -157,12 +157,12 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
     override func updateConfiguration(using state: UICellConfigurationState) {
         setupViewsIfNeeded()
 
-        iconView.load(url: URL(string: state.stock!.imageURL!)!)
+        iconView.image = state.stock?.logo
 
         // Configure the list content configuration and apply that to the list content view.
         var content = defaultListContentConfiguration().updated(for: state)
         content.imageProperties.preferredSymbolConfiguration = .init(font: content.textProperties.font, scale: .large)
-        content.image = UIImage(named: state.stock!.imageURL!)
+//        content.image = UIImage(named: state.stock!.logo!)
 
         content.attributedText = NSMutableAttributedString().medium(string: state.stock!.name!, fontSize: 15)
         content.secondaryAttributedText = NSMutableAttributedString().regular(string: state.stock!.code!, fontSize: 12)

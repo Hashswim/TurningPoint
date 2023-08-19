@@ -120,8 +120,7 @@ class MainHomeTabController: UIViewController {
 
     func getNowPrice(name: String, code: String, price: Double, difference: Double) -> () {
 //        print(name, price, difference)
-        let url = Stock.homePageDict[code]!
-        Stock.all.append(Stock(imageURL: url, code: code, name: name, dataList: [], price: price, priceDifference: difference))
+        Stock.all.append(Stock(code: code, name: name, dataList: [], price: price, priceDifference: difference))
         self.networkManager.getDateChart(code: code, completion: getDateChartData)
 
         var snapshot = dataSource.snapshot()
@@ -129,8 +128,13 @@ class MainHomeTabController: UIViewController {
         self.dataSource?.apply(snapshot)
     }
 
-    func getDateChartData(chartData: [Double]) -> () {
+    func getDateChartData(code: String, chartData: [Double]) -> () {
         Stock.all.last!.dataList = chartData
+        self.networkManager.getLogo(code: code, completion: getLogoData)
+    }
+
+    func getLogoData(logo: UIImage) -> () {
+        Stock.all.last!.logo = logo
     }
 
     //DataStore 생성하면서 변경
