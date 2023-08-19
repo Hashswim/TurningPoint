@@ -64,6 +64,19 @@ class Stock: Codable, Hashable {
                              "035420",
                              "000270",]
 
+    static let homePageDict: [String: String] = ["005930": "https://logo.clearbit.com/https://www.samsung.com",
+                                                 "373220": "https://logo.clearbit.com/https://www.lgensol.com",
+                                                 "000660": "https://logo.clearbit.com/https://www.sk.co.kr/",
+                                                 "207940": "https://logo.clearbit.com/https://samsungbiologics.com",
+                                                 "005490": "https://logo.clearbit.com/https://www.posco-inc.com",
+                                                 "005935": "https://logo.clearbit.com/https://www.samsung.com",
+                                                 "051910": "https://logo.clearbit.com/https://www.lgchem.com",
+                                                 "006400": "https://logo.clearbit.com/https://www.samsungsdi.co.kr",
+                                                 "005380": "https://logo.clearbit.com/https://www.hyundai.com",
+                                                 "003670": "https://logo.clearbit.com/http://www.poscofuturem.com",
+                                                 "035420": "https://logo.clearbit.com/https://www.naver.com",
+                                                 "000270": "https://logo.clearbit.com/https://www.kia.com"]
+
     static var all: [Stock] = []
 
     static var favorite: [Stock] = []

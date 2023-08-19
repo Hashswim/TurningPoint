@@ -120,7 +120,8 @@ class MainHomeTabController: UIViewController {
 
     func getNowPrice(name: String, code: String, price: Double, difference: Double) -> () {
 //        print(name, price, difference)
-        Stock.all.append(Stock(imageURL: "08.circle", code: code, name: name, dataList: [], price: price, priceDifference: difference))
+        let url = Stock.homePageDict[code]!
+        Stock.all.append(Stock(imageURL: url, code: code, name: name, dataList: [], price: price, priceDifference: difference))
         self.networkManager.getDateChart(code: code, completion: getDateChartData)
 
         var snapshot = dataSource.snapshot()

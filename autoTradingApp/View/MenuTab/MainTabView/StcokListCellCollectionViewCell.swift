@@ -41,7 +41,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
     private let iconView: UIImageView = {
         var imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
-        imgView.image = UIImage(named: "Dashin_test_img")
+//        imgView.image = UIImage(named: "Dashin_test_img")
         return imgView
     }()
 
@@ -156,6 +156,8 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
     /// - Tag: UpdateConfiguration
     override func updateConfiguration(using state: UICellConfigurationState) {
         setupViewsIfNeeded()
+
+        iconView.load(url: URL(string: state.stock!.imageURL!)!)
 
         // Configure the list content configuration and apply that to the list content view.
         var content = defaultListContentConfiguration().updated(for: state)
