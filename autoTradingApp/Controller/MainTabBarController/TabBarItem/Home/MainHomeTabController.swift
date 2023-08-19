@@ -104,7 +104,7 @@ class MainHomeTabController: UIViewController {
 
         var idx = 0
 
-        Timer.scheduledTimer(withTimeInterval: 0.33, repeats: true) { [unowned self] timer in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [unowned self] timer in
             self.networkManager.getNowPrice(code: Stock.shcodeList[idx], completion: getNowPrice)
 
             if idx+1 == Stock.shcodeList.count {
@@ -112,19 +112,24 @@ class MainHomeTabController: UIViewController {
             }
             idx += 1
         }
-        self.networkManager.getScaledChart(code: "005930", completion: {})
-
+//        self.networkManager.getDateChart(code: "005930", completion: getDateChartData)
+//        self.networkManager.getScaledChart(code: "005930", completion: {})
 
         testAPI()
     }
 
     func getNowPrice(name: String, code: String, price: Double, difference: Double) -> () {
-        print(name, price, difference)
-        Stock.all.append(Stock(imageURL: "08.circle", code: code, name: name, dataList: [1,2,3], price: price, priceDifference: difference))
+//        print(name, price, difference)
+        Stock.all.append(Stock(imageURL: "08.circle", code: code, name: name, dataList: [], price: price, priceDifference: difference))
+        self.networkManager.getDateChart(code: code, completion: getDateChartData)
 
         var snapshot = dataSource.snapshot()
         snapshot.appendItems(Stock.all)
         self.dataSource?.apply(snapshot)
+    }
+
+    func getDateChartData(chartData: [Double]) -> () {
+        Stock.all.last!.dataList = chartData
     }
 
     //DataStore 생성하면서 변경

@@ -181,17 +181,19 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         scaledChartView.tintColor = valueConfiguration.imageProperties.resolvedTintColor(for: tintColor)
 
             // MARK: -  시리얼 데이터 처리 어떻게 할지 정리 필요!!⭐️⭐️⭐️(DataEntry타입과 API로 인코딩되어 전달 받는 타입간 캐스팅 필요)
-        let dataEntry1 = [
-            ChartDataEntry(x: state.stock!.dataList![0], y: state.stock!.dataList![0]),
-            ChartDataEntry(x: state.stock!.dataList![1], y: state.stock!.dataList![1]),
-            ChartDataEntry(x: state.stock!.dataList![2], y: state.stock!.dataList![2]),
-        ]
+//        let dataEntry1 = [
+//            ChartDataEntry(x: state.stock!.dataList![0], y: state.stock!.dataList![0]),
+//            ChartDataEntry(x: state.stock!.dataList![1], y: state.stock!.dataList![1]),
+//            ChartDataEntry(x: state.stock!.dataList![2], y: state.stock!.dataList![2]),
+//        ]
+        var dataEntry1: [ChartDataEntry] = []
+        var dataEntry2: [ChartDataEntry] = []
 
-        let dataEntry2 = [
-            ChartDataEntry(x: state.stock!.dataList![0], y: state.stock!.dataList![0]),
-            ChartDataEntry(x: state.stock!.dataList![1], y: state.stock!.dataList![1]),
-            ChartDataEntry(x: state.stock!.dataList![2], y: state.stock!.dataList![2]),
-        ]
+        for i in 0..<state.stock!.dataList!.count {
+            dataEntry1.append(ChartDataEntry(x: Double(i), y: state.stock!.dataList![i]))
+            dataEntry2.append(ChartDataEntry(x: Double(i), y: state.stock!.dataList!.last!))
+        }
+
         setData(dataEntry: dataEntry1, avgDataEntry: dataEntry2)
 
         // Configure custom label for the category name, copying some of the styling from the value cell configuration.
