@@ -41,6 +41,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
     private let iconView: UIImageView = {
         var imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
+        imgView.contentMode = .scaleAspectFit
 //        imgView.image = UIImage(named: "Dashin_test_img")
         return imgView
     }()
