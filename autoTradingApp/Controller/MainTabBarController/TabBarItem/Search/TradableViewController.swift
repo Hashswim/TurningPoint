@@ -11,15 +11,16 @@ import DropDown
 class TradableViewController: UIViewController {
 
     var shcode: String? = nil
-    let stock: Stock? = nil
+    var stock: Stock? = nil
 
     private let dropDownView = DropDownView()
     private let dropDown = DropDown()
 
+    let networkManager = NetworkManager()
+
     private let stockNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.attributedText = NSMutableAttributedString().regular(string: "삼성전자", fontSize: 17)
         label.textColor = .white
 
         return label
@@ -28,7 +29,6 @@ class TradableViewController: UIViewController {
     private let stockPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.attributedText = NSMutableAttributedString().bold(string: "72,000", fontSize: 37)
         label.textColor = .white
 
         return label
@@ -56,8 +56,7 @@ class TradableViewController: UIViewController {
     private let stockVolumeDifferenceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        //        label.attributedText = NSMutableAttributedString().regular(string: "1,100 ( 1.55% )", fontSize: 15)
-        label.textColor = .blue
+//        label.textColor = .blue
 
         return label
     }()
@@ -82,7 +81,6 @@ class TradableViewController: UIViewController {
 
         transactionBuyView.isHidden = true
         transactionSellView.isHidden = true
-
     }
 
     func setUpNaviBar() {
@@ -213,33 +211,7 @@ class TradableViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
 
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-
-        stockPriceLabel.attributedText = NSMutableAttributedString().bold(string: numberFormatter.string(from: stock!.price! as NSNumber)!, fontSize: 37)
-        stockPriceDifferenceLabel.attributedText = NSMutableAttributedString()
-            .regular(string: String(stock!.change!), fontSize: 15)
-            .regular(string: String(format: "(%.2f%%)", stock!.priceDifference!), fontSize: 15)
-        stockVolumeDifferenceLabel.attributedText = NSMutableAttributedString().regular(string: numberFormatter.string(from: stock!.volume! as NSNumber)!, fontSize: 15)
-
-        if (stock?.priceDifference)! < 0 {
-            stockPriceDifferenceLabel.textColor = MySpecialColors.detailBlue
-            stockVolumeDifferenceLabel.textColor = MySpecialColors.detailBlue
-
-            indexImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
-            indexImageView.tintColor = MySpecialColors.detailBlue
-        } else if (stock?.priceDifference)! > 0 {
-            stockPriceDifferenceLabel.textColor = MySpecialColors.detailRed
-            stockVolumeDifferenceLabel.textColor = MySpecialColors.detailRed
-
-            indexImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
-            indexImageView.tintColor = MySpecialColors.detailRed
-        } else {
-            stockPriceDifferenceLabel.textColor = .white
-            stockVolumeDifferenceLabel.textColor = .white
-
-            indexImageView.image = UIImage()
-        }
+        networkManager.getNowPrice(code: shcode!, completion: getNowPrice)
     }
 
     func configureLayout() {
@@ -299,6 +271,49 @@ class TradableViewController: UIViewController {
             transactionSellView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             transactionSellView.heightAnchor.constraint(equalToConstant: 400),
         ])
+    }
+
+    func getNowPrice(name: String, code: String, price: Double, difference: Double, volume: Double, change: Double) -> () {
+        self.stock = Stock(code: code, name: name, dataList: [], price: price, priceDifference: difference, volume: volume, change: change)
+        print(difference)
+        self.networkManager.getDateChart(code: code, completion: getDateChartData)
+
+        stockNameLabel.attributedText = NSMutableAttributedString().regular(string: (stock?.name!)!, fontSize: 17)
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        stockPriceLabel.attributedText = NSMutableAttributedString().bold(string: numberFormatter.string(from: stock!.price! as NSNumber)!, fontSize: 37)
+        stockPriceDifferenceLabel.attributedText = NSMutableAttributedString()
+            .regular(string: String(stock!.change!), fontSize: 15)
+            .regular(string: String(format: "(%.2f%%)", stock!.priceDifference!), fontSize: 15)
+        stockVolumeDifferenceLabel.attributedText = NSMutableAttributedString().regular(string: numberFormatter.string(from: stock!.volume! as NSNumber)!, fontSize: 15)
+
+        if (stock?.priceDifference)! < 0 {
+            stockPriceDifferenceLabel.textColor = MySpecialColors.detailBlue
+            stockVolumeDifferenceLabel.textColor = MySpecialColors.detailBlue
+
+            indexImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+            indexImageView.tintColor = MySpecialColors.detailBlue
+        } else if (stock?.priceDifference)! > 0 {
+            stockPriceDifferenceLabel.textColor = MySpecialColors.detailRed
+            stockVolumeDifferenceLabel.textColor = MySpecialColors.detailRed
+
+            indexImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+            indexImageView.tintColor = MySpecialColors.detailRed
+        } else {
+            stockPriceDifferenceLabel.textColor = .white
+            stockVolumeDifferenceLabel.textColor = .white
+
+            indexImageView.image = UIImage()
+        }
+    }
+
+    func getDateChartData(code: String, chartData: [DateChart]) -> () {
+        self.stock?.dateChartList = chartData
+
+        chartView.chartData = stock!.dateChartList!
+        chartView.setupData()
     }
 
     @objc

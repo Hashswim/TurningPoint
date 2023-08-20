@@ -67,7 +67,7 @@ class Stock: Hashable {
                              "003670",
                              
                              "035420",
-                             "000270",]
+                             "000270"]
 
     static let homePageDict: [String: String] = ["005930": "https://logo.clearbit.com/https://www.samsung.com",
                                                  "373220": "https://logo.clearbit.com/https://www.lgensol.com",

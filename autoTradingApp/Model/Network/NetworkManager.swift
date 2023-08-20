@@ -202,7 +202,7 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
-                    //                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
+//                    print(code, json["t1101OutBlock"]["diff"], json["t1101OutBlock"]["hname"])
                     completion("\(json["t1101OutBlock"]["hname"])",
                                code,
                                json["t1101OutBlock"]["price"].doubleValue,
