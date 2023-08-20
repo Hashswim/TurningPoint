@@ -118,9 +118,9 @@ class MainHomeTabController: UIViewController {
         testAPI()
     }
 
-    func getNowPrice(name: String, code: String, price: Double, difference: Double) -> () {
+    func getNowPrice(name: String, code: String, price: Double, difference: Double, volume: Double, change: Double) -> () {
 //        print(name, price, difference)
-        Stock.all.append(Stock(code: code, name: name, dataList: [], price: price, priceDifference: difference))
+        Stock.all.append(Stock(code: code, name: name, dataList: [], price: price, priceDifference: difference, volume: volume, change: change))
         self.networkManager.getDateChart(code: code, completion: getDateChartData)
 
         var snapshot = dataSource.snapshot()
@@ -128,8 +128,8 @@ class MainHomeTabController: UIViewController {
         self.dataSource?.apply(snapshot)
     }
 
-    func getDateChartData(code: String, chartData: [Double]) -> () {
-        Stock.all.last!.dataList = chartData
+    func getDateChartData(code: String, chartData: [DateChart]) -> () {
+        Stock.all.last!.dateChartList = chartData
         self.networkManager.getLogo(code: code, completion: getLogoData)
     }
 
@@ -213,6 +213,7 @@ extension MainHomeTabController {
             guard let self = self else { return }
 
             let vc = DetailViewController()
+            vc.stock = stock
             self.navigationController?.pushViewController(vc, animated: true)
 
             completionHandler(true)

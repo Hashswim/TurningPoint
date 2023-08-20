@@ -20,22 +20,27 @@ class Stock: Hashable {
     var logo: UIImage?
     var code: String?
     var name: String?
-    var dataList: [Double]?
+    var dateChartList: [DateChart]?
     var price: Double?
     var priceDifference: Double?
+    var volume: Double?
+    var change: Double?
     var isFavorite: Bool?
     var isTrading: Bool?
 
 //    private let identifier = UUID()
 
-    init(logo: UIImage? = nil, code: String? = nil, name: String? = nil, dataList: [Double]? = nil,
-         price: Double? = nil, priceDifference: Double? = nil, isFavorite: Bool? = false, isTrading: Bool? = false) {
+    init(logo: UIImage? = nil, code: String? = nil, name: String? = nil, dataList: [DateChart]? = nil,
+         price: Double? = nil, priceDifference: Double? = nil, volume: Double? = nil, change: Double? = nil,
+         isFavorite: Bool? = false, isTrading: Bool? = false) {
         self.logo = logo
         self.code = code
         self.name = name
-        self.dataList = dataList
+        self.dateChartList = dataList
         self.price = price
         self.priceDifference = priceDifference
+        self.volume = volume
+        self.change = change
         self.isFavorite = isFavorite
         self.isTrading = isTrading
     }
@@ -68,12 +73,12 @@ class Stock: Hashable {
                                                  "373220": "https://logo.clearbit.com/https://www.lgensol.com",
                                                  "000660": "https://logo.clearbit.com/https://www.sk.co.kr/",
                                                  "207940": "https://logo.clearbit.com/https://samsungbiologics.com",
-                                                 "005490": "https://logo.clearbit.com/https://www.posco-inc.com",
+                                                 "005490": "https://logo.clearbit.com/https://www.posco.co.kr",
                                                  "005935": "https://logo.clearbit.com/https://www.samsung.com",
                                                  "051910": "https://logo.clearbit.com/https://www.lgchem.com",
                                                  "006400": "https://logo.clearbit.com/https://www.samsungsdi.co.kr",
                                                  "005380": "https://logo.clearbit.com/https://www.hyundai.com",
-                                                 "003670": "https://logo.clearbit.com/http://www.poscofuturem.com",
+                                                 "003670": "https://logo.clearbit.com/http://www.posco.co.kr",
                                                  "035420": "https://logo.clearbit.com/https://www.naver.com",
                                                  "000270": "https://logo.clearbit.com/https://www.kia.com"]
 
@@ -82,4 +87,12 @@ class Stock: Hashable {
     static var favorite: [Stock] = []
 
     static let traiding: [Stock] = []
+}
+
+struct DateChart {
+    var date: String
+    var high: Double
+    var low: Double
+    var open: Double
+    var close: Double
 }

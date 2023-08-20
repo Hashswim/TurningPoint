@@ -9,12 +9,12 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    let stock: Stock? = nil
+    var stock: Stock? = nil
 
     private let stockNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.attributedText = NSMutableAttributedString().regular(string: "삼성전자", fontSize: 17)
+//        label.attributedText = NSMutableAttributedString().regular(string: "삼성전자", fontSize: 17)
         label.textColor = .white
 
         return label
@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
     private let stockPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.attributedText = NSMutableAttributedString().bold(string: "72,000", fontSize: 37)
+//        label.attributedText = NSMutableAttributedString().bold(string: "72,000", fontSize: 37)
         label.textColor = .white
 
         return label
@@ -32,9 +32,6 @@ class DetailViewController: UIViewController {
     private let indexImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
-        var image = UIImage(systemName: "arrowtriangle.down.fill")
-        image!.withTintColor(.blue)
-        imgView.image = image
 
         return imgView
     }()
@@ -42,7 +39,16 @@ class DetailViewController: UIViewController {
     private let stockPriceDifferenceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.attributedText = NSMutableAttributedString().regular(string: "1,100 ( 1.55% )", fontSize: 15)
+//        label.attributedText = NSMutableAttributedString().regular(string: "1,100 ( 1.55% )", fontSize: 15)
+        label.textColor = .blue
+
+        return label
+    }()
+
+    private let stockVolumeDifferenceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.attributedText = NSMutableAttributedString().regular(string: "1,100 ( 1.55% )", fontSize: 15)
         label.textColor = .blue
 
         return label
@@ -62,6 +68,7 @@ class DetailViewController: UIViewController {
 
         setSegmentedControl()
         setUpTransactionView()
+        configureHierarchy()
         setUpUI()
         setUpNaviBar()
         configureLayout()
@@ -122,6 +129,20 @@ class DetailViewController: UIViewController {
         transactionSellView.transactionButton.addTarget(self, action: #selector(sellTradeTapped), for: .touchUpInside)
     }
 
+    func configureHierarchy() {
+        view.addSubview(stockNameLabel)
+        view.addSubview(stockPriceLabel)
+        view.addSubview(indexImageView)
+        view.addSubview(stockPriceDifferenceLabel)
+        view.addSubview(stockVolumeDifferenceLabel)
+
+        view.addSubview(stockInfoView)
+        view.addSubview(segmentedControl)
+        view.addSubview(chartView)
+        view.addSubview(transactionBuyView)
+        view.addSubview(transactionSellView)
+    }
+
     @objc
     func buyTotalPriceCounting() {
         let numberFormatter = NumberFormatter()
@@ -150,19 +171,42 @@ class DetailViewController: UIViewController {
 
     }
     func setUpUI() {
-        view.addSubview(stockNameLabel)
-        view.addSubview(stockPriceLabel)
-        view.addSubview(indexImageView)
-        view.addSubview(stockPriceDifferenceLabel)
-
-        view.addSubview(stockInfoView)
-        view.addSubview(segmentedControl)
-        view.addSubview(chartView)
-        view.addSubview(transactionBuyView)
-        view.addSubview(transactionSellView)
-
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
+
+        stockNameLabel.attributedText = NSMutableAttributedString().regular(string: (stock?.name)!, fontSize: 17)
+        chartView.chartData = stock!.dateChartList!
+        chartView.setupData()
+
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        stockPriceLabel.attributedText = NSMutableAttributedString().bold(string: numberFormatter.string(from: stock!.price! as NSNumber)!, fontSize: 37)
+        stockPriceDifferenceLabel.attributedText = NSMutableAttributedString()
+            .regular(string: String(stock!.change!), fontSize: 15)
+            .regular(string: String(format: "(%.2f%%)", stock!.priceDifference!), fontSize: 15)
+        stockVolumeDifferenceLabel.attributedText = NSMutableAttributedString().regular(string: numberFormatter.string(from: stock!.volume! as NSNumber)!, fontSize: 15)
+
+        if (stock?.priceDifference)! < 0 {
+            stockPriceDifferenceLabel.textColor = MySpecialColors.detailBlue
+            stockVolumeDifferenceLabel.textColor = MySpecialColors.detailBlue
+
+            indexImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+            indexImageView.tintColor = MySpecialColors.detailBlue
+        } else if (stock?.priceDifference)! > 0 {
+            stockPriceDifferenceLabel.textColor = MySpecialColors.detailRed
+            stockVolumeDifferenceLabel.textColor = MySpecialColors.detailRed
+
+            indexImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+            indexImageView.tintColor = MySpecialColors.detailRed
+        } else {
+            stockPriceDifferenceLabel.textColor = .white
+            stockVolumeDifferenceLabel.textColor = .white
+
+            indexImageView.image = UIImage()
+        }
+
+//        indexImageView.image =
     }
 
     func configureLayout() {
@@ -185,14 +229,19 @@ class DetailViewController: UIViewController {
             stockPriceLabel.widthAnchor.constraint(equalToConstant: 200),
             stockPriceLabel.heightAnchor.constraint(equalToConstant: 40),
 
+//            indexImageView.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
+            indexImageView.centerYAnchor.constraint(equalTo: stockPriceDifferenceLabel.centerYAnchor),
+            indexImageView.trailingAnchor.constraint(equalTo: stockPriceDifferenceLabel.leadingAnchor, constant: -4),
+            indexImageView.widthAnchor.constraint(equalToConstant: 16),
+            indexImageView.heightAnchor.constraint(equalToConstant: 16),
+
             stockPriceDifferenceLabel.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
             stockPriceDifferenceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            stockPriceDifferenceLabel.heightAnchor.constraint(equalToConstant: 24),
+            stockPriceDifferenceLabel.heightAnchor.constraint(equalToConstant: 22),
 
-            indexImageView.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
-            indexImageView.trailingAnchor.constraint(equalTo: stockPriceDifferenceLabel.leadingAnchor, constant: -4),
-            indexImageView.widthAnchor.constraint(equalToConstant: 20),
-            indexImageView.heightAnchor.constraint(equalToConstant: 20),
+            stockVolumeDifferenceLabel.topAnchor.constraint(equalTo: stockPriceDifferenceLabel.bottomAnchor, constant: 2),
+            stockVolumeDifferenceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            stockVolumeDifferenceLabel.heightAnchor.constraint(equalToConstant: 18),
 
             stockInfoView.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor, constant: 60),
             stockInfoView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),

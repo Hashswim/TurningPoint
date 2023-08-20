@@ -50,6 +50,8 @@ enum MySpecialColors {
     static let lightBlue  = UIColor(hex: "#7896FF")
     static let dropGray   = UIColor(hex: "#D9D9D9")
     static let lineGray   = UIColor(hex: "#A0A0A0")
+    static let detailRed  = UIColor(hex: "#dd897e")
+    static let detailBlue = UIColor(hex: "#7896ff")
 
     static let lightRed2   = UIColor(red: 255/255, green: 106/255, blue: 83/255, alpha: 0.6)
     static let traidingCircle = UIColor(red: 246/255, green: 80/255, blue: 54/255, alpha: 0.8)

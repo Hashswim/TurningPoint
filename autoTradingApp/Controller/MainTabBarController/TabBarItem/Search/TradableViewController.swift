@@ -53,6 +53,15 @@ class TradableViewController: UIViewController {
         return label
     }()
 
+    private let stockVolumeDifferenceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        //        label.attributedText = NSMutableAttributedString().regular(string: "1,100 ( 1.55% )", fontSize: 15)
+        label.textColor = .blue
+
+        return label
+    }()
+
     private let segmentedControl = TradingSegmentedControl(items: ["차트", "매수", "매도"])
 
     private let chartView = ChartView2()
@@ -67,6 +76,7 @@ class TradableViewController: UIViewController {
         setUpDropDown()
         setSegmentedControl()
         setUpTransactionView()
+        configureHierarchy()
         setUpUI()
         configureLayout()
 
@@ -76,7 +86,7 @@ class TradableViewController: UIViewController {
     }
 
     func setUpNaviBar() {
-//        let name = (self.stock?.isFavorite!)! ? "heart" : "heart.fill"
+        //        let name = (self.stock?.isFavorite!)! ? "heart" : "heart.fill"
         self.navigationItem.rightBarButtonItem =
         UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
         self.navigationController?.navigationBar.topItem?.title = ""
@@ -185,20 +195,51 @@ class TradableViewController: UIViewController {
 
     }
 
-    func setUpUI() {
+    func configureHierarchy() {
         view.addSubview(dropDownView)
         view.addSubview(stockNameLabel)
         view.addSubview(stockPriceLabel)
         view.addSubview(indexImageView)
         view.addSubview(stockPriceDifferenceLabel)
-        
+        view.addSubview(stockVolumeDifferenceLabel)
+
         view.addSubview(segmentedControl)
         view.addSubview(chartView)
         view.addSubview(transactionBuyView)
         view.addSubview(transactionSellView)
+    }
 
+    func setUpUI() {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
+
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        stockPriceLabel.attributedText = NSMutableAttributedString().bold(string: numberFormatter.string(from: stock!.price! as NSNumber)!, fontSize: 37)
+        stockPriceDifferenceLabel.attributedText = NSMutableAttributedString()
+            .regular(string: String(stock!.change!), fontSize: 15)
+            .regular(string: String(format: "(%.2f%%)", stock!.priceDifference!), fontSize: 15)
+        stockVolumeDifferenceLabel.attributedText = NSMutableAttributedString().regular(string: numberFormatter.string(from: stock!.volume! as NSNumber)!, fontSize: 15)
+
+        if (stock?.priceDifference)! < 0 {
+            stockPriceDifferenceLabel.textColor = MySpecialColors.detailBlue
+            stockVolumeDifferenceLabel.textColor = MySpecialColors.detailBlue
+
+            indexImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+            indexImageView.tintColor = MySpecialColors.detailBlue
+        } else if (stock?.priceDifference)! > 0 {
+            stockPriceDifferenceLabel.textColor = MySpecialColors.detailRed
+            stockVolumeDifferenceLabel.textColor = MySpecialColors.detailRed
+
+            indexImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+            indexImageView.tintColor = MySpecialColors.detailRed
+        } else {
+            stockPriceDifferenceLabel.textColor = .white
+            stockVolumeDifferenceLabel.textColor = .white
+
+            indexImageView.image = UIImage()
+        }
     }
 
     func configureLayout() {
@@ -224,14 +265,19 @@ class TradableViewController: UIViewController {
             stockPriceLabel.widthAnchor.constraint(equalToConstant: 200),
             stockPriceLabel.heightAnchor.constraint(equalToConstant: 40),
 
-            stockPriceDifferenceLabel.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
-            stockPriceDifferenceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            stockPriceDifferenceLabel.heightAnchor.constraint(equalToConstant: 24),
-
-            indexImageView.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
+            //            indexImageView.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
+            indexImageView.centerYAnchor.constraint(equalTo: stockPriceDifferenceLabel.centerYAnchor),
             indexImageView.trailingAnchor.constraint(equalTo: stockPriceDifferenceLabel.leadingAnchor, constant: -4),
-            indexImageView.widthAnchor.constraint(equalToConstant: 20),
-            indexImageView.heightAnchor.constraint(equalToConstant: 20),
+            indexImageView.widthAnchor.constraint(equalToConstant: 16),
+            indexImageView.heightAnchor.constraint(equalToConstant: 16),
+
+            stockPriceDifferenceLabel.topAnchor.constraint(equalTo: stockPriceLabel.topAnchor),
+            stockPriceDifferenceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            stockPriceDifferenceLabel.heightAnchor.constraint(equalToConstant: 22),
+
+            stockVolumeDifferenceLabel.topAnchor.constraint(equalTo: stockPriceDifferenceLabel.bottomAnchor, constant: 2),
+            stockVolumeDifferenceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            stockVolumeDifferenceLabel.heightAnchor.constraint(equalToConstant: 18),
 
             segmentedControl.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor, constant: 84),
             segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),

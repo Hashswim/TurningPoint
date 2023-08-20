@@ -18,7 +18,6 @@
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
 		115802F72A45C0AA00BA3591 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115802F62A45C0AA00BA3591 /* UIImage+.swift */; };
 		115D1E1A29B9A89100E98541 /* MainHomeTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1929B9A89100E98541 /* MainHomeTabController.swift */; };
-		115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */; };
 		115D1E1E29BDEDA200E98541 /* TradingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1E1D29BDEDA200E98541 /* TradingSegmentedControl.swift */; };
 		115D1E2229C461C400E98541 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */; };
 		115D1E2329C461C400E98541 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */; };
@@ -96,7 +95,6 @@
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		115802F62A45C0AA00BA3591 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		115D1E1929B9A89100E98541 /* MainHomeTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeTabController.swift; sourceTree = "<group>"; };
-		115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewChartView.swift; sourceTree = "<group>"; };
 		115D1E1D29BDEDA200E98541 /* TradingSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingSegmentedControl.swift; sourceTree = "<group>"; };
 		115D1E2029C461C400E98541 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		115D1E2129C461C400E98541 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -279,7 +277,6 @@
 			isa = PBXGroup;
 			children = (
 				1161804229B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift */,
-				115D1E1B29B9BAB300E98541 /* OverViewChartView.swift */,
 				115D1E1D29BDEDA200E98541 /* TradingSegmentedControl.swift */,
 				11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */,
 				11E10E822A1F407B007F3E10 /* StockInfoView.swift */,
@@ -653,7 +650,6 @@
 				115D1E2729C46A0D00E98541 /* UIColor+.swift in Sources */,
 				11080AAB2982A97B00B73F5F /* SceneDelegate.swift in Sources */,
 				11B1ECF62A7E7CD2000E7D2B /* mainTabSegmentedControl.swift in Sources */,
-				115D1E1C29B9BAB300E98541 /* OverViewChartView.swift in Sources */,
 				11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */,
 				11B064E02A67B9B70016AB68 /* TradableViewController.swift in Sources */,
 				1164161F2A597C3F008FA981 /* TradingCell.swift in Sources */,

@@ -78,7 +78,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         chartView.legend.enabled = false
 
         chartView.animate(xAxisDuration: 2.5)
-
+        chartView.dragEnabled = false
         return chartView
     }()
 
@@ -184,17 +184,12 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         scaledChartView.tintColor = valueConfiguration.imageProperties.resolvedTintColor(for: tintColor)
 
             // MARK: -  시리얼 데이터 처리 어떻게 할지 정리 필요!!⭐️⭐️⭐️(DataEntry타입과 API로 인코딩되어 전달 받는 타입간 캐스팅 필요)
-//        let dataEntry1 = [
-//            ChartDataEntry(x: state.stock!.dataList![0], y: state.stock!.dataList![0]),
-//            ChartDataEntry(x: state.stock!.dataList![1], y: state.stock!.dataList![1]),
-//            ChartDataEntry(x: state.stock!.dataList![2], y: state.stock!.dataList![2]),
-//        ]
         var dataEntry1: [ChartDataEntry] = []
         var dataEntry2: [ChartDataEntry] = []
 
-        for i in 0..<state.stock!.dataList!.count {
-            dataEntry1.append(ChartDataEntry(x: Double(i), y: state.stock!.dataList![i]))
-            dataEntry2.append(ChartDataEntry(x: Double(i), y: state.stock!.dataList!.last!))
+        for i in 0..<state.stock!.dateChartList!.count {
+            dataEntry1.append(ChartDataEntry(x: Double(i), y: state.stock!.dateChartList![i].close))
+            dataEntry2.append(ChartDataEntry(x: Double(i), y: state.stock!.dateChartList!.last!.close))
         }
 
         setData(dataEntry: dataEntry1, avgDataEntry: dataEntry2)
