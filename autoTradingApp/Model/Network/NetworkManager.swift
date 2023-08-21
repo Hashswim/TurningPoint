@@ -119,6 +119,64 @@ extension NetworkManager {
         }
     }
 
+    func getUserAccount(completion: @escaping (String, String, [ownedStock]) -> ()){
+        let url = "https://openapi.ebestsec.co.kr:8080/stock/accno"
+
+        // Header : 메타정보
+        // Body : 실질적인 데이터
+        let header: HTTPHeaders = [
+            "Content-Type":"application/json;charset=utf-8",
+            "authorization": "Bearer \(UserInfo.shared.accessToken!)",
+            "tr_cd": "t0424",
+            "tr_cont":"N",
+            "tr_cont_key":""
+        ]
+
+        let parameter: Parameters = [
+            "t0424InBlock":
+                ["prcgb" : "",
+                 "chegb" : "",
+                 "dangb" : "",
+                 "charge" : "",
+                 "cts_expcode" : ""
+                ]
+        ]
+
+        AF.request(url,
+                   method: .post,
+                   parameters: parameter,
+                   encoding: JSONEncoding.default,
+                   headers: header).validate(statusCode: 200..<600).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                // 상태코드 - 값이 없으면 500
+                let statusCode = response.response?.statusCode ?? 500
+
+                if statusCode == 200 {
+
+                    completion(
+                        json["t0424OutBlock"]["sunamt"].stringValue,
+                        json["t0424OutBlock"]["tdtsunik"].stringValue,
+                        
+                        json["t0424OutBlock1"].array!.compactMap {
+                        ownedStock(name: $0["hname"].string!,
+                                   code: $0["expcode"].string!,
+                                   appamt:  $0["appamt"].doubleValue,
+                                   dtsunik:  $0["dtsunik"].doubleValue,
+                                   sunikrt:  $0["sunikrt"].doubleValue,
+                                   janrt:  $0["janrt"].doubleValue) })
+
+                    print(json)
+                } else {
+                    print("error")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
     func getTopTradingVolume(completion: @escaping ([String], [String]) -> () ){
         let url = "https://openapi.ebestsec.co.kr:8080/stock/high-item"
 
@@ -172,7 +230,7 @@ extension NetworkManager {
         }
     }
 
-    func getNowPrice(code: String, completion: @escaping (String, String, Double, Double, Double, Double) -> ()) {
+    func getNowPrice(code: String, idx: Int, completion: @escaping (String, String, Int, Double, Double, Double, Double) -> ()) {
         let url = "https://openapi.ebestsec.co.kr:8080/stock/market-data"
 
         // Header : 메타정보
@@ -202,14 +260,15 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
-//                    print(code, json["t1101OutBlock"]["diff"], json["t1101OutBlock"]["hname"])
+                    //                    print(code, json["t1101OutBlock"]["diff"], json["t1101OutBlock"]["hname"])
                     completion("\(json["t1101OutBlock"]["hname"])",
                                code,
+                               idx,
                                json["t1101OutBlock"]["price"].doubleValue,
                                json["t1101OutBlock"]["diff"].doubleValue,
                                json["t1101OutBlock"]["volume"].doubleValue,
                                json["t1101OutBlock"]["change"].doubleValue)
-//                    print(json)
+                    //                    print(json)
                 } else {
                     print("error", "\(code)")
                 }
@@ -219,7 +278,7 @@ extension NetworkManager {
         }
     }
 
-    func getDateChart(code: String, completion: @escaping (String, [DateChart]) -> ()) {
+    func getDateChart(code: String, idx: Int, completion: @escaping (String, Int, [DateChart]) -> ()) {
         let url = "https://openapi.ebestsec.co.kr:8080/stock/chart"
 
         // Header : 메타정보
@@ -268,7 +327,7 @@ extension NetworkManager {
                             open: $0["open"].doubleValue,
                             close: $0["close"].doubleValue)
                     }
-                    completion(code, dateChartList!)
+                    completion(code, idx, dateChartList!)
                 } else {
                     print("error", "\(code)")
                 }
@@ -348,14 +407,14 @@ extension NetworkManager {
         }
     }
 
-    func getLogo(code: String, completion: @escaping (UIImage) -> ()) {
-        let url = URL(string: Stock.homePageDict[code]!)!
+    func getLogo(code: String, idx: Int, completion: @escaping (Int, UIImage) -> ()) {
+        let url = URL(string: Stock.homePageDict[code] ?? "https://logo.clearbit.com/https://www.naver.com")!
 
         AF.request(url,
                    method: .get).response{ response in
             switch response.result {
             case .success(let responseData):
-                completion(UIImage(data: responseData!, scale:1) ?? UIImage())
+                completion(idx, UIImage(data: responseData!, scale:1) ?? UIImage())
             case .failure(let error):
                 print("error--->",error)
             }

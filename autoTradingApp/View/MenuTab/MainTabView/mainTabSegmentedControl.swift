@@ -29,8 +29,6 @@ class mainTabSegmentedControl: UISegmentedControl {
 
         self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
         self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.darkGray, .font: NotoSansFont.bold(size: 17)], for: .normal)
-
-
     }
 
 }

@@ -83,10 +83,31 @@ class Stock: Hashable {
                                                  "000270": "https://logo.clearbit.com/https://www.kia.com"]
 
     static var all: [Stock] = []
+    static var loaded: [Stock] = []
 
     static var favorite: [Stock] = []
 
     static let traiding: [Stock] = []
+}
+
+class ownedStock: Stock {
+    var appamt: Double?//평가금액
+    var dtsunik: Double?//평가손익
+    var sunikrt: Double?//수익률
+    var janrt: Double?//수량
+
+    init(name: String, code: String?, appamt: Double? = nil, dtsunik: Double? = nil, sunikrt: Double? = nil, janrt: Double? = nil) {
+        super.init()
+        self.name = name
+        self.code = code
+
+        self.appamt = appamt
+        self.dtsunik = dtsunik
+        self.sunikrt = sunikrt
+        self.janrt = janrt
+    }
+
+
 }
 
 struct DateChart {

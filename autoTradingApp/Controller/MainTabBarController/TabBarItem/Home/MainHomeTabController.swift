@@ -70,9 +70,6 @@ class MainHomeTabController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.backgroundColor = MySpecialColors.darkGray
 
-//        stackView.layoutMargins = UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
-//        stackView.setCustomSpacing(145, after: headerStcokLabel)
-//        stackView.setCustomSpacing(88, after: headerChartLabel)
 
         stackView.axis = .horizontal
 
@@ -101,40 +98,49 @@ class MainHomeTabController: UIViewController {
         configureHierarchy()
         configureDataSource()
         setUpUI()
-
-        var idx = 0
-
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [unowned self] timer in
-            self.networkManager.getNowPrice(code: Stock.shcodeList[idx], completion: getNowPrice)
-
-            if idx+1 == Stock.shcodeList.count {
-                timer.invalidate()
-            }
-            idx += 1
-        }
+        self.networkManager.getUserAccount(completion: getUserAccount)
 
         testAPI()
     }
 
-    func getNowPrice(name: String, code: String, price: Double, difference: Double, volume: Double, change: Double) -> () {
-//        print(name, price, difference)
-        print(name, difference)
-        Stock.all.append(Stock(code: code, name: name, dataList: [], price: price, priceDifference: difference, volume: volume, change: change))
-        self.networkManager.getDateChart(code: code, completion: getDateChartData)
+
+    func getUserAccount(name: String, code: String, ownedStoks: [ownedStock]) -> () {
+        Stock.all = ownedStoks
+
+        var idx = 0
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [unowned self] timer in
+            self.networkManager.getNowPrice(code: Stock.all[idx].code!, idx: idx, completion: getNowPrice)
+
+            if idx+1 == Stock.all.count {
+                timer.invalidate()
+            }
+            idx += 1
+        }
+    }
+
+    func getNowPrice(name: String, code: String, idx: Int, price: Double, difference: Double, volume: Double, change: Double) -> () {
+        Stock.all[idx].price = price
+        Stock.all[idx].priceDifference = difference
+        Stock.all[idx].volume = volume
+        Stock.all[idx].change = change
+
+        self.networkManager.getDateChart(code: code, idx: idx, completion: getDateChartData)
+    }
+
+    func getDateChartData(code: String, idx: Int, chartData: [DateChart]) -> () {
+        Stock.all[idx].dateChartList = chartData
+        self.networkManager.getLogo(code: code, idx: idx, completion: getLogoData)
+    }
+
+    func getLogoData(idx: Int, logo: UIImage) -> () {
+        Stock.all[idx].logo = logo
+        Stock.loaded.append(Stock.all[idx])
 
         var snapshot = dataSource.snapshot()
-        snapshot.appendItems(Stock.all)
+        snapshot.appendItems(Stock.loaded)
         self.dataSource?.apply(snapshot)
     }
 
-    func getDateChartData(code: String, chartData: [DateChart]) -> () {
-        Stock.all.last!.dateChartList = chartData
-        self.networkManager.getLogo(code: code, completion: getLogoData)
-    }
-
-    func getLogoData(logo: UIImage) -> () {
-        Stock.all.last!.logo = logo
-    }
 
     //DataStore 생성하면서 변경
     private func toggleIsFavorite(_ stock: Stock, _ indexPath: IndexPath) -> Bool {
@@ -150,7 +156,7 @@ class MainHomeTabController: UIViewController {
         snapshot.appendSections([.main])
 
         if self.segmentedControl.selectedSegmentIndex == 0 {
-            snapshot.appendItems(Stock.all)
+            snapshot.appendItems(Stock.loaded)
         } else {
             snapshot.appendItems(Stock.favorite)
         }
@@ -363,7 +369,7 @@ extension MainHomeTabController {
         // initial data
         var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(Stock.all)
+//        snapshot.appendItems(Stock.all)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 

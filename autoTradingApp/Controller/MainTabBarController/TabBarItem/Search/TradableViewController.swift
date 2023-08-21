@@ -211,7 +211,7 @@ class TradableViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
 
-        networkManager.getNowPrice(code: shcode!, completion: getNowPrice)
+        networkManager.getNowPrice(code: shcode!, idx: 0, completion: getNowPrice)
     }
 
     func configureLayout() {
@@ -273,10 +273,10 @@ class TradableViewController: UIViewController {
         ])
     }
 
-    func getNowPrice(name: String, code: String, price: Double, difference: Double, volume: Double, change: Double) -> () {
+    func getNowPrice(name: String, code: String, idx: Int, price: Double, difference: Double, volume: Double, change: Double) -> () {
         self.stock = Stock(code: code, name: name, dataList: [], price: price, priceDifference: difference, volume: volume, change: change)
         print(difference)
-        self.networkManager.getDateChart(code: code, completion: getDateChartData)
+        self.networkManager.getDateChart(code: code, idx: 0, completion: getDateChartData)
 
         stockNameLabel.attributedText = NSMutableAttributedString().regular(string: (stock?.name!)!, fontSize: 17)
         
@@ -309,7 +309,7 @@ class TradableViewController: UIViewController {
         }
     }
 
-    func getDateChartData(code: String, chartData: [DateChart]) -> () {
+    func getDateChartData(code: String, idx: Int, chartData: [DateChart]) -> () {
         self.stock?.dateChartList = chartData
 
         chartView.chartData = stock!.dateChartList!
