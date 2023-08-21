@@ -94,9 +94,9 @@ class ownedStock: Stock {
     var appamt: Double?//평가금액
     var dtsunik: Double?//평가손익
     var sunikrt: Double?//수익률
-    var janrt: Double?//수량
+    var janqty: Double?//수량
 
-    init(name: String, code: String?, appamt: Double? = nil, dtsunik: Double? = nil, sunikrt: Double? = nil, janrt: Double? = nil) {
+    init(name: String, code: String?, appamt: Double? = nil, dtsunik: Double? = nil, sunikrt: Double? = nil, janqty: Double? = nil) {
         super.init()
         self.name = name
         self.code = code
@@ -104,7 +104,7 @@ class ownedStock: Stock {
         self.appamt = appamt
         self.dtsunik = dtsunik
         self.sunikrt = sunikrt
-        self.janrt = janrt
+        self.janqty = janqty
     }
 
 

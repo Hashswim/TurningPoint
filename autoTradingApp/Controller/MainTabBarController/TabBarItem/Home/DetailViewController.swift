@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    var stock: Stock? = nil
+    var stock: ownedStock? = nil
 
     private let stockNameLabel: UILabel = {
         let label = UILabel()
@@ -206,7 +206,23 @@ class DetailViewController: UIViewController {
             indexImageView.image = UIImage()
         }
 
-//        indexImageView.image =
+        stockInfoView.countLabel.attributedText = NSMutableAttributedString()
+            .regular(string: numberFormatter.string(from: stock!.janqty! as NSNumber)!, fontSize: 20)
+            .regular(string: " 주", fontSize: 20)
+        stockInfoView.priceLabel.attributedText = NSMutableAttributedString()
+            .regular(string: numberFormatter.string(from: stock!.appamt! as NSNumber)!, fontSize: 20)
+            .regular(string: " 원", fontSize: 20)
+        stockInfoView.earningPriceLabel.attributedText = NSMutableAttributedString()
+            .regular(string: numberFormatter.string(from: stock!.dtsunik! as NSNumber)!, fontSize: 20)
+            .regular(string: " 원", fontSize: 20)
+
+        if stock!.sunikrt! > 0 {
+            stockInfoView.earningRateLabel.attributedText = NSMutableAttributedString()
+                .regular(string: String(format: "+%.2f%%", stock!.sunikrt!), fontSize: 20)
+        } else {
+            stockInfoView.earningRateLabel.attributedText = NSMutableAttributedString()
+                .regular(string: String(format: "%.2f%%", stock!.sunikrt!), fontSize: 20)
+        }
     }
 
     func configureLayout() {

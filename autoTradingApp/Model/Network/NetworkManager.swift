@@ -165,7 +165,7 @@ extension NetworkManager {
                                    appamt:  $0["appamt"].doubleValue,
                                    dtsunik:  $0["dtsunik"].doubleValue,
                                    sunikrt:  $0["sunikrt"].doubleValue,
-                                   janrt:  $0["janrt"].doubleValue) })
+                                   janqty:  $0["janqty"].doubleValue) })
 
                     print(json)
                 } else {

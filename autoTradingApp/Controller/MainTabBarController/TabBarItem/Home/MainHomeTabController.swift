@@ -205,7 +205,7 @@ extension MainHomeTabController {
         else { return nil }
 
         let configuration = UISwipeActionsConfiguration(actions: [
-            detailContextualAction(stock: stock, indexPath: indexPath),
+            detailContextualAction(stock: stock as! ownedStock, indexPath: indexPath),
             favoriteContextualAction(stock: stock, indexPath: indexPath)
         ])
         configuration.performsFirstActionWithFullSwipe = false
@@ -213,7 +213,7 @@ extension MainHomeTabController {
         return configuration
     }
 
-    private func detailContextualAction(stock: Stock, indexPath: IndexPath) -> UIContextualAction {
+    private func detailContextualAction(stock: ownedStock, indexPath: IndexPath) -> UIContextualAction {
         let detailAction = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
             guard let self = self else { return }
 

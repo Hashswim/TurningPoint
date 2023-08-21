@@ -20,9 +20,9 @@ class StockInfoView: UIView {
         return label
     }()
 
-    private let countLabel: UILabel = {
+    let countLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSMutableAttributedString().regular(string: "2 주", fontSize: 20)
+//        label.attributedText = NSMutableAttributedString().regular(string: "2 주", fontSize: 20)
         label.textColor = .lightGray
         label.textAlignment = .left
 
@@ -39,9 +39,9 @@ class StockInfoView: UIView {
         return label
     }()
 
-    private let priceLabel: UILabel = {
+    let priceLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSMutableAttributedString().regular(string: "100,580 원", fontSize: 20)
+//        label.attributedText = NSMutableAttributedString().regular(string: "100,580 원", fontSize: 20)
         label.textColor = .lightGray
         label.textAlignment = .left
 
@@ -59,9 +59,9 @@ class StockInfoView: UIView {
         return label
     }()
 
-    private let earningPriceLabel: UILabel = {
+    let earningPriceLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSMutableAttributedString().regular(string: "-37,684 원", fontSize: 20)
+//        label.attributedText = NSMutableAttributedString().regular(string: "-37,684 원", fontSize: 20)
         label.textColor = .lightGray
         label.textAlignment = .left
 
@@ -78,9 +78,9 @@ class StockInfoView: UIView {
         return label
     }()
 
-    private let earningRateLabel: UILabel = {
+    let earningRateLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSMutableAttributedString().regular(string: "-1.45 %", fontSize: 20)
+//        label.attributedText = NSMutableAttributedString().regular(string: "-1.45 %", fontSize: 20)
         label.textColor = .lightGray
         label.textAlignment = .left
 
