@@ -60,7 +60,6 @@
 		11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */; };
 		11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96129A8D6F700C29B83 /* CustomTextField.swift */; };
 		11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96429B3547500C29B83 /* MainTabBarControllerViewController.swift */; };
-		11E7F96829B3578600C29B83 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96729B3578600C29B83 /* ChartViewController.swift */; };
 		11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96A29B4AD7C00C29B83 /* SignUpGuideViewController.swift */; };
 		11E7F96E29B4C41E00C29B83 /* SignUpIsUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96D29B4C41E00C29B83 /* SignUpIsUserViewController.swift */; };
 		11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */; };
@@ -137,7 +136,6 @@
 		11E7F95F29A8D23D00C29B83 /* SignUpGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGuideView.swift; sourceTree = "<group>"; };
 		11E7F96129A8D6F700C29B83 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		11E7F96429B3547500C29B83 /* MainTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarControllerViewController.swift; sourceTree = "<group>"; };
-		11E7F96729B3578600C29B83 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		11E7F96A29B4AD7C00C29B83 /* SignUpGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGuideViewController.swift; sourceTree = "<group>"; };
 		11E7F96D29B4C41E00C29B83 /* SignUpIsUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIsUserViewController.swift; sourceTree = "<group>"; };
 		11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIsUserView.swift; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 		11E7F96C29B4B75400C29B83 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				11E7F96729B3578600C29B83 /* ChartViewController.swift */,
 				11E7F96A29B4AD7C00C29B83 /* SignUpGuideViewController.swift */,
 				11E7F96D29B4C41E00C29B83 /* SignUpIsUserViewController.swift */,
 				11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */,
@@ -659,7 +656,6 @@
 				11B1ED072A8489D7000E7D2B /* UserInfo.swift in Sources */,
 				99086D522A0A329200FAA427 /* temp.swift in Sources */,
 				11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */,
-				11E7F96829B3578600C29B83 /* ChartViewController.swift in Sources */,
 				115DF50D29E56A1B00E9DFE9 /* DetailViewController.swift in Sources */,
 				115DF51129EE805B00E9DFE9 /* RequestType.swift in Sources */,
 				11B064DC2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift in Sources */,

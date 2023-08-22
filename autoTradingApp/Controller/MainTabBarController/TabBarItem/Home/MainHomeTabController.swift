@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import DropDown
 
 private let reuseIdentifier = "Cell"
 
@@ -26,11 +25,44 @@ class MainHomeTabController: UIViewController {
         return label
     }()
 
-    private let dropDownView = DropDownView()
-    private let dropDown = DropDown()
+    private let sunamtTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+
+        label.textColor = .gray
+        return label
+    }()
+
+    private let sunamtLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .right
+
+        label.textColor = .gray
+        return label
+    }()
+
+    private let tdtsunikTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+
+        label.textColor = .gray
+        return label
+    }()
+
+    private let tdtsunikLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .right
+
+        label.textColor = .gray
+        return label
+    }()
 
     lazy var containerStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, dropDownView])
+        let stackView = UIStackView(arrangedSubviews: [nameLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
 
@@ -104,8 +136,17 @@ class MainHomeTabController: UIViewController {
     }
 
 
-    func getUserAccount(name: String, code: String, ownedStoks: [ownedStock]) -> () {
+    func getUserAccount(sunamt: Double, tdtsunik: Double, ownedStoks: [ownedStock]) -> () {
         Stock.all = ownedStoks
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        sunamtLabel.attributedText = NSMutableAttributedString()
+            .regular(string: numberFormatter.string(from: sunamt as NSNumber)!, fontSize: 12)
+            .regular(string: " 원", fontSize: 12)
+        tdtsunikLabel.attributedText = NSMutableAttributedString()
+            .regular(string: numberFormatter.string(from: tdtsunik as NSNumber)!, fontSize: 12)
+            .regular(string: " 원", fontSize: 12)
 
         var idx = 0
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [unowned self] timer in
@@ -199,7 +240,6 @@ extension MainHomeTabController {
         return UICollectionViewCompositionalLayout.list(using: config)
     }
 
-    //Stock 대신 DataStore를 통해 저장해놓을 class 필요
     private func trailingSwipeActionsConfiguration(for indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let stock = dataSource.itemIdentifier(for: indexPath)
         else { return nil }
@@ -229,9 +269,7 @@ extension MainHomeTabController {
         return detailAction
     }
 
-    // inout keyword 제거 후 stocks 저장하는 객체에 접근 필요
     private func favoriteContextualAction(stock: Stock, indexPath: IndexPath) -> UIContextualAction {
-//        let title = stock.isFavorite! ? "Remove from Favorites" : "Add to Favorites"
         let action = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
             guard let self = self else { return }
             completionHandler(self.toggleIsFavorite(stock, indexPath))
@@ -247,6 +285,10 @@ extension MainHomeTabController {
     private func configureHierarchy() {
         view.backgroundColor = .white
         view.addSubview(containerStackView)
+        view.addSubview(sunamtTitleLabel)
+        view.addSubview(sunamtLabel)
+        view.addSubview(tdtsunikTitleLabel)
+        view.addSubview(tdtsunikLabel)
         view.addSubview(segmentedControl)
         view.addSubview(headerLabelStackView)
 
@@ -259,7 +301,8 @@ extension MainHomeTabController {
     private func setUpUI() {
         view.backgroundColor = MySpecialColors.bgColor
 
-        setUpDropDown()
+        sunamtTitleLabel.attributedText = NSMutableAttributedString().regular(string: "순자산: ", fontSize: 12)
+        tdtsunikTitleLabel.attributedText = NSMutableAttributedString().regular(string: "평가손익: ", fontSize: 12)
 
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: NotoSansFont.bold(size: 17), NSAttributedString.Key.foregroundColor: UIColor.gray], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: NotoSansFont.bold(size: 17),NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
@@ -270,7 +313,6 @@ extension MainHomeTabController {
 
         collectionView.backgroundColor = MySpecialColors.bgColor
 
-        dropDownView.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -280,12 +322,27 @@ extension MainHomeTabController {
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             containerStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            containerStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            containerStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
 
-            dropDownView.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 8),
-            dropDownView.bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: -8),
-            dropDownView.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
-            dropDownView.widthAnchor.constraint(equalToConstant: 220),
+            sunamtTitleLabel.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 8),
+            sunamtTitleLabel.trailingAnchor.constraint(equalTo: sunamtLabel.leadingAnchor, constant: -2),
+            sunamtTitleLabel.widthAnchor.constraint(equalToConstant: 52),
+            sunamtTitleLabel.heightAnchor.constraint(equalToConstant: 16),
+
+            sunamtLabel.topAnchor.constraint(equalTo: containerStackView.topAnchor, constant: 8),
+            sunamtLabel.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
+            sunamtLabel.widthAnchor.constraint(equalToConstant: 64),
+            sunamtLabel.heightAnchor.constraint(equalToConstant: 16),
+
+            tdtsunikTitleLabel.topAnchor.constraint(equalTo: sunamtLabel.bottomAnchor, constant: 2),
+            tdtsunikTitleLabel.trailingAnchor.constraint(equalTo: tdtsunikLabel.leadingAnchor, constant: -2),
+            tdtsunikTitleLabel.widthAnchor.constraint(equalToConstant: 52),
+            tdtsunikTitleLabel.heightAnchor.constraint(equalToConstant: 16),
+
+            tdtsunikLabel.topAnchor.constraint(equalTo: sunamtLabel.bottomAnchor, constant: 2),
+            tdtsunikLabel.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
+            tdtsunikLabel.widthAnchor.constraint(equalToConstant: 64),
+            tdtsunikLabel.heightAnchor.constraint(equalToConstant: 16),
 
             segmentedControl.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: 32),
             segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -313,44 +370,6 @@ extension MainHomeTabController {
         ])
     }
 
-    private func setUpDropDown() {
-        dropDownView.dropDownBtn.addTarget(self, action: #selector(dropdownClicked), for: .touchUpInside)
-        dropDownView.translatesAutoresizingMaskIntoConstraints = false
-
-        let itemList = ["item1", "item2", "item3", "item4", "item5", "item6"]
-
-        dropDown.dataSource = itemList
-        dropDownView.backgroundColor = MySpecialColors.borderGray
-
-        DropDown.appearance().textColor = UIColor.black // 아이템 텍스트 색상
-        DropDown.appearance().selectedTextColor = UIColor.red // 선택된 아이템 텍스트 색상
-        DropDown.appearance().backgroundColor = UIColor.white // 아이템 팝업 배경 색상
-        DropDown.appearance().selectionBackgroundColor = UIColor.lightGray // 선택한 아이템 배경 색상
-        DropDown.appearance().setupCornerRadius(8)
-        dropDown.dismissMode = .automatic // 팝업을 닫을 모드 설정
-
-        dropDown.anchorView = self.dropDownView
-
-        // View를 갖리지 않고 View아래에 Item 팝업이 붙도록 설정
-        dropDown.bottomOffset = CGPoint(x: 0, y: 36)
-
-        // Item 선택 시 처리
-        dropDown.selectionAction = { [weak self] (index, item) in
-            self!.dropDownView.textField.attributedText = NSMutableAttributedString().regular(string: item, fontSize: 12)
-            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
-        }
-        // 취소 시 처리
-        dropDown.cancelAction = { [weak self] in
-            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
-        }
-    }
-
-    @objc
-    func dropdownClicked(_ sender: Any) {
-        dropDown.show()
-        self.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.up.fill")
-
-    }
 }
 
 extension MainHomeTabController {
