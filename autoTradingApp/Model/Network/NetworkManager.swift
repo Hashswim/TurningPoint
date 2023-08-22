@@ -86,12 +86,46 @@ extension NetworkManager {
 
 // MARK: - POST Method
 extension NetworkManager {
-    func getAccessToken() {
+//    func getAccessToken() {
+//        let url = "https://openapi.ebestsec.co.kr:8080/oauth2/token"
+//
+//        // Header : 메타정보
+//        // Body : 실질적인 데이터
+//        let parameter: Parameters = ["appkey":"PSDOHWlJurdHdb9xfIq8K8WyJwpW735MGnLb",                               "appsecretkey":"9x8MoEJlkpbG6RunMhXU1RTeCQgV9ra2",
+//                                     "grant_type": "client_credentials",
+//                                     "scope": "oob"]
+//
+//        let header: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+//
+//        AF.request(url,
+//                   method: .post,
+//                   parameters: parameter,
+//                   headers: header).validate(statusCode: 200..<600).responseJSON { response in
+//            switch response.result {
+//            case .success(let value):
+//                let json = JSON(value)
+//                // 상태코드 - 값이 없으면 500
+//                let statusCode = response.response?.statusCode ?? 500
+//
+//                if statusCode == 200 {
+//                    UserInfo.shared.accessToken = json["access_token"].string
+//                    print(json["access_token"])
+//                } else {
+//                    print("error")
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
+
+    func getAccessToken(appKey: String, secretKey: String, completion: @escaping (String?) -> ()) {
         let url = "https://openapi.ebestsec.co.kr:8080/oauth2/token"
 
         // Header : 메타정보
         // Body : 실질적인 데이터
-        let parameter: Parameters = ["appkey":"PSDOHWlJurdHdb9xfIq8K8WyJwpW735MGnLb",                               "appsecretkey":"9x8MoEJlkpbG6RunMhXU1RTeCQgV9ra2",
+        let parameter: Parameters = ["appkey": appKey,
+                                     "appsecretkey": secretKey,
                                      "grant_type": "client_credentials",
                                      "scope": "oob"]
 
@@ -108,12 +142,14 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
-                    UserInfo.shared.accessToken = json["access_token"].string
-                    print(json["access_token"])
+                    completion(json["access_token"].string)
+//                    print(json["access_token"])
                 } else {
+                    completion(nil)
                     print("error")
                 }
             case .failure(let error):
+                completion(nil)
                 print(error)
             }
         }

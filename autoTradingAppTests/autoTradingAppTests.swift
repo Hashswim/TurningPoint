@@ -16,15 +16,15 @@ final class autoTradingAppTests: XCTestCase {
     override func tearDownWithError() throws {
     }
 
-    func testNetworkMethod() {
-        let network = NetworkManager()
-
-        DispatchQueue.global().sync {
-            network.getAccessToken {
-                print("successs")
-            }
-        }
+//    func testNetworkMethod() {
+//        let network = NetworkManager()
+//
+//        DispatchQueue.global().sync {
+//            network.getAccessToken {
+//                print("successs")
+//            }
+//        }
 
 //        XCTAssertEqual()
-    }
+//    }
 }

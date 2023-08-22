@@ -12,34 +12,47 @@ class LoginView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
-        label.text = "이메일과 비밀번호를\n입력하세요"
+        label.text = "이베스트에서 발급받은\n appKey와 SecretKey를 입력해주세요"
         label.textColor = .systemGray
         return label
     }()
 
-    let idTextField: UITextField = {
+    let nameTextField: UITextField = {
         let tf = CustomTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.tintColor = .black
-        tf.setPlaceholder(placeholder: "id를 입력하세요", color: .black)
+        tf.setPlaceholder(placeholder: "이름을 입력하세요", color: .black)
 
         return tf
     }()
 
-    let passwordTextField: UITextField = {
+    let appKeyTextField: UITextField = {
         let tf = CustomTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.tintColor = .black
-        tf.setPlaceholder(placeholder: "비밀번호를 입력하세요", color: .black)
+        tf.setPlaceholder(placeholder: "appkey를 입력하세요", color: .black)
+
+        return tf
+    }()
+
+    let secretKeyTextField: UITextField = {
+        let tf = CustomTextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.tintColor = .black
+        tf.setPlaceholder(placeholder: "secretKey를 입력하세요", color: .black)
         tf.isSecureTextEntry = true
 
         return tf
     }()
 
-    private let passwordGuideLabel: UILabel = {
-        let label = UILabel()
-        label.text = "비밀번호를 잊으셨다면 비밀번호 재설정"
-        return label
+    var keyGuideButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.tintColor = .systemGray
+        btn.backgroundColor = .systemGray
+        btn.setTitle("appkey와 secretKey 발급받기", for: .normal)
+
+        return btn
     }()
 
     var loginButton: UIButton = {
@@ -74,17 +87,19 @@ class LoginView: UIView {
     func configureHierarchy() {
         addSubview(containerStackView)
         containerStackView.addArrangedSubview(guideLabel)
-        containerStackView.addArrangedSubview(idTextField)
-        containerStackView.addArrangedSubview(passwordTextField)
-        containerStackView.addArrangedSubview(passwordGuideLabel)
+        containerStackView.addArrangedSubview(nameTextField)
+        containerStackView.addArrangedSubview(appKeyTextField)
+        containerStackView.addArrangedSubview(secretKeyTextField)
+        containerStackView.addArrangedSubview(keyGuideButton)
         containerStackView.addArrangedSubview(loginButton)
     }
 
     func configureLayout() {
         containerStackView.setCustomSpacing(70, after: guideLabel)
-        containerStackView.setCustomSpacing(56, after: idTextField)
-        containerStackView.setCustomSpacing(48, after: passwordTextField)
-        containerStackView.setCustomSpacing(28, after: passwordGuideLabel)
+        containerStackView.setCustomSpacing(56, after: nameTextField)
+        containerStackView.setCustomSpacing(56, after: appKeyTextField)
+        containerStackView.setCustomSpacing(48, after: secretKeyTextField)
+        containerStackView.setCustomSpacing(28, after: keyGuideButton)
         containerStackView.setCustomSpacing(12, after: loginButton)
 
         NSLayoutConstraint.activate([

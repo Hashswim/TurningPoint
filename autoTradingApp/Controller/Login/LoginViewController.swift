@@ -6,9 +6,10 @@
 //
 
 import UIKit
-
+import SafariServices
 
 class LoginViewController: UIViewController {
+    let networkManager = NetworkManager()
 
     let loginView = LoginView()
     let label: UILabel = {
@@ -19,6 +20,8 @@ class LoginViewController: UIViewController {
         return label
     }()
 
+    let alert = UIAlertController(title: "로그인 에러", message: "형식을 확인해주세요", preferredStyle: .alert)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,12 +29,9 @@ class LoginViewController: UIViewController {
         view.addSubview(loginView)
         addTapGesture()
         configureLayout()
+        configureAlert()
         configureTextField()
-        configureLoginButton()
-
-        let network = NetworkManager()
-        network.getAccessToken()
-        
+        configureButton()
     }
 
     func configureLayout() {
@@ -44,19 +44,48 @@ class LoginViewController: UIViewController {
         ])
     }
 
-    func configureTextField() {
-        loginView.idTextField.delegate = self
-        loginView.passwordTextField.delegate = self
+    func configureAlert() {
+        let errorAction = UIAlertAction(title: "확인", style: .default) { _ in
+            print("로그인 에러")
+        }
+        alert.addAction(errorAction)
     }
 
-    func configureLoginButton() {
+    func configureTextField() {
+        loginView.nameTextField.delegate = self
+        loginView.appKeyTextField.delegate = self
+        loginView.secretKeyTextField.delegate = self
+    }
+
+    func configureButton() {
         loginView.loginButton.addTarget(self, action: #selector(loginBtnAction), for: .touchUpInside)
+        loginView.keyGuideButton.addTarget(self, action: #selector(guideButton), for: .touchUpInside)
     }
 
     @objc
     func loginBtnAction() {
-        let mainTabBarController = MainTabBarController()
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+//        let name = loginView.nameTextField.text
+        let appKey = loginView.appKeyTextField.text
+        let secretKey = loginView.secretKeyTextField.text
+
+        networkManager.getAccessToken(appKey: appKey!, secretKey: secretKey!, completion: { token in
+            if let token = token {
+                UserInfo.shared.accessToken = token
+
+                let mainTabBarController = MainTabBarController()
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+            } else {
+//                self.present(self.alert, animated: false, completion: nil)
+                return
+            }
+        })
+    }
+
+    @objc
+    func guideButton() {
+        let url = NSURL(string: "https://openapi.ebestsec.co.kr/howto-use")
+        let guideView: SFSafariViewController = SFSafariViewController(url: url! as URL)
+        self.present(guideView, animated: true, completion: nil)
     }
 
     private func addTapGesture() {
@@ -72,7 +101,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        //check validate e-mail format
+        //check validate key format
         return true
     }
 }
