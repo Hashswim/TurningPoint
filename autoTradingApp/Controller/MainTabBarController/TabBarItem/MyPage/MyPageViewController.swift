@@ -45,7 +45,7 @@ class MyPageViewController: UIViewController {
     func configureUI() {
         self.title = "마이페이지"
 
-        nameLabel.attributedText = NSMutableAttributedString().bold(string: "이수림", fontSize: 25)
+        nameLabel.attributedText = NSMutableAttributedString().bold(string: UserInfo.shared.name!, fontSize: 25)
         nameLabel.textColor = .white
         nameLabel.textAlignment = .center
 

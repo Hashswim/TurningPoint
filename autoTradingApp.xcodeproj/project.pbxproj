@@ -14,6 +14,11 @@
 		11080AB52982A97C00B73F5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11080AB32982A97C00B73F5F /* LaunchScreen.storyboard */; };
 		11080AC02982B6C200B73F5F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11080ABF2982B6C200B73F5F /* LoginView.swift */; };
 		112E4B2429B5F073009A3F8F /* ChartView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E4B2329B5F073009A3F8F /* ChartView2.swift */; };
+		113B7EA72A95F60600228E3F /* UserCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 113B7EA52A95F60600228E3F /* UserCoreData.xcdatamodeld */; };
+		113B7EAA2A95F9E200228E3F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B7EA92A95F9E200228E3F /* CoreDataManager.swift */; };
+		113B7EAD2A96274800228E3F /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 113B7EAC2A96274800228E3F /* AWSAPIPlugin */; };
+		113B7EAF2A96274800228E3F /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 113B7EAE2A96274800228E3F /* AWSDataStorePlugin */; };
+		113B7EB12A96274800228E3F /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 113B7EB02A96274800228E3F /* Amplify */; };
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
 		115802F72A45C0AA00BA3591 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115802F62A45C0AA00BA3591 /* UIImage+.swift */; };
@@ -65,6 +70,8 @@
 		11E7F97029B4C43E00C29B83 /* SignUpIsUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F96F29B4C43E00C29B83 /* SignUpIsUserView.swift */; };
 		11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97129B4C57E00C29B83 /* SignUpTOSViewController.swift */; };
 		11E7F97429B4C59200C29B83 /* SignUpTOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7F97329B4C59200C29B83 /* SignUpTOSView.swift */; };
+		1E2E72B3F2F2389AAC8CC4EC /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = D7F17AB7676A6CA174358D59 /* awsconfiguration.json */; };
+		46C1000AFA32A86E86352CEF /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A89520249CB1CE68F1B67CE /* amplifyconfiguration.json */; };
 		99086D522A0A329200FAA427 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99086D512A0A329200FAA427 /* temp.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +87,7 @@
 
 /* Begin PBXFileReference section */
 		0620A098C3A1A54533A5F886 /* Pods-autoTradingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.debug.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.debug.xcconfig"; sourceTree = "<group>"; };
+		0A89520249CB1CE68F1B67CE /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		11080AA52982A97B00B73F5F /* autoTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = autoTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11080AA82982A97B00B73F5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11080AAA2982A97B00B73F5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +98,8 @@
 		11080ABF2982B6C200B73F5F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		112E4B2329B5F073009A3F8F /* ChartView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView2.swift; path = autoTradingApp/View/MenuTab/ChartView2.swift; sourceTree = SOURCE_ROOT; };
 		113B7EA22A85E53D00228E3F /* autoTradingApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = autoTradingApp.entitlements; sourceTree = "<group>"; };
+		113B7EA62A95F60600228E3F /* UserCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserCoreData.xcdatamodel; sourceTree = "<group>"; };
+		113B7EA92A95F9E200228E3F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		115802F62A45C0AA00BA3591 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -144,6 +154,7 @@
 		252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_autoTradingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86105BF2B75E204C034E6600 /* Pods-autoTradingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autoTradingApp.release.xcconfig"; path = "Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp.release.xcconfig"; sourceTree = "<group>"; };
 		99086D512A0A329200FAA427 /* temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temp.swift; sourceTree = "<group>"; };
+		D7F17AB7676A6CA174358D59 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +162,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				113B7EAF2A96274800228E3F /* AWSDataStorePlugin in Frameworks */,
+				113B7EB12A96274800228E3F /* Amplify in Frameworks */,
+				113B7EAD2A96274800228E3F /* AWSAPIPlugin in Frameworks */,
 				11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +187,7 @@
 				11080AA62982A97B00B73F5F /* Products */,
 				BC3ACC3A6B2F655290CA7349 /* Pods */,
 				9031988C34B0E63E9A8D5AA4 /* Frameworks */,
+				ABFBFC3A33AE395E8A6CF2BA /* AmplifyConfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,6 +209,7 @@
 				11080AB12982A97C00B73F5F /* Assets.xcassets */,
 				11080AA82982A97B00B73F5F /* AppDelegate.swift */,
 				11080AAA2982A97B00B73F5F /* SceneDelegate.swift */,
+				113B7EA82A95F9BD00228E3F /* CoreData */,
 				1161804429B86E6B00EA1E0D /* Model */,
 				11080ABD2982AC5000B73F5F /* View */,
 				11080ABC2982AC3C00B73F5F /* Controller */,
@@ -236,6 +252,15 @@
 			path = MenuTab;
 			sourceTree = "<group>";
 		};
+		113B7EA82A95F9BD00228E3F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				113B7EA52A95F60600228E3F /* UserCoreData.xcdatamodeld */,
+				113B7EA92A95F9E200228E3F /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		115D1E1F29C4616A00E98541 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,7 +291,6 @@
 				115DF51029EE805B00E9DFE9 /* RequestType.swift */,
 				115DF51229F2A03C00E9DFE9 /* PredictedRawServerResponse.swift */,
 				11B064DD2A6563120016AB68 /* CellDataModel.swift */,
-				11B1ED062A8489D7000E7D2B /* UserInfo.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -292,6 +316,7 @@
 				1161803F29B8667400EA1E0D /* Stock.swift */,
 				11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */,
 				1164161A2A555BDD008FA981 /* TradingTransaction.swift */,
+				11B1ED062A8489D7000E7D2B /* UserInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,6 +476,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ABFBFC3A33AE395E8A6CF2BA /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				D7F17AB7676A6CA174358D59 /* awsconfiguration.json */,
+				0A89520249CB1CE68F1B67CE /* amplifyconfiguration.json */,
+			);
+			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
 		BC3ACC3A6B2F655290CA7349 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,6 +512,11 @@
 			dependencies = (
 			);
 			name = autoTradingApp;
+			packageProductDependencies = (
+				113B7EAC2A96274800228E3F /* AWSAPIPlugin */,
+				113B7EAE2A96274800228E3F /* AWSDataStorePlugin */,
+				113B7EB02A96274800228E3F /* Amplify */,
+			);
 			productName = autoTradingApp;
 			productReference = 11080AA52982A97B00B73F5F /* autoTradingApp.app */;
 			productType = "com.apple.product-type.application";
@@ -528,6 +567,9 @@
 				Base,
 			);
 			mainGroup = 11080A9C2982A97B00B73F5F;
+			packageReferences = (
+				113B7EAB2A96274800228E3F /* XCRemoteSwiftPackageReference "amplify-swift" */,
+			);
 			productRefGroup = 11080AA62982A97B00B73F5F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -548,6 +590,8 @@
 				11E10E8B2A407C12007F3E10 /* NotoSansKR-Medium.otf in Resources */,
 				115D1E2329C461C400E98541 /* NotoSansKR-Regular.otf in Resources */,
 				11080AB22982A97C00B73F5F /* Assets.xcassets in Resources */,
+				1E2E72B3F2F2389AAC8CC4EC /* awsconfiguration.json in Resources */,
+				46C1000AFA32A86E86352CEF /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,9 +613,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-autoTradingApp/Pods-autoTradingApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -649,10 +697,12 @@
 				11B1ECF62A7E7CD2000E7D2B /* mainTabSegmentedControl.swift in Sources */,
 				11E7F96229A8D6F700C29B83 /* CustomTextField.swift in Sources */,
 				11B064E02A67B9B70016AB68 /* TradableViewController.swift in Sources */,
+				113B7EAA2A95F9E200228E3F /* CoreDataManager.swift in Sources */,
 				1164161F2A597C3F008FA981 /* TradingCell.swift in Sources */,
 				11E10E832A1F407B007F3E10 /* StockInfoView.swift in Sources */,
 				11E7F97229B4C57E00C29B83 /* SignUpTOSViewController.swift in Sources */,
 				116416142A519DD4008FA981 /* SearchViewCustomCell.swift in Sources */,
+				113B7EA72A95F60600228E3F /* UserCoreData.xcdatamodeld in Sources */,
 				11B1ED072A8489D7000E7D2B /* UserInfo.swift in Sources */,
 				99086D522A0A329200FAA427 /* temp.swift in Sources */,
 				11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */,
@@ -953,6 +1003,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		113B7EAB2A96274800228E3F /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		113B7EAC2A96274800228E3F /* AWSAPIPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 113B7EAB2A96274800228E3F /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSAPIPlugin;
+		};
+		113B7EAE2A96274800228E3F /* AWSDataStorePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 113B7EAB2A96274800228E3F /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSDataStorePlugin;
+		};
+		113B7EB02A96274800228E3F /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 113B7EAB2A96274800228E3F /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = Amplify;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		113B7EA52A95F60600228E3F /* UserCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				113B7EA62A95F60600228E3F /* UserCoreData.xcdatamodel */,
+			);
+			currentVersion = 113B7EA62A95F60600228E3F /* UserCoreData.xcdatamodel */;
+			path = UserCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 11080A9D2982A97B00B73F5F /* Project object */;
 }

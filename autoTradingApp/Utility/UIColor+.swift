@@ -63,6 +63,7 @@ enum MySpecialColors {
 
     static let bgGray = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.15)
     static let borderGray = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.2)
+    static let holderGray = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.3)
     static let borderGray2 = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.6)
     static let borderGray3 = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.4)
 

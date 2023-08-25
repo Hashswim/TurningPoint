@@ -10,12 +10,9 @@ import Foundation
 class UserInfo {
     static let shared = UserInfo()
 
+    var name: String?
     var accessToken: String?
-//    var accounts: [Account]?
+    var favoriteList: [String: Bool]? = [String: Bool]()
 
     private init() {}
 }
-
-//struct Account {
-//    let
-//}

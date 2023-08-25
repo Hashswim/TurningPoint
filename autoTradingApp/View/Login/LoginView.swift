@@ -12,8 +12,10 @@ class LoginView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
-        label.text = "이베스트에서 발급받은\n appKey와 SecretKey를 입력해주세요"
-        label.textColor = .systemGray
+        label.attributedText = NSMutableAttributedString()
+            .regular(string: "이베스트에서 발급받은\n", fontSize: 22)
+            .bold(string: "정보를 입력해주세요", fontSize: 28)
+        label.textColor = .white
         return label
     }()
 
@@ -21,7 +23,8 @@ class LoginView: UIView {
         let tf = CustomTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.tintColor = .black
-        tf.setPlaceholder(placeholder: "이름을 입력하세요", color: .black)
+        tf.titleView.attributedText = NSMutableAttributedString().medium(string: "이름", fontSize: 13)
+        tf.setPlaceholder(placeholder: "이름을 입력해주세요", color: MySpecialColors.holderGray)
 
         return tf
     }()
@@ -30,7 +33,8 @@ class LoginView: UIView {
         let tf = CustomTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.tintColor = .black
-        tf.setPlaceholder(placeholder: "appkey를 입력하세요", color: .black)
+        tf.titleView.attributedText = NSMutableAttributedString().medium(string: "App Key", fontSize: 13)
+        tf.setPlaceholder(placeholder: "App Key를 입력해주세요", color: MySpecialColors.holderGray)
 
         return tf
     }()
@@ -39,18 +43,41 @@ class LoginView: UIView {
         let tf = CustomTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.tintColor = .black
-        tf.setPlaceholder(placeholder: "secretKey를 입력하세요", color: .black)
-        tf.isSecureTextEntry = true
+        tf.titleView.attributedText = NSMutableAttributedString().medium(string: "Secret Key", fontSize: 13)
+        tf.setPlaceholder(placeholder: "Secret Key를 입력해주세요", color: MySpecialColors.holderGray)
 
         return tf
+    }()
+
+    let errorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        let imageAttachment = NSTextAttachment()
+        let exclamationmarkImage = UIImage(systemName: "exclamationmark.circle")
+        let image = exclamationmarkImage!.withTintColor(MySpecialColors.lightRed2, renderingMode: .alwaysTemplate)
+        imageAttachment.image = image
+        imageAttachment.bounds = CGRect(x: 0, y: 0, width: 13, height: 13)
+
+        let attributedString = NSMutableAttributedString(string: "")
+        attributedString.append(NSAttributedString(attachment: imageAttachment))
+        attributedString.append(NSMutableAttributedString().regular(string: " Key 정보가 유효하지 않습니다. 다시 입력해주세요.", fontSize: 13))
+        label.attributedText = attributedString
+
+        label.textColor = MySpecialColors.lightRed2
+        label.textAlignment = .right
+        label.isHidden = true
+        return label
     }()
 
     var keyGuideButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 10
         btn.tintColor = .systemGray
         btn.backgroundColor = .systemGray
-        btn.setTitle("appkey와 secretKey 발급받기", for: .normal)
+        btn.setTitle("Key 발급받기", for: .normal)
 
         return btn
     }()
@@ -58,8 +85,12 @@ class LoginView: UIView {
     var loginButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.tintColor = .systemGray
-        btn.backgroundColor = .systemGray
+        btn.layer.masksToBounds = true
+        btn.layer.borderColor = UIColor.systemGray.cgColor
+        btn.layer.borderWidth = 1
+        btn.layer.cornerRadius = 10
+//        btn.tintColor = .systemGray
+        btn.backgroundColor = MySpecialColors.bgColor
         btn.setTitle("로그인", for: .normal)
 
         return btn
@@ -90,23 +121,26 @@ class LoginView: UIView {
         containerStackView.addArrangedSubview(nameTextField)
         containerStackView.addArrangedSubview(appKeyTextField)
         containerStackView.addArrangedSubview(secretKeyTextField)
+        containerStackView.addArrangedSubview(errorLabel)
         containerStackView.addArrangedSubview(keyGuideButton)
         containerStackView.addArrangedSubview(loginButton)
     }
 
     func configureLayout() {
-        containerStackView.setCustomSpacing(70, after: guideLabel)
-        containerStackView.setCustomSpacing(56, after: nameTextField)
+        containerStackView.setCustomSpacing(80, after: guideLabel)
+        containerStackView.setCustomSpacing(88, after: nameTextField)
         containerStackView.setCustomSpacing(56, after: appKeyTextField)
-        containerStackView.setCustomSpacing(48, after: secretKeyTextField)
-        containerStackView.setCustomSpacing(28, after: keyGuideButton)
-        containerStackView.setCustomSpacing(12, after: loginButton)
+        containerStackView.setCustomSpacing(72, after: secretKeyTextField)
+        containerStackView.setCustomSpacing(12, after: errorLabel)
+        containerStackView.setCustomSpacing(16, after: keyGuideButton)
 
         NSLayoutConstraint.activate([
-            containerStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 40),
+            containerStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             containerStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 18),
             containerStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -18),
 
+            keyGuideButton.heightAnchor.constraint(equalToConstant: 60),
+            loginButton.heightAnchor.constraint(equalToConstant: 60),
         ])
 
     }

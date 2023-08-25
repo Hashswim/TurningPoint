@@ -12,6 +12,15 @@ class CustomTextField: UITextField {
     lazy var placeholderColer: UIColor = self.tintColor
     lazy var placeholderString: String = ""
 
+    let titleView: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        label.textAlignment = .left
+
+        return label
+    }()
+
     private lazy var underLineView: UIView = {
         let lineView = UIView()
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +32,10 @@ class CustomTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        addSubview(titleView)
         addSubview(underLineView)
+
+        self.textColor = .white
         configureContraint()
 
         self.addTarget(self, action: #selector(editingDidBegin), for: .editingDidBegin)
@@ -36,7 +48,11 @@ class CustomTextField: UITextField {
 
     func configureContraint() {
         NSLayoutConstraint.activate([
-            underLineView.topAnchor.constraint(equalTo: self.bottomAnchor),
+            titleView.bottomAnchor.constraint(equalTo: self.topAnchor, constant: -17),
+            titleView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            titleView.heightAnchor.constraint(equalToConstant: 18),
+
+            underLineView.topAnchor.constraint(equalTo: self.bottomAnchor, constant: 12),
             underLineView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             underLineView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             underLineView.heightAnchor.constraint(equalToConstant: 1)
@@ -60,17 +76,17 @@ class CustomTextField: UITextField {
 
     func setError() {
         self.attributedPlaceholder = NSAttributedString(
-            string: placeholderString,
+            string: self.text ?? "",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
         )
-        underLineView.backgroundColor = .red
+//        underLineView.backgroundColor = .red
     }
 }
 
 extension CustomTextField {
     @objc func editingDidBegin() {
-        setPlaceholder()
-        underLineView.backgroundColor = self.tintColor
+//        setPlaceholder()
+        underLineView.backgroundColor = .white
     }
 
     @objc func editingDidEnd() {

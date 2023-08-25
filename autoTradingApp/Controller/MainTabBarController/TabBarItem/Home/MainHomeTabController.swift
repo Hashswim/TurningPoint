@@ -19,7 +19,7 @@ class MainHomeTabController: UIViewController {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.attributedText = NSMutableAttributedString()
-            .bold(string: "이수림", fontSize: 28)
+            .bold(string: UserInfo.shared.name!, fontSize: 28)
             .regular(string: "님", fontSize: 28)
         label.textColor = .white
         return label
