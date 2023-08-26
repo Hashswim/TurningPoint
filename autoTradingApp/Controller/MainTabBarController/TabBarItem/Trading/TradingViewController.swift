@@ -14,11 +14,12 @@ class TradingViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.attributedText = NSMutableAttributedString()
-            .bold(string: "이수림", fontSize: 28)
+            .bold(string: UserInfo.shared.name ?? "ddd", fontSize: 28)
             .regular(string: "님", fontSize: 28)
         label.textColor = .white
         return label
     }()
+
     private let nameLabel2: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,12 +29,70 @@ class TradingViewController: UIViewController {
         return label
     }()
 
+    private let transactionButton = TransactionButton()
+
+    private let containerStackView: UIStackView = {
+        let stackView = UIStackView()
+
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.backgroundColor = MySpecialColors.bgColor
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 8
+
+        return stackView
+    }()
+
     private let dropDownView = DropDownView()
     private let dropDown = DropDown()
 
-    private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<TradingData, TradingTransaction>! = nil
-    private var tradingData: TradingData?
+    private let headerDateLabel: UILabel = {
+        let label = UILabel()
+        label.attributedText = NSMutableAttributedString()
+            .regular(string: "Date", fontSize: 13)
+        label.textColor = .gray
+        return label
+    }()
+
+    private let headerPriceLabel: UILabel = {
+        let label = UILabel()
+        label.attributedText = NSMutableAttributedString()
+            .regular(string: "Price", fontSize: 13)
+        label.textColor = .gray
+
+        return label
+    }()
+
+    private let headerActionLabel: UILabel = {
+        let label = UILabel()
+        label.attributedText = NSMutableAttributedString()
+            .regular(string: "Action", fontSize: 13)
+        label.textColor = .gray
+
+        return label
+    }()
+
+    private let headerInvestmentLabel: UILabel = {
+        let label = UILabel()
+        label.attributedText = NSMutableAttributedString()
+            .regular(string: "Investment", fontSize: 13)
+        label.textColor = .gray
+
+        return label
+    }()
+
+    lazy var headerLabelStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [headerDateLabel, headerPriceLabel, headerActionLabel, headerInvestmentLabel])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.backgroundColor = MySpecialColors.darkGray
+
+        stackView.axis = .horizontal
+
+        return stackView
+    }()
+
+    private var tableView = UITableView()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,35 +109,24 @@ class TradingViewController: UIViewController {
 
         setUpUI()
         configrueLayout()
-        configureDataSource()
-        updateDataSource()
+        configureTableView()
     }
 
     private func setUpUI() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        transactionButton.translatesAutoresizingMaskIntoConstraints = false
+
         view.backgroundColor = MySpecialColors.bgColor
+
+        containerStackView.addArrangedSubview(nameLabel2)
+        containerStackView.addArrangedSubview(transactionButton)
+        containerStackView.backgroundColor = MySpecialColors.bgColor
+
         view.addSubview(nameLabel)
-        view.addSubview(nameLabel2)
+        view.addSubview(containerStackView)
         view.addSubview(dropDownView)
-
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(collectionView)
-        collectionView.backgroundColor = MySpecialColors.bgColor
-        collectionView.isDirectionalLockEnabled = false
-        collectionView.register(
-            TradingCell.self,
-            forCellWithReuseIdentifier: TradingCell.reuseIdentifier
-        )
-        collectionView.register(
-            HeaderView.self,
-            forSupplementaryViewOfKind: HeaderView.reuseElementKind,
-            withReuseIdentifier: HeaderView.reuseIdentifier
-        )
-        collectionView.isDirectionalLockEnabled = true
-//        collectionView.isPagingEnabled = true
-        //Trading Data 등록
-        tradingData = TradingData(cells: [])
+        view.addSubview(headerLabelStackView)
+        view.addSubview(tableView)
 
         setUpDropDown()
     }
@@ -86,25 +134,61 @@ class TradingViewController: UIViewController {
     private func configrueLayout() {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 28.5),
-            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 34),
             nameLabel.heightAnchor.constraint(equalToConstant: 28),
 
-            nameLabel2.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            nameLabel2.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            containerStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+            containerStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            containerStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -18),
+//            containerStackView.heightAnchor.constraint(equalToConstant: 58),
+
+            nameLabel2.leadingAnchor.constraint(equalTo: containerStackView.leadingAnchor, constant: 18),
             nameLabel2.heightAnchor.constraint(equalToConstant: 28),
 
-            dropDownView.topAnchor.constraint(equalTo: nameLabel2.bottomAnchor, constant: 26.5),
+            transactionButton.topAnchor.constraint(equalTo: nameLabel2.bottomAnchor, constant: 21),
+            transactionButton.leadingAnchor.constraint(equalTo: containerStackView.leadingAnchor),
+            transactionButton.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor),
+            transactionButton.heightAnchor.constraint(equalToConstant: 52),
+
+            dropDownView.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: 50),
             dropDownView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -18),
             dropDownView.heightAnchor.constraint(equalToConstant: 32),
             dropDownView.widthAnchor.constraint(equalToConstant: 220),
 
-            collectionView.topAnchor.constraint(equalTo: dropDownView.bottomAnchor, constant: 16.9),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            headerLabelStackView.topAnchor.constraint(equalTo: dropDownView.bottomAnchor, constant: 20),
+            headerLabelStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            headerLabelStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            headerLabelStackView.heightAnchor.constraint(equalToConstant: 20),
+
+            headerDateLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 34),
+            headerDateLabel.widthAnchor.constraint(equalToConstant: 29),
+
+            headerPriceLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 135),
+            headerPriceLabel.widthAnchor.constraint(equalToConstant: 31),
+
+            headerActionLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 218),
+            headerActionLabel.widthAnchor.constraint(equalToConstant: 40),
+
+            headerInvestmentLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 288),
+            headerInvestmentLabel.widthAnchor.constraint(equalToConstant: 30),
+
+            tableView.topAnchor.constraint(equalTo: headerLabelStackView.bottomAnchor, constant: 2),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
+
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.allowsSelection = false
+        tableView.backgroundColor = MySpecialColors.bgColor
+
+        tableView.register(TradingCell.self, forCellReuseIdentifier: TradingCell.cellID)
+    }
 }
+
 extension TradingViewController {
     private func setUpDropDown() {
         dropDownView.dropDownBtn.addTarget(self, action: #selector(dropdownClicked), for: .touchUpInside)
@@ -145,83 +229,30 @@ extension TradingViewController {
     }
 }
 
-extension TradingViewController {
-    private func createLayout() -> UICollectionViewLayout {
-        // Sticky column
-        let stickyHeaderSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(89 * 50),
-            heightDimension: .absolute(30)
-        )
-        
-        let stickyHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: stickyHeaderSize,
-            elementKind: HeaderView.reuseElementKind,
-            alignment: .top,
-            absoluteOffset: CGPoint(x: 0, y: 0)
-        )
-        stickyHeader.pinToVisibleBounds = true
-
-        // Item cell
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(89 * 5),
-            heightDimension: .absolute(32)
-        )
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(
-                widthDimension: .absolute(89 * 5),
-                heightDimension: .absolute(32 * 10)
-            )
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
-                                                     subitems: [item])
-
-        let section = NSCollectionLayoutSection(group: group)
-//        section.orthogonalScrollingBehavior = .continuous
-        section.boundarySupplementaryItems = [stickyHeader]
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-
-        return UICollectionViewCompositionalLayout(section: section)
+extension TradingViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return TradingTransaction.all.count
     }
 
-    func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<TradingData, TradingTransaction>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, data: TradingTransaction) -> UICollectionViewCell? in
-            // Return the cell.
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TradingCell.reuseIdentifier, for: indexPath) as? TradingCell else {
-                return nil
-            }
-            cell.dateLabel.attributedText =  NSMutableAttributedString().regular(string: "\(data.cells[0])", fontSize: 12)
-            cell.actionLabel.attributedText = NSMutableAttributedString().regular(string: "\(data.cells[1])", fontSize: 12)
-            cell.priceLabel.attributedText = NSMutableAttributedString().regular(string: "\(data.cells[2])", fontSize: 12)
-            cell.investmentLabel.attributedText = NSMutableAttributedString().regular(string: "\(data.cells[3])", fontSize: 12)
-            cell.balanceLabel.attributedText = NSMutableAttributedString().regular(string: "\(data.cells[4])", fontSize: 12)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TradingCell.cellID, for: indexPath) as! TradingCell
 
-            return cell
-        }
+        cell.dateLabel.attributedText = NSMutableAttributedString()
+            .regular(string: TradingTransaction.all[indexPath.row].date, fontSize: 12)
 
-        dataSource.supplementaryViewProvider = {(
-            collectionView: UICollectionView,
-            kind: String,
-            indexPath: IndexPath
-        ) -> UICollectionReusableView? in
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: HeaderView.reuseElementKind,
-                withReuseIdentifier: HeaderView.reuseIdentifier,
-                for: indexPath
-            ) as? HeaderView else {
-                fatalError("Cannot create new supplementary")
-            }
-//            headerView.label.text = "99999"
-            return headerView
-        }
+        cell.priceLabel.attributedText = NSMutableAttributedString()
+            .regular(string: String(TradingTransaction.all[indexPath.row].price), fontSize: 12)
+
+        cell.actionLabel.attributedText = NSMutableAttributedString()
+            .regular(string: TradingTransaction.all[indexPath.row].action + "\(TradingTransaction.all[indexPath.row].count)", fontSize: 12)
+
+        cell.investmentLabel.attributedText = NSMutableAttributedString()
+            .regular(string: String(TradingTransaction.all[indexPath.row].investment) + "%", fontSize: 12)
+
+        return cell
     }
 
-    func updateDataSource() {
-        guard let tradingData = tradingData else { return }
-        var snapshot = NSDiffableDataSourceSnapshot<TradingData, TradingTransaction>()
-        snapshot.appendSections([tradingData])
-        snapshot.appendItems(tradingData.transactions)
-        dataSource.apply(snapshot, animatingDifferences: false)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 32
     }
 }
-

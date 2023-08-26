@@ -1,45 +1,45 @@
+////
+////  HeaderCell.swift
+////  autoTradingApp
+////
+////  Created by 서수영 on 2023/07/11.
+////
 //
-//  HeaderCell.swift
-//  autoTradingApp
+//import UIKit
 //
-//  Created by 서수영 on 2023/07/11.
+//class HeaderCell: UIView {
+//    let label = UILabel()
 //
-
-import UIKit
-
-class HeaderCell: UIView {
-    let label = UILabel()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("Not implemented")
-    }
-
-    func configure(
-        attributedText: NSAttributedString,
-        backgroundColor: UIColor,
-        borderWith: CGFloat,
-        borderColor: UIColor
-    ) {
-        self.backgroundColor = backgroundColor
-        layer.borderWidth = borderWith
-        layer.borderColor = borderColor.cgColor
-        layer.masksToBounds = true
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontForContentSizeCategory = true
-        addSubview(label)
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor),
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-        label.attributedText = attributedText
-        label.textColor = .white
-        label.textAlignment = .center
-    }
-}
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("Not implemented")
+//    }
+//
+//    func configure(
+//        attributedText: NSAttributedString,
+//        backgroundColor: UIColor,
+//        borderWith: CGFloat,
+//        borderColor: UIColor
+//    ) {
+//        self.backgroundColor = backgroundColor
+//        layer.borderWidth = borderWith
+//        layer.borderColor = borderColor.cgColor
+//        layer.masksToBounds = true
+//
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.adjustsFontForContentSizeCategory = true
+//        addSubview(label)
+//        NSLayoutConstraint.activate([
+//            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+//            label.topAnchor.constraint(equalTo: topAnchor),
+//            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+//        ])
+//        label.attributedText = attributedText
+//        label.textColor = .white
+//        label.textAlignment = .center
+//    }
+//}

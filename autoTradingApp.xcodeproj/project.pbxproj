@@ -19,6 +19,7 @@
 		113B7EAD2A96274800228E3F /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 113B7EAC2A96274800228E3F /* AWSAPIPlugin */; };
 		113B7EAF2A96274800228E3F /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 113B7EAE2A96274800228E3F /* AWSDataStorePlugin */; };
 		113B7EB12A96274800228E3F /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 113B7EB02A96274800228E3F /* Amplify */; };
+		113B7EB42A98CB5600228E3F /* TransactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B7EB32A98CB5600228E3F /* TransactionButton.swift */; };
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
 		115802F72A45C0AA00BA3591 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115802F62A45C0AA00BA3591 /* UIImage+.swift */; };
@@ -100,6 +101,7 @@
 		113B7EA22A85E53D00228E3F /* autoTradingApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = autoTradingApp.entitlements; sourceTree = "<group>"; };
 		113B7EA62A95F60600228E3F /* UserCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserCoreData.xcdatamodel; sourceTree = "<group>"; };
 		113B7EA92A95F9E200228E3F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		113B7EB32A98CB5600228E3F /* TransactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionButton.swift; sourceTree = "<group>"; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		115802F62A45C0AA00BA3591 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				116416182A555B3C008FA981 /* HeaderView.swift */,
 				1164161E2A597C3F008FA981 /* TradingCell.swift */,
 				116416202A5D3002008FA981 /* HeaderCell.swift */,
+				113B7EB32A98CB5600228E3F /* TransactionButton.swift */,
 			);
 			path = TradingView;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				11B1ED072A8489D7000E7D2B /* UserInfo.swift in Sources */,
 				99086D522A0A329200FAA427 /* temp.swift in Sources */,
 				11E7F96529B3547500C29B83 /* MainTabBarControllerViewController.swift in Sources */,
+				113B7EB42A98CB5600228E3F /* TransactionButton.swift in Sources */,
 				115DF50D29E56A1B00E9DFE9 /* DetailViewController.swift in Sources */,
 				115DF51129EE805B00E9DFE9 /* RequestType.swift in Sources */,
 				11B064DC2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift in Sources */,

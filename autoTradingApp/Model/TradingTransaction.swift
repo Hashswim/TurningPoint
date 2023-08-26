@@ -8,63 +8,17 @@
 import Foundation
 
 //by Group
-class TradingTransaction: Hashable {
-    let cells: [String]
-    let identifier: String
+struct TradingTransaction {
+    let name: String
+    let code: String
+    let date: String
+    let price: Double
+    let action: String
+    let count: Int
+    let investment: Double
 
-    init(
-        cells: [String],
-        identifier: String = UUID().uuidString
-    ) {
-        self.cells = cells
-        self.identifier = identifier
-    }
-}
-
-extension TradingTransaction {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
-
-    static func == (lhs: TradingTransaction, rhs: TradingTransaction) -> Bool {
-        return lhs.identifier == rhs.identifier
-    }
-}
-
-//by Rows
-class TradingData: Hashable {
-//    let count: Int
-    let identifier: String
-    let transactions: [TradingTransaction]
-
-    init(
-        cells: [TradingTransaction],
-        identifier: String = UUID().uuidString
-    ) {
-        self.transactions = [
-            TradingTransaction(cells: ["1", "2", "3", "4", "5"]),
-            TradingTransaction(cells: ["1-1", "2-1", "3-1", "4-1", "5-1"]),
-            TradingTransaction(cells: ["1-3", "2-2", "3-2", "4-2", "5-2"]),
-            TradingTransaction(cells: ["1-4", "2-2", "3-2", "4-2", "5-2"]),
-            TradingTransaction(cells: ["1-5", "2-2", "3-2", "4-2", "5-2"]),
-
-            TradingTransaction(cells: ["1-6", "2-2", "3-2", "4-2", "5-2"]),
-            TradingTransaction(cells: ["1-7", "2-2", "3-2", "4-2", "5-2"]),
-            TradingTransaction(cells: ["1-8", "2-2", "3-2", "4-2", "5-2"]),
-            TradingTransaction(cells: ["1-9", "2-2", "3-2", "4-2", "5-2"]),
-            TradingTransaction(cells: ["1-10", "2-2", "3-2", "4-2", "5-2"]),
-        ].compactMap({$0})
-
-        self.identifier = identifier
-    }
-}
-
-extension TradingData {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
-
-    static func == (lhs: TradingData, rhs: TradingData) -> Bool {
-        return lhs.identifier == rhs.identifier
-    }
+    static let all = [TradingTransaction(name: "s", code: "1", date: "2023.06.29", price: 123, action: "buy", count: 5, investment: 11),
+                      TradingTransaction(name: "s1", code: "1", date: "2023.06.29", price: 123, action: "buy", count: 6, investment: 11),
+                      TradingTransaction(name: "s2", code: "1", date: "2023.06.29", price: 123, action: "buy", count: 7, investment: 11),
+                      TradingTransaction(name: "s3", code: "1", date: "2023.06.29", price: 123, action: "buy", count: 8, investment: 11),]
 }

@@ -1,62 +1,62 @@
+////
+////  HeaderView.swift
+////  autoTradingApp
+////
+////  Created by 서수영 on 2023/07/05.
+////
 //
-//  HeaderView.swift
-//  autoTradingApp
+//import UIKit
 //
-//  Created by 서수영 on 2023/07/05.
+//class HeaderView: UICollectionReusableView {
 //
-
-import UIKit
-
-class HeaderView: UICollectionReusableView {
-
-    static let reuseIdentifier = "sticky-header-reuse-identifier"
-    static let reuseElementKind = "sticky-header-element-kind"
-    private let indexList = ["Date", "Action", "Price", "Investment", "Balance"]
-
-    lazy var label = UILabel()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        self.backgroundColor = MySpecialColors.cellGray
-        
-        addSubview(label)
-
-        label.text = "ddkdsjfjsdfksadfhskdlfhl"
-        label.textColor = .white
-        configureLayout()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("Not implemented")
-    }
-
-    func configureLayout() {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-
-            //            label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            label.topAnchor.constraint(equalTo: self.topAnchor),
-            label.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-        ])
-
-        for index in 0..<5 {
-            let frame = CGRect(
-                x: CGFloat(index) * 89,
-                y: 0,
-                width: 89,
-                height: 31
-            )
-            let headerCell = HeaderCell(frame: frame)
-            headerCell.configure(
-                attributedText: NSMutableAttributedString().bold(string: indexList[index], fontSize: 13),
-                backgroundColor: MySpecialColors.cellGray,
-                borderWith: 0,
-                borderColor: .black
-            )
-            addSubview(headerCell)
-        }
-    }
-
-}
+//    static let reuseIdentifier = "sticky-header-reuse-identifier"
+//    static let reuseElementKind = "sticky-header-element-kind"
+//    private let indexList = ["Date", "Action", "Price", "Investment", "Balance"]
+//
+//    lazy var label = UILabel()
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//
+//        self.backgroundColor = MySpecialColors.cellGray
+//        
+//        addSubview(label)
+//
+//        label.text = "ddkdsjfjsdfksadfhskdlfhl"
+//        label.textColor = .white
+//        configureLayout()
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("Not implemented")
+//    }
+//
+//    func configureLayout() {
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//
+//            //            label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            label.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            label.topAnchor.constraint(equalTo: self.topAnchor),
+//            label.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+//        ])
+//
+//        for index in 0..<5 {
+//            let frame = CGRect(
+//                x: CGFloat(index) * 89,
+//                y: 0,
+//                width: 89,
+//                height: 31
+//            )
+//            let headerCell = HeaderCell(frame: frame)
+//            headerCell.configure(
+//                attributedText: NSMutableAttributedString().bold(string: indexList[index], fontSize: 13),
+//                backgroundColor: MySpecialColors.cellGray,
+//                borderWith: 0,
+//                borderColor: .black
+//            )
+//            addSubview(headerCell)
+//        }
+//    }
+//
+//}
