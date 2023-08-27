@@ -56,10 +56,10 @@ class DetailViewController: UIViewController {
 
     private let stockInfoView = StockInfoView()
 
-    private let segmentedControl = TradingSegmentedControl(items: ["차트", "매수", "매도"])
-    private let chartView = ChartView2()
-    private let transactionBuyView = TransactionView()
-    private let transactionSellView = TransactionView()
+    let segmentedControl = TradingSegmentedControl(items: ["차트", "매수", "매도"])
+    let chartView = ChartView2()
+    let transactionBuyView = TransactionView()
+    let transactionSellView = TransactionView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +73,7 @@ class DetailViewController: UIViewController {
         setUpNaviBar()
         configureLayout()
 
-        transactionBuyView.isHidden = true
-        transactionSellView.isHidden = true
+
     }
 
     func setUpNaviBar() {
@@ -171,7 +170,6 @@ class DetailViewController: UIViewController {
 
     }
     func setUpUI() {
-        segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
 
         stockNameLabel.attributedText = NSMutableAttributedString().regular(string: (stock?.name)!, fontSize: 17)

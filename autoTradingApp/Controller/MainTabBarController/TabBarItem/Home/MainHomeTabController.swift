@@ -259,6 +259,13 @@ extension MainHomeTabController {
 
             let vc = DetailViewController()
             vc.stock = stock
+            vc.segmentedControl.selectedSegmentIndex = 0
+            vc.chartView.isHidden = false
+            vc.transactionBuyView.isHidden = true
+            vc.transactionSellView.isHidden = true
+
+            vc.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, .font: NotoSansFont.bold(size: 17)], for: .selected)
+
             self.navigationController?.pushViewController(vc, animated: true)
 
             completionHandler(true)

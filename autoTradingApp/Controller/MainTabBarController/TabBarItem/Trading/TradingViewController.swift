@@ -14,7 +14,7 @@ class TradingViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.attributedText = NSMutableAttributedString()
-            .bold(string: UserInfo.shared.name ?? "ddd", fontSize: 28)
+            .bold(string: UserInfo.shared.name ?? "", fontSize: 28)
             .regular(string: "님", fontSize: 28)
         label.textColor = .white
         return label
@@ -129,6 +129,7 @@ class TradingViewController: UIViewController {
         view.addSubview(tableView)
 
         setUpDropDown()
+        configureTransactionButton()
     }
 
     private func configrueLayout() {
@@ -199,9 +200,9 @@ extension TradingViewController {
         dropDown.dataSource = itemList
         dropDownView.backgroundColor = MySpecialColors.borderGray
 
-        DropDown.appearance().textColor = UIColor.black // 아이템 텍스트 색상
-        DropDown.appearance().selectedTextColor = UIColor.red // 선택된 아이템 텍스트 색상
-        DropDown.appearance().backgroundColor = UIColor.white // 아이템 팝업 배경 색상
+        DropDown.appearance().textColor = .white // 아이템 텍스트 색상
+        DropDown.appearance().selectedTextColor = .white// 선택된 아이템 텍스트 색상
+        DropDown.appearance().backgroundColor = MySpecialColors.dropGray // 아이템 팝업 배경 색상
         DropDown.appearance().selectionBackgroundColor = UIColor.lightGray // 선택한 아이템 배경 색상
         DropDown.appearance().setupCornerRadius(8)
         dropDown.dismissMode = .automatic // 팝업을 닫을 모드 설정
@@ -226,6 +227,47 @@ extension TradingViewController {
     func dropdownClicked(_ sender: Any) {
         dropDown.show()
         self.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+    }
+
+    func configureTransactionButton() {
+        transactionButton.tradingCall = TradingCall(code: "259960", name: "크래프톤", price: 210000, count: 2, order: .buy)
+        transactionButton.setUpCallValue()
+        transactionButton.addTarget(self, action: #selector(transactionButtonTapped), for: .touchUpInside)
+    }
+
+    @objc
+    func transactionButtonTapped() {
+        let vc = DetailViewController()
+        let stock = Stock.loaded.filter { $0.code! == transactionButton.tradingCall.code! }
+        vc.stock = stock[0] as? ownedStock
+        
+        if transactionButton.orderLabel.text == "매수" {
+            vc.segmentedControl.selectedSegmentIndex = 1
+
+            vc.chartView.isHidden = true
+            vc.transactionBuyView.isHidden = false
+            vc.transactionSellView.isHidden = true
+
+            vc.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red, .font: NotoSansFont.bold(size: 17)], for: .selected)
+
+            vc.transactionBuyView.priceStepper.setValue(transactionButton.tradingCall.price!)
+            vc.transactionBuyView.countStepper.setValue(Double(transactionButton.tradingCall.count!))
+            vc.buyTotalPriceCounting()
+        } else {
+            vc.segmentedControl.selectedSegmentIndex = 2
+
+            vc.chartView.isHidden = true
+            vc.transactionBuyView.isHidden = true
+            vc.transactionSellView.isHidden = false
+
+            vc.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue, .font: NotoSansFont.bold(size: 17)], for: .selected)
+
+            vc.transactionSellView.priceStepper.setValue(transactionButton.tradingCall.price!)
+            vc.transactionSellView.countStepper.setValue(Double(transactionButton.tradingCall.count!))
+            vc.sellTotalPriceCounting()
+        }
+
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

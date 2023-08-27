@@ -7,7 +7,22 @@
 
 import UIKit
 
+enum OrderIndex: String {
+    case buy = "매수"
+    case sell = "매도"
+}
+
+struct TradingCall {
+    let code: String?
+    let name: String?
+    let price: Double?
+    let count: Int?
+    let order: OrderIndex?
+}
+
 class TransactionButton: UIButton {
+    var tradingCall = TradingCall(code: nil, name: nil, price: nil, count: nil, order: nil)
+
     private let stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
@@ -21,7 +36,7 @@ class TransactionButton: UIButton {
 
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "네이버"
+//        label.text = "네이버"
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
         label.textColor = .white
@@ -29,9 +44,9 @@ class TransactionButton: UIButton {
         return label
     }()
 
-    private let priceLabel: UILabel = {
+    let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "210,000원"
+//        label.text = "210,000원"
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
 
@@ -42,7 +57,7 @@ class TransactionButton: UIButton {
 
     private let countLabel: UILabel = {
         let label = UILabel()
-        label.text = "3개"
+//        label.text = "3개"
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
 
@@ -51,11 +66,11 @@ class TransactionButton: UIButton {
         return label
     }()
 
-    private let orderLabel: UILabel = {
+    let orderLabel: UILabel = {
         let label = UILabel()
-        label.text = "매수"
+//        label.text = "매수"
         label.textAlignment = .left
-        label.textColor = .red
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -67,6 +82,27 @@ class TransactionButton: UIButton {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func setUpCallValue() {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        nameLabel.attributedText = NSMutableAttributedString().bold(string: tradingCall.name ?? "", fontSize: 17)
+        priceLabel.attributedText = NSMutableAttributedString()
+            .bold(string: numberFormatter.string(from: tradingCall.price! as NSNumber)!, fontSize: 17)
+            .regular(string: "원", fontSize: 17)
+        countLabel.attributedText = NSMutableAttributedString()
+            .bold(string: String(tradingCall.count!), fontSize: 17)
+            .regular(string: "개", fontSize: 17)
+        orderLabel.attributedText = NSMutableAttributedString().bold(string: tradingCall.order!.rawValue, fontSize: 17)
+
+        switch tradingCall.order! {
+        case .buy:
+            orderLabel.textColor = MySpecialColors.orderRed
+        case .sell:
+            orderLabel.textColor = MySpecialColors.orderBlue
+        }
     }
 
 
