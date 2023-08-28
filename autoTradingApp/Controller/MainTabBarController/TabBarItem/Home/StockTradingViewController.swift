@@ -217,8 +217,8 @@ class StockTradingViewController: UIViewController {
     func setUpNaviBar() {
         self.title = "내 주식"
 
-        self.navigationItem.rightBarButtonItem =
-        UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
+//        self.navigationItem.rightBarButtonItem =
+//        UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.topItem?.title = ""
 
@@ -232,10 +232,10 @@ class StockTradingViewController: UIViewController {
         self.navigationItem.scrollEdgeAppearance = appearance
     }
 
-    @objc
-    func favoriteButtonPressed() {
-        //toggle isFavorite property and change UIBarButtonItem Image
-    }
+//    @objc
+//    func favoriteButtonPressed() {
+//        //toggle isFavorite property and change UIBarButtonItem Image
+//    }
 
     func configureHierarchy() {
         view.addSubview(scrollView)

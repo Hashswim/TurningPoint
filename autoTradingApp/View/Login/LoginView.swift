@@ -75,9 +75,9 @@ class LoginView: UIView {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 10
-        btn.tintColor = .systemGray
         btn.backgroundColor = .systemGray
-        btn.setTitle("Key 발급받기", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.setAttributedTitle(NSMutableAttributedString().medium(string: "Key 발급받기", fontSize: 16), for: .normal)
 
         return btn
     }()
@@ -89,9 +89,9 @@ class LoginView: UIView {
         btn.layer.borderColor = UIColor.systemGray.cgColor
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 10
-//        btn.tintColor = .systemGray
         btn.backgroundColor = MySpecialColors.bgColor
-        btn.setTitle("로그인", for: .normal)
+        btn.setAttributedTitle(NSMutableAttributedString().medium(string: "로그인", fontSize: 16), for: .normal)
+        btn.setTitleColor(.white, for: .normal)
 
         return btn
     }()

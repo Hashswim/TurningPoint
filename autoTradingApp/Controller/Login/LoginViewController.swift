@@ -12,13 +12,13 @@ class LoginViewController: UIViewController {
     let networkManager = NetworkManager()
 
     let loginView = LoginView()
-    let label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "test"
-        label.textColor = .brown
-        return label
-    }()
+//    let label: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.text = "test"
+//        label.textColor = .brown
+//        return label
+//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()

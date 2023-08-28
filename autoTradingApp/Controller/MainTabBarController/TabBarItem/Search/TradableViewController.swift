@@ -13,8 +13,8 @@ class TradableViewController: UIViewController {
     var shcode: String? = nil
     var stock: Stock? = nil
 
-    private let dropDownView = DropDownView()
-    private let dropDown = DropDown()
+//    private let dropDownView = DropDownView()
+//    private let dropDown = DropDown()
 
     let networkManager = NetworkManager()
 
@@ -72,7 +72,7 @@ class TradableViewController: UIViewController {
         view.backgroundColor = MySpecialColors.bgColor
 
         setUpNaviBar()
-        setUpDropDown()
+//        setUpDropDown()
         setSegmentedControl()
         setUpTransactionView()
         configureHierarchy()
@@ -85,59 +85,66 @@ class TradableViewController: UIViewController {
 
     func setUpNaviBar() {
         //        let name = (self.stock?.isFavorite!)! ? "heart" : "heart.fill"
-        self.navigationItem.rightBarButtonItem =
-        UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
+//        self.navigationItem.rightBarButtonItem =
+//        UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .white
 
         self.title = "주식 상세정보"
-        self.navigationController!.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
 
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .gray
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = MySpecialColors.bgColor
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: NotoSansFont.medium(size: 17)]
+
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
     }
-
-    private func setUpDropDown() {
-        dropDownView.dropDownBtn.addTarget(self, action: #selector(dropdownClicked), for: .touchUpInside)
-        dropDownView.translatesAutoresizingMaskIntoConstraints = false
-
-        let itemList = ["item1", "item2", "item3", "item4", "item5", "item6"]
-
-        dropDown.dataSource = itemList
-        dropDownView.backgroundColor = MySpecialColors.borderGray
-
-        DropDown.appearance().textColor = UIColor.black // 아이템 텍스트 색상
-        DropDown.appearance().selectedTextColor = UIColor.red // 선택된 아이템 텍스트 색상
-        DropDown.appearance().backgroundColor = UIColor.white // 아이템 팝업 배경 색상
-        DropDown.appearance().selectionBackgroundColor = UIColor.lightGray // 선택한 아이템 배경 색상
-        DropDown.appearance().setupCornerRadius(8)
-        dropDown.dismissMode = .automatic // 팝업을 닫을 모드 설정
-
-        dropDown.anchorView = self.dropDownView
-
-        // View를 갖리지 않고 View아래에 Item 팝업이 붙도록 설정
-        dropDown.bottomOffset = CGPoint(x: 0, y: 36)
-
-        // Item 선택 시 처리
-        dropDown.selectionAction = { [weak self] (index, item) in
-            self!.dropDownView.textField.attributedText = NSMutableAttributedString().regular(string: item, fontSize: 12)
-            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
-        }
-        // 취소 시 처리
-        dropDown.cancelAction = { [weak self] in
-            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
-        }
-    }
-
-    @objc
-    func dropdownClicked(_ sender: Any) {
-        dropDown.show()
-        self.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.up.fill")
-
-    }
-
-    @objc
-    func favoriteButtonPressed() {
-        //toggle isFavorite property and change UIBarButtonItem Image
-    }
+//
+//    private func setUpDropDown() {
+//        dropDownView.dropDownBtn.addTarget(self, action: #selector(dropdownClicked), for: .touchUpInside)
+//        dropDownView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        let itemList = ["item1", "item2", "item3", "item4", "item5", "item6"]
+//
+//        dropDown.dataSource = itemList
+//        dropDownView.backgroundColor = MySpecialColors.borderGray
+//
+//        DropDown.appearance().textColor = UIColor.black // 아이템 텍스트 색상
+//        DropDown.appearance().selectedTextColor = UIColor.red // 선택된 아이템 텍스트 색상
+//        DropDown.appearance().backgroundColor = UIColor.white // 아이템 팝업 배경 색상
+//        DropDown.appearance().selectionBackgroundColor = UIColor.lightGray // 선택한 아이템 배경 색상
+//        DropDown.appearance().setupCornerRadius(8)
+//        dropDown.dismissMode = .automatic // 팝업을 닫을 모드 설정
+//
+//        dropDown.anchorView = self.dropDownView
+//
+//        // View를 갖리지 않고 View아래에 Item 팝업이 붙도록 설정
+//        dropDown.bottomOffset = CGPoint(x: 0, y: 36)
+//
+//        // Item 선택 시 처리
+//        dropDown.selectionAction = { [weak self] (index, item) in
+//            self!.dropDownView.textField.attributedText = NSMutableAttributedString().regular(string: item, fontSize: 12)
+//            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+//        }
+//        // 취소 시 처리
+//        dropDown.cancelAction = { [weak self] in
+//            self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+//        }
+//    }
+//
+//    @objc
+//    func dropdownClicked(_ sender: Any) {
+//        dropDown.show()
+//        self.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+//
+//    }
+//
+//    @objc
+//    func favoriteButtonPressed() {
+//        //toggle isFavorite property and change UIBarButtonItem Image
+//    }
 
     func setSegmentedControl() {
         segmentedControl.backgroundColor = .lightGray
@@ -194,7 +201,6 @@ class TradableViewController: UIViewController {
     }
 
     func configureHierarchy() {
-        view.addSubview(dropDownView)
         view.addSubview(stockNameLabel)
         view.addSubview(stockPriceLabel)
         view.addSubview(indexImageView)
@@ -215,19 +221,14 @@ class TradableViewController: UIViewController {
     }
 
     func configureLayout() {
-        dropDownView.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         chartView.translatesAutoresizingMaskIntoConstraints = false
         transactionBuyView.translatesAutoresizingMaskIntoConstraints = false
         transactionSellView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            dropDownView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            dropDownView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 18),
-            dropDownView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -18),
-            dropDownView.heightAnchor.constraint(equalToConstant: 36),
 
-            stockNameLabel.topAnchor.constraint(equalTo: dropDownView.bottomAnchor, constant: 52),
+            stockNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             stockNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stockNameLabel.widthAnchor.constraint(equalToConstant: 200),
             stockNameLabel.heightAnchor.constraint(equalToConstant: 17),

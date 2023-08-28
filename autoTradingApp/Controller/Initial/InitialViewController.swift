@@ -22,20 +22,16 @@ class InitialViewController: UIViewController {
         return pageControl
     }()
 
-    private let loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(loginBtnAction), for: .touchUpInside)
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("로그인", for: .normal)
+        btn.backgroundColor = MySpecialColors.tabBarTint
+        btn.setAttributedTitle(NSMutableAttributedString().bold(string: "시작하기", fontSize: 16), for: .normal)
+        btn.setTitleColor(.white, for: .normal)
 
-        return btn
-    }()
-
-    private let signUpButton: UIButton = {
-        let btn = UIButton()
-        btn.addTarget(self, action: #selector(signUpBtnAction), for: .touchUpInside)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("회원가입", for: .normal)
+        btn.layer.cornerRadius = 10
+        btn.layer.masksToBounds = true
 
         return btn
     }()
@@ -79,11 +75,11 @@ class InitialViewController: UIViewController {
         navigationController?.pushViewController(loginViewController, animated: true)
     }
 
-    @objc
-    func signUpBtnAction() {
-        let signUpViewController = SignUpGuideViewController()
-        navigationController?.pushViewController(signUpViewController, animated: true)
-    }
+//    @objc
+//    func signUpBtnAction() {
+//        let signUpViewController = SignUpGuideViewController()
+//        navigationController?.pushViewController(signUpViewController, animated: true)
+//    }
 }
 
 extension InitialViewController {
@@ -126,8 +122,7 @@ extension InitialViewController {
         guideCollectionView.isScrollEnabled = false
 
         buttonStackView.addArrangedSubview(loginButton)
-        buttonStackView.addArrangedSubview(signUpButton)
-        
+
         containerStackView.addArrangedSubview(guideCollectionView)
         containerStackView.addArrangedSubview(pageControl)
         containerStackView.addArrangedSubview(buttonStackView)
@@ -149,11 +144,11 @@ extension InitialViewController {
             pageControl.topAnchor.constraint(equalTo: guideCollectionView.bottomAnchor),
             pageControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
 
-            buttonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            buttonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 22),
             buttonStackView.topAnchor.constraint(equalTo: pageControl.bottomAnchor),
-            buttonStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            buttonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            buttonStackView.heightAnchor.constraint(equalToConstant: 80),
+            buttonStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -22),
+            buttonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            buttonStackView.heightAnchor.constraint(equalToConstant: 60),
         ])
     }
 }
