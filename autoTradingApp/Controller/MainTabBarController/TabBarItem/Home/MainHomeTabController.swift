@@ -179,7 +179,6 @@ class MainHomeTabController: UIViewController {
         if UserInfo.shared.favoriteList!.contains(Stock.all[idx].code!) {
             Stock.all[idx].isFavorite = true
             Stock.favorite.append(Stock.all[idx])
-
         }
 
         Stock.loaded.append(Stock.all[idx])
@@ -197,9 +196,11 @@ class MainHomeTabController: UIViewController {
         if stock.isFavorite == true {
             Stock.favorite.append(stock)
             UserInfo.shared.favoriteList = Stock.favorite.compactMap { $0.code }
+            CoreDataManager.shared.update(token: UserInfo.shared.accessToken!, favoriteItems: UserInfo.shared.favoriteList!)
         } else {
             Stock.favorite.remove(at: indexPath.row)
             UserInfo.shared.favoriteList = Stock.favorite.compactMap { $0.code }
+            CoreDataManager.shared.update(token: UserInfo.shared.accessToken!, favoriteItems: UserInfo.shared.favoriteList!)
         }
 
         var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()

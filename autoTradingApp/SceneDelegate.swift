@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
@@ -19,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let networkManager = NetworkManager()
 
         let mainViewController: UIViewController?
-        let user: [User] = CoreDataManager.shared.getUsers()
+        let user: [User] = CoreDataManager.shared.readUserEntity()
         if user.count == 0 {
             mainViewController = InitialViewController()
         } else {

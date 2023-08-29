@@ -5,87 +5,99 @@
 //  Created by 서수영 on 2023/08/23.
 //
 
-import UIKit
+import Foundation
 import CoreData
 
 class CoreDataManager {
-    static let shared: CoreDataManager = CoreDataManager()
+    static var shared: CoreDataManager = CoreDataManager()
 
-    let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-    lazy var context = appDelegate?.persistentContainer.viewContext
-
-    let modelName: String = "User"
-
-    func getUsers() -> [User] {
-        var models: [User] = [User]()
-
-        if let context = context {
-            let fetchRequest: NSFetchRequest<NSManagedObject>
-                = NSFetchRequest<NSManagedObject>(entityName: modelName)
-
-            do {
-                if let fetchResult: [User] = try context.fetch(fetchRequest) as? [User] {
-                    models = fetchResult
-                }
-            } catch let error as NSError {
-                print("Could not fetch: \(error), \(error.userInfo)")
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "UserCoreData")
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-        }
-        return models
+        })
+
+        return container
+    }()
+
+    var context: NSManagedObjectContext {
+        return persistentContainer.viewContext
     }
 
-    func saveUser(accessToken: String, favoriteItems: [String], name: String, onSuccess: @escaping ((Bool) -> Void)) {
-        if let context = context,
-            let entity: NSEntityDescription
-            = NSEntityDescription.entity(forEntityName: modelName, in: context) {
+    var userEntity: NSEntityDescription? {
+        return  NSEntityDescription.entity(forEntityName: "User", in: context)
+    }
 
-            if let user: User = NSManagedObject(entity: entity, insertInto: context) as? User {
-                user.accessToken = accessToken
-                user.name = name
-                user.favoriteItems = favoriteItems
+    // MARK: - CREATE
+    func create(accessToken: String, name: String, favoriteItems: [String]) {
+        createUserEntity(accessToken: accessToken, name: name, favoriteItems: favoriteItems)
+        saveContext()
+    }
 
-                contextSave { success in
-                    onSuccess(success)
-                }
-            }
+    private func createUserEntity(accessToken: String, name: String, favoriteItems: [String]) {
+        if let entity = userEntity {
+            let managedObject = NSManagedObject(entity: entity, insertInto: context)
+            managedObject.setValue(accessToken, forKey: "accessToken")
+            managedObject.setValue(name, forKey: "name")
+            managedObject.setValue(favoriteItems, forKey: "favoriteItems")
         }
     }
 
-    func deleteUser(token: String, onSuccess: @escaping ((Bool) -> Void)) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = filteredRequest(token: token)
+    private func saveContext() {
+        if !context.hasChanges {
+            return
+        }
 
         do {
-            if let results: [User] = try context?.fetch(fetchRequest) as? [User] {
-                if results.count != 0 {
-                    context?.delete(results[0])
-                }
-            }
-        } catch let error as NSError {
-            print("Could not fatch: \(error), \(error.userInfo)")
-            onSuccess(false)
-        }
-
-        contextSave { success in
-            onSuccess(success)
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
         }
     }
-}
 
-extension CoreDataManager {
-    fileprivate func filteredRequest(token: String) -> NSFetchRequest<NSFetchRequestResult> {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult>
-            = NSFetchRequest<NSFetchRequestResult>(entityName: modelName)
-        fetchRequest.predicate = NSPredicate(format: "accessToken = %@", token)
-        return fetchRequest
+    // MARK: - READ
+    func readUserEntity() -> [User] {
+        return fetchUserEntity()
     }
 
-    fileprivate func contextSave(onSuccess: ((Bool) -> Void)) {
+    private func fetchUserEntity() -> [User] {
         do {
-            try context?.save()
-            onSuccess(true)
-        } catch let error as NSError {
-            print("Could not save: \(error), \(error.userInfo)")
-            onSuccess(false)
+            let request = User.fetchRequest()
+            let results = try context.fetch(request)
+
+            return results
+        } catch {
+            print(error.localizedDescription)
         }
+
+        return []
+    }
+
+    // MARK: - UPDATE
+    func update(token: String, favoriteItems: [String]) {
+        let fetchResults = fetchUserEntity()
+        if fetchResults.contains(where: { $0.accessToken == token }) {
+            for result in fetchResults where result.accessToken == token {
+                result.favoriteItems = favoriteItems
+            }
+        } else {
+//            create(diary: diary)
+            print("error")
+        }
+
+        saveContext()
+    }
+
+    // MARK: - DELETE
+    func delete(token: String) {
+        let fetchResults = fetchUserEntity()
+        guard let diaryEntity = fetchResults.first(where: { $0.accessToken == token }) else {
+            return
+        }
+
+        context.delete(diaryEntity)
+        saveContext()
     }
 }
