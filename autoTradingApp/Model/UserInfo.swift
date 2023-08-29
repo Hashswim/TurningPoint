@@ -12,7 +12,7 @@ class UserInfo {
 
     var name: String?
     var accessToken: String?
-    var favoriteList: [String: Bool]? = [String: Bool]()
+    var favoriteList: [String]?
 
     private init() {}
 }

@@ -70,6 +70,11 @@ class LoginViewController: UIViewController {
             if let token = token {
                 UserInfo.shared.accessToken = token
 
+                CoreDataManager.shared
+                    .saveUser(accessToken: token, favoriteItems: [], name: name!) { onSuccess in
+                        print("saved = \(onSuccess)")
+                }
+
                 let mainTabBarController = MainTabBarController()
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
             } else {

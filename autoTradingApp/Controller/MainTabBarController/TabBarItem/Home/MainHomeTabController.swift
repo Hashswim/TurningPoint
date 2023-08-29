@@ -175,6 +175,13 @@ class MainHomeTabController: UIViewController {
 
     func getLogoData(idx: Int, logo: UIImage) -> () {
         Stock.all[idx].logo = logo
+
+        if UserInfo.shared.favoriteList!.contains(Stock.all[idx].code!) {
+            Stock.all[idx].isFavorite = true
+            Stock.favorite.append(Stock.all[idx])
+
+        }
+
         Stock.loaded.append(Stock.all[idx])
 
         var snapshot = dataSource.snapshot()
@@ -189,8 +196,10 @@ class MainHomeTabController: UIViewController {
 
         if stock.isFavorite == true {
             Stock.favorite.append(stock)
+            UserInfo.shared.favoriteList = Stock.favorite.compactMap { $0.code }
         } else {
             Stock.favorite.remove(at: indexPath.row)
+            UserInfo.shared.favoriteList = Stock.favorite.compactMap { $0.code }
         }
 
         var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()

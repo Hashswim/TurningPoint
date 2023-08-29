@@ -20,6 +20,8 @@
 		113B7EAF2A96274800228E3F /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 113B7EAE2A96274800228E3F /* AWSDataStorePlugin */; };
 		113B7EB12A96274800228E3F /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 113B7EB02A96274800228E3F /* Amplify */; };
 		113B7EB42A98CB5600228E3F /* TransactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B7EB32A98CB5600228E3F /* TransactionButton.swift */; };
+		113B7EBF2A9DF23500228E3F /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B7EBD2A9DF23500228E3F /* User+CoreDataClass.swift */; };
+		113B7EC02A9DF23500228E3F /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B7EBE2A9DF23500228E3F /* User+CoreDataProperties.swift */; };
 		114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */; };
 		114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DD3742982CA81001E3E24 /* LoginViewController.swift */; };
 		115802F72A45C0AA00BA3591 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115802F62A45C0AA00BA3591 /* UIImage+.swift */; };
@@ -102,6 +104,8 @@
 		113B7EA62A95F60600228E3F /* UserCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserCoreData.xcdatamodel; sourceTree = "<group>"; };
 		113B7EA92A95F9E200228E3F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		113B7EB32A98CB5600228E3F /* TransactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionButton.swift; sourceTree = "<group>"; };
+		113B7EBD2A9DF23500228E3F /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		113B7EBE2A9DF23500228E3F /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		114DD3722982C1B0001E3E24 /* GuideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewCell.swift; sourceTree = "<group>"; };
 		114DD3742982CA81001E3E24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		115802F62A45C0AA00BA3591 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -314,6 +318,8 @@
 		1161804429B86E6B00EA1E0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				113B7EBD2A9DF23500228E3F /* User+CoreDataClass.swift */,
+				113B7EBE2A9DF23500228E3F /* User+CoreDataProperties.swift */,
 				115D1E2D29CD85A100E98541 /* Network */,
 				1161803F29B8667400EA1E0D /* Stock.swift */,
 				11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */,
@@ -664,6 +670,7 @@
 				116416212A5D3002008FA981 /* HeaderCell.swift in Sources */,
 				1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */,
 				11E10E762A13B23C007F3E10 /* predictedAlgorithm.swift in Sources */,
+				113B7EBF2A9DF23500228E3F /* User+CoreDataClass.swift in Sources */,
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
 				11E10E7F2A1BA4F8007F3E10 /* TradingViewController.swift in Sources */,
 				116416192A555B3C008FA981 /* HeaderView.swift in Sources */,
@@ -686,6 +693,7 @@
 				11E7F96029A8D23D00C29B83 /* SignUpGuideView.swift in Sources */,
 				11B064DE2A6563120016AB68 /* CellDataModel.swift in Sources */,
 				11E7F96B29B4AD7C00C29B83 /* SignUpGuideViewController.swift in Sources */,
+				113B7EC02A9DF23500228E3F /* User+CoreDataProperties.swift in Sources */,
 				1164161B2A555BDD008FA981 /* TradingTransaction.swift in Sources */,
 				112E4B2429B5F073009A3F8F /* ChartView2.swift in Sources */,
 				11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */,

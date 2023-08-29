@@ -41,14 +41,19 @@ class SearchViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search Stock"
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
+//        searchController.title
+
         searchController.searchBar.searchTextField.backgroundColor = MySpecialColors.textGray
         //        searchController.searchBar.tintColor = MySpecialColors.bgColor
         //        searchController.searchBar.searchTextField.font =
+        self.title = "AI 모델 보유종목"
+
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: NotoSansFont.medium(size: 17)]
         appearance.backgroundColor = MySpecialColors.bgColor
 
         self.navigationItem.standardAppearance = appearance

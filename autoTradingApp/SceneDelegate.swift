@@ -15,13 +15,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        
 
-        let mainViewController = InitialViewController()
-//        let mainViewController = TradingViewController()
+        let networkManager = NetworkManager()
 
-        let navigationController = UINavigationController(rootViewController: mainViewController)
+        let mainViewController: UIViewController?
+        let user: [User] = CoreDataManager.shared.getUsers()
+        if user.count == 0 {
+            mainViewController = InitialViewController()
+        } else {
+            UserInfo.shared.name = user[0].name
+            UserInfo.shared.accessToken = user[0].accessToken
+            UserInfo.shared.favoriteList = user[0].favoriteItems
 
+            mainViewController = MainTabBarController()
+        }
+
+        let navigationController = UINavigationController(rootViewController: mainViewController!)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
