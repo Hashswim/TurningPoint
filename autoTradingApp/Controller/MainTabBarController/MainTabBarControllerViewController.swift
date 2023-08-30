@@ -29,7 +29,7 @@ class MainTabBarController: UITabBarController {
     func setUpVCs() {
         viewControllers = [
             createNavController(for: MainHomeTabController(), title: NSLocalizedString("메인홈", comment: ""), image: UIImage(named: "1메인")!),
-            createNavController(for: SearchViewController(), title: NSLocalizedString("검색", comment: ""), image: UIImage(named: "2검색")!),
+            createNavController(for: SearchViewController(), title: NSLocalizedString("AI 모델 보유종목", comment: ""), image: UIImage(named: "2검색")!),
             createNavController(for: TradingViewController(), title: NSLocalizedString("트레이딩", comment: ""), image: UIImage(named: "3트레이딩")!),
             createNavController(for: MyPageViewController(), title: NSLocalizedString("마이페이지", comment: ""), image: UIImage(named: "4마이페이지")!)
         ]
