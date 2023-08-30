@@ -65,12 +65,14 @@ class LoginViewController: UIViewController {
         let secretKey = loginView.secretKeyTextField.text
 
         UserInfo.shared.name = name
+        UserInfo.shared.appKey = appKey
+        UserInfo.shared.favoriteList = []
 
         networkManager.getAccessToken(appKey: appKey!, secretKey: secretKey!, completion: { token in
             if let token = token {
                 UserInfo.shared.accessToken = token
 
-                CoreDataManager.shared.create(accessToken: token, name: name!, favoriteItems: [])
+                CoreDataManager.shared.create(appKey: appKey!, secretKey: secretKey!, name: name!, favoriteItems: [""])
                    
                 let mainTabBarController = MainTabBarController()
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)

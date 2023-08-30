@@ -56,6 +56,10 @@ class MyPageViewController: UIViewController {
         btnTableView.translatesAutoresizingMaskIntoConstraints = false
 
         profileButton.addTarget(self, action: #selector(imagePickerPressed), for: .touchUpInside)
+
+        let user: [User] = CoreDataManager.shared.readUserEntity()
+        profileButton.setBackgroundImage(UIImage(data: user[0].profileImage ?? Data()), for: .normal)
+
         btnTableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: ExpandableTableViewCell.reuseIdentifier)
 
         scrollView.backgroundColor = MySpecialColors.bgColor
@@ -110,7 +114,7 @@ class MyPageViewController: UIViewController {
             nameLabel.topAnchor.constraint(equalTo: profileButton.bottomAnchor, constant: 30),
             nameLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             nameLabel.widthAnchor.constraint(equalToConstant: 73),
-            nameLabel.heightAnchor.constraint(equalToConstant: 25),
+            nameLabel.heightAnchor.constraint(equalToConstant: 32),
 
             btnTableView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 80),
             btnTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -153,6 +157,18 @@ extension MyPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataSource[indexPath.row].isExpanded.toggle()
         tableView.reloadRows(at: [indexPath], with: .automatic)
+
+        if indexPath.row == 3 {
+            CoreDataManager.shared.delete()
+
+            Stock.all = []
+            Stock.favorite = []
+            Stock.loaded = []
+//            Stock.traiding = []
+
+            let vc = LoginViewController()
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+        }
     }
 }
 
@@ -162,6 +178,7 @@ extension MyPageViewController: UIImagePickerControllerDelegate, UINavigationCon
         picker.dismiss(animated: true) {
             if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
                 self.profileButton.setBackgroundImage(img, for: .normal)
+                CoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, profileImage: img.pngData()!)
 
             } else {
                 print("image nil")

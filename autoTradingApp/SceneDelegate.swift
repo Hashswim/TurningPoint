@@ -17,21 +17,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let networkManager = NetworkManager()
 
-        let mainViewController: UIViewController?
         let user: [User] = CoreDataManager.shared.readUserEntity()
         if user.count == 0 {
-            mainViewController = InitialViewController()
+            let mainViewController = InitialViewController()
+
+            let navigationController = UINavigationController(rootViewController: mainViewController)
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
         } else {
             UserInfo.shared.name = user[0].name
-            UserInfo.shared.accessToken = user[0].accessToken
             UserInfo.shared.favoriteList = user[0].favoriteItems
 
-            mainViewController = MainTabBarController()
+            networkManager.getAccessToken(appKey: user[0].appKey!, secretKey: user[0].secretKey!, completion: { token in
+                UserInfo.shared.accessToken = token
+                let mainViewController = MainTabBarController()
+                self.window?.rootViewController = mainViewController
+                self.window?.makeKeyAndVisible()
+            })
         }
-
-        let navigationController = UINavigationController(rootViewController: mainViewController!)
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
     }
 
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {

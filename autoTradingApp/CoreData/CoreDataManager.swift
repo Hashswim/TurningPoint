@@ -5,7 +5,7 @@
 //  Created by 서수영 on 2023/08/23.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 class CoreDataManager {
@@ -31,15 +31,17 @@ class CoreDataManager {
     }
 
     // MARK: - CREATE
-    func create(accessToken: String, name: String, favoriteItems: [String]) {
-        createUserEntity(accessToken: accessToken, name: name, favoriteItems: favoriteItems)
+    func create(appKey: String, secretKey: String, name: String, favoriteItems: [String]) {
+        createUserEntity(appKey: appKey, secretKey: secretKey, name: name, favoriteItems: favoriteItems)
         saveContext()
     }
 
-    private func createUserEntity(accessToken: String, name: String, favoriteItems: [String]) {
+    private func createUserEntity(appKey: String, secretKey: String, name: String, favoriteItems: [String]) {
         if let entity = userEntity {
             let managedObject = NSManagedObject(entity: entity, insertInto: context)
-            managedObject.setValue(accessToken, forKey: "accessToken")
+            managedObject.setValue(appKey, forKey: "appKey")
+            managedObject.setValue(secretKey, forKey: "secretKey")
+            managedObject.setValue(UIImage(systemName: "photo.circle.fill")!.pngData(), forKey: "profileImage")
             managedObject.setValue(name, forKey: "name")
             managedObject.setValue(favoriteItems, forKey: "favoriteItems")
         }
@@ -76,28 +78,36 @@ class CoreDataManager {
     }
 
     // MARK: - UPDATE
-    func update(token: String, favoriteItems: [String]) {
+    func update(appKey: String, favoriteItems: [String]) {
         let fetchResults = fetchUserEntity()
-        if fetchResults.contains(where: { $0.accessToken == token }) {
-            for result in fetchResults where result.accessToken == token {
+        if fetchResults.contains(where: { $0.appKey == appKey }) {
+            for result in fetchResults where result.appKey == appKey {
                 result.favoriteItems = favoriteItems
             }
         } else {
-//            create(diary: diary)
             print("error")
         }
+        saveContext()
+    }
 
+    func update(appKey: String, profileImage: Data) {
+        let fetchResults = fetchUserEntity()
+        if fetchResults.contains(where: { $0.appKey == appKey }) {
+            for result in fetchResults where result.appKey == appKey {
+                result.profileImage = profileImage
+            }
+        } else {
+            print("error")
+        }
         saveContext()
     }
 
     // MARK: - DELETE
-    func delete(token: String) {
+    func delete() {
         let fetchResults = fetchUserEntity()
-        guard let diaryEntity = fetchResults.first(where: { $0.accessToken == token }) else {
-            return
+        fetchResults.compactMap {
+            context.delete($0)
         }
-
-        context.delete(diaryEntity)
         saveContext()
     }
 }

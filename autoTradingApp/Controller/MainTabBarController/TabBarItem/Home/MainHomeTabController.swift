@@ -196,11 +196,11 @@ class MainHomeTabController: UIViewController {
         if stock.isFavorite == true {
             Stock.favorite.append(stock)
             UserInfo.shared.favoriteList = Stock.favorite.compactMap { $0.code }
-            CoreDataManager.shared.update(token: UserInfo.shared.accessToken!, favoriteItems: UserInfo.shared.favoriteList!)
+            CoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, favoriteItems: UserInfo.shared.favoriteList!)
         } else {
             Stock.favorite.remove(at: indexPath.row)
             UserInfo.shared.favoriteList = Stock.favorite.compactMap { $0.code }
-            CoreDataManager.shared.update(token: UserInfo.shared.accessToken!, favoriteItems: UserInfo.shared.favoriteList!)
+            CoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, favoriteItems: UserInfo.shared.favoriteList!)
         }
 
         var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()

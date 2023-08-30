@@ -11,6 +11,7 @@ class UserInfo {
     static let shared = UserInfo()
 
     var name: String?
+    var appKey: String?
     var accessToken: String?
     var favoriteList: [String]?
 

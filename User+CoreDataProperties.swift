@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  autoTradingApp
 //
-//  Created by 서수영 on 2023/08/29.
+//  Created by 서수영 on 2023/08/30.
 //
 //
 
@@ -16,9 +16,11 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
-    @NSManaged public var accessToken: String?
     @NSManaged public var favoriteItems: [String]?
     @NSManaged public var name: String?
+    @NSManaged public var appKey: String?
+    @NSManaged public var secretKey: String?
+    @NSManaged public var profileImage: Data?
 
 }
 

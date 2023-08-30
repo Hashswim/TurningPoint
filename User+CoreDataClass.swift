@@ -2,7 +2,7 @@
 //  User+CoreDataClass.swift
 //  autoTradingApp
 //
-//  Created by 서수영 on 2023/08/29.
+//  Created by 서수영 on 2023/08/30.
 //
 //
 
