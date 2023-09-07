@@ -1,0 +1,30 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-turningpoint-dev-05216-authRole",
+      "UnauthRoleArn": "arn:aws:iam::672416592414:role/amplify-turningpoint-dev-05216-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::672416592414:role/amplify-turningpoint-dev-05216-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-turningpoint-dev-05216-deployment",
+      "UnauthRoleName": "amplify-turningpoint-dev-05216-unauthRole",
+      "StackName": "amplify-turningpoint-dev-05216",
+      "StackId": "arn:aws:cloudformation:us-east-1:672416592414:stack/amplify-turningpoint-dev-05216/32ad9180-4c04-11ee-9936-0eb9f2af1c03",
+      "AmplifyAppId": "dafqjp732jqd",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-turningpoint-dev-05216-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "function": {
+        "turningpointd4c149cb": {
+          "deploymentBucketName": "amplify-turningpoint-dev-05216-deployment",
+          "s3Key": "amplify-builds/turningpointd4c149cb-694b5978752f684b5145-build.zip"
+        }
+      },
+      "auth": {
+        "turningpoint": {}
+      },
+      "api": {
+        "apiTP": {}
+      }
+    }
+  }
+}

@@ -202,8 +202,7 @@ extension NetworkManager {
                                    dtsunik:  $0["dtsunik"].doubleValue,
                                    sunikrt:  $0["sunikrt"].doubleValue,
                                    janqty:  $0["janqty"].doubleValue) })
-
-                    print(json)
+//                    print(json)
                 } else {
                     print("error")
                 }
@@ -354,7 +353,7 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
-                    print(json)
+//                    print(json)
                     let dateChartList = json["t8410OutBlock1"].array?.compactMap {
                         DateChart(
                             date: $0["date"].stringValue,
@@ -444,7 +443,12 @@ extension NetworkManager {
     }
 
     func getLogo(code: String, idx: Int, completion: @escaping (Int, UIImage) -> ()) {
-        let url = URL(string: Stock.homePageDict[code] ?? "https://logo.clearbit.com/https://www.naver.com")!
+        guard let str = Stock.homePageDict[code] else {
+            completion(idx, UIImage())
+            return
+        }
+
+        let url = URL(string: str)!
 
         AF.request(url,
                    method: .get).response{ response in

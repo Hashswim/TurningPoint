@@ -62,6 +62,8 @@ class InitialViewController: UIViewController {
         super.viewDidLoad()
         configureHierarchy()
         configureLayout()
+
+        let amplifyManager = AmplifyManager()
     }
 
     override func viewWillDisappear(_ animated: Bool) {

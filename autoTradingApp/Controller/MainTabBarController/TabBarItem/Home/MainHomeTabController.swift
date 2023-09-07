@@ -131,8 +131,6 @@ class MainHomeTabController: UIViewController {
         configureDataSource()
         setUpUI()
         self.networkManager.getUserAccount(completion: getUserAccount)
-
-        testAPI()
     }
 
 
@@ -170,10 +168,20 @@ class MainHomeTabController: UIViewController {
 
     func getDateChartData(code: String, idx: Int, chartData: [DateChart]) -> () {
         Stock.all[idx].dateChartList = chartData
-        self.networkManager.getLogo(code: code, idx: idx, completion: getLogoData)
+
+        if let _ = Stock.homePageDict[code] {
+            self.networkManager.getLogo(code: code, idx: idx, completion: getLogoData)
+        } else {
+            let amplifyManager = AmplifyManager()
+            async  {
+                let _ = try await amplifyManager.postGetLogo(code: code)
+                self.networkManager.getLogo(code: code, idx: idx, completion: getLogoData)
+            }
+        }
     }
 
     func getLogoData(idx: Int, logo: UIImage) -> () {
+
         Stock.all[idx].logo = logo
 
         if UserInfo.shared.favoriteList!.contains(Stock.all[idx].code!) {
@@ -215,16 +223,6 @@ class MainHomeTabController: UIViewController {
         self.dataSource?.apply(snapshot)
 
         return stock.isFavorite!
-    }
-
-    private func testAPI() {
-        let manager = NetworkManager()
-
-        manager.getStockAPITest { stock in
-            DispatchQueue.main.sync {
-                dump(stock)
-            }
-        }
     }
 }
 
