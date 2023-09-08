@@ -9,7 +9,7 @@ import Foundation
 import Amplify
 import Alamofire
 import SwiftyJSON
-//eventType: getLogo, getStockTrainingData, getAllTrainedList, postSwitchTraining,
+//eventType: getLogo, getStockTrainingData, getAllTrainedList, postSwitchTraining, getPredictedTransaction
 //{
 //    "eventType": "getLogo",
 //    "code": "000111",
