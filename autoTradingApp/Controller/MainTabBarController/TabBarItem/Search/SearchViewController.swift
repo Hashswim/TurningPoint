@@ -53,8 +53,7 @@ class SearchViewController: UIViewController {
         searchController.searchBar.searchTextField.backgroundColor = MySpecialColors.textGray
         //        searchController.searchBar.tintColor = MySpecialColors.bgColor
         //        searchController.searchBar.searchTextField.font =
-        self.title = "AI 모델 보유종목"
-
+        self.navigationItem.title = "AI 모델 보유종목"
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
 
