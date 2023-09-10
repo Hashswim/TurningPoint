@@ -30,9 +30,16 @@ class SearchViewController: UIViewController {
         configureUI()
         setUpTableView()
 
-        let networkManager = NetworkManager()
-        networkManager.getTopTradingVolume(completion: configureStockList)
-        configureLayout()
+//        let networkManager = NetworkManager()
+//        networkManager.getTopTradingVolume(completion: configureStockList)
+//        configureLayout()
+
+        let amplifyManager = AmplifyManager()
+        async  {
+            let (codeArr, nameArr) = try await amplifyManager.postGetAllTrainedList()
+            configureStockList(nameList: nameArr, codeList:codeArr)
+            configureLayout()
+        }
     }
 
     func setUpSearchBar() {

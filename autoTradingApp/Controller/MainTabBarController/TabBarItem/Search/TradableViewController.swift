@@ -260,17 +260,20 @@ class TradableViewController: UIViewController {
             chartView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
             chartView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             chartView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            chartView.heightAnchor.constraint(equalToConstant: 400),
+            chartView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            chartView.heightAnchor.constraint(equalToConstant: 400),
 
             transactionBuyView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
             transactionBuyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             transactionBuyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            transactionBuyView.heightAnchor.constraint(equalToConstant: 400),
+            transactionBuyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            transactionBuyView.heightAnchor.constraint(equalToConstant: 400),
 
             transactionSellView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: -20),
             transactionSellView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             transactionSellView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            transactionSellView.heightAnchor.constraint(equalToConstant: 400),
+            transactionSellView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            transactionSellView.heightAnchor.constraint(equalToConstant: 400),
         ])
     }
 

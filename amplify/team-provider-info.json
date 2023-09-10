@@ -16,7 +16,7 @@
       "function": {
         "turningpointd4c149cb": {
           "deploymentBucketName": "amplify-turningpoint-dev-05216-deployment",
-          "s3Key": "amplify-builds/turningpointd4c149cb-6e44686b793377394672-build.zip"
+          "s3Key": "amplify-builds/turningpointd4c149cb-53667368396434466951-build.zip"
         }
       },
       "auth": {

@@ -2,12 +2,40 @@ import json
 
 stock_url_list = {
     '259960' : 'https://logo.clearbit.com/https://www.krafton.com',
-    '263750' : 'https://logo.clearbit.com/https://www.pearlabyss.com'
+    '263750' : 'https://logo.clearbit.com/https://www.pearlabyss.com',
+    '005930' : 'https://logo.clearbit.com/https://www.samsung.com',
+    '373220' : 'https://logo.clearbit.com/https://www.lgensol.com',
+    '000660' : 'https://logo.clearbit.com/https://www.sk.co.kr',
+
+    '207940' : 'https://logo.clearbit.com/https://samsungbiologics.com',
+    '005490' : 'https://logo.clearbit.com/https://www.posco.co.kr',
+    '005935' : 'https://logo.clearbit.com/https://www.samsung.com',
+    '051910' : 'https://logo.clearbit.com/https://www.lgchem.com',
+    '006400' : 'https://logo.clearbit.com/https://www.samsungsdi.co.kr',
+
+    '005380' : 'https://logo.clearbit.com/https://www.hyundai.com',
+    '003670' : 'https://logo.clearbit.com/http://www.posco.co.kr',
+    '035420' : 'https://logo.clearbit.com/https://www.naver.com',
+    '000270' : 'https://logo.clearbit.com/https://www.kia.com'
 }
 
 stock_training_list = {
-    '259960' : '크래프톤',
-    '263750' : '펄어비스',
+#    '259960' : '크래프톤',
+#    '263750' : '펄어비스',
+    '005930' : '삼성전자',
+    '373220' : 'LG에너지솔루션',
+    '000660' : 'SK하이닉스',
+    '207940' : '삼성바이오로직스',
+    '005490' : 'POSCO홀딩스',
+
+    '005935' : '삼성전자우',
+    '051910' : 'LG화학',
+    '006400' : '삼성SDI',
+    '005380' : '현대차',
+    '003670' : '포스코퓨처엠',
+
+    '035420' : 'NAVER',
+    '000270' : '기아',
 }
 
 def handler(event, context):
@@ -58,6 +86,14 @@ def get_logo(code):
 #get training data of stock
 def get_stock_training_data(code):
     return
+#    return {
+#        'statusCode': 400,
+#        'headers': {
+#            'Access-Control-Allow-Headers': '*',
+#            'Access-Control-Allow-Origin': '*',
+#            'Access-Control-Allow-Methods': '*'
+#        },
+#        'body': json.dumps("{algorithm model list}")}
 #    if hasModel(code) == false:
 #        return {
 #        'statusCode': 400,
@@ -78,12 +114,15 @@ def get_stock_training_data(code):
 #        'body': json.dumps("{algorithm model list}")}
 
 
+
 #get trained stocks
 def get_stock_training_list():
-    result = []
+    code = []
+    name = []
 
-    for k, v in input_dict.items():
-        result.append({'code': k, 'name': v})
+    for k, v in stock_training_list.items():
+        code.append(k)
+        name.append(v)
 
     return {
         'statusCode': 200,
@@ -92,7 +131,11 @@ def get_stock_training_list():
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': '*'
         },
-        'body': json.dumps(result)}
+        'body': {
+            'code' : code,
+            'name' : name
+        }
+    }
 
 #change training state
 def switch_training_state(code):
