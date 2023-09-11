@@ -155,7 +155,7 @@ extension NetworkManager {
         }
     }
 
-    func getUserAccount(completion: @escaping (Double, Double, [ownedStock]) -> ()){
+    func getUserAccount(completion: @escaping (Double, Double, [OwnedStock]) -> ()){
         let url = "https://openapi.ebestsec.co.kr:8080/stock/accno"
 
         // Header : 메타정보
@@ -196,7 +196,7 @@ extension NetworkManager {
                         json["t0424OutBlock"]["tdtsunik"].doubleValue,
                         
                         json["t0424OutBlock1"].array!.compactMap {
-                        ownedStock(name: $0["hname"].string!,
+                        OwnedStock(name: $0["hname"].string!,
                                    code: $0["expcode"].string!,
                                    appamt:  $0["appamt"].doubleValue,
                                    dtsunik:  $0["dtsunik"].doubleValue,

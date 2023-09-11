@@ -12,7 +12,11 @@ class StockTradingViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
 
-    var stock: Stock? = nil
+    var stock: OwnedStock? = nil
+    var modelList: [AlgorithmModel] = []
+    var model: AlgorithmModel?
+    var selected: IndexPath?
+    var isTraining: Bool = false
 
     private let stockNameLabel: UILabel = {
         let label = UILabel()
@@ -49,19 +53,19 @@ class StockTradingViewController: UIViewController {
         var titleAttr = AttributedString.init("Trading")
         titleAttr.font = NotoSansFont.medium(size: 11)
         config.attributedTitle = titleAttr
+        config.titleAlignment = .center
 
         //toggle
         var subIitleAttr = AttributedString.init("OFF")
         subIitleAttr.font = NotoSansFont.bold(size: 22)
         config.attributedSubtitle = subIitleAttr
 
-        config.titleAlignment = .center
-
         btn.configuration = config
 
         btn.backgroundColor = MySpecialColors.traidingCircle2
         btn.layer.borderWidth = 3.0
         btn.layer.borderColor = MySpecialColors.borderGray2.cgColor
+        btn.isEnabled = false
         btn.addTarget(self, action: #selector(changeTradingStatusAction), for: .touchUpInside)
 
         return btn
@@ -149,23 +153,59 @@ class StockTradingViewController: UIViewController {
         setUpNaviBar()
         configureHierarchy()
         configureLayout()
+
+        let amplifyManager = AmplifyManager()
+        async  {
+            modelList = try await amplifyManager.postGetStockTrainingData(code: (stock?.code!)!)
+            if modelList.count != 0 {
+                tradingButton.isEnabled = true
+                algorithmTypeLabel.attributedText = NSMutableAttributedString().regular(string: modelList.first!.algorithmType, fontSize: 13)
+
+            }
+
+            self.tradingStrategyTableView.reloadData()
+        }
     }
 
     //⭐️Stock object VC가 소유, 버튼 터치시 stock의 isOnTrading.toggle()
     @objc
     func changeTradingStatusAction() {
+        var subIitleAttr = AttributedString()
         //toggle
-        var subIitleAttr = AttributedString.init("ON")
+        if isTraining == false {
+            subIitleAttr = AttributedString.init("ON")
+
+            tradingButton.backgroundColor = MySpecialColors.traidingCircle
+            tradingButton.layer.borderColor = MySpecialColors.borderGray3.cgColor
+
+            configureAnimation()
+        } else {
+            subIitleAttr = AttributedString.init("OFF")
+
+            tradingButton.backgroundColor = MySpecialColors.traidingCircle2
+            tradingButton.layer.borderColor = MySpecialColors.borderGray2.cgColor
+
+            self.pulseAnimationView1.layer.removeAllAnimations()
+            self.pulseAnimationView2.layer.removeAllAnimations()
+            self.pulseAnimationView3.layer.removeAllAnimations()
+
+            self.pulseAnimationView1.isHidden = true
+            self.pulseAnimationView2.isHidden = true
+            self.pulseAnimationView3.isHidden = true
+        }
         subIitleAttr.font = NotoSansFont.bold(size: 22)
         tradingButton.configuration?.attributedSubtitle = subIitleAttr
 
-        tradingButton.backgroundColor = MySpecialColors.traidingCircle
-        tradingButton.layer.borderColor = MySpecialColors.borderGray3.cgColor
+        isTraining.toggle()
 
-        configureAnimation()
+
     }
 
     func configureAnimation() {
+        self.pulseAnimationView1.isHidden = false
+        self.pulseAnimationView2.isHidden = false
+        self.pulseAnimationView3.isHidden = false
+
         let scaleAnimaton = CABasicAnimation(keyPath: "transform.scale.xy")
         scaleAnimaton.fromValue = 1
         scaleAnimaton.toValue = 1.5
@@ -195,20 +235,9 @@ class StockTradingViewController: UIViewController {
 
     func setUpUI() {
         stockNameLabel.attributedText = NSMutableAttributedString().bold(string: (stock?.name)!, fontSize: 25)
-        algorithmTypeLabel.attributedText = NSMutableAttributedString().regular(string: "기본형 알고리즘", fontSize: 13)
-        returnRateLabel.attributedText = NSMutableAttributedString().regular(string: (stock?.isTrading)! ? "현재 수익률" : "예상 수익률", fontSize: 13)
+        algorithmTypeLabel.attributedText = NSMutableAttributedString().regular(string: "No trained model", fontSize: 13)
+        returnRateLabel.attributedText = NSMutableAttributedString().regular(string: "예상 수익률", fontSize: 13)
         algorithmTitleLabel.attributedText = NSMutableAttributedString().bold(string: "트레이딩 알고리즘", fontSize: 17)
-
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .percent
-        if stock!.priceDifference! > 0 {
-            percentageLabel.attributedText = NSMutableAttributedString()
-                .bold(string: "+", fontSize: 28)
-                .bold(string: numberFormatter.string(from: stock!.priceDifference! as NSNumber)!, fontSize: 28)
-        } else {
-            percentageLabel.attributedText = NSMutableAttributedString()
-                .bold(string: numberFormatter.string(from: stock!.priceDifference! as NSNumber)!, fontSize: 28)
-        }
 
         tradingStrategyTableView.backgroundColor = MySpecialColors.bgColor
         tradingStrategyTableView.isScrollEnabled = false
@@ -328,20 +357,47 @@ class StockTradingViewController: UIViewController {
 //⭐️트레이딩 알고리즘 모델 값을 stock 모델이 소유해야 할듯?
 extension StockTradingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return modelList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tradingStrategyTableView.dequeueReusableCell(withIdentifier: StockTradingViewTableCell.cellID, for: indexPath) as! StockTradingViewTableCell
 
-        cell.typeLabel.text = PredictedAlgorithm.attack.rawValue
-        cell.percentageLabel.text = "+5.1%"
+        cell.typeLabel.attributedText = NSMutableAttributedString().bold(string: modelList[indexPath.row].algorithmType, fontSize: 15)
+
+        if modelList[indexPath.row].predictedProfit >= 0 {
+            cell.percentageLabel.attributedText = NSMutableAttributedString()
+                .bold(string: "+", fontSize: 20)
+                .bold(string: "\(modelList[indexPath.row].predictedProfit)", fontSize: 20)
+                .bold(string: "%", fontSize: 20)
+        } else {
+            cell.percentageLabel.attributedText = NSMutableAttributedString()
+                .bold(string: "\(modelList[indexPath.row].predictedProfit)", fontSize: 20)
+                .bold(string: "%", fontSize: 20)
+        }
 
         let backgroundView = UIView()
         cell.selectedBackgroundView = backgroundView
 
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
+
+        if indexPath.row == 0 {
+            selected = indexPath
+            cell.isTouched = true
+            cell.touched()
+
+            if modelList[indexPath.row].predictedProfit >= 0 {
+                percentageLabel.attributedText = NSMutableAttributedString()
+                    .bold(string: "+", fontSize: 28)
+                    .bold(string: "\(modelList[indexPath.row].predictedProfit)", fontSize: 28)
+                    .bold(string: "%", fontSize: 24)
+            } else {
+                percentageLabel.attributedText = NSMutableAttributedString()
+                    .bold(string: "\(modelList[indexPath.row].predictedProfit)", fontSize: 28)
+                    .bold(string: "%", fontSize: 24)
+            }
+        }
 
         return cell
     }
@@ -350,15 +406,30 @@ extension StockTradingViewController: UITableViewDelegate, UITableViewDataSource
         guard let currentCell = tableView.cellForRow(at: indexPath) as? StockTradingViewTableCell else {
             return
         }
-        currentCell.isTouched.toggle()
-        currentCell.touched()
-    }
+        if selected == indexPath { return }
 
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard let currentCell = tableView.cellForRow(at: indexPath) as? StockTradingViewTableCell else {
+        guard let selectedCell = tableView.cellForRow(at: selected!) as? StockTradingViewTableCell else {
             return
         }
+        selected = indexPath
+
+        algorithmTypeLabel.attributedText = NSMutableAttributedString().regular(string: currentCell.typeLabel.text!, fontSize: 13)
+
+        if modelList[indexPath.row].predictedProfit >= 0 {
+            percentageLabel.attributedText = NSMutableAttributedString()
+                .bold(string: "+", fontSize: 28)
+                .bold(string: "\(modelList[indexPath.row].predictedProfit)", fontSize: 28)
+                .bold(string: "%", fontSize: 24)
+        } else {
+            percentageLabel.attributedText = NSMutableAttributedString()
+                .bold(string: "\(modelList[indexPath.row].predictedProfit)", fontSize: 28)
+                .bold(string: "%", fontSize: 24)
+        }
+
         currentCell.isTouched.toggle()
         currentCell.touched()
+
+        selectedCell.isTouched.toggle()
+        selectedCell.touched()
     }
 }

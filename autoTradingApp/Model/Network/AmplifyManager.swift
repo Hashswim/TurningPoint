@@ -77,5 +77,37 @@ struct AmplifyManager {
         }
         return ([], [])
     }
+
+    func postGetStockTrainingData(code: String) async -> [AlgorithmModel] {
+//        let message = #"{"eventType": "getLogo", "code": "259960"}"#
+
+        let message = """
+        {
+            "eventType" : "getStockTrainingData",
+            "code" : "\(code)"
+
+        }
+        """.data(using: .utf8)!
+
+        let request = RESTRequest(path: "/items", body: message)
+        do {
+            let data = try await Amplify.API.post(request: request)
+            let json = JSON(data)
+
+            if json["statusCode"] == 200 {
+                return (json["body"].array?.compactMap {
+                    AlgorithmModel(algorithmType: $0["modelName"].stringValue, predictedProfit: $0["predictedProfit"].doubleValue)
+                }) as! [AlgorithmModel]
+            } else {
+                return []
+            }
+        } catch let error as APIError {
+            print("Failed due to API error: ", error)
+            return []
+        } catch {
+            print("Unexpected error: \(error)")
+            return []
+        }
+    }
 }
 

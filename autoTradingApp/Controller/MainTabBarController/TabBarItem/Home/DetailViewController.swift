@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    var stock: ownedStock? = nil
+    var stock: OwnedStock? = nil
 
     private let stockNameLabel: UILabel = {
         let label = UILabel()

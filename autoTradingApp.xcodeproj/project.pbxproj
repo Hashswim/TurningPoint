@@ -48,6 +48,7 @@
 		11ACD9262AA78B1C009F2B4E /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 11ACD9252AA78B1C009F2B4E /* Amplify */; };
 		11ACD9282AA78BE4009F2B4E /* AmplifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ACD9272AA78BE4009F2B4E /* AmplifyManager.swift */; };
 		11ACD92A2AA9CE1C009F2B4E /* SwiftyJSON+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ACD9292AA9CE1C009F2B4E /* SwiftyJSON+.swift */; };
+		11ACD92C2AAF05DE009F2B4E /* AlgorithmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ACD92B2AAF05DE009F2B4E /* AlgorithmModel.swift */; };
 		11B064DC2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064DB2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift */; };
 		11B064DE2A6563120016AB68 /* CellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064DD2A6563120016AB68 /* CellDataModel.swift */; };
 		11B064E02A67B9B70016AB68 /* TradableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B064DF2A67B9B70016AB68 /* TradableViewController.swift */; };
@@ -59,7 +60,6 @@
 		11BD4DE32A0A86D100ADE7C6 /* Pods_autoTradingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252BF33AE0CA15FA7353E431 /* Pods_autoTradingApp.framework */; };
 		11CCC42C2A442AA300D67B47 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CCC42B2A442AA300D67B47 /* DropDownView.swift */; };
 		11E10E742A13A639007F3E10 /* StockTradingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */; };
-		11E10E762A13B23C007F3E10 /* predictedAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */; };
 		11E10E7D2A1BA4E6007F3E10 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E7C2A1BA4E6007F3E10 /* SearchViewController.swift */; };
 		11E10E7F2A1BA4F8007F3E10 /* TradingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E7E2A1BA4F8007F3E10 /* TradingViewController.swift */; };
 		11E10E812A1BA50D007F3E10 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E10E802A1BA50D007F3E10 /* MyPageViewController.swift */; };
@@ -134,6 +134,7 @@
 		116416202A5D3002008FA981 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		11ACD9272AA78BE4009F2B4E /* AmplifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifyManager.swift; sourceTree = "<group>"; };
 		11ACD9292AA9CE1C009F2B4E /* SwiftyJSON+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftyJSON+.swift"; sourceTree = "<group>"; };
+		11ACD92B2AAF05DE009F2B4E /* AlgorithmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgorithmModel.swift; sourceTree = "<group>"; };
 		11B064DB2A5FBD9C0016AB68 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		11B064DD2A6563120016AB68 /* CellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDataModel.swift; sourceTree = "<group>"; };
 		11B064DF2A67B9B70016AB68 /* TradableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradableViewController.swift; sourceTree = "<group>"; };
@@ -145,7 +146,6 @@
 		11B1ED062A8489D7000E7D2B /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		11CCC42B2A442AA300D67B47 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		11E10E732A13A639007F3E10 /* StockTradingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTradingViewTableCell.swift; sourceTree = "<group>"; };
-		11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = predictedAlgorithm.swift; sourceTree = "<group>"; };
 		11E10E7C2A1BA4E6007F3E10 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		11E10E7E2A1BA4F8007F3E10 /* TradingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingViewController.swift; sourceTree = "<group>"; };
 		11E10E802A1BA50D007F3E10 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -329,9 +329,9 @@
 				113B7ECA2A9F224E00228E3F /* User+CoreDataProperties.swift */,
 				115D1E2D29CD85A100E98541 /* Network */,
 				1161803F29B8667400EA1E0D /* Stock.swift */,
-				11E10E752A13B23C007F3E10 /* predictedAlgorithm.swift */,
 				1164161A2A555BDD008FA981 /* TradingTransaction.swift */,
 				11B1ED062A8489D7000E7D2B /* UserInfo.swift */,
+				11ACD92B2AAF05DE009F2B4E /* AlgorithmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -678,7 +678,6 @@
 				114DD3752982CA81001E3E24 /* LoginViewController.swift in Sources */,
 				116416212A5D3002008FA981 /* HeaderCell.swift in Sources */,
 				1161804329B86E2400EA1E0D /* StcokListCellCollectionViewCell.swift in Sources */,
-				11E10E762A13B23C007F3E10 /* predictedAlgorithm.swift in Sources */,
 				113B7ECB2A9F224E00228E3F /* User+CoreDataClass.swift in Sources */,
 				11080AAD2982A97B00B73F5F /* InitialViewController.swift in Sources */,
 				11E10E7F2A1BA4F8007F3E10 /* TradingViewController.swift in Sources */,
@@ -688,6 +687,7 @@
 				114DD3732982C1B0001E3E24 /* GuideCollectionViewCell.swift in Sources */,
 				11080AA92982A97B00B73F5F /* AppDelegate.swift in Sources */,
 				11ACD9282AA78BE4009F2B4E /* AmplifyManager.swift in Sources */,
+				11ACD92C2AAF05DE009F2B4E /* AlgorithmModel.swift in Sources */,
 				115D1E1A29B9A89100E98541 /* MainHomeTabController.swift in Sources */,
 				11E10E852A27739A007F3E10 /* AdditionalTradingCellView.swift in Sources */,
 				115DF50F29EE801F00E9DFE9 /* JSONParser.swift in Sources */,

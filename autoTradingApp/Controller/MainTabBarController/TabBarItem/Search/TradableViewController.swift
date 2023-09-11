@@ -90,7 +90,7 @@ class TradableViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .white
 
-        self.title = "주식 상세정보"
+        self.navigationItem.title = "주식 상세정보"
 
         let appearance = UINavigationBarAppearance()
         appearance.shadowColor = .gray

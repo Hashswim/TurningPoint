@@ -87,16 +87,16 @@ class Stock: Hashable {
 
     static var favorite: [Stock] = []
 
-    static let traiding: [Stock] = []
+    static let traiding: [TrainingStock] = []
 }
 
-class ownedStock: Stock {
+class OwnedStock: Stock {
     var appamt: Double?//평가금액
     var dtsunik: Double?//평가손익
     var sunikrt: Double?//수익률
     var janqty: Double?//수량
 
-    init(name: String, code: String?, appamt: Double? = nil, dtsunik: Double? = nil, sunikrt: Double? = nil, janqty: Double? = nil) {
+    init(name: String?, code: String?, appamt: Double? = nil, dtsunik: Double? = nil, sunikrt: Double? = nil, janqty: Double? = nil) {
         super.init()
         self.name = name
         self.code = code
@@ -106,8 +106,18 @@ class ownedStock: Stock {
         self.sunikrt = sunikrt
         self.janqty = janqty
     }
+}
 
+class TrainingStock: OwnedStock {
+    var modelList: [AlgorithmModel]
+    var trainingModel: AlgorithmModel
 
+    init(stock: OwnedStock, modelList: [AlgorithmModel], trainingModel: AlgorithmModel) {
+        self.modelList = modelList
+        self.trainingModel = trainingModel
+        super.init(name: stock.name, code: stock.code)
+        self.isTrading = true
+    }
 }
 
 struct DateChart {

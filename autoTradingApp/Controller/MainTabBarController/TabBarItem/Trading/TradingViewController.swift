@@ -239,7 +239,7 @@ extension TradingViewController {
     func transactionButtonTapped() {
         let vc = DetailViewController()
         let stock = Stock.loaded.filter { $0.code! == transactionButton.tradingCall.code! }
-        vc.stock = stock[0] as? ownedStock
+        vc.stock = stock[0] as? OwnedStock
         
         if transactionButton.orderLabel.text == "매수" {
             vc.segmentedControl.selectedSegmentIndex = 1

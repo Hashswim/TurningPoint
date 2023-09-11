@@ -20,8 +20,9 @@ stock_url_list = {
 }
 
 stock_training_list = {
-#    '259960' : '크래프톤',
-#    '263750' : '펄어비스',
+    '259960' : '크래프톤',
+    '263750' : '펄어비스',
+
     '005930' : '삼성전자',
     '373220' : 'LG에너지솔루션',
     '000660' : 'SK하이닉스',
@@ -85,34 +86,34 @@ def get_logo(code):
 
 #get training data of stock
 def get_stock_training_data(code):
-    return
-#    return {
-#        'statusCode': 400,
-#        'headers': {
-#            'Access-Control-Allow-Headers': '*',
-#            'Access-Control-Allow-Origin': '*',
-#            'Access-Control-Allow-Methods': '*'
-#        },
-#        'body': json.dumps("{algorithm model list}")}
-#    if hasModel(code) == false:
-#        return {
-#        'statusCode': 400,
-#        'headers': {
-#            'Access-Control-Allow-Headers': '*',
-#            'Access-Control-Allow-Origin': '*',
-#            'Access-Control-Allow-Methods': '*'
-#        },
-#        'body': json.dumps("false")}
-#    else:
-#        return {
-#        'statusCode': 400,
-#        'headers': {
-#            'Access-Control-Allow-Headers': '*',
-#            'Access-Control-Allow-Origin': '*',
-#            'Access-Control-Allow-Methods': '*'
-#        },
-#        'body': json.dumps("{algorithm model list}")}
-
+    if code in stock_training_list:
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Headers': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': '*'
+            },
+            'body': [
+                {
+                    'modelName' : 'modelName1',
+                    'predictedProfit' : 5.1
+                },
+                {
+                    'modelName' : 'modelName2',
+                    'predictedProfit' : -2.4
+                }
+            ],
+        }
+    else:
+        return {
+            'statusCode': 400,
+            'headers': {
+                'Access-Control-Allow-Headers': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': '*'
+            },
+        }
 
 
 #get trained stocks

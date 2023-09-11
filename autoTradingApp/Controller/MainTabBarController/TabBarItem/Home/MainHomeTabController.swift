@@ -134,8 +134,8 @@ class MainHomeTabController: UIViewController {
     }
 
 
-    func getUserAccount(sunamt: Double, tdtsunik: Double, ownedStoks: [ownedStock]) -> () {
-        Stock.all = ownedStoks
+    func getUserAccount(sunamt: Double, tdtsunik: Double, ownedStocks: [OwnedStock]) -> () {
+        Stock.all = ownedStocks
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
 
@@ -253,7 +253,7 @@ extension MainHomeTabController {
         else { return nil }
 
         let configuration = UISwipeActionsConfiguration(actions: [
-            detailContextualAction(stock: stock as! ownedStock, indexPath: indexPath),
+            detailContextualAction(stock: stock as! OwnedStock, indexPath: indexPath),
             favoriteContextualAction(stock: stock, indexPath: indexPath)
         ])
         configuration.performsFirstActionWithFullSwipe = false
@@ -261,7 +261,7 @@ extension MainHomeTabController {
         return configuration
     }
 
-    private func detailContextualAction(stock: ownedStock, indexPath: IndexPath) -> UIContextualAction {
+    private func detailContextualAction(stock: OwnedStock, indexPath: IndexPath) -> UIContextualAction {
         let detailAction = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
             guard let self = self else { return }
 
@@ -442,7 +442,7 @@ extension MainHomeTabController: UICollectionViewDelegate {
         else { return }
 
         let vc = StockTradingViewController()
-        vc.stock = stock
+        vc.stock = stock as? OwnedStock
         self.navigationController?.pushViewController(vc, animated: true)
         
         collectionView.deselectItem(at: indexPath, animated: true)
