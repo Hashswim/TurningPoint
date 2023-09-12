@@ -42,7 +42,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         var imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFit
-//        imgView.image = UIImage(named: "Dashin_test_img")
+        //        imgView.image = UIImage(named: "Dashin_test_img")
         return imgView
     }()
 
@@ -110,8 +110,8 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         scaledChartView.translatesAutoresizingMaskIntoConstraints = false
         listContentView.translatesAutoresizingMaskIntoConstraints = false
 
-//        let defaultHorizontalCompressionResistance = listContentView.contentCompressionResistancePriority(for: .horizontal)
-//        listContentView.setContentCompressionResistancePriority(defaultHorizontalCompressionResistance - 1, for: .horizontal)
+        //        let defaultHorizontalCompressionResistance = listContentView.contentCompressionResistancePriority(for: .horizontal)
+        //        listContentView.setContentCompressionResistancePriority(defaultHorizontalCompressionResistance - 1, for: .horizontal)
 
         NSLayoutConstraint.activate([
             iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 33),
@@ -119,8 +119,8 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
             iconView.heightAnchor.constraint(equalToConstant: 28),
             iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
 
-//            listContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            listContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            //            listContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            //            listContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             listContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             listContentView.leadingAnchor.constraint(equalTo: iconView.trailingAnchor),
             listContentView.heightAnchor.constraint(equalToConstant: 48),
@@ -128,7 +128,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
             scaledChartView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 198),
             scaledChartView.centerYAnchor.constraint(equalTo: listContentView.centerYAnchor),
             scaledChartView.topAnchor.constraint(equalTo: listContentView.topAnchor),
-//            scaledChartView.bottomAnchor.constraint(equalTo: listContentView.bottomAnchor),
+            //            scaledChartView.bottomAnchor.constraint(equalTo: listContentView.bottomAnchor),
             scaledChartView.widthAnchor.constraint(equalToConstant: 72),
             scaledChartView.heightAnchor.constraint(equalToConstant: 40),
 
@@ -138,8 +138,8 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
             priceStackView.heightAnchor.constraint(equalToConstant: 52),
             priceStackView.widthAnchor.constraint(equalToConstant: 66),
 
-//            priceLabel.heightAnchor.constraint(equalToConstant: 20),
-//            priceDifferenceLabel.heightAnchor.constraint(equalToConstant: 20),
+            //            priceLabel.heightAnchor.constraint(equalToConstant: 20),
+            //            priceDifferenceLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
 
@@ -163,7 +163,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         // Configure the list content configuration and apply that to the list content view.
         var content = defaultListContentConfiguration().updated(for: state)
         content.imageProperties.preferredSymbolConfiguration = .init(font: content.textProperties.font, scale: .large)
-//        content.image = UIImage(named: state.stock!.logo!)
+        //        content.image = UIImage(named: state.stock!.logo!)
 
         content.attributedText = NSMutableAttributedString().medium(string: state.stock!.name!, fontSize: 15)
         content.secondaryAttributedText = NSMutableAttributedString().regular(string: state.stock!.code!, fontSize: 12)
@@ -183,7 +183,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         // Configure custom image view for the category icon, copying some of the styling from the value cell configuration.
         scaledChartView.tintColor = valueConfiguration.imageProperties.resolvedTintColor(for: tintColor)
 
-            // MARK: -  시리얼 데이터 처리 어떻게 할지 정리 필요!!⭐️⭐️⭐️(DataEntry타입과 API로 인코딩되어 전달 받는 타입간 캐스팅 필요)
+        // MARK: -  시리얼 데이터 처리 어떻게 할지 정리 필요!!⭐️⭐️⭐️(DataEntry타입과 API로 인코딩되어 전달 받는 타입간 캐스팅 필요)
         var dataEntry1: [ChartDataEntry] = []
         var dataEntry2: [ChartDataEntry] = []
 
@@ -201,10 +201,10 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         priceLabel.attributedText = NSMutableAttributedString().bold(string: numberFormatter.string(from: state.stock!.price! as NSNumber)!, fontSize: 17)
         priceLabel.textAlignment = .right
         priceLabel.textColor = state.stock!.priceDifference! > 0 ? MySpecialColors.lightRed : MySpecialColors.lightBlue
-//        priceLabel.font = valueConfiguration.secondaryTextProperties.font
+        //        priceLabel.font = valueConfiguration.secondaryTextProperties.font
         //        priceLabel.adjustsFontForContentSizeCategory = valueConfiguration.secondaryTextProperties.adjustsFontForContentSizeCategory
 
-//        numberFormatter.numberStyle = .percent
+        //        numberFormatter.numberStyle = .percent
         if state.stock!.priceDifference! > 0 {
             priceDifferenceLabel.attributedText = NSMutableAttributedString()
                 .medium(string: "+", fontSize: 12)
@@ -212,8 +212,8 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
                 .medium(string: "%", fontSize: 12)
         } else if state.stock!.priceDifference! == 0 {
             priceDifferenceLabel.attributedText = NSMutableAttributedString()
-            .medium(string: "0", fontSize: 12)
-            .medium(string: "%", fontSize: 12)
+                .medium(string: "0", fontSize: 12)
+                .medium(string: "%", fontSize: 12)
         }
         else {
             priceDifferenceLabel.attributedText = NSMutableAttributedString()
@@ -237,69 +237,67 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
         customViewConstraints?.priceLabelTrailing.constant = content.directionalLayoutMargins.trailing
         updateSeparatorConstraint()
 
-        if let istraiding = state.stock?.isTrading {
-            if istraiding {
-                traidingViewConstraints1.isActive = false
-                traidingViewConstraints2.isActive = true
-                traidingViewConstraints3.isActive = true
-                additionalTradingCellView.translatesAutoresizingMaskIntoConstraints = false
+        if let trainingStock = state.stock! as? TrainingStock {
+            traidingViewConstraints1.isActive = false
+            traidingViewConstraints2.isActive = true
+            traidingViewConstraints3.isActive = true
+            additionalTradingCellView.translatesAutoresizingMaskIntoConstraints = false
 
-                contentView.addSubview(additionalTradingCellView)
+            contentView.addSubview(additionalTradingCellView)
 
-                let trainingStock = state.stock! as! TrainingStock
-                additionalTradingCellView.earningPirceLabel.attributedText = NSMutableAttributedString()
-                    .regular(string: numberFormatter.string(from: trainingStock.appamt! as NSNumber)!, fontSize: 17)
-                    .medium(string: " 원", fontSize: 15)
+            additionalTradingCellView.earningPirceLabel.attributedText = NSMutableAttributedString()
+                .regular(string: numberFormatter.string(from: trainingStock.dtsunik! as NSNumber)!, fontSize: 17)
+                .medium(string: " 원", fontSize: 15)
 
-                if trainingStock.sunikrt! > 0 {
-                    additionalTradingCellView.earningRateLabel.attributedText = NSMutableAttributedString()
-                        .regular(string: String(format: "+%.2f%%", trainingStock.sunikrt!), fontSize: 17)
-                } else {
-                    additionalTradingCellView.earningRateLabel.attributedText = NSMutableAttributedString()
-                        .regular(string: String(format: "%.2f%%", trainingStock.sunikrt!), fontSize: 17)
-                }
-
-                additionalTradingCellView.ownedCountLabel.attributedText = NSMutableAttributedString()
-                    .regular(string: numberFormatter.string(from: trainingStock.janqty! as NSNumber)!, fontSize: 17)
-                    .medium(string: " 주", fontSize: 15)
-
-                additionalTradingCellView.heightAnchor.constraint(equalToConstant: 128).isActive = true
-                additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor, constant: 16).isActive = istraiding
-                additionalTradingCellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = istraiding
-                additionalTradingCellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = istraiding
-                additionalTradingCellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = istraiding
+            if trainingStock.sunikrt! > 0 {
+                additionalTradingCellView.earningRateLabel.attributedText = NSMutableAttributedString()
+                    .regular(string: String(format: "+%.2f%%", trainingStock.sunikrt!), fontSize: 17)
             } else {
-                traidingViewConstraints1.isActive = true
-                traidingViewConstraints2.isActive = false
-                traidingViewConstraints3.isActive = false
-                additionalTradingCellView.removeFromSuperview()
+                additionalTradingCellView.earningRateLabel.attributedText = NSMutableAttributedString()
+                    .regular(string: String(format: "%.2f%%", trainingStock.sunikrt!), fontSize: 17)
             }
+
+            additionalTradingCellView.ownedCountLabel.attributedText = NSMutableAttributedString()
+                .regular(string: numberFormatter.string(from: trainingStock.janqty! as NSNumber)!, fontSize: 17)
+                .medium(string: " 주", fontSize: 15)
+
+            additionalTradingCellView.heightAnchor.constraint(equalToConstant: 128).isActive = true
+            additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor, constant: 16).isActive = true
+            additionalTradingCellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+            additionalTradingCellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+            additionalTradingCellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        } else {
+            traidingViewConstraints1.isActive = true
+            traidingViewConstraints2.isActive = false
+            traidingViewConstraints3.isActive = false
+            additionalTradingCellView.removeFromSuperview()
         }
     }
 
-    func updateAppearance() {
 
-    }
+func updateAppearance() {
 
-    func setData(dataEntry chartData1: [ChartDataEntry], avgDataEntry chartData2: [ChartDataEntry]) {
-        let set1 = LineChartDataSet(entries: chartData1, label: "")
-        set1.mode = .cubicBezier
-        set1.drawCirclesEnabled = false
-        set1.lineWidth = 1
+}
 
-        set1.setColor(.white)
+func setData(dataEntry chartData1: [ChartDataEntry], avgDataEntry chartData2: [ChartDataEntry]) {
+    let set1 = LineChartDataSet(entries: chartData1, label: "")
+    set1.mode = .cubicBezier
+    set1.drawCirclesEnabled = false
+    set1.lineWidth = 1
 
-        let set2 = LineChartDataSet(entries: chartData2, label: "")
-        set2.mode = .cubicBezier
-        set2.drawCirclesEnabled = false
-        set2.lineWidth = 1
+    set1.setColor(.white)
 
-        set2.setColor(.red)
+    let set2 = LineChartDataSet(entries: chartData2, label: "")
+    set2.mode = .cubicBezier
+    set2.drawCirclesEnabled = false
+    set2.lineWidth = 1
 
-        let data = LineChartData(dataSets: [set1, set2])
-        data.setDrawValues(false)
-        scaledChartView.data = data
-    }
+    set2.setColor(.red)
+
+    let data = LineChartData(dataSets: [set1, set2])
+    data.setDrawValues(false)
+    scaledChartView.data = data
+}
 }
 
 

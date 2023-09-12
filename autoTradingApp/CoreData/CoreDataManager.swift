@@ -31,12 +31,12 @@ class CoreDataManager {
     }
 
     // MARK: - CREATE
-    func create(appKey: String, secretKey: String, name: String, favoriteItems: [String]) {
-        createUserEntity(appKey: appKey, secretKey: secretKey, name: name, favoriteItems: favoriteItems)
+    func create(appKey: String, secretKey: String, name: String, favoriteItems: [String], trainingItems: [String]) {
+        createUserEntity(appKey: appKey, secretKey: secretKey, name: name, favoriteItems: favoriteItems, trainingItems: trainingItems)
         saveContext()
     }
 
-    private func createUserEntity(appKey: String, secretKey: String, name: String, favoriteItems: [String]) {
+    private func createUserEntity(appKey: String, secretKey: String, name: String, favoriteItems: [String], trainingItems: [String]) {
         if let entity = userEntity {
             let managedObject = NSManagedObject(entity: entity, insertInto: context)
             managedObject.setValue(appKey, forKey: "appKey")
@@ -44,6 +44,7 @@ class CoreDataManager {
             managedObject.setValue(UIImage(systemName: "photo.circle.fill")!.pngData(), forKey: "profileImage")
             managedObject.setValue(name, forKey: "name")
             managedObject.setValue(favoriteItems, forKey: "favoriteItems")
+            managedObject.setValue(trainingItems, forKey: "trainingItems")
         }
     }
 
@@ -83,6 +84,18 @@ class CoreDataManager {
         if fetchResults.contains(where: { $0.appKey == appKey }) {
             for result in fetchResults where result.appKey == appKey {
                 result.favoriteItems = favoriteItems
+            }
+        } else {
+            print("error")
+        }
+        saveContext()
+    }
+
+    func update(appKey: String, trainingItems: [String]) {
+        let fetchResults = fetchUserEntity()
+        if fetchResults.contains(where: { $0.appKey == appKey }) {
+            for result in fetchResults where result.appKey == appKey {
+                result.trainingItems = trainingItems
             }
         } else {
             print("error")

@@ -6,5 +6,6 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="profileImage" optional="YES" attributeType="Binary"/>
         <attribute name="secretKey" optional="YES" attributeType="String"/>
+        <attribute name="trainingItems" optional="YES" attributeType="Transformable"/>
     </entity>
 </model>

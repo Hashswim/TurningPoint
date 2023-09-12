@@ -165,8 +165,17 @@ class StockTradingViewController: UIViewController {
             self.tradingStrategyTableView.reloadData()
         }
 
-        if stock!.isTrading! {
-            changeTradingStatusAction()
+        isTraining = stock!.isTrading!
+        if isTraining {
+            var subIitleAttr = AttributedString.init("ON")
+            subIitleAttr.font = NotoSansFont.bold(size: 22)
+            tradingButton.configuration?.attributedSubtitle = subIitleAttr
+
+            tradingButton.backgroundColor = MySpecialColors.traidingCircle
+            tradingButton.layer.borderColor = MySpecialColors.borderGray3.cgColor
+
+            tradingStrategyTableView.allowsSelection = false
+            configureAnimation()
         }
     }
 
@@ -180,10 +189,11 @@ class StockTradingViewController: UIViewController {
 
             tradingButton.backgroundColor = MySpecialColors.traidingCircle
             tradingButton.layer.borderColor = MySpecialColors.borderGray3.cgColor
-
             
             let trainingStock = TrainingStock(ownedStock: stock!, modelList: modelList, trainingModel: model)
             Stock.traiding.append(trainingStock)
+            UserInfo.shared.trainingList = Stock.traiding.compactMap { $0.code }
+            CoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, trainingItems: UserInfo.shared.trainingList!)
 
             tradingStrategyTableView.allowsSelection = false
             configureAnimation()
@@ -193,8 +203,12 @@ class StockTradingViewController: UIViewController {
             tradingButton.backgroundColor = MySpecialColors.traidingCircle2
             tradingButton.layer.borderColor = MySpecialColors.borderGray2.cgColor
 
-            Stock.traiding = Stock.traiding.filter { $0.code! != stock?.code!}
             tradingStrategyTableView.allowsSelection = true
+
+//            self.stock?.isTrading = false
+            Stock.traiding = Stock.traiding.filter { $0.code != self.stock?.code }
+            UserInfo.shared.trainingList = Stock.traiding.compactMap { $0.code }
+            CoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, trainingItems: UserInfo.shared.trainingList!)
 
             self.pulseAnimationView1.layer.removeAllAnimations()
             self.pulseAnimationView2.layer.removeAllAnimations()

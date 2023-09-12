@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             UserInfo.shared.name = user[0].name
             UserInfo.shared.favoriteList = user[0].favoriteItems
+            UserInfo.shared.trainingList = user[0].trainingItems
             UserInfo.shared.appKey = user[0].appKey
 
             networkManager.getAccessToken(appKey: user[0].appKey!, secretKey: user[0].secretKey!, completion: { token in

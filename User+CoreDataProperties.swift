@@ -17,6 +17,7 @@ extension User {
     }
 
     @NSManaged public var favoriteItems: [String]?
+    @NSManaged public var trainingItems: [String]?
     @NSManaged public var name: String?
     @NSManaged public var appKey: String?
     @NSManaged public var secretKey: String?

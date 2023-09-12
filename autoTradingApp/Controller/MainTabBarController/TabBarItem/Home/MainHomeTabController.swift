@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-private enum Section: Hashable {
+enum Section: Hashable {
     case main
 }
 
@@ -108,12 +108,20 @@ class MainHomeTabController: UIViewController {
         return stackView
     }()
 
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Stock>! = nil
+    var dataSource: UICollectionViewDiffableDataSource<Section, Stock>! = nil
     private var collectionView: UICollectionView! = nil
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+
+        if segmentedControl.selectedSegmentIndex == 2 {
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(Stock.traiding)
+
+            self.dataSource?.apply(snapshot)
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -187,6 +195,12 @@ class MainHomeTabController: UIViewController {
         if UserInfo.shared.favoriteList!.contains(Stock.all[idx].code!) {
             Stock.all[idx].isFavorite = true
             Stock.favorite.append(Stock.all[idx])
+        }
+
+        if UserInfo.shared.trainingList!.contains(Stock.all[idx].code!) {
+            Stock.all[idx].isTrading = true
+            let trainingStock = TrainingStock(ownedStock: (Stock.all[idx] as! OwnedStock))
+            Stock.traiding.append(trainingStock)
         }
 
         Stock.loaded.append(Stock.all[idx])

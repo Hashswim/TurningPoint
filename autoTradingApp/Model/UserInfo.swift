@@ -14,6 +14,7 @@ class UserInfo {
     var appKey: String?
     var accessToken: String?
     var favoriteList: [String]?
+    var trainingList: [String]?
 
     private init() {}
 }
