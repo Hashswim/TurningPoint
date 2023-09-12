@@ -221,7 +221,6 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
                 .medium(string: "%", fontSize: 12)
         }
 
-//        priceDifferenceLabel.textColor = valueConfiguration.secondaryTextProperties.resolvedColor()
         priceDifferenceLabel.textColor = .white
         priceDifferenceLabel.layer.cornerRadius = 3
         priceDifferenceLabel.layer.masksToBounds = true
@@ -232,9 +231,7 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
             priceDifferenceLabel.backgroundColor = .darkGray
             priceLabel.textColor = .white
         }
-        //        priceDifferenceLabel.font = valueConfiguration.secondaryTextProperties.font
 
-        // Update some of the constraints for our custom views using the system default metrics from the configurations.
         customViewConstraints?.scaledChartViewLeading.constant = content.directionalLayoutMargins.trailing
         customViewConstraints?.scaledChartViewTrailing.constant = valueConfiguration.textToSecondaryTextHorizontalPadding
         customViewConstraints?.priceLabelTrailing.constant = content.directionalLayoutMargins.trailing
@@ -248,6 +245,23 @@ class CustomStcokListCellCollectionViewCell: StcokListCellCollectionViewCell {
                 additionalTradingCellView.translatesAutoresizingMaskIntoConstraints = false
 
                 contentView.addSubview(additionalTradingCellView)
+
+                let trainingStock = state.stock! as! TrainingStock
+                additionalTradingCellView.earningPirceLabel.attributedText = NSMutableAttributedString()
+                    .regular(string: numberFormatter.string(from: trainingStock.appamt! as NSNumber)!, fontSize: 17)
+                    .medium(string: " 원", fontSize: 15)
+
+                if trainingStock.sunikrt! > 0 {
+                    additionalTradingCellView.earningRateLabel.attributedText = NSMutableAttributedString()
+                        .regular(string: String(format: "+%.2f%%", trainingStock.sunikrt!), fontSize: 17)
+                } else {
+                    additionalTradingCellView.earningRateLabel.attributedText = NSMutableAttributedString()
+                        .regular(string: String(format: "%.2f%%", trainingStock.sunikrt!), fontSize: 17)
+                }
+
+                additionalTradingCellView.ownedCountLabel.attributedText = NSMutableAttributedString()
+                    .regular(string: numberFormatter.string(from: trainingStock.janqty! as NSNumber)!, fontSize: 17)
+                    .medium(string: " 주", fontSize: 15)
 
                 additionalTradingCellView.heightAnchor.constraint(equalToConstant: 128).isActive = true
                 additionalTradingCellView.topAnchor.constraint(equalTo: listContentView.bottomAnchor, constant: 16).isActive = istraiding

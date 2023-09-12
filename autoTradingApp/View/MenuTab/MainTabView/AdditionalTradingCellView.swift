@@ -35,11 +35,8 @@ class AdditionalTradingCellView: UIView {
         return label
     }()
 
-    private let earningPirceLabel: UILabel = {
+    let earningPirceLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSMutableAttributedString()
-            .regular(string: "300,000", fontSize: 17)
-            .medium(string: " 원", fontSize: 15)
         label.textColor = .white
 
         return label
@@ -54,11 +51,8 @@ class AdditionalTradingCellView: UIView {
         return label
     }()
 
-    private let earningRateLabel: UILabel = {
+    let earningRateLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSMutableAttributedString()
-            .regular(string: "+5.4", fontSize: 17)
-            .medium(string: "%", fontSize: 15)
         label.textColor = .white
 
         return label
@@ -73,11 +67,8 @@ class AdditionalTradingCellView: UIView {
         return label
     }()
 
-    private let ownedCountLabel: UILabel = {
+    let ownedCountLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSMutableAttributedString()
-            .regular(string: "4", fontSize: 17)
-            .medium(string: " 주", fontSize: 15)
         label.textColor = .white
 
         return label

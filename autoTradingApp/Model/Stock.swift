@@ -87,7 +87,7 @@ class Stock: Hashable {
 
     static var favorite: [Stock] = []
 
-    static let traiding: [TrainingStock] = []
+    static var traiding: [TrainingStock] = []
 }
 
 class OwnedStock: Stock {
@@ -96,7 +96,7 @@ class OwnedStock: Stock {
     var sunikrt: Double?//수익률
     var janqty: Double?//수량
 
-    init(name: String?, code: String?, appamt: Double? = nil, dtsunik: Double? = nil, sunikrt: Double? = nil, janqty: Double? = nil) {
+    init(name: String? = nil, code: String? = nil, appamt: Double? = nil, dtsunik: Double? = nil, sunikrt: Double? = nil, janqty: Double? = nil) {
         super.init()
         self.name = name
         self.code = code
@@ -109,13 +109,32 @@ class OwnedStock: Stock {
 }
 
 class TrainingStock: OwnedStock {
-    var modelList: [AlgorithmModel]
-    var trainingModel: AlgorithmModel
+    var modelList: [AlgorithmModel]?
+    var trainingModel: AlgorithmModel?
 
-    init(stock: OwnedStock, modelList: [AlgorithmModel], trainingModel: AlgorithmModel) {
+    init(ownedStock: OwnedStock, modelList: [AlgorithmModel]? = nil, trainingModel: AlgorithmModel? = nil) {
+        super.init()
+
         self.modelList = modelList
         self.trainingModel = trainingModel
-        super.init(name: stock.name, code: stock.code)
+
+        self.logo = ownedStock.logo
+        self.code = ownedStock.code
+        self.name = ownedStock.name
+        self.dateChartList = ownedStock.dateChartList
+        self.price = ownedStock.price
+        self.priceDifference = ownedStock.priceDifference
+        self.volume = ownedStock.volume
+        self.change = ownedStock.change
+        self.isFavorite = ownedStock.isFavorite
+        self.isTrading = ownedStock.isTrading
+
+        self.appamt = ownedStock.appamt
+        self.dtsunik = ownedStock.dtsunik
+        self.sunikrt = ownedStock.sunikrt
+        self.janqty = ownedStock.janqty
+
+
         self.isTrading = true
     }
 }

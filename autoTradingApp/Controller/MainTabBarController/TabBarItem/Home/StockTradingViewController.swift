@@ -160,10 +160,13 @@ class StockTradingViewController: UIViewController {
             if modelList.count != 0 {
                 tradingButton.isEnabled = true
                 algorithmTypeLabel.attributedText = NSMutableAttributedString().regular(string: modelList.first!.algorithmType, fontSize: 13)
-
             }
 
             self.tradingStrategyTableView.reloadData()
+        }
+
+        if stock!.isTrading! {
+            changeTradingStatusAction()
         }
     }
 
@@ -178,12 +181,20 @@ class StockTradingViewController: UIViewController {
             tradingButton.backgroundColor = MySpecialColors.traidingCircle
             tradingButton.layer.borderColor = MySpecialColors.borderGray3.cgColor
 
+            
+            let trainingStock = TrainingStock(ownedStock: stock!, modelList: modelList, trainingModel: model)
+            Stock.traiding.append(trainingStock)
+
+            tradingStrategyTableView.allowsSelection = false
             configureAnimation()
         } else {
             subIitleAttr = AttributedString.init("OFF")
 
             tradingButton.backgroundColor = MySpecialColors.traidingCircle2
             tradingButton.layer.borderColor = MySpecialColors.borderGray2.cgColor
+
+            Stock.traiding = Stock.traiding.filter { $0.code! != stock?.code!}
+            tradingStrategyTableView.allowsSelection = true
 
             self.pulseAnimationView1.layer.removeAllAnimations()
             self.pulseAnimationView2.layer.removeAllAnimations()
@@ -197,8 +208,6 @@ class StockTradingViewController: UIViewController {
         tradingButton.configuration?.attributedSubtitle = subIitleAttr
 
         isTraining.toggle()
-
-
     }
 
     func configureAnimation() {
@@ -246,8 +255,6 @@ class StockTradingViewController: UIViewController {
     func setUpNaviBar() {
         self.title = "내 주식"
 
-//        self.navigationItem.rightBarButtonItem =
-//        UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed))
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.topItem?.title = ""
 
@@ -260,11 +267,6 @@ class StockTradingViewController: UIViewController {
         self.navigationItem.standardAppearance = appearance
         self.navigationItem.scrollEdgeAppearance = appearance
     }
-
-//    @objc
-//    func favoriteButtonPressed() {
-//        //toggle isFavorite property and change UIBarButtonItem Image
-//    }
 
     func configureHierarchy() {
         view.addSubview(scrollView)
@@ -386,6 +388,7 @@ extension StockTradingViewController: UITableViewDelegate, UITableViewDataSource
             selected = indexPath
             cell.isTouched = true
             cell.touched()
+            model = modelList[indexPath.row]
 
             if modelList[indexPath.row].predictedProfit >= 0 {
                 percentageLabel.attributedText = NSMutableAttributedString()
@@ -412,7 +415,7 @@ extension StockTradingViewController: UITableViewDelegate, UITableViewDataSource
             return
         }
         selected = indexPath
-
+        model = modelList[indexPath.row]
         algorithmTypeLabel.attributedText = NSMutableAttributedString().regular(string: currentCell.typeLabel.text!, fontSize: 13)
 
         if modelList[indexPath.row].predictedProfit >= 0 {
