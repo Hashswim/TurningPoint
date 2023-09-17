@@ -10,6 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
 
     var stock: OwnedStock? = nil
+    let networkManager = NetworkManager()
 
     private let stockNameLabel: UILabel = {
         let label = UILabel()
@@ -72,8 +73,6 @@ class DetailViewController: UIViewController {
         setUpUI()
         setUpNaviBar()
         configureLayout()
-
-
     }
 
     func setUpNaviBar() {
@@ -162,12 +161,55 @@ class DetailViewController: UIViewController {
 
     @objc
     func buyTradeTapped() {
+        networkManager.postOrder(code: stock!.code!,
+                                 count: Int(transactionBuyView.countStepper.value),
+                                 price: transactionBuyView.priceStepper.value,
+                                 trType: 2,
+                                 completion: addBuyTransaction)
+    }
 
+    func addBuyTransaction() {
+        let date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "yyyy.MM.dd"
+
+        TradingTransaction.all.append(TradingTransaction(name: stock!.name!,
+                                                         code: stock!.code!,
+                                                         date: format.string(from: date),
+                                                         price: transactionSellView.priceStepper.value,
+                                                         action: "Sell",
+                                                         count: Int(transactionSellView.countStepper.value),
+                                                         investment: 0))
     }
 
     @objc
     func sellTradeTapped() {
+        networkManager.postOrder(code: stock!.code!,
+                                 count: Int(transactionSellView.countStepper.value),
+                                 price: transactionSellView.priceStepper.value,
+                                 trType: 1,
+                                 completion: addSellTransaction)
 
+    }
+
+    func addSellTransaction() {
+        let date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "yyyy.MM.dd"
+
+        var sunikrt: Double = 0
+        let stockList = Stock.loaded.filter { $0.code ==  self.stock?.code! }
+        if !stockList.isEmpty {
+            sunikrt = (stockList[0] as! OwnedStock).sunikrt!
+        }
+
+        TradingTransaction.all.append(TradingTransaction(name: stock!.name!,
+                                                         code: stock!.code!,
+                                                         date: format.string(from: date),
+                                                         price: transactionSellView.priceStepper.value,
+                                                         action: "Sell",
+                                                         count: Int(transactionSellView.countStepper.value),
+                                                         investment: sunikrt))
     }
     func setUpUI() {
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)

@@ -52,7 +52,7 @@ def handler(event, context):
     elif event['eventType'] == "postSwitchTraining":
         return switch_training_state(event['code'])
     elif event['eventType'] == "getPredictedTransaction":
-        return post_transaction(event['code'])
+        return post_transaction()
     else:
         return {
             'statusCode': 200,
@@ -152,7 +152,7 @@ def switch_training_state(code):
         'body': json.dumps("complete")}
 
 #post predicted transaction
-def post_transaction(code):
+def post_transaction():
     return {
         'statusCode': 200,
         'headers': {
@@ -160,4 +160,11 @@ def post_transaction(code):
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': '*'
         },
-        'body': json.dumps("{latest transaction}")}
+        'body': {
+                'name' : '크래프톤',
+                'code' : '259960',
+                'price' : 152000,
+                'count' : 2,
+                'type' : 'buy',
+            }
+        }

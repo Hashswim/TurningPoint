@@ -373,10 +373,7 @@ extension NetworkManager {
     }
 
     func postOrder(code: String, count: Int, price: Double, trType: Int,  completion: @escaping () -> ()) {
-        let url = "https://openapi.ebestsec.co.kr:8080/stock/chart"
-
-        // Header : 메타정보
-        // Body : 실질적인 데이터
+        let url = "https://openapi.ebestsec.co.kr:8080/stock/order"
 
         //trType - 1:매도, 2: 매수
         let parameter: Parameters = [

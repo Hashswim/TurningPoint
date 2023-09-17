@@ -85,7 +85,6 @@ struct AmplifyManager {
         {
             "eventType" : "getStockTrainingData",
             "code" : "\(code)"
-
         }
         """.data(using: .utf8)!
 
@@ -108,6 +107,42 @@ struct AmplifyManager {
             print("Unexpected error: \(error)")
             return []
         }
+    }
+
+    func getPredictedTransaction() async -> TradingTransaction? {
+        
+        let message = """
+        {
+            "eventType" : "getPredictedTransaction"
+        }
+        """.data(using: .utf8)!
+
+        let request = RESTRequest(path: "/items", body: message)
+        do {
+            let data = try await Amplify.API.post(request: request)
+            let json = JSON(data)
+
+            if json["statusCode"] == 200 {
+                let date = Date()
+                let format = DateFormatter()
+                format.dateFormat = "yyyy.MM.dd"
+
+                return TradingTransaction(name: json["body"]["name"].stringValue,
+                                          code: json["body"]["code"].stringValue,
+                                          date: format.string(from: date),
+                                          price: json["body"]["price"].doubleValue,
+                                          action: json["body"]["type"].stringValue,
+                                          count: json["body"]["count"].intValue,
+                                          investment: json["body"]["investment"].doubleValue)
+            }
+
+            print(json["body"].stringValue)
+        } catch let error as APIError {
+            print("Failed due to API error: ", error)
+        } catch {
+            print("Unexpected error: \(error)")
+        }
+        return nil
     }
 }
 

@@ -11,7 +11,7 @@ class AdditionalTradingCellView: UIView {
 
     private let algorithmTypeLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSMutableAttributedString().regular(string: "기본형 알고리즘", fontSize: 12)
+        label.attributedText = NSMutableAttributedString().regular(string: "데이터 학습중", fontSize: 12)
         label.textColor = MySpecialColors.textGray2
         label.textAlignment = .center
         label.backgroundColor = MySpecialColors.bgGray

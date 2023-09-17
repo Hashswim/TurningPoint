@@ -9,6 +9,7 @@ import UIKit
 import DropDown
 
 class TradingViewController: UIViewController {
+    private var transaction: TradingTransaction? = nil
     
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -110,6 +111,18 @@ class TradingViewController: UIViewController {
         setUpUI()
         configrueLayout()
         configureTableView()
+
+        let amplifyManager = AmplifyManager()
+        async  {
+            let transaction = try await amplifyManager.getPredictedTransaction()
+            self.transaction = transaction
+
+            if self.transaction != nil {
+                configureTransactionButton()
+            } else {
+                transactionButton.isHidden = true
+            }
+        }
     }
 
     private func setUpUI() {
@@ -129,7 +142,7 @@ class TradingViewController: UIViewController {
         view.addSubview(tableView)
 
         setUpDropDown()
-        configureTransactionButton()
+
     }
 
     private func configrueLayout() {
@@ -153,7 +166,7 @@ class TradingViewController: UIViewController {
 
             dropDownView.topAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: 50),
             dropDownView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -18),
-            dropDownView.heightAnchor.constraint(equalToConstant: 32),
+            dropDownView.heightAnchor.constraint(equalToConstant: 40),
             dropDownView.widthAnchor.constraint(equalToConstant: 220),
 
             headerLabelStackView.topAnchor.constraint(equalTo: dropDownView.bottomAnchor, constant: 20),
@@ -198,19 +211,22 @@ extension TradingViewController {
         let itemList = ["item1", "item2", "item3", "item4", "item5", "item6"]
 
         dropDown.dataSource = itemList
-        dropDownView.backgroundColor = MySpecialColors.borderGray
+        dropDownView.backgroundColor = MySpecialColors.cellGray
 
         DropDown.appearance().textColor = .white // 아이템 텍스트 색상
         DropDown.appearance().selectedTextColor = .white// 선택된 아이템 텍스트 색상
-        DropDown.appearance().backgroundColor = MySpecialColors.dropGray // 아이템 팝업 배경 색상
-        DropDown.appearance().selectionBackgroundColor = UIColor.lightGray // 선택한 아이템 배경 색상
+        DropDown.appearance().backgroundColor = MySpecialColors.cellGray // 아이템 팝업 배경 색상
+        DropDown.appearance().selectionBackgroundColor = MySpecialColors.cellGray // 선택한 아이템 배경 색상
         DropDown.appearance().setupCornerRadius(8)
+        dropDownView.layer.borderWidth = 1
+        dropDownView.layer.borderColor = MySpecialColors.borderGray.cgColor
+
         dropDown.dismissMode = .automatic // 팝업을 닫을 모드 설정
 
         dropDown.anchorView = self.dropDownView
 
         // View를 갖리지 않고 View아래에 Item 팝업이 붙도록 설정
-        dropDown.bottomOffset = CGPoint(x: 0, y: 36)
+        dropDown.bottomOffset = CGPoint(x: 0, y: 42)
 
         // Item 선택 시 처리
         dropDown.selectionAction = { [weak self] (index, item) in
@@ -230,7 +246,11 @@ extension TradingViewController {
     }
 
     func configureTransactionButton() {
-        transactionButton.tradingCall = TradingCall(code: "259960", name: "크래프톤", price: 210000, count: 2, order: .buy)
+        transactionButton.tradingCall = TradingCall(code: transaction!.code,
+                                                    name: transaction!.name,
+                                                    price: transaction!.price,
+                                                    count: transaction!.count,
+                                                    order: (transaction!.action == "buy" ? .buy : .sell))
         transactionButton.setUpCallValue()
         transactionButton.addTarget(self, action: #selector(transactionButtonTapped), for: .touchUpInside)
     }
