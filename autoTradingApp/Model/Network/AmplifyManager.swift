@@ -132,8 +132,7 @@ struct AmplifyManager {
                                           date: format.string(from: date),
                                           price: json["body"]["price"].doubleValue,
                                           action: json["body"]["type"].stringValue,
-                                          count: json["body"]["count"].intValue,
-                                          investment: json["body"]["investment"].doubleValue)
+                                          count: json["body"]["count"].intValue)
             }
 
             print(json["body"].stringValue)

@@ -73,7 +73,7 @@ class LoginViewController: UIViewController {
             if let token = token {
                 UserInfo.shared.accessToken = token
 
-                CoreDataManager.shared.create(appKey: appKey!, secretKey: secretKey!, name: name!, favoriteItems: [""], trainingItems: [""])
+                UserCoreDataManager.shared.create(appKey: appKey!, secretKey: secretKey!, name: name!, favoriteItems: [""], trainingItems: [""])
                    
                 let mainTabBarController = MainTabBarController()
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)

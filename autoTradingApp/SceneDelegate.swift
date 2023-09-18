@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let networkManager = NetworkManager()
 
-        let user: [User] = CoreDataManager.shared.readUserEntity()
+        let user: [User] = UserCoreDataManager.shared.readUserEntity()
         if user.count == 0 {
             let mainViewController = InitialViewController()
 

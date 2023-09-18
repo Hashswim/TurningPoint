@@ -193,7 +193,7 @@ class StockTradingViewController: UIViewController {
             let trainingStock = TrainingStock(ownedStock: stock!, modelList: modelList, trainingModel: model)
             Stock.traiding.append(trainingStock)
             UserInfo.shared.trainingList = Stock.traiding.compactMap { $0.code }
-            CoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, trainingItems: UserInfo.shared.trainingList!)
+            UserCoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, trainingItems: UserInfo.shared.trainingList!)
 
             tradingStrategyTableView.allowsSelection = false
             configureAnimation()
@@ -208,7 +208,7 @@ class StockTradingViewController: UIViewController {
 //            self.stock?.isTrading = false
             Stock.traiding = Stock.traiding.filter { $0.code != self.stock?.code }
             UserInfo.shared.trainingList = Stock.traiding.compactMap { $0.code }
-            CoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, trainingItems: UserInfo.shared.trainingList!)
+            UserCoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, trainingItems: UserInfo.shared.trainingList!)
 
             self.pulseAnimationView1.layer.removeAllAnimations()
             self.pulseAnimationView2.layer.removeAllAnimations()

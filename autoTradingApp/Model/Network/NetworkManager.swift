@@ -295,7 +295,6 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
-                    //                    print(code, json["t1101OutBlock"]["diff"], json["t1101OutBlock"]["hname"])
                     completion("\(json["t1101OutBlock"]["hname"])",
                                code,
                                idx,
@@ -372,7 +371,7 @@ extension NetworkManager {
         }
     }
 
-    func postOrder(code: String, count: Int, price: Double, trType: Int,  completion: @escaping () -> ()) {
+    func postOrder(code: String, count: Int, price: Double, trType: Int,  completion: @escaping (String, Bool) -> ()) {
         let url = "https://openapi.ebestsec.co.kr:8080/stock/order"
 
         //trType - 1:매도, 2: 매수
@@ -427,9 +426,12 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
-                    //                    print(code, json["t1101OutBlock"]["price"], json["t1101OutBlock"]["hname"])
                     print(json)
-                    completion()
+                    if json["CSPAT00601OutBlock1"].isEmpty {
+                        completion(json["rsp_msg"].stringValue, false)
+                    } else {
+                        completion(json["rsp_msg"].stringValue, true)
+                    }
                 } else {
                     print("error", "\(code)")
                 }

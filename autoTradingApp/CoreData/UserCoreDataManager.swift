@@ -8,8 +8,8 @@
 import UIKit
 import CoreData
 
-class CoreDataManager {
-    static var shared: CoreDataManager = CoreDataManager()
+class UserCoreDataManager {
+    static var shared: UserCoreDataManager = UserCoreDataManager()
 
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "UserCoreData")

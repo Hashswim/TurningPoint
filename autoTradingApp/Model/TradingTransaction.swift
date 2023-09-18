@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 //by Group
 struct TradingTransaction {
@@ -15,7 +16,7 @@ struct TradingTransaction {
     let price: Double
     let action: String
     let count: Int
-    let investment: Double
+//    let investment: Double
 
     static var all: [TradingTransaction] = []
 }

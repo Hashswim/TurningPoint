@@ -10,6 +10,7 @@ import DropDown
 
 class TradingViewController: UIViewController {
     private var transaction: TradingTransaction? = nil
+    private var filtered: [TradingTransaction]? = nil
     
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -74,17 +75,17 @@ class TradingViewController: UIViewController {
         return label
     }()
 
-    private let headerInvestmentLabel: UILabel = {
+    private let headerNameLabel: UILabel = {
         let label = UILabel()
         label.attributedText = NSMutableAttributedString()
-            .regular(string: "Investment", fontSize: 13)
+            .regular(string: "Name", fontSize: 13)
         label.textColor = .gray
 
         return label
     }()
 
     lazy var headerLabelStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [headerDateLabel, headerPriceLabel, headerActionLabel, headerInvestmentLabel])
+        let stackView = UIStackView(arrangedSubviews: [headerDateLabel, headerPriceLabel, headerActionLabel, headerNameLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.backgroundColor = MySpecialColors.darkGray
 
@@ -140,9 +141,6 @@ class TradingViewController: UIViewController {
         view.addSubview(dropDownView)
         view.addSubview(headerLabelStackView)
         view.addSubview(tableView)
-
-        setUpDropDown()
-
     }
 
     private func configrueLayout() {
@@ -181,10 +179,10 @@ class TradingViewController: UIViewController {
             headerPriceLabel.widthAnchor.constraint(equalToConstant: 31),
 
             headerActionLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 218),
-            headerActionLabel.widthAnchor.constraint(equalToConstant: 40),
+            headerActionLabel.widthAnchor.constraint(equalToConstant: 60),
 
-            headerInvestmentLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 288),
-            headerInvestmentLabel.widthAnchor.constraint(equalToConstant: 30),
+            headerNameLabel.leadingAnchor.constraint(equalTo: headerLabelStackView.leadingAnchor, constant: 288),
+            headerNameLabel.widthAnchor.constraint(equalToConstant: 30),
 
             tableView.topAnchor.constraint(equalTo: headerLabelStackView.bottomAnchor, constant: 2),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -200,6 +198,13 @@ class TradingViewController: UIViewController {
         tableView.backgroundColor = MySpecialColors.bgColor
 
         tableView.register(TradingCell.self, forCellReuseIdentifier: TradingCell.cellID)
+
+        TradingTransaction.all = TransactionCoreDataManager.shared.readTransactionEntity().map {
+            TradingTransaction(name: $0.name!, code: $0.code!, date: $0.date!, price: $0.price, action: $0.action!, count: Int($0.count))
+        }
+        filtered = TradingTransaction.all
+
+        setUpDropDown()
     }
 }
 
@@ -208,7 +213,8 @@ extension TradingViewController {
         dropDownView.dropDownBtn.addTarget(self, action: #selector(dropdownClicked), for: .touchUpInside)
         dropDownView.translatesAutoresizingMaskIntoConstraints = false
 
-        let itemList = ["item1", "item2", "item3", "item4", "item5", "item6"]
+        var itemList = TradingTransaction.all.map{ $0.name }.removingDuplicates()
+        itemList.insert("모든 거래", at: 0)
 
         dropDown.dataSource = itemList
         dropDownView.backgroundColor = MySpecialColors.cellGray
@@ -232,6 +238,14 @@ extension TradingViewController {
         dropDown.selectionAction = { [weak self] (index, item) in
             self!.dropDownView.textField.attributedText = NSMutableAttributedString().regular(string: item, fontSize: 12)
             self!.dropDownView.imageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+
+            if index != 0 {
+                self!.filtered = TradingTransaction.all.filter{ $0.name == item }
+                self!.tableView.reloadData()
+            } else {
+                self!.filtered = TradingTransaction.all
+                self!.tableView.reloadData()
+            }
         }
         // 취소 시 처리
         dropDown.cancelAction = { [weak self] in
@@ -293,23 +307,23 @@ extension TradingViewController {
 
 extension TradingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TradingTransaction.all.count
+        return filtered!.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TradingCell.cellID, for: indexPath) as! TradingCell
 
         cell.dateLabel.attributedText = NSMutableAttributedString()
-            .regular(string: TradingTransaction.all[indexPath.row].date, fontSize: 12)
+            .regular(string: filtered![indexPath.row].date, fontSize: 12)
 
         cell.priceLabel.attributedText = NSMutableAttributedString()
-            .regular(string: String(TradingTransaction.all[indexPath.row].price), fontSize: 12)
+            .regular(string: String(Int(filtered![indexPath.row].price)), fontSize: 12)
 
         cell.actionLabel.attributedText = NSMutableAttributedString()
-            .regular(string: TradingTransaction.all[indexPath.row].action + "\(TradingTransaction.all[indexPath.row].count)", fontSize: 12)
+            .regular(string: filtered![indexPath.row].action + "\(filtered![indexPath.row].count)", fontSize: 12)
 
-        cell.investmentLabel.attributedText = NSMutableAttributedString()
-            .regular(string: String(TradingTransaction.all[indexPath.row].investment) + "%", fontSize: 12)
+        cell.nameLabel.attributedText = NSMutableAttributedString()
+            .regular(string: String(filtered![indexPath.row].name), fontSize: 12)
 
         return cell
     }

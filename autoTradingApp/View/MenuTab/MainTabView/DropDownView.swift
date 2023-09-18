@@ -21,7 +21,7 @@ class DropDownView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isEnabled = false
         textField.textColor = MySpecialColors.dropGray
-        textField.attributedText = NSMutableAttributedString().regular(string: "선택해주세요", fontSize: 12)
+        textField.attributedText = NSMutableAttributedString().regular(string: "모든 거래", fontSize: 12)
         return textField
     }()
 

@@ -57,7 +57,7 @@ class MyPageViewController: UIViewController {
 
         profileButton.addTarget(self, action: #selector(imagePickerPressed), for: .touchUpInside)
 
-        let user: [User] = CoreDataManager.shared.readUserEntity()
+        let user: [User] = UserCoreDataManager.shared.readUserEntity()
         profileButton.setBackgroundImage(UIImage(data: user[0].profileImage ?? Data()), for: .normal)
 
         btnTableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: ExpandableTableViewCell.reuseIdentifier)
@@ -159,7 +159,7 @@ extension MyPageViewController: UITableViewDelegate {
         tableView.reloadRows(at: [indexPath], with: .automatic)
 
         if indexPath.row == 3 {
-            CoreDataManager.shared.delete()
+            UserCoreDataManager.shared.delete()
 
             Stock.all = []
             Stock.favorite = []
@@ -178,7 +178,7 @@ extension MyPageViewController: UIImagePickerControllerDelegate, UINavigationCon
         picker.dismiss(animated: true) {
             if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
                 self.profileButton.setBackgroundImage(img, for: .normal)
-                CoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, profileImage: img.pngData()!)
+                UserCoreDataManager.shared.update(appKey: UserInfo.shared.appKey!, profileImage: img.pngData()!)
 
             } else {
                 print("image nil")

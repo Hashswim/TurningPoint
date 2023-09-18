@@ -24,7 +24,7 @@ public class TradingCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontForContentSizeCategory = true
         label.textColor = MySpecialColors.tradingGray
-        label.textAlignment = .center
+        label.textAlignment = .left
 
         return label
     }()
@@ -38,12 +38,13 @@ public class TradingCell: UITableViewCell {
         return label
     }()
 
-    let investmentLabel: UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontForContentSizeCategory = true
         label.textColor = MySpecialColors.tradingGray
-        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
 
         return label
     }()
@@ -74,7 +75,7 @@ extension TradingCell {
         contentView.addSubview(dateLabel)
         contentView.addSubview(priceLabel)
         contentView.addSubview(actionLabel)
-        contentView.addSubview(investmentLabel)
+        contentView.addSubview(nameLabel)
         contentView.addSubview(spacingView)
 
         NSLayoutConstraint.activate([
@@ -96,11 +97,11 @@ extension TradingCell {
             actionLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             actionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
-            investmentLabel.leadingAnchor.constraint(equalTo: actionLabel.trailingAnchor, constant: 40),
-            investmentLabel.widthAnchor.constraint(equalToConstant: 53),
-            investmentLabel.heightAnchor.constraint(equalToConstant: 17),
-            investmentLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            investmentLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: actionLabel.trailingAnchor, constant: 40),
+            nameLabel.widthAnchor.constraint(equalToConstant: 61),
+            nameLabel.heightAnchor.constraint(equalToConstant: 17),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
             spacingView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
             spacingView.heightAnchor.constraint(equalToConstant: 4),

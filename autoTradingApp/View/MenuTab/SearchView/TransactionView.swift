@@ -85,6 +85,16 @@ class TransactionView: UIView {
         return imgView
     }()
 
+    let responseLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = MySpecialColors.lightRed2
+        label.textAlignment = .right
+        label.isHidden = true
+
+        return label
+    }()
+
     let transactionButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -114,6 +124,7 @@ class TransactionView: UIView {
         self.addSubview(lineView)
         self.addSubview(totalPriceStackView)
         self.addSubview(totalPriceImageView)
+        self.addSubview(responseLabel)
         self.addSubview(transactionButton)
 
         [totalLabel1, totalPriceLabel, totalLabel2].forEach(totalPriceStackView.addArrangedSubview)
@@ -159,6 +170,10 @@ class TransactionView: UIView {
             totalPriceImageView.heightAnchor.constraint(equalToConstant: 40),
             totalPriceImageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             totalPriceImageView.centerYAnchor.constraint(equalTo: totalPriceStackView.centerYAnchor),
+
+            responseLabel.topAnchor.constraint(equalTo: totalPriceStackView.bottomAnchor, constant: 8),
+            responseLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            responseLabel.heightAnchor.constraint(equalToConstant: 16),
 
             transactionButton.topAnchor.constraint(equalTo: totalPriceStackView.bottomAnchor, constant: 40),
             transactionButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),

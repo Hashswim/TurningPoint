@@ -168,18 +168,17 @@ class DetailViewController: UIViewController {
                                  completion: addBuyTransaction)
     }
 
-    func addBuyTransaction() {
-        let date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "yyyy.MM.dd"
+    func addBuyTransaction(msg: String, success: Bool) {
+        if success {
+            let date = Date()
+            let format = DateFormatter()
+            format.dateFormat = "yyyy.MM.dd"
 
-        TradingTransaction.all.append(TradingTransaction(name: stock!.name!,
-                                                         code: stock!.code!,
-                                                         date: format.string(from: date),
-                                                         price: transactionSellView.priceStepper.value,
-                                                         action: "Sell",
-                                                         count: Int(transactionSellView.countStepper.value),
-                                                         investment: 0))
+            TransactionCoreDataManager.shared.create(code: stock!.name!, action: "Buy", count: Int(transactionSellView.countStepper.value), date: format.string(from: date), name: stock!.name!, price: transactionSellView.priceStepper.value)
+        } else {
+            transactionBuyView.responseLabel.isHidden = false
+            transactionBuyView.responseLabel.attributedText = NSMutableAttributedString().regular(string: msg, fontSize: 12)
+        }
     }
 
     @objc
@@ -192,24 +191,18 @@ class DetailViewController: UIViewController {
 
     }
 
-    func addSellTransaction() {
-        let date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "yyyy.MM.dd"
+    func addSellTransaction(msg: String, success: Bool) {
+        if success {
+            let date = Date()
+            let format = DateFormatter()
+            format.dateFormat = "yyyy.MM.dd"
 
-        var sunikrt: Double = 0
-        let stockList = Stock.loaded.filter { $0.code ==  self.stock?.code! }
-        if !stockList.isEmpty {
-            sunikrt = (stockList[0] as! OwnedStock).sunikrt!
+            TransactionCoreDataManager.shared.create(code: stock!.name!, action: "Sell", count: Int(transactionSellView.countStepper.value), date: format.string(from: date), name: stock!.name!, price: transactionSellView.priceStepper.value)
+        } else {
+            transactionSellView.responseLabel.isHidden = false
+            transactionSellView.responseLabel.attributedText = NSMutableAttributedString().regular(string: msg, fontSize: 12)
         }
 
-        TradingTransaction.all.append(TradingTransaction(name: stock!.name!,
-                                                         code: stock!.code!,
-                                                         date: format.string(from: date),
-                                                         price: transactionSellView.priceStepper.value,
-                                                         action: "Sell",
-                                                         count: Int(transactionSellView.countStepper.value),
-                                                         investment: sunikrt))
     }
     func setUpUI() {
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
