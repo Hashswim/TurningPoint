@@ -103,7 +103,11 @@ class ExpandableTableViewCell: UITableViewCell {
 
     func set(_ model: CellDataModel) {
         titleLabel.attributedText = NSMutableAttributedString().medium(string: model.title, fontSize: 17)
-        descriptionLabel.attributedText = NSMutableAttributedString().medium(string: model.description, fontSize: 17)
+        if model.description == "index" {
+            descriptionLabel.attributedText = NSMutableAttributedString().medium(string: "추정 순자산:       \(String(format: "%9.0f", UserAccount.shared.sunamt!))원 \n실현손익:         \(String(format: "%9.0f", UserAccount.shared.dtsunik!))원\n매입금액:          \(String(format: "%9.0f", UserAccount.shared.mamt!))원\n추정D2예수금:    \(String(format: "%9.0f", UserAccount.shared.sunamt1!))원\n평가금액:         \(String(format: "%9.0f", UserAccount.shared.tappamt!))원\n평가손익:         \(String(format: "%9.0f", UserAccount.shared.tdtsunik!))원", fontSize: 17)
+        } else {
+            descriptionLabel.attributedText = NSMutableAttributedString().medium(string: model.description, fontSize: 17)
+        }
         expandableView.isHidden = !model.isExpanded
         chevronImageView.image = (model.isExpanded ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down"))
 

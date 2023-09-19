@@ -190,10 +190,16 @@ extension NetworkManager {
                 let statusCode = response.response?.statusCode ?? 500
 
                 if statusCode == 200 {
+                    UserAccount.shared.sunamt = json["t0424OutBlock"]["sunamt"].doubleValue
+                    UserAccount.shared.dtsunik = json["t0424OutBlock"]["dtsunik"].doubleValue
+                    UserAccount.shared.mamt = json["t0424OutBlock"]["mamt"].doubleValue
+                    UserAccount.shared.sunamt1 = json["t0424OutBlock"]["sunamt1"].doubleValue
+                    UserAccount.shared.tappamt = json["t0424OutBlock"]["tappamt"].doubleValue
+                    UserAccount.shared.tdtsunik = json["t0424OutBlock"]["tdtsunik"].doubleValue
 
                     completion(
-                        json["t0424OutBlock"]["sunamt"].doubleValue,
-                        json["t0424OutBlock"]["tdtsunik"].doubleValue,
+                        json["t0424OutBlock"]["sunamt"].doubleValue, //추정순자산
+                        json["t0424OutBlock"]["tdtsunik"].doubleValue, //평가손익
                         
                         json["t0424OutBlock1"].array!.compactMap {
                         OwnedStock(name: $0["hname"].string!,

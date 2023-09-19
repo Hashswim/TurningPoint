@@ -19,10 +19,10 @@ struct CellDataModel {
     let description: String
     var isExpanded = false
 
-    static let mockedData: [CellDataModel] = [
-        CellDataModel(title: "내 계좌확인", description: "View and edit your profile information, including your name, email address, phone number, and profile picture. You can also update your password and manage your account settings here."),
-        CellDataModel(title: "도움말", description: "Choose which notifications you want to receive, including push notifications, email notifications, and in-app notifications. You can customize the type of notifications you receive for different events and actions in the app."),
-        CellDataModel(title: "약관확인", description: "Manage your privacy settings, including who can see your profile information and what information is visible to others. You can also control your data sharing preferences and manage your account security settings."),
+    static var mockedData: [CellDataModel] = [
+        CellDataModel(title: "내 계좌확인", description: "index"),
+        CellDataModel(title: "도움말", description: "트레이닝 서비스는 AI 모델을 보유한 주식을 소유하고 있을 때 가능합니다."),
+        CellDataModel(title: "약관확인", description: "투자에 대한 책임은 본인에게 있습니다."),
         CellDataModel(title: "로그아웃", description: ""),
     ]
 }

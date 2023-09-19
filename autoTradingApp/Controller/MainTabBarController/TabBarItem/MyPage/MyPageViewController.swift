@@ -60,6 +60,13 @@ class MyPageViewController: UIViewController {
         let user: [User] = UserCoreDataManager.shared.readUserEntity()
         profileButton.setBackgroundImage(UIImage(data: user[0].profileImage ?? Data()), for: .normal)
 
+        CellDataModel.mockedData = [
+            CellDataModel(title: "내 계좌확인", description: "추정 순자산: \(UserAccount.shared.sunamt!) \n실현손익: \(UserAccount.shared.dtsunik!)\n매입금액: \(UserAccount.shared.mamt!) \n추정D2예수금\(UserAccount.shared.sunamt1!) \n평가금액\(UserAccount.shared.tappamt!) \n평가손익\(UserAccount.shared.tdtsunik!)"),
+            CellDataModel(title: "도움말", description: "트레이닝 서비스는 AI 모델을 보유한 주식을 소유하고 있을 때 가능합니다."),
+            CellDataModel(title: "약관확인", description: "투자에 대한 책임은 본인에게 있습니다."),
+            CellDataModel(title: "로그아웃", description: ""),
+        ]
+
         btnTableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: ExpandableTableViewCell.reuseIdentifier)
 
         scrollView.backgroundColor = MySpecialColors.bgColor
@@ -164,7 +171,7 @@ extension MyPageViewController: UITableViewDelegate {
             Stock.all = []
             Stock.favorite = []
             Stock.loaded = []
-//            Stock.traiding = []
+            Stock.traiding = []
 
             let vc = LoginViewController()
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
