@@ -12,27 +12,21 @@ struct GuideConstant {
     static var guideText = [NSMutableAttributedString]()
     static var tradingButtonText = [NSMutableAttributedString]()
 
-    let first = "너도 주식 할 수 있어 \n간단하게 터포 !"
-    let second = "주식 !\n쉽고 빠른길로\n터포와 함께 지름길로"
-    let third = "내 주식의 터닝포인트\n내 인생의 터닝포인트!"
-    let fourth = "터포와 함께라면\n주식, 일상 동시에\n챙길 수 있어"
-    let fifth = "주식 더 이상 어렵지 않아요\n자동이니까"
+    let first = "주식 자동매매를 함께할\n수익 알고리즘을 선택 할 수 있어요"
+    let second = "매매 시그널 알림으로 내 주식\n최적의 거래 타이밍을 찾아보세요"
+    let third = "복잡한 주식화면은 이제 안녕!\n터닝포인트와 함께 시작해볼까요?"
 
     let sixth = "Trading"
     let seventh = "Off"
     let eighth = "On"
 
 
-    let LargeFont = NotoSansFont.bold(size: 35)
-    let RegularFont = NotoSansFont.regular(size: 20)
-    let RegularFont2 = NotoSansFont.regular(size: 35)
-
+    let LargeFont = NotoSansFont.bold(size: 17)
+    let RegularFont = NotoSansFont.regular(size: 17)
 
     lazy var attributedStr1 = NSMutableAttributedString(string: first)
     lazy var attributedStr2 = NSMutableAttributedString(string: second)
     lazy var attributedStr3 = NSMutableAttributedString(string: third )
-    lazy var attributedStr4 = NSMutableAttributedString(string: fourth)
-    lazy var attributedStr5 = NSMutableAttributedString(string: fifth )
 
     lazy var attributedStr6 = NSMutableAttributedString(string: sixth )
     lazy var attributedStr7 = NSMutableAttributedString(string: seventh )
@@ -44,54 +38,28 @@ struct GuideConstant {
     }
 
     mutating func setAttrivutedStr() {
-        attributedStr1.addAttribute(.font, value: LargeFont, range: (first as NSString).range(of: "너도 주식 할 수 있어"))
-        attributedStr1.addAttribute(.foregroundColor, value: UIColor.white, range: (first as NSString).range(of: "너도 주식 할 수 있어"))
+        attributedStr1.addAttribute(.font, value: RegularFont, range: (first as NSString).range(of: "주식 자동매매를 함께할"))
+        attributedStr1.addAttribute(.foregroundColor, value: UIColor.white, range: (first as NSString).range(of: "주식 자동매매를 함께할"))
 
-        attributedStr1.addAttribute(.font, value: RegularFont, range: (first as NSString).range(of: "간단하게 터포 !"))
-        attributedStr1.addAttribute(.foregroundColor, value: UIColor.white, range: (first as NSString).range(of: "간단하게 터포 !"))
+        attributedStr1.addAttribute(.font, value: LargeFont, range: (first as NSString).range(of: "수익 알고리즘을 선택 할 수 있어요"))
+        attributedStr1.addAttribute(.foregroundColor, value: UIColor.white, range: (first as NSString).range(of: "수익 알고리즘을 선택 할 수 있어요"))
 
-        attributedStr2.addAttribute(.font, value: LargeFont, range: (second as NSString).range(of: "주식 !"))
-        attributedStr2.addAttribute(.foregroundColor, value: UIColor.white, range: (second as NSString).range(of: "주식 !"))
+        attributedStr2.addAttribute(.font, value: RegularFont, range: (second as NSString).range(of: "매매 시그널 알림으로 내 주식"))
+        attributedStr2.addAttribute(.foregroundColor, value: UIColor.white, range: (second as NSString).range(of: "매매 시그널 알림으로 내 주식"))
 
-        attributedStr2.addAttribute(.font, value: RegularFont, range: (second as NSString).range(of: "쉽고 빠른길로\n터포와 함께 지름길로"))
-        attributedStr2.addAttribute(.foregroundColor, value: UIColor.white, range: (second as NSString).range(of: "쉽고 빠른길로\n터포와 함께 지름길로"))
+        attributedStr2.addAttribute(.font, value: LargeFont, range: (second as NSString).range(of: "최적의 거래 타이밍을 찾아보세요"))
+        attributedStr2.addAttribute(.foregroundColor, value: UIColor.white, range: (second as NSString).range(of: "최적의 거래 타이밍을 찾아보세요"))
 
+        attributedStr3.addAttribute(.font, value: RegularFont, range: (third  as NSString).range(of: "복잡한 주식화면은 이제 안녕!"))
+        attributedStr3.addAttribute(.foregroundColor, value: UIColor.white, range: (third  as NSString).range(of: "복잡한 주식화면은 이제 안녕!"))
 
-        attributedStr3.addAttribute(.font, value: LargeFont, range: (third  as NSString).range(of: "내 주식"))
-        attributedStr3.addAttribute(.foregroundColor, value: UIColor.white, range: (third  as NSString).range(of: "내 주식"))
-
-        attributedStr3.addAttribute(.font, value: RegularFont, range: (third  as NSString).range(of: "의 터닝포인트"))
-        attributedStr3.addAttribute(.foregroundColor, value: UIColor.white, range: (third  as NSString).range(of: "의 터닝포인트"))
-
-
-        attributedStr3.addAttribute(.font, value: LargeFont, range: (third  as NSString).range(of: "내 인생"))
-        attributedStr3.addAttribute(.foregroundColor, value: UIColor.white, range: (third  as NSString).range(of: "내 인생"))
-
-        attributedStr3.addAttribute(.font, value: RegularFont2, range: (third  as NSString).range(of: "의 터닝포인트"))
-        attributedStr3.addAttribute(.foregroundColor, value: UIColor.white, range: (third  as NSString).range(of: "의 터닝포인트"))
-
-        attributedStr3.addAttribute(.font, value: RegularFont2, range: (third  as NSString).range(of: "의 터닝포인트!"))
-        attributedStr3.addAttribute(.foregroundColor, value: UIColor.white, range: (third  as NSString).range(of: "의 터닝포인트!"))
-
-        attributedStr4.addAttribute(.font, value: RegularFont, range: (fourth as NSString).range(of: "터포와 함께라면"))
-        attributedStr4.addAttribute(.foregroundColor, value: UIColor.white, range: (fourth as NSString).range(of: "터포와 함께라면"))
-
-        attributedStr4.addAttribute(.font, value: LargeFont, range: (fourth as NSString).range(of: "주식, 일상 동시에\n챙길 수 있어"))
-        attributedStr4.addAttribute(.foregroundColor, value: UIColor.white, range: (fourth as NSString).range(of: "주식, 일상 동시에\n챙길 수 있어"))
-
-
-        attributedStr5.addAttribute(.font, value: RegularFont, range: (fifth  as NSString).range(of: "주식 더 이상 어렵지 않아요"))
-        attributedStr5.addAttribute(.foregroundColor, value: UIColor.white, range: (fifth  as NSString).range(of: "주식 더 이상 어렵지 않아요"))
-
-        attributedStr5.addAttribute(.font, value: LargeFont, range: (fifth  as NSString).range(of: "자동이니까"))
-        attributedStr5.addAttribute(.foregroundColor, value: UIColor.white, range: (fifth  as NSString).range(of: "자동이니까"))
+        attributedStr3.addAttribute(.font, value: LargeFont, range: (third  as NSString).range(of: "터닝포인트와 함께 시작해볼까요?"))
+        attributedStr3.addAttribute(.foregroundColor, value: UIColor.white, range: (third  as NSString).range(of: "터닝포인트와 함께 시작해볼까요?"))
 
 
         GuideConstant.guideText = [attributedStr1,
                      attributedStr2,
-                     attributedStr3,
-                     attributedStr4,
-                     attributedStr5
+                     attributedStr3
         ]
 
         attributedStr6.addAttribute(.font, value: RegularFont, range: (sixth  as NSString).range(of: "Trading"))

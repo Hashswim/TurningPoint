@@ -12,6 +12,7 @@ class GuideCollectionViewCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
+        stackView.spacing = 54
 
         return stackView
     }()
@@ -19,8 +20,8 @@ class GuideCollectionViewCell: UICollectionViewCell {
     private let guideTextView: UITextView = {
         let textView = UITextView()
 
-//        textView.textColor = .white
-        textView.backgroundColor = UIColor(named: "#333743")
+        textView.textAlignment = .center
+        textView.backgroundColor = UIColor(hex: "#181C26")
 
         return textView
     }()
@@ -28,7 +29,6 @@ class GuideCollectionViewCell: UICollectionViewCell {
     let guideIMGView: UIImageView = {
         var imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
-        imgView.image = UIImage(named: "Dashin_test_img")
         return imgView
     }()
 
@@ -44,24 +44,25 @@ class GuideCollectionViewCell: UICollectionViewCell {
     }
 
     func configureHierarchy() {
-        self.contentView.backgroundColor = MySpecialColors.bgColor
+        self.contentView.backgroundColor = UIColor(hex: "#181C26")
         self.addSubview(containerStackView)
         containerStackView.addArrangedSubview(guideTextView)
         containerStackView.addArrangedSubview(guideIMGView)
     }
 
-    func configureCell(test: NSMutableAttributedString) {
+    func configureCell(test: NSMutableAttributedString, img: UIImage) {
         self.guideTextView.attributedText = test
+        self.guideIMGView.image = img
     }
 
     func configureLayout() {
         NSLayoutConstraint.activate([
-            guideTextView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            guideTextView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            guideTextView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            guideTextView.heightAnchor.constraint(equalToConstant: 160),
+            guideTextView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 28),
+            guideTextView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 63.49),
+            guideTextView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -63.49),
+            guideTextView.heightAnchor.constraint(equalToConstant: 54),
 
-            guideIMGView.topAnchor.constraint(equalTo: guideTextView.bottomAnchor),
+            guideIMGView.topAnchor.constraint(equalTo: guideTextView.bottomAnchor, constant: 54),
             guideIMGView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             guideIMGView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
             guideIMGView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)

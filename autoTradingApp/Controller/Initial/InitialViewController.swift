@@ -14,7 +14,7 @@ class InitialViewController: UIViewController {
     private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
 
-        pageControl.numberOfPages = 5
+        pageControl.numberOfPages = 3
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = UIColor.white.withAlphaComponent(0.3)
         pageControl.isEnabled = false
@@ -133,8 +133,8 @@ extension InitialViewController {
     }
 
     private func configureLayout() {
-        view.backgroundColor = MySpecialColors.bgColor
-        guideCollectionView.backgroundColor = MySpecialColors.bgColor
+        view.backgroundColor = UIColor(hex: "#181C26")
+        guideCollectionView.backgroundColor = UIColor(hex: "#181C26")
 
         NSLayoutConstraint.activate([
             guideCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -157,7 +157,7 @@ extension InitialViewController {
 
 extension InitialViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -167,7 +167,7 @@ extension InitialViewController: UICollectionViewDelegate, UICollectionViewDataS
         let constant = GuideConstant()
         let textArr = GuideConstant.guideText
 
-        cell.configureCell(test: textArr[indexPath.row])
+        cell.configureCell(test: textArr[indexPath.row], img: UIImage(named: "guide_img\(indexPath.row)")!)
         cell.backgroundColor = .systemGray
         return cell
     }
