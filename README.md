@@ -42,7 +42,7 @@ Turning Point is an ios stock advisor app that uses eBest investment securities 
 |Trading Tab|My page Tab|Stock Detail View|
 |![](https://github.com/Hashswim/TurningPoint/assets/57447946/054dc5ff-f1f2-4765-a510-cfdb1ad687a6)|![](https://github.com/Hashswim/TurningPoint/assets/57447946/c708b0f4-4314-43e8-b2ad-dc4a6050b933)|![](https://github.com/Hashswim/TurningPoint/assets/57447946/ef35cb54-f45a-47cf-b8b7-a72d5d7bae55)|
 
-## 🛠Technical Background
+## 🛠 Technical Background
  - Serverless AI model communication using Amplify rest api
  - Load application restart data by storing preferred items, profile images, access tokens, etc. using core data
  - Stock information and trading communications using eBest open api
