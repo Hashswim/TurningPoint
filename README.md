@@ -13,13 +13,13 @@ Turning Point is an ios stock advisor app that uses eBest investment securities 
 
 
 ## 🗒︎ Table of Contents
-1. [What can you do](#--what-can-you-do)
-2. [Features](#--features)
-3. [Technical Background](#--technical-background)
-4. [Structrues](#--structrues)
-5. [Architecture](#--architecture)
+1. [What can you do](#---what-can-you-do)
+2. [Features](#---features)
+3. [Technical Background](#---technical-background)
+4. [Structrues](#---structrues)
+5. [Architecture](#---architecture)
 
-## 🎯What can you do
+## 🎯 What can you do
  - You can check the logo of the stock using the backend stock home page table
  - You can register your shares in the AI model to receive transaction signals through individual prediction models
  - You can check the charts and details of the stocks you have or the training model, and you can buy or sell them
@@ -34,7 +34,7 @@ Turning Point is an ios stock advisor app that uses eBest investment securities 
 </details>
 
 
-## 🖥︎Features
+## 🖥︎ Features
 
 |login|Main Home Tab|Search Stocks|
 |------|------|------|
@@ -51,7 +51,7 @@ Turning Point is an ios stock advisor app that uses eBest investment securities 
  - Use modern collection view to configure collection view; efficiently configure data sources and cells; smoother and more efficient configuration
  - Use Lightweight Charts and Charts libraries to display chart data for high visibility
 
-## 🏗Structrues
+## 🏗 Structrues
 
 <details>
     <summary>Project Structure</summary>
@@ -176,7 +176,7 @@ Turning Point is an ios stock advisor app that uses eBest investment securities 
 	
 </details>
 
-## 🗺Architecture
+## 🗺 Architecture
 <details>
     <summary> Class Diagram </summary>
     <img src="https://github.com/Hashswim/TurningPoint/assets/57447946/65eaf8f8-1798-471b-8f93-a4ab5ffd2ff2" width="100%" height="90%">
