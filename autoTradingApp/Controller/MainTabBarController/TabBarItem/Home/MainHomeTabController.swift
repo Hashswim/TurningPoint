@@ -154,14 +154,16 @@ class MainHomeTabController: UIViewController {
             .regular(string: numberFormatter.string(from: tdtsunik as NSNumber)!, fontSize: 12)
             .regular(string: " 원", fontSize: 12)
 
-        var idx = 0
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [unowned self] timer in
-            self.networkManager.getNowPrice(code: Stock.all[idx].code!, idx: idx, completion: getNowPrice)
+        if !Stock.all.isEmpty {
+            var idx = 0
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [unowned self] timer in
+                self.networkManager.getNowPrice(code: Stock.all[idx].code!, idx: idx, completion: getNowPrice)
 
-            if idx+1 == Stock.all.count {
-                timer.invalidate()
+                if idx+1 == Stock.all.count {
+                    timer.invalidate()
+                }
+                idx += 1
             }
-            idx += 1
         }
     }
 
@@ -424,7 +426,7 @@ extension MainHomeTabController {
     @objc
     func segmentChanged(_ sender: UISegmentedControl) {
         switch self.segmentedControl.selectedSegmentIndex {
-            //기존 snapshot에서 빼는 방식으로 변경?
+            //기존 snapshot에서 빼는 방식으로 변경
         case 0:
             var snapshot = NSDiffableDataSourceSnapshot<Section, Stock>()
             snapshot.appendSections([.main])
