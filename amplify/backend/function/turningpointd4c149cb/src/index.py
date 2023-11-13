@@ -160,11 +160,11 @@ def post_transaction():
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': '*'
         },
-        'body': {
-                'name' : '크래프톤',
-                'code' : '259960',
-                'price' : 152000,
-                'count' : 2,
-                'type' : 'buy',
-            }
+#        'body': {
+#                'name' : '크래프톤',
+#                'code' : '259960',
+#                'price' : 152000,
+#                'count' : 2,
+#                'type' : 'buy',
+#            }
         }
